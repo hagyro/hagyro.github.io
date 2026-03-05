@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Charalampos L. Agiropoulos — Assistant Professor, University of Piraeus</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  :root {
+    --navy: #0f2b46;
+    --blue: #1a5276;
+    --accent: #2e86c1;
+    --light-accent: #d4e6f1;
+    --gold: #c8a951;
+    --bg: #fafbfd;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --muted: #6c7a89;
+    --border: #e8ecf1;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15, 43, 70, 0.97);
+    backdrop-filter: blur(10px);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+  }
+  nav .logo {
+    font-family: 'Playfair Display', serif;
+    color: #fff; font-size: 1.1rem; font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  nav .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 1.8rem; }
+  nav ul li a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px;
+    text-transform: uppercase; transition: color 0.3s;
+  }
+  nav ul li a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 50%, var(--blue) 100%);
+    position: relative; overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(46,134,193,0.15) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(200,169,81,0.08) 0%, transparent 50%);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 960px; text-align: center; color: #fff;
+  }
+  .hero-top {
+    display: flex; align-items: center; justify-content: center;
+    gap: 2.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .hero-photo {
+    width: 180px; height: 180px;
+    border-radius: 50%; object-fit: cover;
+    border: 4px solid rgba(200,169,81,0.4);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(200,169,81,0.15);
+    border: 1px solid rgba(200,169,81,0.3);
+    color: var(--gold);
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 0.4rem 1.2rem; border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 700;
+    line-height: 1.15; margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+  .hero h2 {
+    font-size: 1.2rem; font-weight: 300;
+    color: rgba(255,255,255,0.7); margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex; gap: 3rem; justify-content: center;
+    margin-top: 2.5rem; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 700; color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.75rem; text-transform: uppercase;
+    letter-spacing: 1.5px; color: rgba(255,255,255,0.5);
+    margin-top: 0.3rem;
+  }
+  .hero-contact {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+  .hero-contact a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 0.9rem; transition: color 0.3s;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .hero-contact a:hover { color: var(--gold); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  .section-header {
+    text-align: center; margin-bottom: 3rem;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .section-header .underline {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    margin: 0.8rem auto 0; border-radius: 2px;
+  }
+  .section-header p {
+    color: var(--muted); font-size: 1rem;
+    margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    align-items: start;
+  }
+  .about-text p { margin-bottom: 1rem; color: var(--text); font-size: 0.95rem; }
+  .about-interests {
+    background: var(--card);    border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  }
+  .about-interests h3 {
+    font-size: 1rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 1rem; letter-spacing: 0.5px;
+  }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    display: inline-block;
+    background: var(--light-accent);
+    color: var(--blue); font-size: 0.8rem; font-weight: 500;
+    padding: 0.35rem 0.9rem; border-radius: 20px;
+    transition: all 0.3s;
+  }
+  .tag:hover { background: var(--accent); color: #fff; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(180deg, var(--accent), var(--light-accent));
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 2rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -2.35rem; top: 0.4rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px var(--light-accent);
+  }
+  .timeline-item .date {
+    font-size: 0.8rem; color: var(--accent); font-weight: 600;
+    letter-spacing: 0.5px; margin-bottom: 0.2rem;
+  }
+  .timeline-item h3 {
+    font-size: 1.05rem; color: var(--navy); margin-bottom: 0.15rem;
+  }
+  .timeline-item .org {
+    font-size: 0.9rem; color: var(--muted); font-style: italic;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-item p { font-size: 0.88rem; color: var(--text); }
+
+  /* PUBLICATIONS */
+  .pub-category {
+    margin-bottom: 2.5rem;
+  }
+  .pub-category h3 {
+    font-size: 1.1rem; color: var(--navy); font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-accent);
+  }
+  .pub-category h3 span {
+    background: var(--accent); color: #fff;
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.2rem 0.6rem; border-radius: 10px;
+    margin-left: 0.5rem; vertical-align: middle;
+  }
+  .pub-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 1rem;
+  }
+  .pub-item:last-child { border-bottom: none; }
+  .pub-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    background: var(--light-accent);
+    color: var(--accent); font-weight: 700; font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; margin-top: 0.1rem;
+  }
+  .pub-text { font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+  .pub-text a { color: var(--accent); text-decoration: none; }
+  .pub-text a:hover { text-decoration: underline; }
+
+  /* EXPERIENCE CARDS */
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .exp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+  .exp-card .card-date {
+    font-size: 0.75rem; color: var(--accent); font-weight: 600;
+    letter-spacing: 0.5px; margin-bottom: 0.4rem;
+  }
+  .exp-card h3 { font-size: 1rem; color: var(--navy); margin-bottom: 0.2rem; }
+  .exp-card .card-org { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 0.5rem; }
+  .exp-card p { font-size: 0.85rem; color: var(--text); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .skill-group h3 {
+    font-size: 0.9rem; font-weight: 600; color: var(--navy);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--gold);
+  }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    padding: 0.4rem 0.9rem; border-radius: 6px;
+    font-size: 0.82rem; font-weight: 500;
+  }
+  .skill-badge.expert { background: var(--navy); color: #fff; }
+  .skill-badge.proficient { background: var(--light-accent); color: var(--blue); }
+  .skill-badge.familiar { background: #f0f0f0; color: var(--muted); }
+
+  /* CONFERENCES MAP */
+  .conf-venues {
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+    justify-content: center; margin-top: 1.5rem;
+  }
+  .venue-chip {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--card); border: 1px solid var(--border);
+    padding: 0.5rem 1rem; border-radius: 8px;
+    font-size: 0.85rem; color: var(--text);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .venue-chip .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* CONTACT / FOOTER */
+  .footer {
+    background: var(--navy); color: rgba(255,255,255,0.7);
+    padding: 3rem 2rem; text-align: center;
+  }
+  .footer h2 {
+    font-f<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Charalampos L. Agiropoulos — Assistant Professor, University of Piraeus</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+  :root {
+    --navy: #0f2b46;
+    --blue: #1a5276;
+    --accent: #2e86c1;
+    --light-accent: #d4e6f1;
+    --gold: #c8a951;
+    --bg: #fafbfd;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --muted: #6c7a89;
+    --border: #e8ecf1;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15, 43, 70, 0.97);
+    backdrop-filter: blur(10px);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+  }
+  nav .logo {
+    font-family: 'Playfair Display', serif;
+    color: #fff; font-size: 1.1rem; font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  nav .logo span { color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 1.8rem; }
+  nav ul li a {
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px;
+    text-transform: uppercase; transition: color 0.3s;
+  }
+  nav ul li a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 50%, var(--blue) 100%);
+    position: relative; overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(46,134,193,0.15) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(200,169,81,0.08) 0%, transparent 50%);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 960px; text-align: center; color: #fff;
+  }
+  .hero-top {
+    display: flex; align-items: center; justify-content: center;
+    gap: 2.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .hero-photo {
+    width: 180px; height: 180px;
+    border-radius: 50%; object-fit: cover;
+    border: 4px solid rgba(200,169,81,0.4);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(200,169,81,0.15);
+    border: 1px solid rgba(200,169,81,0.3);
+    color: var(--gold);
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 0.4rem 1.2rem; border-radius: 20px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 700;
+    line-height: 1.15; margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+  .hero h2 {
+    font-size: 1.2rem; font-weight: 300;
+    color: rgba(255,255,255,0.7); margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex; gap: 3rem; justify-content: center;
+    margin-top: 2.5rem; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 700; color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.75rem; text-transform: uppercase;
+    letter-spacing: 1.5px; color: rgba(255,255,255,0.5);
+    margin-top: 0.3rem;
+  }
+  .hero-contact {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+  .hero-contact a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 0.9rem; transition: color 0.3s;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .hero-contact a:hover { color: var(--gold); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  .section-header {
+    text-align: center; margin-bottom: 3rem;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .section-header .underline {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    margin: 0.8rem auto 0; border-radius: 2px;
+  }
+  .section-header p {
+    color: var(--muted); font-size: 1rem;
+    margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    align-items: start;
+  }
+  .about-text p { margin-bottom: 1rem; color: var(--text); font-size: 0.95rem; }
+  .about-interests {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  }
+  .about-interests h3 {
+    font-size: 1rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 1rem; letter-spacing: 0.5px;
+  }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    display: inline-block;
+    background: var(--light-accent);
+    color: var(--blue); font-size: 0.8rem; font-weight: 500;
+    padding: 0.35rem 0.9rem; border-radius: 20px;
+    transition: all 0.3s;
+  }
+  .tag:hover { background: var(--accent); color: #fff; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(180deg, var(--accent), var(--light-accent));
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 2rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -2.35rem; top: 0.4rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px var(--light-accent);
+  }
+  .timeline-item .date {
+    font-size: 0.8rem; color: var(--accent); font-weight: 600;
+    letter-spacing: 0.5px; margin-bottom: 0.2rem;
+  }
+  .timeline-item h3 {
+    font-size: 1.05rem; color: var(--navy); margin-bottom: 0.15rem;
+  }
+  .timeline-item .org {
+    font-size: 0.9rem; color: var(--muted); font-style: italic;
+    margin-bottom: 0.3rem;
+  }
+  .timeline-item p { font-size: 0.88rem; color: var(--text); }
+
+  /* PUBLICATIONS */
+  .pub-category {
+    margin-bottom: 2.5rem;
+  }
+  .pub-category h3 {
+    font-size: 1.1rem; color: var(--navy); font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-accent);
+  }
+  .pub-category h3 span {
+    background: var(--accent); color: #fff;
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.2rem 0.6rem; border-radius: 10px;
+    margin-left: 0.5rem; vertical-align: middle;
+  }
+  .pub-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 1rem;
+  }
+  .pub-item:last-child { border-bottom: none; }
+  .pub-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    background: var(--light-accent);
+    color: var(--accent); font-weight: 700; font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; margin-top: 0.1rem;
+  }
+  .pub-text { font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+  .pub-text a { color: var(--accent); text-decoration: none; }
+  .pub-text a:hover { text-decoration: underline; }
+
+  /* EXPERIENCE CARDS */
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .exp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+  .exp-card .card-date {
+    font-size: 0.75rem; color: var(--accent); font-weight: 600;
+    letter-spacing: 0.5px; margin-bottom: 0.4rem;
+  }
+  .exp-card h3 { font-size: 1rem; color: var(--navy); margin-bottom: 0.2rem; }
+  .exp-card .card-org { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-bottom: 0.5rem; }
+  .exp-card p { font-size: 0.85rem; color: var(--text); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .skill-group h3 {
+    font-size: 0.9rem; font-weight: 600; color: var(--navy);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--gold);
+  }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    padding: 0.4rem 0.9rem; border-radius: 6px;
+    font-size: 0.82rem; font-weight: 500;
+  }
+  .skill-badge.expert { background: var(--navy); color: #fff; }
+  .skill-badge.proficient { background: var(--light-accent); color: var(--blue); }
+  .skill-badge.familiar { background: #f0f0f0; color: var(--muted); }
+
+  /* CONFERENCES MAP */
+  .conf-venues {
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+    justify-content: center; margin-top: 1.5rem;
+  }
+  .venue-chip {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--card); border: 1px solid var(--border);
+    padding: 0.5rem 1rem; border-radius: 8px;
+    font-size: 0.85rem; color: var(--text);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .venue-chip .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* CONTACT / FOOTER */
+  .footer {
+    background: var(--navy); color: rgba(255,255,255,0.7);
+    padding: 3rem 2rem; text-align: center;
+  }
+  .footer h2 {
+    font-family: 'Playfair Display', serif;
+    color: #fff; font-size: 1.8rem; margin-bottom: 1.5rem;
+  }
+  .footer-links {
+    display: flex; gap: 2rem; justify-content: center;
+    margin-bottom: 2rem; flex-wrap: wrap;
+  }
+  .footer-links a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 0.9rem; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.2rem; }
+    .hero-stats { gap: 1.5rem; }
+    .about-grid, .exp-grid, .skills-grid { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    section { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Dr. <span>Agiropoulos</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">University of Piraeus &bull; Department of Economics</div>
+    <div class="hero-top">
+      <img class="hero-photo" src="data:image/jpeg;base64,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 my academic career, I serve as a Senior Researcher at the Gnosis Research Center, Illinois Institute of Technology (Chicago), where I collaborate with Prof. James Ming Chen on computational finance and econometrics. I also hold committee appointments at the Greek Ministry of Development and Ministry of Education.</p>
+        <p>My professional experience includes executive roles as CEO of TMEDE Microfinance Solutions S.A. and Chief Risk & Investment Officer at the Engineers and Public Works Contractors Fund, where I directed large-scale financial programs, risk frameworks, and regulatory compliance across the Greek public sector.</p>
+      </div>
+      <div class="about-interests">
+        <h3>Research Interests</h3>
+        <div class="tag-cloud">
+          <span class="tag">Applied Econometrics</span>
+          <span class="tag">Computational Finance</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Sustainable Economics</span>
+          <span class="tag">Energy Economics</span>
+          <span class="tag">Regulatory Policy</span>
+          <span class="tag">Shadow Economy</span>
+          <span class="tag">Financial Markets</span>
+          <span class="tag">Spatial Econometrics</span>
+          <span class="tag">Big Data Analytics</span>
+          <span class="tag">Demographics &amp; Pensions</span>
+          <span class="tag">Credit Scoring</span>
+          <span class="tag">Spurious Regression</span>
+          <span class="tag">Corporate Networks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" style="background: #f4f7fa;">
+  <div class="container">
+    <div class="section-header">
+      <h2>Research</h2>
+      <div class="underline"></div>
+      <p>My research spans seven interconnected themes across economics, finance, and policy.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <h3>Shadow Economy &amp; Competitiveness</h3>
+        <p>European economic policy, impact of shadow economy on EU competitiveness, relationship between financial markets and shadow economy.</p>
+      </div>
+      <div class="exp-card">
+        <h3>Computational Finance &amp; ML</h3>
+        <p>Unsupervised machine learning in financial time-series, energy commodity clustering, predictive manifolds, ML-based tariff evaluation.</p>
+      </div>
+      <div class="exp-card">
+        <h3>Econometric Theory</h3>
+        <p>Spurious regression for stationary AR(1) processes, serial correlation effects, balance between size and power in hypothesis testing.</p>
+      </div>
+      <div class="exp-card">
+        <h3>Demographics &amp; Sustainability</h3>
+        <p>Migration impact on pension adequacy, sovereign debt and social security, demographics as determinants of tariffs.</p>
+      </div>
+      <div class="exp-card">
+        <h3>Spatial &amp; Regional Economics</h3>
+        <p>Panel data spatial analysis of entrepreneurship and inequality in Greek regions, tourism spatial dimensions in the EU, CO&#8322; emission localization.</p>
+      </div>
+      <div class="exp-card">
+        <h3>Financial Regulation</h3>
+        <p>Insurance solvency regulation in Europe, e-government and corruption reduction, the finance-growth nexus.</p>
+      </div>
+      <div class="exp-card" style="grid-column: 1 / -1;">
+        <h3>Corporate Networks</h3>
+        <p>Novel approaches to competition measurement using connected corporate network analysis, with empirical applications in the Greek telecommunications sector.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <div class="section-header">
+      <h2>Publications</h2>
+      <div class="underline"></div>
+    </div>
+
+    <div class="pub-category">
+      <h3>Peer-Reviewed Journal Articles <span>16</span></h3>
+
+      <div class="pub-item">
+        <div class="pub-num">1</div>
+        <div class="pub-text">Letsou, E.Z., <strong>Agiropoulos, C.L.</strong>, Efthimiou, S.G., &amp; Pantelidis, P.I. (2025). Macroeconomic determinants of European outward foreign direct investment. <em>Risk Governance and Control</em>, 15(1), 8&ndash;15.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">2</div>
+        <div class="pub-text"><strong>Agiropoulos, C.</strong> (2024). A Quantitative Analysis of the Impact of European Promotion Banks on the Competition of EU Countries Through Linear Conventional and Machine Learning Methods. <em>SPOUDAI Journal of Economics and Business</em>.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">3</div>
+        <div class="pub-text">Siopi, E., Poufinas, T., Chen, J.M., &amp; <strong>Agiropoulos, C.</strong> (2023). Can Regulation Affect the Solvency of Insurers? New Evidence from European Insurers. <em>International Advances in Economic Research</em>, 29, 15&ndash;30.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-text">"className: "pub-num">4</div>lass="pub-num">4</div>
+        <div class="pub-text">Poufinas, T., Laskareli, A. &amp; <strong>Agiropoulos, C.</strong> (2023). Decreasing Corruption and Increasing Competitiveness through E-Government. <em>Theoretical Economics Letters</em>, 13, 310&ndash;331.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">5</div>
+        <div class="pub-text">Chen, J.M. &amp; <strong>Agiropoulos, C.</strong> (2023). Hints of Earlier and Other Creation: Unsupervised Machine Learning in Financial Time-Series Analysis. <em>Eng. Proc.</em> 2023, 39, 42.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">6</div>
+        <div class="pub-text">Chen, J., Poufinas, T., <strong>Agiropoulos, C.</strong> &amp; Galanos, G. (2021). Principles of Political Economy and the Taxation of Nations: Econometric and Machine-Learning Evaluation of Tariffs. <em>2020 Michigan State Law Review 1361</em>.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">7</div>
+        <div class="pub-text">Poufinas, T., Galanos, G. &amp; <strong>Agiropoulos, C.</strong> (2021). The Impact of Competitiveness on the Shadow Economy. <em>International Advances in Economic Research</em>, 27, 29&ndash;46.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">8</div>
+        <div class="pub-text"><strong>Agiropoulos, C.</strong>, Galanos, G. &amp; Poufinas, T. (2021). Entrepreneurship, income inequality and public spending: A panel data spatial analysis. <em>International Advances in Economic Research</em>, 27(3), 197&ndash;218.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">9</div>
+        <div class="pub-text">Agiakloglou, C. &amp; <strong>Agiropoulos, C.</strong> (2021). Dealing with serially correlated errors in the context of spurious regression. <em>Applied Economics Letters</em>, 29(7), 619&ndash;625.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">10</div>
+        <div class="pub-text">Galanos, G., Papadimitriou, P., Poufinas, T. &amp; <strong>Agiropoulos, C.</strong> (2021). Investigating if the Financial Markets Performance affects the Shadow Economy. <em>International Journal of Financial Research</em>, 12(5).</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">11</div>
+        <div class="pub-text">Galanos, G., Poufinas, T. &amp; <strong>Agiropoulos, C.</strong> (2021). Investigating the Relationship between Country Competitiveness and Financial Market Development in Times of Crisis. <em>Research in World Economy</em>, 12(4).</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">12</div>
+        <div class="pub-text"><strong>Agiropoulos, C.</strong>, Polemis, M., Siopsis, M. &amp; Karkalakos, S. (2019). Revisiting the finance-growth nexus: A socioeconomic approach. <em>International Journal of Finance and Economics</em>, 27(3), 2762&ndash;2783.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">13</div>
+        <div class="pub-text">Makridakis, T., <strong>Agiropoulos, C.</strong> &amp; Karkalakos, S. (2018). Growth, Electric Power Consumption Externalities and Patterns of Localization of Emissions. <em>Journal of Economics, Management and Trade</em>, 21(12), 1&ndash;15.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">14</div>
+        <div class="pub-text">Agiakloglou, C. &amp; <strong>Agiropoulos, C.</strong> (2014). The balance between size and power in testing for linear association for two stationary AR(1) processes. <em>Applied Economics Letters</em>, 23(4), 230&ndash;234.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">15</div>
+        <div class="pub-text">Agiakloglou, C. &amp; <strong>Agiropoulos, C.</strong> (2013). The sensitivity of Value-at-Risk estimates using Monte Carlo approach. <em>SPOUDAI Journal of Economics and Business</em>, 61(1&ndash;2), 7&ndash;12.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">16</div>
+        <div class="pub-text"><strong>Agiropoulos, C.</strong>, Poufinas, T., Chen, J. &amp; Galanos, G. (2022). No country for old men (or women): The impact of migration on pension funding adequacy and sustainability. <em>Journal of the Economics of Ageing</em> (Under review).</div>
+      </div>
+    </div>
+
+    <div class="pub-category">
+      <h3>Book Chapters <span>7</span></h3>
+      <div class="pub-item">
+        <div class="pub-num">1</div>
+        <div class="pub-text">Vafopoulos, M., <strong>Agiropoulos, C.</strong>, Gourgioti, A. &amp; Klonaras, M. (2023). Connected Corporate Networks I. In <em>Interconnections in the Greek Economy</em> (pp. 151&ndash;169). Springer.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">2</div>
+        <div class="pub-text"><strong>Agiropoulos, C.</strong>, Vafopoulos, M., Gourgioti, A. &amp; Galanos, G. (2023). Connected Corporate Networks II: A Novel Approach to the Competition Measure. In <em>Interconnections in the Greek Economy</em> (pp. 171&ndash;198). Springer.</div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">3&ndash;7</div>
+        <div class="pub-text">Five chapters in Poufinas, T. (Ed.), <em>Debt in Times of Crisis</em> (2021). Palgrave Macmillan. Topics: Tariffs &amp; Debt, Demographics &amp; Tariffs, Demographics &amp; Social Security, Sovereign Debt &amp; Social Security, Debt vs. NPLs in the Eurozone.</div>
+      </div>
+    </div>
+
+    <div class="pub-category">
+      <h3>Scientific Monograph <span>1</span></h3>
+      <div class="pub-item">
+        <div class="pub-num">&bull;</div>
+        <div class="pub-text"><strong>Agiropoulos, C.</strong> (2022). <em>Quantitative Methods in Economic Theory through Innovative Machine Learning Techniques</em>. University of Piraeus.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFERENCES -->
+<section style="background: #f4f7fa;">
+  <div class="container">
+    <div class="section-header">
+      <h2>Conference Presentations</h2>
+      <div class="underline"></div>
+      <p>11 presentations at leading international venues</p>
+    </div>
+    <div class="conf-venues">
+      <div class="venue-chip"><span class="dot"></span> CFE Berlin 2023</div>
+      <div class="venue-chip"><span class="dot"></span> ITSF Gran Canaria 2023</div>
+      <div class="venue-chip"><span class="dot"></span> EBEEC Florence 2022</div>
+      <div class="venue-chip"><span class="dot"></span> IAES Miami 2019</div>
+      <div class="venue-chip"><span class="dot"></span> IAES Rome 2020</div>
+      <div class="venue-chip"><span class="dot"></span> IAES 2021 &amp; 2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <h2>Professional Experience</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="card-date">2021 &ndash; 2024</div>
+        <h3>Chief Executive Officer</h3>
+        <div class="card-org">TMEDE Microfinance Solutions S.A.</div>
+        <p>Strategic management, regulatory compliance, financial program implementation and governance.</p>
+      </div>
+      <div class="exp-card">
+        <div class="card-date">2018 &ndash; 2022</div>
+        <h3>Chief Risk &amp; Investment Officer</h3>
+        <div class="card-org">Engineers &amp; Public Works Contractors Fund (TMEDE)</div>
+        <p>Risk framework integration, project viability evaluation, audit, due diligence, scorecards.</p>
+      </div>
+      <div class="exp-card">
+        <div class="card-date">2020 &ndash; 2021</div>
+        <h3>Machine Learning / Big Data Scientist</h3>
+        <div class="card-org">Telesto Technologies</div>
+        <p>Recommender systems, analytical methods, web applications, proposal writing.</p>
+      </div>
+      <div class="exp-card">
+        <div class="card-date">2016 &ndash; 2018</div>
+        <h3>General Manager &amp; Head of Analytics</h3>
+        <div class="card-org">New York College, Athens</div>
+        <p>Cross-functional leadership, strategic planning, data analytics with Tableau and SQL.</p>
+      </div>
+      <div class="exp-card">
+        <div class="card-date">2007 &ndash; 2011</div>
+        <h3>Regional Head of Eastern Europe</h3>
+        <div class="card-org">EOS Matrix Group S.A.</div>
+        <p>Collections strategy, credit portfolio analytics, credit scoring across Eastern European markets.</p>
+      </div>
+      <div class="exp-card">
+        <div class="card-date">2025 &ndash; Present</div>
+        <h3>Government Committees</h3>
+        <div class="card-org">Ministry of Development &amp; Ministry of Education</div>
+        <p>Alternate Chair (Flagship Investments), Member (Digital Education), Member (Investment Committee HDB-TMEDE).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section id="teaching" style="background: #f4f7fa;">
+  <div class="container">
+    <div class="section-header">
+      <h2>Academic Teaching</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">2024 &ndash; Present</div>
+        <h3>Assistant Professor</h3>
+        <div class="org">University of Piraeus, Dept. of Economics</div>
+        <p>Quantitative Methods in Economic Theory</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2019 &ndash; 2024</div>
+        <h3>Adjunct Faculty</h3>
+        <div class="org">University of Piraeus</div>
+        <p>Monetary &amp; Financial System, Investment Appraisal, Spatial Analysis, Regulatory Policy, Auditing, Monetary Policy, Economic Analysis</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2022 &ndash; 2023</div>
+        <h3>Adjunct Faculty</h3>
+        <div class="org">University of the Peloponnese</div>
+        <p>Budgeting (MA in Local &amp; Regiional Development)</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2014 &ndash; 2018</div>
+        <h3>Adjunct Faculty &mdash; International</h3>
+        <div class="org">University of Bolton (UK), University of Greenwich (UK), University of Toulouse (France)</div>
+        <p>Research Methods, Strategic Management, Business Planning, Financial Management, Applied Mathematics, Statistics</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2013 &ndash; 2020</div>
+        <h3>Teaching Assistant</h3>
+        <div class="org">University of Piraeus, Dept. of Economics</div>
+        <p>Econometrics (Undergraduate), Qualitative Methods (Postgraduate)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <h2>Technical Skills</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Software &amp; Tools</h3>
+        <div class="skill-list">
+          <span class="skill-badge expert">R</span>
+          <span class="skill-badge expert">Stata</span>
+          <span class="skill-badge expert">Python</span>
+          <span class="skill-badge expert">SPSS</span>
+          <span class="skill-badge expert">SQL</span>
+          <span class="skill-badge expert">Excel</span>
+          <span class="skill-badge proficient">MATLAB</span>
+          <span class="skill-badge proficient">SAS</span>
+          <span class="skill-badge proficient">Oracle</span>
+          <span class="skill-badge proficient">LaTeX</span>
+          <span class="skill-badge familiar">JavaScript</span>
+          <span class="skill-badge familiar">PHP</span>
+          <span class="skill-badge familiar">Elastic Stack</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Methodological Expertise</h3>
+        <div class="skill-list">
+          <span class="skill-badge expert">Panel Data Econometrics</span>
+          <span class="skill-badge expert">Spatial Econometrics</span>
+          <span class="skill-badge expert">Time-Series (VAR/VECM)</span>
+          <span class="skill-badge expert">Credit Scoring</span>
+          <span class="skill-badge proficient">Monte Carlo Simulation</span>
+          <span class="skill-badge proficient">GMM</span>
+          <span class="skill-badge proficient">Unsupervised ML</span>
+          <span class="skill-badge proficient">Big Data Analytics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section style="background: #f4f7fa;">
+  <div class="container">
+    <div class="section-header">
+      <h2>Education</h2>
+      <div class="underline"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">2018</div>
+        <h3>PhD in Economics / Econometrics</h3>
+        <div class="org">University of Piraeus, Department of Economics</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2007</div>
+        <h3>MSc in Applied Statistics</h3>
+        <div class="org">University of Piraeus, Department of Statistics &amp; Actuarial Sciences</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">2002</div>
+        <h3>BSc in Mathematics</h3>
+        <div class="org">National and Kapodistrian University of Athens, Department of Mathematics</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" class="footer">
+  <h2>Get in Touch</h2>
+  <div class="footer-links">
+    <a href="mailto:hagyropoylos@gmail.com">&#9993; hagyropoylos@gmail.com</a>
+    <a href="https://www.linkedin.com/in/harrisagyropoulos/" target="_blank">LinkedIn Profile</a>
+    <a href="tel:+302104142293">&#9742; 210-4142293</a>
+  </div>
+  <div class="footer-copy">
+    Department of Economics, School of Economics, Business &amp; International Studies<br>
+    University of Piraeus &bull; 80 Karaoli &amp; Dimitriou str., Piraeus, Greece<br>
+    &copy; 2026 Dr. Charalampos L. Agiropoulos. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>
