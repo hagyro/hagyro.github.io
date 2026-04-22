@@ -1,0 +1,187 @@
+{
+  "_meta": {
+    "tool": "Business Plan Tool v3",
+    "exported": "2026-04-18T00:00:00.000Z",
+    "case_study": "CycladesLuxe Retreats ΙΚΕ — Premium wellness & gastronomy packages Κυκλάδες (ΔΑΜ Νησιωτικά)",
+    "expected_verdict": "Μη βιώσιμο — αναμένεται σαφές NO-GO (υπερμόχλευση + εποχικότητα + αρνητικό EBITDA)",
+    "author": "Claude + Παύλος"
+  },
+
+  "f_company_name": "CycladesLuxe Retreats ΙΚΕ",
+  "f_legal_form": "ΙΚΕ",
+  "f_dam_region": "Νησιωτικά ΔΑΜ (Ν. Αιγαίο — Πάρος/Νάξος)",
+  "f_sector": "Premium τουρισμός — Wellness & Gastronomy Retreats",
+  "f_stage": "Νεοσύστατη",
+  "f_date": "2026-04-18",
+
+  "f_idea": "Δημιουργία brand premium wellness & gastronomy retreats 5 ημερών με έδρα μισθωμένη βίλα στην Πάρο και δευτερεύουσα βάση στη Νάξο. Η υπηρεσία περιλαμβάνει yoga/pilates με διεθνή δασκάλους, συνεργασία με Michelin-starred chef για γευσιγνωσία, boat trips σε κοντινά νησιά, spa treatments με τοπικά προϊόντα. Target: διεθνείς high-net-worth individuals (ΗΠΑ, Γερμανία, Σκανδιναβία).",
+  "f_problem": "Τα Κυκλαδίτικα νησιά χάνουν ανταγωνιστικότητα έναντι Κροατίας/Τουρκίας/Αλμπανίας λόγω υψηλών τιμών και χαμηλής ποιότητας premium υπηρεσιών. Υπάρχει η υπόθεση ότι ακόμη δεν υπάρχει κατάλληλο \"ultra-premium Greek island experience\" που να συνδυάζει wellness + γαστρονομία + αυθεντικότητα. Η νεοφυής επιχείρηση θα καλύψει αυτό το κενό.",
+  "f_target_market": "B2C premium: (α) Διεθνείς HNWI, 40-65 ετών, με budget travel >€5k/άτομο/εβδομάδα. (β) Επιχειρησιακά corporate wellness retreats (mid-size tech companies). Γεωγραφικά: ΗΠΑ East Coast, Γερμανία, UK, Σκανδιναβία. SOM έτους 5: ~€1,6 εκ. (0,8% SAM).",
+  "f_advantage": "(1) Μοναδική τοποθεσία Πάρος/Νάξος με αεροπορική σύνδεση. (2) Συνεργασία με celebrity chef και διεθνείς wellness πρακτικούς. (3) Brand φρέσκο, digital-native marketing. (4) Premium positioning με συμβολή στη μετάβαση της τουριστικής οικονομίας προς ποιότητα (αντί ποσότητας).",
+  "f_funding_request": "480000",
+
+  "f_market_size": "TAM (παγκόσμιο wellness tourism): €1,3 τρισ. (GWI 2024). SAM (Ελλάδα premium retreats Αιγαίο): ~€220 εκ. SOM έτους 5 (estimated): ~€1,6 εκ. ΠΑΡΑΔΟΧΗ ΠΟΛΥ ΑΙΣΙΟΔΟΞΗ — χωρίς brand equity, το realistic SOM έτους 5 είναι ~€300-500k.",
+  "f_market_trends": "(1) Wellness tourism +15% CAGR παγκοσμίως. (2) Post-COVID ζήτηση για «authentic experiences». (3) Αυξανόμενη ανταγωνιστικότητα Κροατίας/Πορτογαλίας/Τουρκίας σε premium niche. (4) Κόστος ενέργειας/food Κυκλάδων +40% vs ηπειρωτική Ελλάδα. (5) Έλλειψη εξειδικευμένου προσωπικού σε νησιά.",
+  "f_transition_opps": "(α) ΠΕΠ Ν. Αιγαίου 2021-27 — Δράση «Καινοτομία στον τουρισμό» (έως 40% κάλυψη). (β) Ταμείο Δίκαιης Μετάβασης Νησιωτικά (εστίαση σε διαφοροποίηση από μαζικό τουρισμό). (γ) Αναπτυξιακός Νόμος 4887/2022 — Ειδικό Καθεστώς Τουρισμού.",
+
+  "f_pestle_p": "Πολιτική στήριξη τουριστικής αναβάθμισης, αλλά αστάθεια κανονιστικού πλαισίου Airbnb/STR. Διεθνείς γεωπολιτικές εντάσεις επηρεάζουν διεθνή τουρισμό.",
+  "f_pestle_e": "Παγκόσμια ύφεση 2025-26 μειώνει discretionary spending. Κόστος ενέργειας Κυκλάδων σημαντικά υψηλότερο. Επιτόκια δανεισμού 6,5-7% δυσχεραίνουν χρηματοδότηση μικρών τουριστικών.",
+  "f_pestle_s": "Τοπική αντίδραση σε over-tourism, δυσκολία στέγασης εποχικού προσωπικού στα νησιά (housing crisis). Πολιτιστική γνωριμία Ελληνικής κουζίνας — θετικό. Brain drain νέων ταλέντων από νησιά.",
+  "f_pestle_t": "Booking platforms (Airbnb Luxe, Plum Guide), AI-driven personalization, VR previews για προσέλκυση. Payment gateways σε USD/GBP/EUR.",
+  "f_pestle_l": "Ν.4276/2014 (τουριστικές επιχ.), ΕΟΤ προδιαγραφές, VAT 13% διαμονή / 24% υπηρεσίες, GDPR, ΕΦΕΤ για διατροφή. Επιπλέον κόστος compliance ~€12k/έτος.",
+  "f_pestle_env": "Περιβαλλοντική πίεση (νερό, απορρίμματα) στα νησιά. Απαίτηση sustainability certifications (Green Key, Travelife) για premium clientele.",
+
+  "f_swot_s": "- Μοναδική τοποθεσία Κυκλάδες\n- Premium positioning\n- Δίκτυο διεθνών wellness celebrities\n- Digital marketing expertise\n- Σύνδεση με ΔΑΜ Νησιωτικά για επιδοτήσεις",
+  "f_swot_w": "- ΕΛΑΧΙΣΤΑ ίδια κεφάλαια (€40k) — αναγκαστική υπερμόχλευση\n- Χωρίς brand equity — ο πελάτης δεν γνωρίζει την εταιρεία\n- Έντονη εποχικότητα (Μάιος-Οκτώβριος μόνο)\n- Υψηλά σταθερά κόστη νησιών (ενοίκιο, ενέργεια)\n- Εξάρτηση από 1-2 celebrity συνεργασίες\n- Περιορισμένη χρηματοοικονομική εμπειρία ομάδας",
+  "f_swot_o": "- Post-pandemic ζήτηση premium εμπειριών\n- Διεθνές brand Greek islands\n- Potential exit σε μεγαλύτερο hotel group\n- Δυνατότητα επέκτασης σε Santorini/Mykonos",
+  "f_swot_t": "- Παγκόσμια ύφεση → κατάρρευση ζήτησης premium\n- Ανταγωνισμός από Κροατία/Τουρκία/Πορτογαλία\n- Άνοδος κόστους ενέργειας/τροφίμων στα νησιά (+40%)\n- Αστάθεια αεροπορικών συνδέσεων (μείον-εποχή)\n- Αρνητικά reviews λόγω lack of experience",
+
+  "f_value_chain": "Vertically-integrated experience provider: νοικιασμένη βίλα (12 κλίνες), συνεργασίες με τοπικά restaurants/spa/boat rentals, marketing σε διεθνείς wellness blogs & booking platforms.",
+
+  "f_location": "Πάρος (Πίσω Λιβάδι) — μισθωμένη βίλα 450 m² με πισίνα, yoga deck, gourmet κουζίνα. Δευτερεύουσα βάση: Νάξος (Αγία Άννα) για day trips.",
+  "f_technology": "Booking platform (μισθωμένο), CRM HubSpot Enterprise, Stripe/PayPal gateway, Instagram ads, Google Ads, social media management.",
+  "f_capacity": "Μέγιστη 12 guests × 20 εβδομάδες/έτος = 240 guest-weeks (θεωρητικά). Πραγματικά 60-80% occupancy = ~150-190 guest-weeks.",
+
+  "f_ready_digital": "4",
+  "f_ready_green": "3",
+  "f_ready_financial": "1",
+  "f_ready_skills": "2",
+  "f_ready_market": "2",
+
+  "f_cost_intangible": "35000",
+  "f_cost_land": "0",
+  "f_cost_machinery": "120000",
+  "f_cost_vehicles": "45000",
+  "f_cost_furniture": "85000",
+  "f_cost_working": "140000",
+  "f_cost_other": "55000",
+
+  "f_equity": "40000",
+  "f_loan_amount": "380000",
+  "f_loan_rate": "7.2",
+  "f_loan_duration": "60",
+  "f_loan_grace": "0",
+
+  "f_fc_rent": "8500",
+  "f_fc_utilities": "1800",
+  "f_fc_insurance": "950",
+  "f_fc_salaries": "8500",
+  "f_fc_marketing": "3200",
+  "f_fc_accounting": "550",
+  "f_fc_maintenance": "1100",
+  "f_fc_other": "1400",
+
+  "f_s_units_pessimistic": "5",
+  "f_s_price_pessimistic": "1500",
+  "f_s_vc_pessimistic": "980",
+  "f_s_growth_pessimistic": "-12",
+
+  "f_s_units_base": "9",
+  "f_s_price_base": "1700",
+  "f_s_vc_base": "920",
+  "f_s_growth_base": "8",
+
+  "f_s_units_optimistic": "14",
+  "f_s_price_optimistic": "1900",
+  "f_s_vc_optimistic": "860",
+  "f_s_growth_optimistic": "15",
+
+  "f_mc_n": "2000",
+  "f_mc_var1": "units",
+  "f_mc_dist1": "triangular",
+  "f_mc_var2": "price",
+  "f_mc_dist2": "triangular",
+
+  "f_depreciation_method": "straight",
+  "f_useful_life": "7",
+  "f_tax_rate": "22",
+  "f_discount_rate": "11",
+  "f_horizon": "5",
+
+  "toggle_seasonal_pessimistic": true,
+  "seasonal_pessimistic_0": 0,
+  "seasonal_pessimistic_1": 0,
+  "seasonal_pessimistic_2": 0,
+  "seasonal_pessimistic_3": 2,
+  "seasonal_pessimistic_4": 6,
+  "seasonal_pessimistic_5": 10,
+  "seasonal_pessimistic_6": 15,
+  "seasonal_pessimistic_7": 18,
+  "seasonal_pessimistic_8": 9,
+  "seasonal_pessimistic_9": 3,
+  "seasonal_pessimistic_10": 0,
+  "seasonal_pessimistic_11": 0,
+
+  "toggle_seasonal_base": true,
+  "seasonal_base_0": 0,
+  "seasonal_base_1": 0,
+  "seasonal_base_2": 0,
+  "seasonal_base_3": 3,
+  "seasonal_base_4": 8,
+  "seasonal_base_5": 14,
+  "seasonal_base_6": 22,
+  "seasonal_base_7": 25,
+  "seasonal_base_8": 15,
+  "seasonal_base_9": 5,
+  "seasonal_base_10": 0,
+  "seasonal_base_11": 0,
+
+  "toggle_seasonal_optimistic": true,
+  "seasonal_optimistic_0": 0,
+  "seasonal_optimistic_1": 0,
+  "seasonal_optimistic_2": 2,
+  "seasonal_optimistic_3": 5,
+  "seasonal_optimistic_4": 10,
+  "seasonal_optimistic_5": 18,
+  "seasonal_optimistic_6": 28,
+  "seasonal_optimistic_7": 32,
+  "seasonal_optimistic_8": 20,
+  "seasonal_optimistic_9": 8,
+  "seasonal_optimistic_10": 2,
+  "seasonal_optimistic_11": 0,
+
+  "table_competitors": [
+    ["Amanzoe Porto Heli (Six Senses)", "Ultra-luxury brand, διεθνές πελατολόγιο", "Υπερ-premium τιμές, κορεσμένο", 15],
+    ["Canaves Oia (Σαντορίνη)", "Καθιερωμένο brand, Michelin", "Μαζικός τουρισμός, θόρυβος", 25],
+    ["Numo Ionian Resort (Κέρκυρα)", "Νέο concept, design-forward", "Μακριά από target demographic", 18],
+    ["Airbnb Luxe premium villas Κυκλάδες", "Μεγάλη επιλογή, διαφάνεια τιμών", "Χωρίς curated experiences", 40]
+  ],
+
+  "table_products": [
+    ["Wellness Retreat 5 ημερών (1 guest)", "Yoga, meditation, spa, gastronomy — πλήρες package", 1700, 920],
+    ["Corporate Retreat (10 άτομα)", "5-ήμερη εκδρομή εταιρείας με team building", 14500, 8200],
+    ["Day Experience (no accommodation)", "Yoga + lunch + boat trip (1 ημέρα)", 380, 145]
+  ],
+
+  "table_milestones": [
+    ["Σύσταση ΙΚΕ & ενοικίαση βίλας Παρου", "2026-03-31", "Συμβόλαιο μίσθωσης 3ετές"],
+    ["Συνεργασία celebrity chef/wellness", "2026-04-30", "2 signed contracts"],
+    ["1st guest arrival (soft opening)", "2026-05-15", "Μέρος εξοπλισμού λειτουργικό"],
+    ["Full season operation", "2026-07-01", "Κράτηση >60% capacity"]
+  ],
+
+  "table_team": [
+    ["Μελίνα Παπαδάκη", "CEO & Founder", "8 έτη σε boutique hotel marketing", "Brand building, digital marketing, hospitality"],
+    ["Anders Lindqvist", "COO", "Ex-chef σε Stockholm fine dining", "Operations, γαστρονομία, συνεργασίες"]
+  ],
+
+  "table_hiring": [
+    ["General Manager (νησιωτική εμπειρία)", 1, 3500, 1],
+    ["Chef (season)", 1, 3800, 3],
+    ["Yoga Instructor (freelance)", 1, 2500, 3],
+    ["Housekeeper/Assistant", 2, 1400, 4],
+    ["Marketing & Bookings Coordinator", 1, 2200, 2]
+  ],
+
+  "table_partners": [
+    ["Celebrity Chef (Stockholm, 1-Michelin)", "3-week residency ανά σεζόν", 45000],
+    ["International Wellness Collective", "Καταγραφή σε global wellness directory", 8500],
+    ["Marketing agency UK", "Performance marketing σε ΗΠΑ/Γερμανία/UK", 36000],
+    ["Boat charter partnership Πάρου", "Day trips σε Δήλο/Αντιπάρο", 18000],
+    ["Λογιστικό Γραφείο Σύρου", "Τουριστικές υποχρεώσεις, VAT, MHTE", 7200]
+  ],
+
+  "table_grants": [
+    ["ΠΕΠ Ν. Αιγαίου 2021-27 — Τουριστική Καινοτομία", 60000, 8]
+  ]
+}
