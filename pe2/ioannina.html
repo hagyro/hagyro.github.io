@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ιωάννινα · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+  <meta name="description" content="Προφίλ Ιωαννίνων: αναπτυσσόμενος ηπειρωτικός αστικός προορισμός με υψηλότερο CAGR αλλοδαπών (+10,85%) και κυρίαρχη Ενεργή Ευφορία (42,3%). Pre-saturation reset window.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <link rel="stylesheet" href="assets/css/custom.css">
+
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: {
+        navy:   { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
+        accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
+        ink:    { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
+      },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
+    } } }
+  </script>
+</head>
+<body>
+
+  <!-- Top utility bar -->
+  <div class="bg-navy-900 text-white text-xs">
+    <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+      <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
+      <div class="flex items-center gap-4">
+        <a href="methodology.html" class="text-white/70 hover:text-white">Μεθοδολογία</a>
+        <a href="comparative.html" class="text-white/70 hover:text-white">Συγκριτικά</a>
+        <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO — Ιωάννινα: ηπειρωτικός αστικός, υψηλότερος CAGR αλλοδαπών, κυρίαρχη Ενεργή Ευφορία, NUTS3 EL541 caveat -->
+  <header class="relative h-[70vh] min-h-[520px] bg-navy-700 overflow-hidden flex items-end">
+    <!-- Background: gradient placeholder (Λίμνη Παμβώτιδα & Νησάκι Ιωαννίνων) -->
+    <img src="assets/images/ioannina_hero.jpg" alt="Τα Γιάννενα και η Λίμνη Παμβώτιδα από το Μιτσικέλι" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-900/30 via-navy-900/40 to-navy-900/95"></div>
+    <svg class="absolute inset-0 w-full h-full opacity-[0.06]" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+
+    <div class="container mx-auto px-6 pb-12 relative z-10 text-white">
+      <p class="section-marker text-accent-300">Κεφάλαιο 09 · Προορισμός με περιθώριο ανάπτυξης · Ηπειρωτικός αστικός</p>
+      <h1 class="display text-7xl md:text-8xl mt-3 leading-none">Ιωάννινα</h1>
+      <p class="text-xl mt-3 text-navy-50/85 max-w-2xl">Ήπειρος · ΠΕ Ιωαννίνων · Δ. Ιωαννιτών + Δ. Ζαγορίου · Πληθυσμός 160.773 (Απογραφή 2021) · ⚠ NUTS3 EL541 = Άρτα-Πρέβεζα (βλ. §9.4.3)</p>
+
+      <p class="absolute bottom-2 right-4 text-[10px] text-white/40">Φωτογραφία: Λίμνη Παμβώτιδα &amp; Νησάκι Ιωαννίνων</p>
+
+      <!-- Quick stats — Ιωάννινα signature: υψηλότερο CAGR αλλοδαπών, Ενεργή Ευφορία, Ζαγόρι UNESCO -->
+      <div class="mt-10 flex flex-wrap gap-2">
+        <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
+          <span class="block text-[11px] uppercase tracking-wider text-accent-300">CAGR αλλοδαπών · υψηλότερο της δεκάδας</span>
+          <span class="font-serif text-lg numeric">+10,85%</span>
+        </span>
+        <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
+          <span class="block text-[11px] uppercase tracking-wider text-white/60">Αφίξεις 2024</span>
+          <span class="font-serif text-lg numeric">441.906</span>
+        </span>
+        <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
+          <span class="block text-[11px] uppercase tracking-wider text-accent-300">LCA C2 Ενεργή Ευφορία · υψηλότερη της δεκάδας</span>
+          <span class="font-serif text-lg numeric">42,3%</span>
+        </span>
+        <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
+          <span class="block text-[11px] uppercase tracking-wider text-white/60">Ζαγόρι · UNESCO Global Geopark</span>
+          <span class="font-serif text-lg">2023</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAV -->
+  <nav class="sticky top-0 bg-white/95 backdrop-blur border-b border-[var(--rule)] z-40 shadow-sm">
+    <div class="container mx-auto px-6 overflow-x-auto">
+      <ul class="flex gap-7 whitespace-nowrap">
+        <li><a href="#overview"    class="nav-tab" data-num="01">Επισκόπηση</a></li>
+        <li><a href="#demand"      class="nav-tab" data-num="02">Ζήτηση &amp; Προσφορά</a></li>
+        <li><a href="#product"     class="nav-tab" data-num="03">Τουριστικό προϊόν</a></li>
+        <li><a href="#economy"     class="nav-tab" data-num="04">Οικονομία</a></li>
+        <li><a href="#society"     class="nav-tab" data-num="05">Κοινωνία</a></li>
+        <li><a href="#environment" class="nav-tab" data-num="06">Περιβάλλον</a></li>
+        <li><a href="#strategy"    class="nav-tab" data-num="07">Στρατηγική</a></li>
+        <li><a href="#data"        class="nav-tab" data-num="08">Δεδομένα</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-6 py-12 max-w-7xl">
+
+    <!-- ============== 01 OVERVIEW ============== -->
+    <section id="overview" class="py-12">
+      <p class="section-marker">Ενότητα 01</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Επισκόπηση</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαέξι δείκτες-κλειδιά που τοποθετούν τα Ιωάννινα ως τον <strong>πιο δυναμικό αναπτυσσόμενο προορισμό</strong> της μελέτης, με τον υψηλότερο CAGR αλλοδαπών (+10,85%) και κυρίαρχη Ενεργή Ευφορία (42,3%). Τα Ιωάννινα είναι ο πρώτος αναπτυσσόμενος που υπερβαίνει οριακά το κατώφλι Saveriades 5 (TII canonical 5,665) και διαθέτει positive POI θ̂ — ένα pre-saturation reset window.</p>
+
+      <!-- 16 KPI cards -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Αφίξεις 2024</div>
+          <div class="kpi-value"><span data-num="441906">0</span></div>
+          <div class="kpi-delta up">CAGR αλλοδαπών +10,85% (2015–24)</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Διανυκτερεύσεις 2024</div>
+          <div class="kpi-value"><span data-num="0.91" data-decimals="2">0</span><span class="kpi-unit">εκ.</span></div>
+          <div class="kpi-delta up">+13,6% vs 2019</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Μερίδιο αλλοδαπών 2024</div>
+          <div class="kpi-value"><span data-num="19.0" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta up">+5,3 pp vs 2015</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="ALoS">ALoS</span> 2024</div>
+          <div class="kpi-value"><span data-num="2.06" data-decimals="2">0</span></div>
+          <div class="kpi-delta down">2η χαμηλότερη των 10</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Recovery 2024/2019</div>
+          <div class="kpi-value"><span data-num="0.913" data-decimals="3">0</span></div>
+          <div class="kpi-delta flat">5η θέση των 10</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="TFI">TFI</span> Defert canonical 2024</div>
+          <div class="kpi-value"><span data-num="4.94" data-decimals="2">0</span></div>
+          <div class="kpi-delta flat">μεσαία ζώνη αναπτυσσόμενων</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="TII">TII</span> canonical 2024 (ΠΕ)</div>
+          <div class="kpi-value"><span data-num="5.665" data-decimals="3">0</span></div>
+          <div class="kpi-delta down">οριακά &gt; Saveriades 5</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Συνολικές κλίνες 2024</div>
+          <div class="kpi-value"><span data-num="7949">0</span></div>
+          <div class="kpi-delta flat">231 ξεν. μονάδες</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Gini εποχικότητας 2024</div>
+          <div class="kpi-value"><span data-num="0.280" data-decimals="3">0</span></div>
+          <div class="kpi-delta up">χαμηλή εποχικότητα</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">HHI εποχικότητας 2024</div>
+          <div class="kpi-value"><span data-num="1060">0</span></div>
+          <div class="kpi-delta flat">κατανεμημένη ζήτηση</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="POI">POI</span> θ̂ (αντίληψη)</div>
+          <div class="kpi-value"><span data-num="0.04" data-decimals="2">0</span></div>
+          <div class="kpi-delta down">1ος αναπτ. με positive POI</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="LCA">LCA</span> C2 Ενεργή Ευφορία</div>
+          <div class="kpi-value"><span data-num="42.3" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta up">υψηλότερη της δεκάδας</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">LCA C5 Καθαρή Ευφορία</div>
+          <div class="kpi-value"><span data-num="22.1" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta flat">μεσαία ζώνη</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">LCA C1 Αντιπαλότητα</div>
+          <div class="kpi-value"><span data-num="8.4" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta up">χαμηλή των αναπτυσσόμενων</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Natura 2000 σύνολο</div>
+          <div class="kpi-value"><span data-num="12">0</span><span class="kpi-unit">τόποι</span></div>
+          <div class="kpi-delta flat">2.897,10 km²</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">TripAdvisor avg hotel rating</div>
+          <div class="kpi-value"><span data-num="4.41" data-decimals="2">0</span></div>
+          <div class="kpi-delta up">υψηλή των αναπτυσσόμενων</div>
+        </div>
+      </div>
+
+      <!-- Executive narrative -->
+      <div class="mt-16 grid md:grid-cols-3 gap-12">
+        <div class="md:col-span-2">
+          <p class="section-marker">Στρατηγική σύνοψη</p>
+          <h3 class="display text-3xl text-navy-700 mt-2 mb-4">Pre-saturation reset window με Insider Critique Pattern</h3>
+          <p class="text-ink-700 leading-relaxed mb-4">Τα Ιωάννινα αποτελούν τον <strong>πιο δυναμικό αναπτυσσόμενο προορισμό</strong> του παραδοτέου: 441.906 αφίξεις 2024, υψηλότερος CAGR αλλοδαπών +10,85% την περίοδο 2015-2024, 910.761 διανυκτερεύσεις (+13,6% vs 2019). Ταυτόχρονα είναι ο <strong>μοναδικός αναπτυσσόμενος προορισμός</strong> που υπερβαίνει οριακά το κατώφλι Saveriades 5 σε TII canonical (5,665 ΠΕ / 6,79 Δήμος Ιωαννιτών) και διαθέτει positive POI θ̂ +0,04, οριακά πάνω από τους υπόλοιπους αναπτυσσόμενους.</p>
+          <p class="text-ink-700 leading-relaxed mb-4">Διατηρούνται όμως ισχυρές ευκαιρίες repositioning: τέσσερις heritage πυλώνες (Λίμνη Παμβώτιδα + Νησί, Καστροπολιτεία, Δωδώνη UNESCO Tentative, Ζαγόρι/Μέτσοβο εντός Βίκος-Αώος UNESCO Global Geopark), Πανεπιστήμιο Ιωαννίνων με 22 χιλιάδες φοιτητές ως year-round άγκυρα, mature luxury cluster με 5★ μερίδιο κλινών 21,1% (συγκρίσιμο με Χανιά 21,4%), χαμηλότατη εποχικότητα Gini 0,280 (η χαμηλότερη μεταξύ προορισμών μελέτης), και υψηλότερη Ενεργή Ευφορία LCA C2 42,3% — ισχυρή κοινωνική νομιμοποίηση για συντονισμένη διακυβέρνηση.</p>
+          <p class="text-ink-700 leading-relaxed">Η στρατηγική θέση είναι <strong>«Late Development / Early Maturity με reset window»</strong>: ένα πεπερασμένο παράθυρο ενεργοποίησης λειτουργικής διακυβέρνησης (Αναπτυξιακή Ηπείρου ΑΕ ως DMMO), αφηγηματικής σύνθεσης (Heritage Corridor Δωδώνη-Καστροπολιτεία-Παμβώτιδα-Ζαγόρι), ALoS lift (2,06 → 3,5+ νύχτες μέσω content packaging όχι premium-tier expansion), και θεσμοθέτησης Pre-Saturation Early-Warning Dashboard — πρωτότυπη μεθοδολογική συμβολή που μετατρέπει το Insider Critique Pattern σε επιχειρησιακό μηχανισμό. ⚠ <em>Eurostat NUTS3 EL541 αντιστοιχεί σε «Arta, Preveza», όχι ΠΕ Ιωαννίνων — υποκατάσταση ΑΠΑ μέσω SBR01 σε επίπεδο ΠΕ· πλήρης τεκμηρίωση §9.4.3.</em></p>
+        </div>
+        <aside class="border-l-2 border-accent-500 pl-6">
+          <p class="section-marker text-accent-500">Butler TALC</p>
+          <p class="text-2xl font-serif text-navy-700 mt-2">Late Development / Early Maturity</p>
+          <p class="text-sm text-ink-500 mt-3">Διπλό χαρακτηριστικό: αντικειμενική ένταση οριακά πάνω από κατώφλι Saveriades (TII 5,665) + υποκειμενική αντίληψη οριακά θετική (POI θ̂ +0,0403). Πεπερασμένο reset window.</p>
+          <hr class="my-5 border-[var(--rule)]">
+          <p class="section-marker text-accent-500">Doxey Irridex</p>
+          <p class="text-2xl font-serif text-navy-700 mt-2">Ευφορία → πρώιμη Απάθεια</p>
+          <p class="text-sm text-ink-500 mt-3">LCA C2+C5 θετικές κλάσεις 64,4%, αρνητικές C1+C4 25,8% (2ος μεταξύ αναπτυσσόμενων). Συγκρ. Ενόχληση C4 17,4% αποτυπώνει Insider Critique Pattern σε υπο-ομάδες.</p>
+        </aside>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 02 DEMAND & SUPPLY ============== -->
+    <section id="demand" class="py-12">
+      <p class="section-marker">Ενότητα 02</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Ζήτηση &amp; Προσφορά</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαπέντε έτη εξέλιξης ζήτησης (2010–2024) με τη ρήξη Ιόνιας-Εγνατίας Οδού του 2018, ξενοδοχειακό δυναμικό 7.949 κλινών σε 231 μονάδες με ώριμο 5★ cluster 21,1%, αγορά STR που έχει σταθεροποιηθεί στο 11,2% των διανυκτερεύσεων.</p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.1 · Αφίξεις 2010–2024</p>
+          <h3 class="chart-headline">Διπλός μετασχηματισμός: ολοκλήρωση Ιόνιας-Εγνατίας 2018, ταχεία μεταπανδημική ανάκαμψη</h3>
+          <div id="chart_arrivals" style="height:380px"></div>
+          <p class="chart-source">ΕΛΣΤΑΤ STO12 T03 (2010-2019) + INSETE Intelligence (2020-2024). Άλμα +40,7% σε ένα έτος 2017→2018 με ολοκλήρωση οδικών αξόνων. 81% ημεδαποί 2024 — διαρθρωτική κυριαρχία εγχώριας οδικής ζήτησης.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 9.2 · Δείκτης ανάκαμψης 2024/2019</p>
+          <h3 class="chart-headline">Ανάκαμψη 91,3% — 5η μεταξύ δέκα προορισμών</h3>
+          <div id="chart_recovery" style="height:480px"></div>
+          <p class="chart-source">Σύγκριση 10 προορισμών. Λόγος &gt;1 σημαίνει ξεπέρασε την ανάκαμψη. Τα Ιωάννινα διατηρούν δυναμική στη μετά-2019 περίοδο με ισχυρή εγχώρια ζήτηση και επιστροφή διεθνών αλλοδαπών (CAGR +10,85%).</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 9.3 · Μηνιαία κατανομή 2024</p>
+          <h3 class="chart-headline">Χαμηλή εποχικότητα: peak ratio 19,1% (Αυγ) — ο πιο κατανεμημένος αναπτυσσόμενος</h3>
+          <div id="chart_monthly" style="height:380px"></div>
+          <p class="chart-source">Πορτοκαλί = αιχμή · σκούρο μπλε = ώμος · ανοιχτό μπλε = χαμηλή. Ενιαία κατανομή υπαγορευμένη από φοιτητική ζήτηση + business + Χριστούγεννα/Απόκριες/Πάσχα + θερινός τουρισμός Ζαγορίου.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 9.4 · Εποχικότητα: Συντελεστής Gini</p>
+          <h3 class="chart-headline">Gini 0,280 (2024) — η χαμηλότερη της δεκάδας</h3>
+          <div id="chart_gini" style="height:380px"></div>
+          <p class="chart-source">Gini=0 τέλεια κατανομή · Gini=1 πλήρης συγκέντρωση. Τιμές 0,15-0,28 για Ιωάννινα = χαμηλή εποχικότητα. HHI 1.060 = επίσης κατανεμημένη ζήτηση. Έντονο πλεονέκτημα έναντι Μυκόνου (Gini 0,512) και Χανίων (0,478).</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 9.6 · Ξενοδοχειακή δυναμικότητα 2015–2024</p>
+          <h3 class="chart-headline">Κλίνες +10,0% σε δεκαετία — μονάδες +4,1% (σταθεροποίηση)</h3>
+          <div id="chart_capacity" style="height:380px"></div>
+          <p class="chart-source">ΕΛΣΤΑΤ STO12 T01 ΠΕ Ιωαννίνων. Μέσο μέγεθος μονάδας: 32,6 κλίνες (2015) → 34,4 (2024). Σταθερή αναβάθμιση χωρίς εκρηκτική επέκταση.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 9.5 · Δωμάτια ανά κατηγορία αστεριών (2024)</p>
+          <h3 class="chart-headline">Κυριαρχία 3★ (40,8%) + ώριμο 5★ cluster (21,1% κλινών)</h3>
+          <div id="chart_donut" style="height:380px"></div>
+          <p class="chart-source">5★ μερίδιο κλινών 21,1% (1.681 κλίνες σε 14 μονάδες) — συγκρίσιμο με Χανιά 21,4% και σαφώς υψηλότερο από άλλους αναπτυσσόμενους. Boutique καταλύματα Καστροπολιτείας + ορεινά αρχοντικά Ζαγορίου.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 9.7 · Μηνιαίο ποσοστό πληρότητας 2024</p>
+          <h3 class="chart-headline">Αιχμή Αυγούστου 64,3% — χαμηλότερη από νησιωτικούς ώριμους</h3>
+          <div id="chart_occupancy" style="height:380px"></div>
+          <p class="chart-source">Περιφέρεια Ηπείρου (NUTS2 EL54). Η χαμηλή αιχμή είναι ένδειξη διαφοροποιημένης διαχρονικής λειτουργίας year-round (Πανεπιστήμιο, δημόσια διοίκηση, ιατρικός τουρισμός).</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 9.8 · Μέση διάρκεια παραμονής (<span data-term="ALoS">ALoS</span>)</p>
+          <h3 class="chart-headline">ALoS 2,06 νύχτες — 2η χαμηλότερη μετά την Καστοριά (1,72)</h3>
+          <div id="chart_alos" style="height:380px"></div>
+          <p class="chart-source">Πρότυπο city-break σύντομης διαμονής, υψηλή συχνότητα εναλλαγής επισκεπτών (114,6 νύχτες ανά κλίνη ετησίως). Πρόταση 3: ALoS lift 2,06 → 3,5+ νύχτες ορίζοντας 2030 μέσω content packaging.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.9 · Μερίδιο <span data-term="STR">STR</span> έναντι ξενοδοχείων (2020–2024)</p>
+          <h3 class="chart-headline">STR σταθεροποιημένη στο 11,2% διανυκτερεύσεων — διαχειρίσιμο μέγεθος</h3>
+          <div class="grid md:grid-cols-2 gap-8 mt-4">
+            <div>
+              <p class="text-sm text-ink-500 mb-2">Αφίξεις</p>
+              <div id="chart_str_arrivals" style="height:340px"></div>
+            </div>
+            <div>
+              <p class="text-sm text-ink-500 mb-2">Διανυκτερεύσεις</p>
+              <div id="chart_str_overnights" style="height:340px"></div>
+            </div>
+          </div>
+          <p class="chart-source">INSETE Intelligence + AirDNA. Σε αντίθεση με Χανιά (24,8%) και Κέρκυρα (16,1%), τα Ιωάννινα διατηρούν διαχειρίσιμο STR μερίδιο, με τη διπλή πίεση φοιτητικής + STR ζήτησης (Πρόταση 6: cap 15% κατοικιών κεντρικής ζώνης Δήμου Ιωαννιτών).</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 03 PRODUCT ============== -->
+    <section id="product" class="py-12">
+      <p class="section-marker">Ενότητα 03</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Τουριστικό προϊόν</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">1.086 σημεία τουριστικού ενδιαφέροντος σε επίπεδο ΠΕ, τέσσερις heritage πυλώνες (Λίμνη/Νησί, Καστροπολιτεία, Δωδώνη Tentative UNESCO, Ζαγόρι/Μέτσοβο εντός Βίκος-Αώος UNESCO Geopark), και αξιολόγηση 15 διακριτών υποδομών από κατοίκους — με σαφή Insider Critique Pattern στα υγειονομικά-περιβαλλοντικά.</p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.10 · Σημεία Τουριστικού Ενδιαφέροντος (POIs OSM)</p>
+          <h3 class="chart-headline">1.086 POIs ΠΕ Ιωαννίνων — μεσαία ζώνη της δεκάδας</h3>
+          <div id="chart_pois" style="height:420px"></div>
+          <p class="chart-source">OpenStreetMap Overpass API, εξαγωγή 2025. Κατηγορίες: αρχαιολογικοί χώροι, μουσεία, καταλύματα, εστίαση, ορεινές διαδρομές, παραλίμνια ζώνη. Η μέτρια POI πυκνότητα αντιστοιχεί στον υβριδικό αστικό-ορεινό χαρακτήρα.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.11 · <span data-term="IPA">IPA</span> Quadrant — Σπουδαιότητα × Αξιολόγηση υποδομών</p>
+          <h3 class="chart-headline">Δομές υγείας, ύδρευση, απορρίμματα στο τεταρτημόριο «Συγκέντρωση εδώ» (Insider Critique Pattern)</h3>
+          <div id="chart_ipa" style="height:520px"></div>
+          <p class="chart-source">Random Forest importance × μέση αξιολόγηση κλίμακας 1–5. Πορτοκαλί = τουριστικές υποδομές, μπλε = δημόσιες. Οι εργαζόμενοι στον τουρισμό αναγνωρίζουν ανεπάρκειες +12 έως +16 ποσοστιαίες μονάδες νωρίτερα από τον γενικό πληθυσμό.</p>
+        </div>
+      </div>
+
+      <!-- Gap analysis infographic (canonical Σχ. 9.10β) -->
+      <div class="chart-card mt-8">
+        <p class="chart-title">Σχήμα 9.10β · Gap Analysis: τέσσερα κρίσιμα κενά Ζήτησης / Προσφοράς, ΠΕ Ιωαννίνων</p>
+        <h3 class="chart-headline">Τέσσερις heritage πυλώνες χωρίς ενιαία αφηγηματική σύνθεση</h3>
+        <img src="../charts_v2/ioannina/fig_9_10b_gap_analysis_v2.png" alt="Gap Analysis infographic τεσσάρων κρίσιμων κενών για τα Ιωάννινα" class="w-full mt-4 rounded">
+        <p class="chart-source">«Το προϊόν λειτουργεί ως μωσαϊκό εμπειριών και όχι ως ενιαίο αφήγημα.» — Συμπερασματική παρατήρηση ποιοτικής έρευνας στελεχών. Λύση: Heritage Corridor Πρότ. 2 + branding ομπρέλα Visit Epirus / Epirus Pass / Epirus Food Trail. Ίδια επεξεργασία.</p>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 04 ECONOMY ============== -->
+    <section id="economy" class="py-12">
+      <p class="section-marker">Ενότητα 04</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Οικονομία</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Διαφοροποιημένη αστική-ακαδημαϊκή οικονομική βάση: 26,74% οικιακή τουριστική εξάρτηση (3η χαμηλότερη μεταξύ δέκα), 230,57 εκ. € τζίρος NACE I+N+R (SBR01 2023), 11.467 απασχολούμενοι. ⚠ Eurostat NUTS3 EL541 = «Arta, Preveza», όχι Ιωάννινα — υποκατάσταση από SBR01 + NUTS2 EL54.</p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 9.12 · Εκτιμώμενος τζίρος καταλυμάτων</p>
+          <h3 class="chart-headline">Ξενοδοχεία 77,4 εκ. € · STR 12,6 εκ. € (2024)</h3>
+          <div id="chart_turnover" style="height:380px"></div>
+          <p class="chart-source">Εκτίμηση: hotel = διανυκτ. × €85 · STR = διανυκτ. × €110 (premium pricing). NUTS2 ΤτΕ Έρευνα Συνόρων 17,56 εκ. € (Ήπειρος EL54).</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 9.13 · ΑΠΑ G-I έναντι σύνολο (NUTS2 EL54)</p>
+          <h3 class="chart-headline">Ανθεκτική πορεία — από 272,82 εκ. € (2016) σε 349,71 εκ. € (2023)</h3>
+          <div id="chart_gva" style="height:380px"></div>
+          <p class="chart-source">Eurostat nama_10r_3gva NUTS2 EL54 Ηπείρου (ΑΠΑ G-I εμπόριο, μεταφορές, τουρισμός). Συνεισφορά ΠΕ Ιωαννίνων ≈ 45-55% μέσω SBR01 αναγωγής. Eurostat EL541 NUTS3 = «Arta, Preveza», βλ. §9.4.3.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.13β · Στρατηγικό τεταρτημόριο: Οικονομική εξάρτηση × Ικανοποίηση</p>
+          <h3 class="chart-headline">«Διαφοροποιημένη / ικανοποιημένη» (26,74% × 3,95) — η ευνοϊκή θέση της δεκάδας</h3>
+          <div id="chart_q_employment" style="height:480px"></div>
+          <p class="chart-source">Πρωτογενής έρευνα κατοίκων (n=300, σταθμισμένο), Q15 οικιακή τουριστική εξάρτηση × Q9 μέση ικανοποίηση. Τα Ιωάννινα ξεχωρίζουν: χαμηλή εξάρτηση + υψηλή ικανοποίηση = ιδανική θέση επανατοποθέτησης.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.14 · Νέες οικοδομικές άδειες &amp; κατοικίες (2015–2025)</p>
+          <h3 class="chart-headline">+240% σε δεκαετία — μέτρια αλλά ανοδική πίεση</h3>
+          <div id="chart_permits" style="height:380px"></div>
+          <p class="chart-source">ΕΛΣΤΑΤ SOP03 ΠΕ Ιωαννίνων. Γκρι 2025 = προσωρινά. Έντονη ανάκαμψη post-2019 με σύνδεση και στη φοιτητική στεγαστική αγορά (Πρόταση 6).</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 05 SOCIETY ============== -->
+    <section id="society" class="py-12">
+      <p class="section-marker">Ενότητα 05</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Κοινωνία</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Φέρουσα ικανότητα στη ζώνη οριακής υπέρβασης Saveriades (TII canonical 5,665), Insider Critique Pattern ως πρώιμο σήμα πίεσης, υψηλότερη Ενεργή Ευφορία της δεκάδας (LCA C2 42,3%), και η πρώτη positive POI θ̂ τιμή μεταξύ αναπτυσσόμενων.</p>
+
+      <div class="method-box" data-reveal>
+        <p class="method-box-title">Μεθοδολογικό κουτί 9.5.1.α — Defert <span data-term="TFI">TFI</span>/<span data-term="TII">TII</span> + κατώφλια Saveriades</p>
+        <p class="method-box-content">Ο γαλλικός γεωγράφος Pierre Defert εισήγαγε τον TFI το 1967: TFI = κλίνες × 100 / πληθυσμός. Ο TII είναι μεταγενέστερη επέκταση: TII = διανυκτερεύσεις / πληθυσμός. Διεθνή κατώφλια ζώνης (Saveriades 2000· Coccossis &amp; Mexa 2004): TII &lt; 5 χαμηλή πίεση, 5–10 μέτρια, 10–15 υψηλή, &gt;15 πολύ υψηλή. Στα Ιωάννινα: TII canonical 5,665 (ΠΕ) / 6,79 (Δήμος Ιωαννιτών) — πρώτος αναπτυσσόμενος προορισμός που υπερβαίνει οριακά το όριο Saveriades 5. Σε κλίμακα Δήμου: μέτρια πίεση. Επιφύλαξη: ο δείκτης δεν περιλαμβάνει χωρική ανισοκατανομή εντός ΠΕ (αστικός πυρήνας vs ορεινή ενδοχώρα) ούτε εποχικότητα.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.15 · Δείκτης Τουριστικής Έντασης (<span data-term="TII">TII</span>) Defert 2010–2024</p>
+          <h3 class="chart-headline">Από 2,78 σε 5,665 — υπερδιπλασιασμός με ρήξη 2018 (Ιόνια-Εγνατία)</h3>
+          <div id="chart_tii" style="height:420px"></div>
+          <p class="chart-source">Διανυκτερεύσεις / κάτοικο × 100. Όριο Saveriades στη γραμμή TII = 5 (κατώφλι ωριμότητας). Σημείο καμπής 2018 (πρώτη υπέρβαση κατωφλίου) και επαναβεβαίωση 2024.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.19 · Στρατηγικό τεταρτημόριο: Αντικειμενική × Υποκειμενική πίεση</p>
+          <h3 class="chart-headline">Ιωάννινα στη ζώνη «Λανθάνον δυναμικό → Ώριμος προσαρμοσμένος» (TFI 4,94 · POI θ̂ +0,04)</h3>
+          <div id="chart_q_tfi_poi" style="height:480px"></div>
+          <p class="chart-source">POI θ̂ μέσω <span data-term="IRT">IRT</span>-<span data-term="GRM">GRM</span>. TFI σε log10 για visual ισοκατανομή. Τα Ιωάννινα είναι ο πέμπτος προορισμός στη συνολική κατάταξη POI θ̂ (Κέρκυρα +0,70, Χανιά +0,54, Μύκονος +0,49, Αλεξανδρούπολη +0,25, Ιωάννινα +0,04).</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.16γ · Στρατηγικό τεταρτημόριο: Στεγαστική πίεση φοιτητικής + STR ζήτησης</p>
+          <h3 class="chart-headline">Διαφορά +21 έως +30 pp ανησυχίας 18-34 vs 55+ — double housing pressure</h3>
+          <div id="chart_q_str_housing" style="height:480px"></div>
+          <p class="chart-source">Πρωτογενής έρευνα Q3_7 (διαθεσιμότητα κατοικιών) × Q3_4 (πρόβλημα στέγης μόνιμων). Η διπλή πίεση φοιτητικής + STR ζήτησης στον αστικό πυρήνα Δήμου Ιωαννιτών απαιτεί Πρόταση 6 (cap 15% STR + φοιτητικές εστίες +500 κλίνες).</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.16 · Doxey Irridex Heatmap — σύγκριση προορισμών</p>
+          <h3 class="chart-headline">Ισχυρή κοινωνική νομιμοποίηση Ιωαννίνων — Q9_SAT μέση 3,95/5 (υψηλότερη της δεκάδας)</h3>
+          <div id="chart_doxey" style="height:380px"></div>
+          <p class="chart-source">Πρωτογενής έρευνα Q1 — μέσες τιμές κλίμακας 1–5. Πράσινο = θετικό, κόκκινο = αρνητικό. Τα Ιωάννινα διατηρούν υψηλή ασφάλεια, φιλικότητα και ικανοποίηση, με πρώιμα σήματα στεγαστικής επίδρασης και ανταγωνισμού.</p>
+        </div>
+      </div>
+
+      <div class="method-box mt-8" data-reveal>
+        <p class="method-box-title">Μεθοδολογικό κουτί 9.6.1.γ — Insider Critique Pattern (πρωτότυπη συμβολή)</p>
+        <p class="method-box-content">Στα Ιωάννινα διαπιστώνεται συστηματικό Insider Critique Pattern: οι εργαζόμενοι στον τουρισμό αναγνωρίζουν πιέσεις 6 έως 15 ποσοστιαίες μονάδες νωρίτερα από τον γενικό πληθυσμό, σε πέντε διαστάσεις (Doxey, ικανοποίηση, ελλείμματα υποδομών, αντίληψη ποιότητας τουριστών, αντίληψη τυπολογίας). Η ασυμμετρία αυτή τοποθετεί τους τουριστικά εργαζόμενους ως canary in the coalmine του προορισμού. Η Πρόταση 4 (§9.7.3) μετατρέπει αυτό το διαγνωστικό εύρημα σε επιχειρησιακό μηχανισμό συστηματικής παρακολούθησης μέσω εξαμηνιαίου insider survey panel ≥50 τουριστικών εργαζομένων, αποτελώντας την πρωτότυπη μεθοδολογική συμβολή της Λευκής Βίβλου που μπορεί να εφαρμοστεί ως πρότυπο σε άλλους ηπειρωτικούς προορισμούς με πρώιμα σήματα πίεσης.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 mt-8">
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.17 · Latent Class Analysis — 10 προορισμοί</p>
+          <h3 class="chart-headline">Ιωάννινα: κυρίαρχη Ενεργή Ευφορία C2 42,3% — υψηλότερη της δεκάδας</h3>
+          <div id="chart_lca" style="height:520px"></div>
+          <p class="chart-source">Σταθμισμένο μερίδιο πληθυσμού ανά εμπειρική class. Ταξινόμηση κατά Q9 ικανοποίηση (αύξουσα). Στα Ιωάννινα: C5 22,1% + C2 42,3% = 64,4% θετικές, C1+C4 25,8% αρνητικές (2η μεταξύ αναπτυσσόμενων μετά Αλεξανδρούπολη).</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 9.17β · Τεταρτημόριο πόλωσης: Class 1 × Class 5</p>
+          <h3 class="chart-headline">Ιωάννινα στη ζώνη «Υγιής συναίνεση με πρώιμα σήματα» (8,4% × 22,1%)</h3>
+          <div id="chart_q_lca" style="height:480px"></div>
+          <p class="chart-source">Χαμηλή Class 1 (Αντιπαλότητα) + μέτρια Class 5 (Καθαρή Ευφορία) = συναινετικός προορισμός. Ωστόσο, C4 17,4% (Συγκρ. Ενόχληση) αποκαλύπτει το Insider Critique Pattern σε υπο-ομάδες.</p>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <p class="section-marker">Ποιοτική έρευνα · 14 αυτούσια αποσπάσματα</p>
+        <h3 class="display text-3xl text-navy-700 mt-2 mb-6">Φωνές των στελεχών</h3>
+        <div class="quotes-deck" data-carousel>
+          <div class="quotes-rail" id="quotes_rail"></div>
+          <div class="flex gap-2 mt-4 justify-end">
+            <button data-carousel-prev class="theme-toggle" aria-label="Προηγούμενο">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button data-carousel-next class="theme-toggle" aria-label="Επόμενο">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 06 ENVIRONMENT ============== -->
+    <section id="environment" class="py-12">
+      <p class="section-marker">Ενότητα 06</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Περιβάλλον</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">12 Natura 2000 τόποι σε 2.897,10 km² (Λίμνη Παμβώτιδα GR2130005 + Βίκος-Αώος Geopark + Πίνδος). Κλιματικές ευαλωτότητες σε χιόνια, υδρολογία και δασικές πυρκαϊές. Greek <span data-term="WEI+">WEI+</span> 12,51 (μέτρια πίεση).</p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card">
+          <p class="chart-title">Eurostat lan_lcv_ovw · Χρήση γης Ηπείρου 2022 (NUTS2 EL54)</p>
+          <h3 class="chart-headline">Δάση + Θαμνώδης 66,5% — έντονα ορεινός χαρακτήρας</h3>
+          <div id="chart_landcover" style="height:380px"></div>
+          <p class="chart-source">Land Use/Cover Area frame Survey (LUCAS), NUTS2 EL54 Ηπείρου. Τεχνητή γη μόλις 1,79% — η πιο φυσική Περιφέρεια της δεκάδας.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Eurostat sdg_06_60 · Greek <span data-term="WEI+">WEI+</span> 2003–2023</p>
+          <h3 class="chart-headline">Ανοδική πορεία — από 11,5 σε 12,5 σε δεκαετία</h3>
+          <div id="chart_wei" style="height:380px"></div>
+          <p class="chart-source">4ετής μέσος όρος. Ζώνες: πράσινο &lt;10 χαμηλή · κίτρινο 10-20 μέτρια · κόκκινο &gt;20 έντονη. Στα Ιωάννινα η Παμβώτιδα ως κρίσιμος υγρότοπος Natura 2000 διαθέτει διακριτή ευαλωτότητα.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+        <div class="kpi-card">
+          <div class="kpi-label">Τεχνητή γη Ηπείρου 2022</div>
+          <div class="kpi-value"><span data-num="1.79" data-decimals="2">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta up">χαμηλή πίεση</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Greek WEI+ 2023</div>
+          <div class="kpi-value"><span data-num="12.51" data-decimals="2">0</span></div>
+          <div class="kpi-delta down">μέτρια πίεση</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Greek απορρ. 2023</div>
+          <div class="kpi-value"><span data-num="523">0</span><span class="kpi-unit">kg/cap</span></div>
+          <div class="kpi-delta flat">~EU avg</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Natura 2000 ΠΕ Ιωαννίνων</div>
+          <div class="kpi-value"><span data-num="12">0</span><span class="kpi-unit">τόποι</span></div>
+          <div class="kpi-delta up">2.897,10 km²</div>
+        </div>
+      </div>
+
+      <div class="chart-card lg:col-span-2 mt-8">
+        <p class="chart-title">Σχήμα 9.18 · Αντίληψη αρνητικών επιπτώσεων (% συμφωνώ + απόλυτα)</p>
+        <h3 class="chart-headline">STR/Airbnb επίδραση 70,5% · Στεγαστική κρίση 55,1% — χαμηλότερα νησιωτικών ώριμων</h3>
+        <div id="chart_env_heat" style="height:420px"></div>
+        <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 10 προορισμών. Τα Ιωάννινα διατηρούν διαχειρίσιμα επίπεδα αλλά με σαφή Insider Critique σε ηχορύπανση + απορρίμματα από εργαζόμενους στον τουρισμό.</p>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 07 STRATEGY ============== -->
+    <section id="strategy" class="py-12">
+      <p class="section-marker">Ενότητα 07</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Στρατηγική</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">SWOT ανάλυση, πέντε Άξονες Πολιτικής (pre-saturation governance reset λογική), και επτά Επιχειρησιακές Προτάσεις. Η <strong>Πρόταση 4 (Pre-Saturation Early-Warning Dashboard)</strong> αποτελεί την πρωτότυπη μεθοδολογική συμβολή των Ιωαννίνων στη Λευκή Βίβλο.</p>
+
+      <h3 class="font-serif text-2xl text-navy-700 mb-4">SWOT Ανάλυση</h3>
+      <div class="swot-grid mb-12" id="swot_grid"></div>
+
+      <h3 class="font-serif text-2xl text-navy-700 mb-4">Πέντε Άξονες Πολιτικής</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12" id="axes_grid"></div>
+
+      <h3 class="font-serif text-2xl text-navy-700 mb-4">Επτά Επιχειρησιακές Προτάσεις</h3>
+      <div class="space-y-3" id="proposals_list"></div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 08 DATA ANNEX ============== -->
+    <section id="data" class="py-12">
+      <p class="section-marker">Ενότητα 08</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Δεδομένα &amp; Παράρτημα</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Πλήρης πρόσβαση στα 64 items της πρωτογενούς έρευνας στους Δήμους Ιωαννιτών + Ζαγορίου (n=300, Απρίλιος 2026), στους 21 πίνακες του κεφαλαίου, και στις 10 πηγές δευτερογενών δεδομένων.</p>
+
+      <h3 class="font-serif text-2xl text-navy-700 mb-4">Πρωτογενής έρευνα — Όλα τα 64 items (Ιωάννινα)</h3>
+      <div class="overflow-x-auto">
+        <table class="editorial-table" id="mrb_table">
+          <thead>
+            <tr><th>Item</th><th>Μέσος (1–5)</th><th>% Συμφωνώ</th><th>n valid</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Μεθοδολογικά Κουτιά</h3>
+      <div class="space-y-4" id="method_boxes"></div>
+
+      <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγές δεδομένων</h3>
+      <ul class="text-sm text-ink-700 space-y-2 list-disc list-inside" id="sources_list"></ul>
+
+      <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγαίες παρουσιάσεις πρωτογενούς έρευνας</h3>
+      <p class="text-sm text-ink-700 mb-6 max-w-3xl">Αυτούσιες παρουσιάσεις του φορέα δημοσκοπικής έρευνας με τα πλήρη ευρήματα ποσοτικής και ποιοτικής έρευνας στους κατοίκους και στα στελέχη του προορισμού. Διαθέσιμες ως PDF για μεταφόρτωση.</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="assets/downloads/ioannina_quantitative.pdf" target="_blank" rel="noopener"
+           class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+            <div class="flex-1">
+              <p class="section-marker text-accent-500">PDF · Ποσοτική έρευνα</p>
+              <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Πρωτογενούς Ποσοτικής Έρευνας</p>
+              <p class="text-xs text-ink-500 mt-1">Δήμος Ιωαννιτών · Δ. Ζαγορίου · Απρίλιος 2026</p>
+              <p class="text-xs text-ink-500 mt-2 numeric">~70 σελίδες · 1,7 MB</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="assets/downloads/ioannina_qualitative.pdf" target="_blank" rel="noopener"
+           class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+            <div class="flex-1">
+              <p class="section-marker text-accent-500">PDF · Ποιοτική έρευνα</p>
+              <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Ποιοτικής Έρευνας σε Στελέχη</p>
+              <p class="text-xs text-ink-500 mt-1">5 συνεντεύξεις σε στελέχη Ηπείρου · Απρίλιος 2026</p>
+              <p class="text-xs text-ink-500 mt-2 numeric">~60 σελίδες · 1,1 MB</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy-900 text-white/80 py-12 mt-12">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <p class="section-marker text-accent-300">Επόμενος προορισμός</p>
+        <p class="font-serif text-xl text-white mt-2">Καστοριά →</p>
+        <p class="text-xs text-white/50 mt-1">Σύντομα διαθέσιμο</p>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Λήψεις</p>
+        <ul class="space-y-1.5 mt-2">
+          <li><a href="assets/downloads/ioannina_quantitative.pdf" target="_blank" class="hover:text-accent-300">Ποσοτική έρευνα PDF (1,7 MB)</a></li>
+          <li><a href="assets/downloads/ioannina_qualitative.pdf" target="_blank" class="hover:text-accent-300">Ποιοτική έρευνα PDF (1,1 MB)</a></li>
+          <li><a href="assets/data/ioannina-data.js" class="hover:text-accent-300">Δεδομένα JS (επί τόπου)</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Πιστοποίηση πηγών</p>
+        <p class="text-xs text-white/60 mt-2 leading-relaxed">Όλα τα στατιστικά δεδομένα από επίσημες πηγές (ΕΛΣΤΑΤ, Eurostat, ΤτΕ, INSETE). Πρωτογενής έρευνα κατοίκων από εξειδικευμένο φορέα δημοσκοπικής έρευνας. ⚠ Eurostat NUTS3 EL541 = «Arta, Preveza» — υποκατάσταση ΑΠΑ από SBR01 ΠΕ Ιωαννίνων + NUTS2 EL54, βλ. §9.4.3.</p>
+      </div>
+    </div>
+    <div class="container mx-auto px-6 mt-10 pt-6 border-t border-white/10 text-xs text-white/40 flex justify-between">
+      <p>Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035 · ΠΕ2 · Κεφάλαιο 9 Ιωάννινα</p>
+      <p class="numeric">v1.0 · 2026-05-15</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/data/ioannina-data.js"></script>
+  <script src="assets/js/ioannina-render.js"></script>
+</body>
+</html>

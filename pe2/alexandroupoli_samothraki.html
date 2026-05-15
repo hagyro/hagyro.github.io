@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Αλεξανδρούπολη-Σαμοθράκη · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+  <meta name="description" content="Προφίλ Αλεξανδρούπολης-Σαμοθράκης: διττός ηπειρωτικός–νησιωτικός προορισμός με υψηλότερη ανάκαμψη (RR 1,649) και μοναδική κυρίαρχη Συγκρ. Ενόχληση LCA C4 (28,8%) — Ζώνη Α′ pre-saturation με REVERSE Insider Effect.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <link rel="stylesheet" href="assets/css/custom.css">
+
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: {
+        navy:   { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
+        accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
+        ink:    { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
+      },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
+    } } }
+  </script>
+</head>
+<body>
+
+  <!-- Top utility bar -->
+  <div class="bg-navy-900 text-white text-xs">
+    <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+      <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
+      <div class="flex items-center gap-4">
+        <a href="methodology.html" class="text-white/70 hover:text-white">Μεθοδολογία</a>
+        <a href="comparative.html" class="text-white/70 hover:text-white">Συγκριτικά</a>
+        <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO — Αλεξανδρούπολη-Σαμοθράκη: διττός ηπειρωτικός-νησιωτικός, υψηλότερη ανάκαμψη, μοναδική κυρίαρχη Συγκρ. Ενόχληση -->
+  <header class="relative h-[70vh] min-h-[520px] bg-navy-700 overflow-hidden flex items-end">
+    <!-- Background photo: Φάρος Αλεξανδρούπολης - σύμβολο Πύλης Θράκης -->
+    <img src="assets/images/alexandroupoli_samothraki_hero.jpg" alt="Φάρος Αλεξανδρούπολης — σύμβολο της Πύλης της Θράκης" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-900/30 via-navy-900/40 to-navy-900/95"></div>
+    <svg class="absolute inset-0 w-full h-full opacity-[0.06]" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+
+    <div class="container mx-auto px-6 pb-12 relative z-10 text-white">
+      <p class="section-marker text-accent-300">Κεφάλαιο 11 · Προορισμός με περιθώριο ανάπτυξης · Διττός ηπειρωτικός–νησιωτικός</p>
+      <h1 class="display text-7xl md:text-8xl mt-3 leading-none">Αλεξανδρούπολη-Σαμοθράκη</h1>
+      <p class="text-xl mt-3 text-navy-50/85 max-w-2xl">Ανατολική Μακεδονία-Θράκη · ΠΕ Έβρου · Δ. Αλεξανδρούπολης (71.751) + Δ. Σαμοθράκης (2.596) · Πληθυσμός ΠΕ 133.802 (Απογραφή 2021) · Πύλη Θράκης + Σαμοθράκη Natura</p>
+
+      <p class="absolute bottom-2 right-4 text-[10px] text-white/40">Φωτογραφία: Λιμάνι Αλεξανδρούπολης &amp; Όρος Φεγγάρι Σαμοθράκης</p>
+
+      <!-- Quick stats — Αλεξανδρούπολη-Σαμοθράκη signature: ανάκαμψη 1,649, Natura 3.439 km², LCA C4 PREDOMINANT, Σαμοθράκη 2.596 -->
+      <div class="mt-10 flex flex-wrap gap-2">
+        <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
+          <span class="block text-[11px] uppercase tracking-wider text-accent-300">Ανάκαμψη 2024/2019 · υψηλότερη της δεκάδας</span>
+          <span class="font-serif text-lg numeric">1,649</span>
+        </span>
+        <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
+          <span class="block text-[11px] uppercase tracking-wider text-white/60">Natura 2000 · μεγαλύτερη συγκέντρωση</span>
+          <span class="font-serif text-lg numeric">3.439 km²</span>
+        </span>
+        <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
+          <span class="block text-[11px] uppercase tracking-wider text-accent-300">LCA C4 Συγκρ. Ενόχληση · μοναδική κυρίαρχη</span>
+          <span class="font-serif text-lg numeric">28,8%</span>
+        </span>
+        <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
+          <span class="block text-[11px] uppercase tracking-wider text-white/60">Σαμοθράκη · πληθυσμός 2021</span>
+          <span class="font-serif text-lg numeric">2.596</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- STICKY NAV -->
+  <nav class="sticky top-0 bg-white/95 backdrop-blur border-b border-[var(--rule)] z-40 shadow-sm">
+    <div class="container mx-auto px-6 overflow-x-auto">
+      <ul class="flex gap-7 whitespace-nowrap">
+        <li><a href="#overview"    class="nav-tab" data-num="01">Επισκόπηση</a></li>
+        <li><a href="#demand"      class="nav-tab" data-num="02">Ζήτηση &amp; Προσφορά</a></li>
+        <li><a href="#product"     class="nav-tab" data-num="03">Τουριστικό προϊόν</a></li>
+        <li><a href="#economy"     class="nav-tab" data-num="04">Οικονομία</a></li>
+        <li><a href="#society"     class="nav-tab" data-num="05">Κοινωνία</a></li>
+        <li><a href="#environment" class="nav-tab" data-num="06">Περιβάλλον</a></li>
+        <li><a href="#strategy"    class="nav-tab" data-num="07">Στρατηγική</a></li>
+        <li><a href="#data"        class="nav-tab" data-num="08">Δεδομένα</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-6 py-12 max-w-7xl">
+
+    <!-- ============== 01 OVERVIEW ============== -->
+    <section id="overview" class="py-12">
+      <p class="section-marker">Ενότητα 01</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Επισκόπηση</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαέξι δείκτες-κλειδιά που τοποθετούν την Αλεξανδρούπολη-Σαμοθράκη ως τον <strong>μοναδικό διπολικό προορισμό</strong> (mainland-island dyad) της μελέτης με την υψηλότερη ανάκαμψη αλλοδαπών (RR 1,649) μεταξύ δέκα, μέγιστη συγκέντρωση Natura 2000 και κυρίαρχη Συγκρ. Ενόχληση LCA C4 (28,8%). Η Αλεξανδρούπολη-Σαμοθράκη είναι ο πρώτος αναπτυσσόμενος Ζώνης Α′ pre-saturation με REVERSE Insider Effect σε διπολική γεωγραφία — εμπειρική ανωμαλία θετικού POI θ̂ +0,25 παρά χαμηλή αντικειμενική TII 3,315.</p>
+
+      <!-- 16 KPI cards -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Αφίξεις 2024</div>
+          <div class="kpi-value"><span data-num="200594">0</span></div>
+          <div class="kpi-delta up">95.315 αλλοδαποί + 105.279 ημεδαποί</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Διανυκτερεύσεις 2024</div>
+          <div class="kpi-value"><span data-num="0.444" data-decimals="3">0</span><span class="kpi-unit">εκ.</span></div>
+          <div class="kpi-delta up">+20,7% vs 2019</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Μερίδιο αλλοδαπών 2024</div>
+          <div class="kpi-value"><span data-num="47.5" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta up">+35,3 pp vs 2010 (μεγαλύτερη μετατόπιση)</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="ALoS">ALoS</span> 2024</div>
+          <div class="kpi-value"><span data-num="2.21" data-decimals="2">0</span></div>
+          <div class="kpi-delta down">3η χαμηλότερη των 10</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Recovery 2024/2019</div>
+          <div class="kpi-value"><span data-num="1.649" data-decimals="3">0</span></div>
+          <div class="kpi-delta up">1η HIGHEST της δεκάδας</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">CAGR αλλοδαπών 2015–24</div>
+          <div class="kpi-value"><span data-num="8.30" data-decimals="2">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta up">μεταξύ 5 ισχυρότερα αναπτυσσόμενων</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="TFI">TFI</span> Defert canonical 2024</div>
+          <div class="kpi-value"><span data-num="2.785" data-decimals="3">0</span></div>
+          <div class="kpi-delta flat">3.726 κλίνες ΠΕ Έβρου</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="TII">TII</span> canonical 2024 (ΠΕ)</div>
+          <div class="kpi-value"><span data-num="3.315" data-decimals="3">0</span></div>
+          <div class="kpi-delta down">υπο-τουριστικό, &lt; Saveriades 5</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Gini εποχικότητας 2024</div>
+          <div class="kpi-value"><span data-num="0.374" data-decimals="3">0</span></div>
+          <div class="kpi-delta flat">ενδιάμεση κατηγορία ΑΜΘ</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Peak ratio Αυγούστου 2024</div>
+          <div class="kpi-value"><span data-num="20.8" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta flat">διπολική mainland/island</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="POI">POI</span> θ̂ (αντίληψη)</div>
+          <div class="kpi-value"><span data-num="0.25" data-decimals="2">0</span></div>
+          <div class="kpi-delta down">2η αναπτ. σε Ζώνη Α′</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label"><span data-term="LCA">LCA</span> C4 Συγκρ. Ενόχληση</div>
+          <div class="kpi-value"><span data-num="28.75" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta down">PREDOMINANT — μοναδική κυρίαρχη</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">LCA C1 Αντιπαλότητα</div>
+          <div class="kpi-value"><span data-num="14.9" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta down">υψηλή των αναπτυσσόμενων</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">LCA C5 Καθαρή Ευφορία</div>
+          <div class="kpi-value"><span data-num="25.0" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta flat">μεσαία θέση δεκάδας</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Natura 2000 ΠΕ Έβρου</div>
+          <div class="kpi-value"><span data-num="12">0</span><span class="kpi-unit">τόποι</span></div>
+          <div class="kpi-delta up">3.439 km² — η μεγαλύτερη</div>
+        </div>
+        <div class="kpi-card" data-reveal>
+          <div class="kpi-label">Ακτές κολύμβησης άριστης ποιότητας</div>
+          <div class="kpi-value"><span data-num="11">0</span><span class="kpi-unit">/11</span></div>
+          <div class="kpi-delta up">100% excellent (ΥΠΕΝ 2024)</div>
+        </div>
+      </div>
+
+      <!-- Executive narrative -->
+      <div class="mt-16 grid md:grid-cols-3 gap-12">
+        <div class="md:col-span-2">
+          <p class="section-marker">Στρατηγική σύνοψη</p>
+          <h3 class="display text-3xl text-navy-700 mt-2 mb-4">Ζώνη Α′ pre-saturation με REVERSE Insider Effect σε διπολική γεωγραφία</h3>
+          <p class="text-ink-700 leading-relaxed mb-4">Η Αλεξανδρούπολη-Σαμοθράκη αποτελεί τον <strong>μοναδικό διπολικό προορισμό</strong> της Λευκής Βίβλου, με τη συνύπαρξη ηπειρωτικής Πύλης Θράκης (Δ. Αλεξανδρούπολης 71.751 κάτοικοι, 12μηνη αστική λειτουργία) και νησιωτικής Σαμοθράκης (Δ. Σαμοθράκης 2.596 κάτοικοι, 2μηνη θερινή αιχμή). Καταγράφει το 2024 200.594 αφίξεις σε ξενοδοχειακά καταλύματα ΠΕ Έβρου (95.315 αλλοδαποί 47,5% + 105.279 ημεδαποί 52,5%), 443.544 διανυκτερεύσεις, και ALoS 2,21 διανυκτερεύσεις ανά άφιξη συμβατό με τον μικτό transit hub + city break + νησιωτικό-φυσιολατρικό χαρακτήρα. Η αναπτυξιακή τροχιά είναι εκρηκτική: <strong>Recovery Ratio 2024/2019 = 1,649</strong> αλλοδαπών αφίξεων, η υψηλότερη μεταξύ δέκα προορισμών με σημαντική διαφορά από τη Νο 2 Κέρκυρα 1,178.</p>
+          <p class="text-ink-700 leading-relaxed mb-4">Η εμπειρική ιδιοτυπία της Αλεξανδρούπολης-Σαμοθράκης συμπυκνώνεται στο Cardinal Finding §11.5.4: ξεκάθαρα θετικός POI θ̂ +0,2485 (2η αναπτυσσόμενη μετά Ιωάννινα, σε Ζώνη Α της κατάταξης μαζί με Κέρκυρα-Χανιά-Μύκονο) <strong>παρά την καθαρά υπο-τουριστική αντικειμενική κατάσταση</strong> (TII canonical 3,315 ΠΕ Έβρου, σαφώς κάτω από κατώφλι Saveriades 5). Η Latent Class Analysis αναδεικνύει κυρίαρχη Συγκρ. Ενόχληση LCA C4 = 28,75% (PREDOMINANT, μοναδική στη δεκάδα) με διπολική 50/50 κατανομή αρνητικών 43,7% έναντι θετικών 45,7%. Η Cross-destination validation τεκμηριώνει **REVERSE Insider Direction σε 3 από 4 σημαντικούς δείκτες** (Q3_4 −23,05, Q5_3 −22,81, Q7_3 −10,35), εικόνα ποιοτικά μοναδική όπου η subjective aggregate perception έχει ήδη γενικευθεί στην κοινότητα και οι εργαζόμενοι λειτουργούν ως πραγματιστικό σταθμιστικό αντίβαρο.</p>
+          <p class="text-ink-700 leading-relaxed">Η στρατηγική θέση είναι <strong>«Late Exploration / Early Involvement με Διπολική Διακυβέρνηση Ζώνης Α′»</strong>: σύσταση Διπολικού DMMO Αλεξανδρούπολης-Σαμοθράκης (Πρότ. 1) με τριμερές μοντέλο Δήμων-Περιφέρειας ΑΜΘ-Δημοκριτείου, Διασυνοριακό Heritage Corridor Τουρκίας-Βουλγαρίας (Πρότ. 2) με «Thracian Heritage Trail» μέσω Interreg, Σαμοθράκη UNESCO Tentative List για Ιερό Μεγάλων Θεών (Πρότ. 3), <strong>Direction-Aware Pre-Saturation Early-Warning Dashboard</strong> (Πρότ. 4 — πρωτότυπη μεθοδολογική συνεισφορά D9), Σαμοθράκη Natura Resilience Plan με τρεις πυλώνες (Πρότ. 5), Λιμένας Multi-modal Hub + Cruise Strategy (Πρότ. 6), Workforce JTF post-λιγνιτική + δημογραφική σταθεροποίηση Σαμοθράκης (Πρότ. 7).</p>
+        </div>
+        <aside class="border-l-2 border-accent-500 pl-6">
+          <p class="section-marker text-accent-500">Butler TALC</p>
+          <p class="text-2xl font-serif text-navy-700 mt-2">Late Exploration / Early Involvement σε διπολική γεωγραφία</p>
+          <p class="text-sm text-ink-500 mt-3">Διπλή ανισόρροπη θέση: ηπειρωτική Αλεξανδρούπολη σε ταχεία επιτάχυνση Ζώνης Α′ pre-saturation, νησιωτική Σαμοθράκη σε Εξερεύνηση με institutional vacuum και climate vulnerability.</p>
+          <hr class="my-5 border-[var(--rule)]">
+          <p class="section-marker text-accent-500">Doxey Irridex</p>
+          <p class="text-2xl font-serif text-navy-700 mt-2">Διπολική Ευφορία/Ενόχληση</p>
+          <p class="text-sm text-ink-500 mt-3">LCA C4 PREDOMINANT 28,75% + C1 14,9% αρνητικές 43,7% vs C2+C5 θετικές 45,7%. Συμβατό με στάδιο 2-3 Doxey με γενικευμένη subjective perception πίεσης και REVERSE Insider σε 3/4 SIG δείκτες.</p>
+        </aside>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 02 DEMAND & SUPPLY ============== -->
+    <section id="demand" class="py-12">
+      <p class="section-marker">Ενότητα 02</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Ζήτηση &amp; Προσφορά</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαπέντε έτη εξέλιξης ζήτησης (2010–2024) με την υψηλότερη συνθετική μετατόπιση από εγχώρια προς διεθνή αγορά (μερίδιο αλλοδαπών 12,2% → 47,5%, +35,3 pp), ξενοδοχειακό δυναμικό 3.726 κλινών σε 61 μονάδες με ώριμο 5★ cluster 21,0%, αγορά STR που μεγάλωσε +139% σε δυναμικότητα (2019-2024) και κατέχει σταθεροποιημένο 16,2% των διανυκτερεύσεων.</p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.1 · Αφίξεις 2010–2024</p>
+          <h3 class="chart-headline">Διπλός μετασχηματισμός: ολοκλήρωση Εγνατίας 2018 + εκρηκτικός RR 1,649 μετά την πανδημία</h3>
+          <div id="chart_arrivals" style="height:380px"></div>
+          <p class="chart-source">INSETE Intelligence Reports — Περιφέρεια ΑΜΘ, ΠΕ Έβρου, επεξεργασία ομάδας έργου. Μέγαλύτερη συνθετική μετατόπιση μεταξύ δέκα προορισμών: αλλοδαπό μερίδιο 12,2% (2010) → 47,5% (2024). Recovery αλλοδαπών 2024/2019 = 1,649 (+64,9%) με τρεις συγκλίνοντες μηχανισμούς: υποτίμηση τουρκικής λίρας, αναβαθμιζόμενη βουλγαρική αγορά, μετα-πανδημική προτίμηση σε ήπιους-ασφαλείς προορισμούς.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 11.2 · Δείκτης ανάκαμψης 2024/2019</p>
+          <h3 class="chart-headline">RR 1,649 — η υψηλότερη της δεκάδας με σημαντική διαφορά</h3>
+          <div id="chart_recovery" style="height:480px"></div>
+          <p class="chart-source">Σύγκριση 10 προορισμών. Λόγος &gt;1 σημαίνει ξεπέρασε την ανάκαμψη. Η Αλεξανδρούπολη-Σαμοθράκη καταγράφει την υψηλότερη τιμή 1,649 ενώ η Κέρκυρα στη Νο 2 θέση παραμένει στο 1,178. Δομική αλλαγή τροχιάς, όχι απλή αποκατάσταση.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 11.3 · Μηνιαία κατανομή 2024 (NUTS2 ΑΜΘ)</p>
+          <h3 class="chart-headline">Peak ratio 20,8% Αυγούστου · διπολική mainland/island κατανομή</h3>
+          <div id="chart_monthly" style="height:380px"></div>
+          <p class="chart-source">Πορτοκαλί = αιχμή · σκούρο μπλε = ώμος · ανοιχτό μπλε = χαμηλή. Η αστική Αλεξανδρούπολη λειτουργεί σταθερά 12 μήνες ενώ η Σαμοθράκη συμπυκνώνεται σε Ιούλιο-Αύγουστο («η Σαμοθράκη ζει ουσιαστικά δύο μήνες»). Τα δεδομένα αντικατοπτρίζουν συνολικά την Περιφέρεια ΑΜΘ (πέντε ΠΕ).</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 11.4 · Εποχικότητα: Συντελεστής Gini</p>
+          <h3 class="chart-headline">Gini 0,374 (2024) — ενδιάμεση κατηγορία ΑΜΘ</h3>
+          <div id="chart_gini" style="height:380px"></div>
+          <p class="chart-source">Gini=0 τέλεια κατανομή · Gini=1 πλήρης συγκέντρωση. Η ΑΜΘ EL51 βρίσκεται μεταξύ ηπειρωτικών αναπτυσσόμενων (Καστοριά 0,151, Ιωάννινα 0,280) και ώριμων νησιωτικών (Κέρκυρα 0,545, Μύκονος 0,512, Χανιά 0,478). Διπολικός χαρακτήρας: 12μηνη Αλεξανδρούπολη + 2μηνη Σαμοθράκη.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 11.6 · Ξενοδοχειακή δυναμικότητα 2015–2024</p>
+          <h3 class="chart-headline">Φθίνουσα προσφορά −3,9% σε διάστημα +46% αύξησης αφίξεων</h3>
+          <div id="chart_capacity" style="height:380px"></div>
+          <p class="chart-source">ΕΛΣΤΑΤ STO12 T01 ΠΕ Έβρου. Από 64 μονάδες (3.878 κλίνες) 2019 σε 61 μονάδες (3.726 κλίνες) 2024. Δομική αναντιστοιχία προσφοράς-ζήτησης χωρίς παράλληλο σε άλλον προορισμό της μελέτης. STR λειτουργεί ως συμπληρωματική βαλβίδα ασφαλείας.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 11.5 · Δωμάτια ανά κατηγορία αστεριών (2024)</p>
+          <h3 class="chart-headline">Κυριαρχία 2★ (34,8%) + 3★ (30,1%) + ώριμο 5★ cluster (21,0% κλινών)</h3>
+          <div id="chart_donut" style="height:380px"></div>
+          <p class="chart-source">5★ μερίδιο κλινών 21,0% (784 κλίνες σε 3 μονάδες, μέσο μέγεθος 129 κλίνες/μονάδα) — boutique καταλύματα Αλεξανδρούπολης και Χώρας Σαμοθράκης. Έλεγχος αθροιστικής ακεραιότητας Σ(1★..5★) = 3.726 ✓.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 11.7 · Μηνιαίο ποσοστό πληρότητας 2024</p>
+          <h3 class="chart-headline">Αιχμή Αυγούστου 62,3% — χαμηλή αιχμή λόγω διπολικής γεωγραφίας</h3>
+          <div id="chart_occupancy" style="height:380px"></div>
+          <p class="chart-source">Περιφέρεια ΑΜΘ (NUTS2 EL51). Συνολική πληρότητα έτους ~23,7% με Αύξηση στο 40-45% ως στρατηγικός στόχος 2030. Η αστική 12μηνη λειτουργία Αλεξανδρούπολης κρατά τους χειμερινούς μήνες σε 14-17%.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 11.8 · Μέση διάρκεια παραμονής (<span data-term="ALoS">ALoS</span>)</p>
+          <h3 class="chart-headline">ALoS 2,21 νύχτες — 3η χαμηλότερη μετά Καστοριά (1,72) και Ναυπακτία (1,77)</h3>
+          <div id="chart_alos" style="height:380px"></div>
+          <p class="chart-source">Πρότυπο transit hub + city break + νησιωτικό-φυσιολατρικό. Τέσσερις διακριτές υπο-αγορές: διασυνοριακός shopping τουρισμός (Τούρκοι, &lt;1 νύχτα), city break 1-3 νύχτες, Σαμοθράκης 4-7 νύχτες, MICE 1-2 νύχτες. Στόχος ALoS 3,5 νύχτες 2030 μέσω Heritage Corridor + UNESCO Tentative + Cruise.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.9 · Μερίδιο <span data-term="STR">STR</span> έναντι ξενοδοχείων (2020–2024)</p>
+          <h3 class="chart-headline">STR σταθεροποιημένη στο 16,2% διανυκτερεύσεων — +139% δυναμικότητας 2019-2024</h3>
+          <div class="grid md:grid-cols-2 gap-8 mt-4">
+            <div>
+              <p class="text-sm text-ink-500 mb-2">Αφίξεις</p>
+              <div id="chart_str_arrivals" style="height:340px"></div>
+            </div>
+            <div>
+              <p class="text-sm text-ink-500 mb-2">Διανυκτερεύσεις</p>
+              <div id="chart_str_overnights" style="height:340px"></div>
+            </div>
+          </div>
+          <p class="chart-source">INSETE Intelligence + AirDNA. Από 419 ενεργές μονάδες STR μηνιαία (2019) σε 1.001 (2024). Λειτουργεί ως συμπληρωματική βαλβίδα ασφαλείας έναντι φθίνουσας ξενοδοχειακής δυναμικότητας, όχι ως ανταγωνιστική (Πρότ. 6: STR cap κεντρικού αστικού πυρήνα Αλεξανδρούπολης, ευελιξία Σαμοθράκης).</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 03 PRODUCT ============== -->
+    <section id="product" class="py-12">
+      <p class="section-marker">Ενότητα 03</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Τουριστικό προϊόν</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">451 σημεία τουριστικού ενδιαφέροντος ΠΕ Έβρου + Σαμοθράκη, πέντε θεματικοί πυλώνες (πολυτροπικός λιμένας Αλεξανδρούπολης, Δέλτα Έβρου Ramsar, Δάσος Δαδιάς, Σαμοθράκη Natura + Όρος Φεγγάρι, Ιερό Μεγάλων Θεών), και αξιολόγηση 15 διακριτών υποδομών από κατοίκους — με REVERSE Insider Direction σε στάθμευση και ακτοπλοϊκή σύνδεση.</p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.10 · Σημεία Τουριστικού Ενδιαφέροντος (POIs OSM)</p>
+          <h3 class="chart-headline">451 POIs ΠΕ Έβρου + Σαμοθράκη — χαμηλή ζώνη της δεκάδας</h3>
+          <div id="chart_pois" style="height:420px"></div>
+          <p class="chart-source">OpenStreetMap Overpass API, εξαγωγή 2025. Κατηγορίες: αρχαιολογικοί χώροι, μουσεία, καταλύματα, εστίαση, ορεινές διαδρομές, παράκτιες ζώνες. Η σχετικά χαμηλή POI πυκνότητα αντιστοιχεί στον δευτερογενή χαρακτήρα της ΠΕ μέσα στην ΑΜΘ και στο υπο-καταγραμμένο νησιωτικό υπόβαθρο Σαμοθράκης.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.11 · <span data-term="IPA">IPA</span> Quadrant — Σπουδαιότητα × Αξιολόγηση υποδομών</p>
+          <h3 class="chart-headline">Στάθμευση και ακτοπλοϊκή σύνδεση Σαμοθράκης στο τεταρτημόριο «Συγκέντρωση εδώ» (REVERSE Insider)</h3>
+          <div id="chart_ipa" style="height:520px"></div>
+          <p class="chart-source">Random Forest importance × μέση αξιολόγηση κλίμακας 1–5. Πορτοκαλί = τουριστικές υποδομές, μπλε = δημόσιες. Q5_3 ανεπάρκεια στάθμευσης B2B 57,2% και Q5_4 ακτοπλοϊκή ανεπάρκεια Σαμοθράκης B2B 26,7% συγκροτούν τις δύο κρίσιμες Concentrate-Here προτεραιότητες — εικόνα REVERSE με insider critique πραγματιστική.</p>
+        </div>
+      </div>
+
+      <!-- Gap analysis infographic — canonical Σχ. 11.10β format -->
+      <div class="chart-card mt-8">
+        <p class="chart-title">Σχήμα 11.10β · Gap Analysis: τέσσερα κρίσιμα κενά Ζήτησης / Προσφοράς, ΠΕ Έβρου</p>
+        <h3 class="chart-headline">Σύνθεση τεσσάρων διαστάσεων αναγνώρισης κενών</h3>
+        <img src="../charts_v2/alexandroupoli_samothraki/fig_11_10b_gap_analysis_v2.png" alt="Gap Analysis infographic τεσσάρων κρίσιμων κενών για την Αλεξανδρούπολη-Σαμοθράκη" class="w-full mt-4 rounded">
+        <p class="chart-source">Σύνθεση δεικτών ΕΛΣΤΑΤ STO12, πρωτογενούς έρευνας κατοίκων, και POI overlay (OpenStreetMap 2025). Ίδια επεξεργασία. Τα τέσσερα κρίσιμα κενά αφορούν: (α) ξενοδοχειακή προσφορά φθίνουσα εν μέσω αυξανόμενης ζήτησης, (β) ακτοπλοϊκή αξιοπιστία Σαμοθράκης, (γ) στάθμευση αστικού πυρήνα Αλεξανδρούπολης, (δ) υδρολογική-Natura ευαλωτότητα Σαμοθράκης.</p>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 04 ECONOMY ============== -->
+    <section id="economy" class="py-12">
+      <p class="section-marker">Ενότητα 04</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Οικονομία</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Διαφοροποιημένη διασυνοριακή-διοικητική οικονομική βάση: 27,57% οικιακή τουριστική εξάρτηση (ενδιάμεση μεταξύ δέκα), μερίδιο G-I μόλις 17,1% (3ο χαμηλότερο), 47,1 εκ. € τζίρος τουρισμού 2024, νέος επιβατικός σταθμός + FSRU + TAP/IGB + data center ως πολυτροπικός κόμβος ΑΜΘ.</p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 11.13 · Εκτιμώμενος τζίρος καταλυμάτων</p>
+          <h3 class="chart-headline">Ξενοδοχεία 37,7 εκ. € · STR 9,4 εκ. € (2024)</h3>
+          <div id="chart_turnover" style="height:380px"></div>
+          <p class="chart-source">Εκτίμηση: hotel = διανυκτ. × €85 · STR = διανυκτ. × €110 (premium pricing). Σύνολο 47,1 εκ. € καταλυμάτων 2024, αύξηση από 16,0 εκ. € (2020) — δείκτης ταχείας αναπτυξιακής τροχιάς (CAGR +24% 2020-2024).</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα 11.14 · ΑΠΑ G-I έναντι σύνολο (NUTS2 EL51)</p>
+          <h3 class="chart-headline">Διαφοροποιημένη βάση — G-I μόλις 17,1% (3ο χαμηλότερο μεταξύ δέκα)</h3>
+          <div id="chart_gva" style="height:380px"></div>
+          <p class="chart-source">Eurostat nama_10r_3gva NUTS2 EL51 ΑΜΘ (ΑΠΑ G-I εμπόριο, μεταφορές, τουρισμός). Διοικητική πρωτεύουσα Π.Ε. Έβρου, Δημοκρίτειο Πανεπιστήμιο Θράκης, διασυνοριακός εμπορικός κόμβος, λιμενική-ενεργειακή δραστηριότητα FSRU/TAP/IGB.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.13β · Στρατηγικό τεταρτημόριο: Οικονομική εξάρτηση × Ικανοποίηση</p>
+          <h3 class="chart-headline">«Διαφοροποιημένη / μέτρια ικανοποίηση» (27,6% × 3,61) — pre-saturation Ζώνη Α′</h3>
+          <div id="chart_q_employment" style="height:480px"></div>
+          <p class="chart-source">Πρωτογενής έρευνα κατοίκων (n=300, σταθμισμένο, DEFF=3,96), Q15 οικιακή τουριστική εξάρτηση × Q9 μέση ικανοποίηση. Η Αλεξανδρούπολη-Σαμοθράκη τοποθετείται σε ενδιάμεση θέση: χαμηλότερη εξάρτηση από Χανιά/Κέρκυρα/Μύκονο αλλά υψηλότερη ικανοποίηση από Τροιζηνία/Καστοριά. Pre-saturation reset window.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.15 · Νέες οικοδομικές άδειες &amp; κατοικίες (2015–2025)</p>
+          <h3 class="chart-headline">+155% σε δεκαετία — δεύτερη μεγαλύτερη αύξηση μετά Ιωάννινα</h3>
+          <div id="chart_permits" style="height:380px"></div>
+          <p class="chart-source">ΕΛΣΤΑΤ SOP03 ΠΕ Έβρου. Γκρι 2025 = προσωρινά. Έντονη ανάκαμψη post-2019 με σύνδεση στη ροή Heritage Corridor + προσδοκώμενη ολοκλήρωση Egnatia E85, με δυναμική STR στον κεντρικό αστικό πυρήνα.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 05 SOCIETY ============== -->
+    <section id="society" class="py-12">
+      <p class="section-marker">Ενότητα 05</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Κοινωνία</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Φέρουσα ικανότητα σε ζώνη υπο-τουριστικού προφίλ (TII canonical 3,315 ΠΕ Έβρου, σαφώς &lt; Saveriades 5), <strong>REVERSE Insider Effect σε 3 από 4 SIG δείκτες</strong> ως ποιοτικά μοναδικό πρότυπο, κυρίαρχη Συγκρ. Ενόχληση LCA C4 28,75% (PREDOMINANT), και η πρώτη εμπειρικά τεκμηριωμένη εφαρμογή Direction-Aware EWD σε προορισμό Ζώνης Α′.</p>
+
+      <div class="method-box" data-reveal>
+        <p class="method-box-title">Μεθοδολογικό κουτί 11.5.1.α — Defert <span data-term="TFI">TFI</span>/<span data-term="TII">TII</span> + κατώφλια Saveriades</p>
+        <p class="method-box-content">Ο γαλλικός γεωγράφος Pierre Defert εισήγαγε τον TFI το 1967: TFI = κλίνες × 100 / πληθυσμός. Ο TII μετρά διανυκτερεύσεις/κάτοικο. Διεθνή κατώφλια ζώνης (Saveriades 2000· Coccossis &amp; Mexa 2004): TII &lt; 5 χαμηλή πίεση, 5–10 μέτρια, 10–15 υψηλή, &gt;15 πολύ υψηλή. Στην Αλεξανδρούπολη-Σαμοθράκη: TII canonical **3,315** (ΠΕ Έβρου 133.802 κατοίκων), τιμή σαφώς **κάτω από κατώφλι Saveriades 5** που τεκμηριώνει καθαρά υπο-τουριστικό προφίλ. Σε εναλλακτική βάση Δήμων Αλεξ.+Σαμοθρ. 74.347 κατοίκων η TII δίνει 6,008 (μέτρια πίεση). Επιφύλαξη: ο δείκτης δεν περιλαμβάνει την έντονη χωρική ανισοκατανομή εντός ΠΕ (αστική Αλεξανδρούπολη 12μηνη vs νησιωτική Σαμοθράκη 2μηνη αιχμή) ούτε εποχικότητα.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.16 · Δείκτης Τουριστικής Έντασης (<span data-term="TII">TII</span>) Defert 2010–2024</p>
+          <h3 class="chart-headline">Από 2,99 σε 3,315 — υπο-τουριστικό προφίλ ΠΕ, πάνω από Saveriades 5 σε βάση Δήμων</h3>
+          <div id="chart_tii" style="height:420px"></div>
+          <p class="chart-source">Διανυκτερεύσεις / κάτοικο × 100. Όριο Saveriades στη γραμμή TII = 5. Πτώση σε 1,22 το 2020 (πανδημία) και ταχεία ανάκαμψη σε 3,315 το 2024. Η τιμή ΠΕ παραμένει υπο-τουριστική, αλλά η τιμή Δήμων 6,008 σηματοδοτεί μέτρια πίεση, εικόνα συμβατή με Ζώνη Α′ pre-saturation.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.22 · Στρατηγικό τεταρτημόριο: Αντικειμενική × Υποκειμενική πίεση</p>
+          <h3 class="chart-headline">Αλεξανδρούπολη-Σαμοθράκη σε «Υποκειμενική κρίση χωρίς αντικείμενο» (TFI 2,785 · POI θ̂ +0,25)</h3>
+          <div id="chart_q_tfi_poi" style="height:480px"></div>
+          <p class="chart-source">POI θ̂ μέσω <span data-term="IRT">IRT</span>-<span data-term="GRM">GRM</span>. TFI σε log10. Cardinal Finding D9: η Αλεξανδρούπολη-Σαμοθράκη είναι η **δεύτερη αναπτυσσόμενη θετική POI θ̂** μετά τα Ιωάννινα. Εμπειρική ανωμαλία θετικού POI θ̂ +0,2485 παρά χαμηλή αντικειμενική TII, ορίζει τη Ζώνη Α′ pre-saturation ως διακριτή τυπολογική κατηγορία.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.21 · Στρατηγικό τεταρτημόριο: STR αντίληψη × Στεγαστική πίεση</p>
+          <h3 class="chart-headline">STR Perception Premium 84,4% (Q3_7) + Στεγαστική 68,8% (Q3_4) — ζώνη υψηλής υποκειμενικής πίεσης</h3>
+          <div id="chart_q_str_housing" style="height:480px"></div>
+          <p class="chart-source">Πρωτογενής έρευνα Q3_7 (διαθεσιμότητα κατοικιών) × Q3_4 (πρόβλημα στέγης μόνιμων). Η Αλεξανδρούπολη-Σαμοθράκη παρά τη χαμηλή αντικειμενική STR διείσδυση 16,2% εμφανίζει subjective ανησυχία στο επίπεδο Χανίων (Q3_7 84,4% έναντι Χανιά 91,4%) — STR Perception Premium ως πρώιμο σήμα Ζώνης Α′ που απαιτεί Πρόταση 4 Direction-Aware EWD.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.17 · Doxey Irridex Heatmap — σύγκριση προορισμών</p>
+          <h3 class="chart-headline">Αλεξανδρούπολη-Σαμοθράκη Q9_SAT 3,61 — διπολική κοινωνική στάση με γενικευμένη ανησυχία</h3>
+          <div id="chart_doxey" style="height:380px"></div>
+          <p class="chart-source">Πρωτογενής έρευνα Q1 — μέσες τιμές κλίμακας 1–5. Πράσινο = θετικό, κόκκινο = αρνητικό. Η Αλεξανδρούπολη-Σαμοθράκη διατηρεί υψηλή ασφάλεια και φιλικότητα, με σαφώς υψηλότερα σήματα στεγαστικής επίδρασης και ανταγωνισμού από Ιωάννινα και Καστοριά — εικόνα συμβατή με Ζώνη Α′.</p>
+        </div>
+      </div>
+
+      <div class="method-box mt-8" data-reveal>
+        <p class="method-box-title">Μεθοδολογικό κουτί 11.6.1.γ — Reverse Insider Critique Pattern σε Ζώνη Α′ (EXTENDED πρωτότυπη συμβολή D9)</p>
+        <p class="method-box-content">Στην Αλεξανδρούπολη-Σαμοθράκη διαπιστώνεται **REVERSE Insider Direction σε 3 από 4 σημαντικούς δείκτες**: Q3_4 «Πρόβλημα στέγης» Δpp **−23,05**, Q5_3 «Ανεπάρκεια στάθμευσης» Δpp **−22,81** (μεγαλύτερη ασυμμετρία subgroup σε ολόκληρη τη μελέτη), Q7_3 «Απορρίμματα και λύματα» Δpp **−10,35**. Η αντιστροφή σε σχέση με τα Ιωάννινα (CLASSIC) και την Καστοριά (CLASSIC) τεκμηριώνει εμπειρικά τη **Ζώνη Α′ pre-saturation** ως διακριτή τυπολογική κατηγορία όπου η subjective aggregate perception έχει ήδη γενικευθεί στην κοινότητα και οι εργαζόμενοι λειτουργούν ως πραγματιστικό σταθμιστικό αντίβαρο (όχι ως πρώιμοι ανιχνευτές). Μοναδικός CLASSIC δείκτης παραμένει Q7_4 «Υποβάθμιση φυσικού περιβάλλοντος» Δpp **+11,75** (καθολικός insider πρωτοπορία σε υδάτινους πόρους και Natura περιοχές). Η Πρόταση 4 μετατρέπει αυτή τη direction-sensitivity σε επιχειρησιακό μηχανισμό **Direction-Aware EWD**, που αποτελεί την πρωτότυπη μεθοδολογική συνεισφορά D9 στη Λευκή Βίβλο.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 mt-8">
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.18 · Latent Class Analysis — 10 προορισμοί</p>
+          <h3 class="chart-headline">Αλεξανδρούπολη-Σαμοθράκη: μοναδική κυρίαρχη Συγκρ. Ενόχληση C4 28,75%</h3>
+          <div id="chart_lca" style="height:520px"></div>
+          <p class="chart-source">Σταθμισμένο μερίδιο πληθυσμού ανά εμπειρική class. Ταξινόμηση κατά Q9 ικανοποίηση. Στην Αλεξανδρούπολη-Σαμοθράκη: C5 25,0% + C2 20,7% = 45,7% θετικές, C1 14,9% + C4 28,75% = 43,7% αρνητικές. Διπολική 50/50 κατανομή ποιοτικά μοναδική σε όλη τη δεκάδα προορισμών — δομική πόλωση Ζώνης Α′.</p>
+        </div>
+
+        <div class="chart-card lg:col-span-2">
+          <p class="chart-title">Σχήμα 11.22β · Τεταρτημόριο πόλωσης: Class 1 × Class 5</p>
+          <h3 class="chart-headline">Αλεξανδρούπολη-Σαμοθράκη στη ζώνη «Πολωμένη κοινωνία» (14,9% × 25,0%)</h3>
+          <div id="chart_q_lca" style="height:480px"></div>
+          <p class="chart-source">Υψηλή Class 1 (Αντιπαλότητα) + μέτρια Class 5 (Καθαρή Ευφορία) = πολωμένος προορισμός. Σε συνδυασμό με PREDOMINANT C4 28,75% η εικόνα είναι ποιοτικά διαφορετική από όλους τους άλλους αναπτυσσόμενους — το Cardinal Finding §11.5.4 της Ζώνης Α′.</p>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <p class="section-marker">Ποιοτική έρευνα · 14 αυτούσια αποσπάσματα</p>
+        <h3 class="display text-3xl text-navy-700 mt-2 mb-6">Φωνές των στελεχών</h3>
+        <div class="quotes-deck" data-carousel>
+          <div class="quotes-rail" id="quotes_rail"></div>
+          <div class="flex gap-2 mt-4 justify-end">
+            <button data-carousel-prev class="theme-toggle" aria-label="Προηγούμενο">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button data-carousel-next class="theme-toggle" aria-label="Επόμενο">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 06 ENVIRONMENT ============== -->
+    <section id="environment" class="py-12">
+      <p class="section-marker">Ενότητα 06</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Περιβάλλον</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">12 Natura 2000 τόποι σε 3.439,13 km² (η μεγαλύτερη συγκέντρωση μεταξύ δέκα), Δέλτα Έβρου (Ramsar), Δάσος Δαδιάς-Λευκίμμης-Σουφλίου, Σαμοθράκη Natura + Όρος Φεγγάρι, 11 ακτές κολύμβησης 100% άριστης ποιότητας. Greek <span data-term="WEI+">WEI+</span> 12,51 (μέτρια πίεση).</p>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="chart-card">
+          <p class="chart-title">Eurostat lan_lcv_ovw · Χρήση γης ΑΜΘ 2022 (NUTS2 EL51)</p>
+          <h3 class="chart-headline">Καλλιεργήσιμη + Δάση 62,1% — αγροτο-δασικός χαρακτήρας</h3>
+          <div id="chart_landcover" style="height:380px"></div>
+          <p class="chart-source">Land Use/Cover Area frame Survey (LUCAS), NUTS2 EL51 ΑΜΘ. Τεχνητή γη μόλις 2,40% — μία από τις λιγότερο αστικοποιημένες Περιφέρειες της δεκάδας. Υγρότοποι Δέλτα Έβρου ως κρίσιμη Ramsar περιοχή.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Eurostat sdg_06_60 · Greek <span data-term="WEI+">WEI+</span> 2003–2023</p>
+          <h3 class="chart-headline">Ανοδική πορεία — από 11,5 σε 12,5 σε δεκαετία</h3>
+          <div id="chart_wei" style="height:380px"></div>
+          <p class="chart-source">4ετής μέσος όρος. Ζώνες: πράσινο &lt;10 χαμηλή · κίτρινο 10-20 μέτρια · κόκκινο &gt;20 έντονη. Στη Σαμοθράκη η υδρολογική πίεση των βαθρών (Φονιά, Γριάς Βάθρας, Παχιά Άμμος) και η κλιματική ευαλωτότητα ως κρίσιμοι παράγοντες του Σαμοθράκη Natura Resilience Plan (Πρότ. 5).</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+        <div class="kpi-card">
+          <div class="kpi-label">Τεχνητή γη ΑΜΘ 2022</div>
+          <div class="kpi-value"><span data-num="2.40" data-decimals="2">0</span><span class="kpi-unit">%</span></div>
+          <div class="kpi-delta up">χαμηλή πίεση</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Greek WEI+ 2023</div>
+          <div class="kpi-value"><span data-num="12.51" data-decimals="2">0</span></div>
+          <div class="kpi-delta down">μέτρια πίεση</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Ακτές excellent ΥΠΕΝ 2024</div>
+          <div class="kpi-value"><span data-num="11">0</span><span class="kpi-unit">/11</span></div>
+          <div class="kpi-delta up">100% άριστη ποιότητα</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Natura 2000 ΠΕ Έβρου</div>
+          <div class="kpi-value"><span data-num="12">0</span><span class="kpi-unit">τόποι</span></div>
+          <div class="kpi-delta up">3.439,13 km² — η μεγαλύτερη</div>
+        </div>
+      </div>
+
+      <div class="chart-card lg:col-span-2 mt-8">
+        <p class="chart-title">Σχήμα 11.19 · Αντίληψη αρνητικών επιπτώσεων (% συμφωνώ + απόλυτα)</p>
+        <h3 class="chart-headline">STR/Airbnb επίδραση 84,4% · Στεγαστική κρίση 68,8% — υψηλότερα μεταξύ αναπτυσσόμενων</h3>
+        <div id="chart_env_heat" style="height:420px"></div>
+        <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 10 προορισμών. Η Αλεξανδρούπολη-Σαμοθράκη εμφανίζει επίπεδα STR Perception Premium συγκρίσιμα με τα Χανιά (91,4%) και την Κέρκυρα (85,6%), παρά τη σαφώς χαμηλότερη αντικειμενική STR διείσδυση. Cardinal Finding D9.</p>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 07 STRATEGY ============== -->
+    <section id="strategy" class="py-12">
+      <p class="section-marker">Ενότητα 07</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Στρατηγική</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">SWOT ανάλυση, πέντε Άξονες Πολιτικής (διπολική διαχείριση Ζώνης Α′ με direction-aware παρακολούθηση γενικευμένης subjective perception), και επτά Επιχειρησιακές Προτάσεις. Η <strong>Πρόταση 4 (Direction-Aware Pre-Saturation Early-Warning Dashboard)</strong> αποτελεί την πρωτότυπη μεθοδολογική συμβολή D9 στη Λευκή Βίβλο.</p>
+
+      <h3 class="font-serif text-2xl text-navy-700 mb-4">SWOT Ανάλυση</h3>
+      <div class="swot-grid mb-12" id="swot_grid"></div>
+
+      <h3 class="font-serif text-2xl text-navy-700 mb-4">Πέντε Άξονες Πολιτικής</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12" id="axes_grid"></div>
+
+      <h3 class="font-serif text-2xl text-navy-700 mb-4">Επτά Επιχειρησιακές Προτάσεις</h3>
+      <div class="space-y-3" id="proposals_list"></div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ============== 08 DATA ANNEX ============== -->
+    <section id="data" class="py-12">
+      <p class="section-marker">Ενότητα 08</p>
+      <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Δεδομένα &amp; Παράρτημα</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Πλήρης πρόσβαση στα 64 items της πρωτογενούς έρευνας στους Δήμους Αλεξανδρούπολης + Σαμοθράκης (n=300, Απρίλιος 2026, DEFF=3,96, n_eff=75,68), στους 26 πίνακες του κεφαλαίου, και στις 10 πηγές δευτερογενών δεδομένων.</p>
+
+      <h3 class="font-serif text-2xl text-navy-700 mb-4">Πρωτογενής έρευνα — Όλα τα 64 items (Αλεξανδρούπολη-Σαμοθράκη)</h3>
+      <div class="overflow-x-auto">
+        <table class="editorial-table" id="mrb_table">
+          <thead>
+            <tr><th>Item</th><th>Μέσος (1–5)</th><th>% Συμφωνώ</th><th>n valid</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Μεθοδολογικά Κουτιά</h3>
+      <div class="space-y-4" id="method_boxes"></div>
+
+      <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγές δεδομένων</h3>
+      <ul class="text-sm text-ink-700 space-y-2 list-disc list-inside" id="sources_list"></ul>
+
+      <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγαίες παρουσιάσεις πρωτογενούς έρευνας</h3>
+      <p class="text-sm text-ink-700 mb-6 max-w-3xl">Αυτούσιες παρουσιάσεις του φορέα δημοσκοπικής έρευνας με τα πλήρη ευρήματα ποσοτικής και ποιοτικής έρευνας στους κατοίκους και στα στελέχη του προορισμού. Διαθέσιμες ως PDF για μεταφόρτωση.</p>
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="assets/downloads/alexandroupoli_samothraki_quantitative.pdf" target="_blank" rel="noopener"
+           class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+            <div class="flex-1">
+              <p class="section-marker text-accent-500">PDF · Ποσοτική έρευνα</p>
+              <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Πρωτογενούς Ποσοτικής Έρευνας</p>
+              <p class="text-xs text-ink-500 mt-1">Δήμος Αλεξανδρούπολης · Δ. Σαμοθράκης · Απρίλιος 2026</p>
+              <p class="text-xs text-ink-500 mt-2 numeric">~70 σελίδες · 1,8 MB</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="assets/downloads/alexandroupoli_samothraki_qualitative.pdf" target="_blank" rel="noopener"
+           class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+            <div class="flex-1">
+              <p class="section-marker text-accent-500">PDF · Ποιοτική έρευνα</p>
+              <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Ποιοτικής Έρευνας σε Στελέχη</p>
+              <p class="text-xs text-ink-500 mt-1">5 συνεντεύξεις (2 Αλεξανδρούπολη + 3 Σαμοθράκη) · Απρίλιος 2026</p>
+              <p class="text-xs text-ink-500 mt-2 numeric">~60 σελίδες · 1,2 MB</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy-900 text-white/80 py-12 mt-12">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <p class="section-marker text-accent-300">Επόμενος προορισμός</p>
+        <p class="font-serif text-xl text-white mt-2">Τροιζηνία-Μέθανα-Γαλατάς →</p>
+        <p class="text-xs text-white/50 mt-1">Σύντομα διαθέσιμο</p>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Λήψεις</p>
+        <ul class="space-y-1.5 mt-2">
+          <li><a href="assets/downloads/alexandroupoli_samothraki_quantitative.pdf" target="_blank" class="hover:text-accent-300">Ποσοτική έρευνα PDF (1,8 MB)</a></li>
+          <li><a href="assets/downloads/alexandroupoli_samothraki_qualitative.pdf" target="_blank" class="hover:text-accent-300">Ποιοτική έρευνα PDF (1,2 MB)</a></li>
+          <li><a href="assets/data/alexandroupoli_samothraki-data.js" class="hover:text-accent-300">Δεδομένα JS (επί τόπου)</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Πιστοποίηση πηγών</p>
+        <p class="text-xs text-white/60 mt-2 leading-relaxed">Όλα τα στατιστικά δεδομένα από επίσημες πηγές (ΕΛΣΤΑΤ, Eurostat, ΤτΕ, INSETE). Πρωτογενής έρευνα κατοίκων από εξειδικευμένο φορέα δημοσκοπικής έρευνας. Διπολική γεωγραφική δειγματοληπτική δομή: Δ. Αλεξανδρούπολης n=284 + Δ. Σαμοθράκης n=16, DEFF=3,96 με ρητή επιφύλαξη υποομαδικής νησιωτικής εκτίμησης. Πλήρης τεκμηρίωση: §11.1.2.</p>
+      </div>
+    </div>
+    <div class="container mx-auto px-6 mt-10 pt-6 border-t border-white/10 text-xs text-white/40 flex justify-between">
+      <p>Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035 · ΠΕ2 · Κεφάλαιο 11 Αλεξανδρούπολη-Σαμοθράκη</p>
+      <p class="numeric">v1.0 · 2026-05-15</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/charts.js"></script>
+  <script src="assets/data/alexandroupoli_samothraki-data.js"></script>
+  <script src="assets/js/alexandroupoli_samothraki-render.js"></script>
+</body>
+</html>

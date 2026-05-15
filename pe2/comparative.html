@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Συγκριτική Ανάλυση 10 Προορισμών · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+  <meta name="description" content="Συγκριτική ανάλυση των 10 προορισμών της Λευκής Βίβλου ΠΕ2: τυπολογίες, POI, LCA, 5-Ζώνη × 3-Κατευθύνσεις Ταξινόμηση Ενδογενούς Κριτικής, στρατηγικά μηνύματα.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: {
+        navy:   { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
+        accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
+        ink:    { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
+      },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
+    } } }
+  </script>
+</head>
+<body>
+
+  <!-- Top utility bar -->
+  <div class="bg-navy-900 text-white text-xs">
+    <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+      <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
+      <div class="flex items-center gap-4">
+        <a href="methodology.html" class="text-white/70 hover:text-white">Μεθοδολογία</a>
+        <a href="data_sources.html" class="text-white/70 hover:text-white">Πηγές</a>
+        <a href="comparative.html" class="text-white font-medium">Συγκριτικά</a>
+        <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="relative bg-navy-700 overflow-hidden py-24">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-700 to-navy-500"></div>
+    <svg class="absolute inset-0 w-full h-full opacity-[0.08]" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+    <div class="container mx-auto px-6 relative z-10 text-white max-w-4xl">
+      <p class="section-marker text-accent-300">Κεφάλαιο 13 · Συγκριτική σύνθεση</p>
+      <h1 class="display text-5xl md:text-6xl mt-3 leading-tight">Συγκριτική Ανάλυση</h1>
+      <p class="text-xl mt-4 text-navy-50/85 max-w-3xl">Δέκα προορισμοί, τέσσερις εμπειρικές τυπολογίες, μια πρωτότυπη ταξινόμηση Ενδογενούς Κριτικής και πέντε στρατηγικά μηνύματα εθνικού επιπέδου.</p>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm">
+        <span class="px-3 py-1.5 bg-white/10 border border-white/15 rounded-sm">4 τυπολογίες</span>
+        <span class="px-3 py-1.5 bg-white/10 border border-white/15 rounded-sm">5 ζώνες × 3 κατευθύνσεις</span>
+        <span class="px-3 py-1.5 bg-white/10 border border-white/15 rounded-sm">Pearson(POI, TFI) = 0,711</span>
+        <span class="px-3 py-1.5 bg-white/10 border border-white/15 rounded-sm">STEWARD novel: Ναυπακτία</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6 py-16 max-w-6xl">
+
+    <!-- §13.1 Δευτερογενή Μεγέθη -->
+    <section class="mb-16">
+      <p class="section-marker">§ 13.1</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-4">Συγκριτικά Μεγέθη Δευτερογενούς Ανάλυσης</h2>
+      <p class="text-ink-700 leading-relaxed mb-6">Τέσσερις δείκτες αποτυπώνουν τη συγκριτική θέση των δέκα προορισμών σε επίπεδο όγκου ζήτησης, ανάκαμψης από την πανδημία και διαρθρωτικής εξωστρέφειας.</p>
+
+      <h3 class="font-serif text-xl text-navy-700 mb-3">Πίνακας 13.1 · Τουριστική ζήτηση και ανάκαμψη (2024)</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse bg-white">
+          <thead class="bg-navy-700 text-white">
+            <tr>
+              <th class="border border-navy-700 p-3 text-left">Προορισμός</th>
+              <th class="border border-navy-700 p-3 text-right">Σύνολο αφίξεων</th>
+              <th class="border border-navy-700 p-3 text-center">Μερίδιο αλλοδαπών</th>
+              <th class="border border-navy-700 p-3 text-center">Ανάκαμψη 2024/2019</th>
+              <th class="border border-navy-700 p-3 text-center">CAGR αλλοδαπών</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-700">
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Κερκύρας</td><td class="border border-[var(--rule)] p-3 numeric text-right">2.674.773</td><td class="border border-[var(--rule)] p-3 numeric text-center">87,6%</td><td class="border border-[var(--rule)] p-3 numeric text-center">1,178</td><td class="border border-[var(--rule)] p-3 numeric text-center">7,81%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Χανίων</td><td class="border border-[var(--rule)] p-3 numeric text-right">1.359.014</td><td class="border border-[var(--rule)] p-3 numeric text-center">88,7%</td><td class="border border-[var(--rule)] p-3 numeric text-center">1,088</td><td class="border border-[var(--rule)] p-3 numeric text-center">5,69%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Μυκόνου</td><td class="border border-[var(--rule)] p-3 numeric text-right">557.339</td><td class="border border-[var(--rule)] p-3 numeric text-center">90,2%</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">0,878</td><td class="border border-[var(--rule)] p-3 numeric text-center">8,70%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ιωαννίνων</td><td class="border border-[var(--rule)] p-3 numeric text-right">441.906</td><td class="border border-[var(--rule)] p-3 numeric text-center">19,0%</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,913</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold">10,85%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ναυπλίου</td><td class="border border-[var(--rule)] p-3 numeric text-right">441.291</td><td class="border border-[var(--rule)] p-3 numeric text-center">42,3%</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,852</td><td class="border border-[var(--rule)] p-3 numeric text-center">3,00%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Βόλου-Πηλίου</td><td class="border border-[var(--rule)] p-3 numeric text-right">331.331</td><td class="border border-[var(--rule)] p-3 numeric text-center">20,6%</td><td class="border border-[var(--rule)] p-3 numeric text-center">1,020</td><td class="border border-[var(--rule)] p-3 numeric text-center">6,53%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Αλεξ/πολης-Σαμοθράκης</td><td class="border border-[var(--rule)] p-3 numeric text-right">200.594</td><td class="border border-[var(--rule)] p-3 numeric text-center">47,5%</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-navy-500">1,649</td><td class="border border-[var(--rule)] p-3 numeric text-center">8,30%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Τροιζηνίας-Μεθάνων-Γαλατά</td><td class="border border-[var(--rule)] p-3 numeric text-right">184.748</td><td class="border border-[var(--rule)] p-3 numeric text-center">39,5%</td><td class="border border-[var(--rule)] p-3 numeric text-center">1,224</td><td class="border border-[var(--rule)] p-3 numeric text-center">8,21%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ναυπακτίας</td><td class="border border-[var(--rule)] p-3 numeric text-right">149.621</td><td class="border border-[var(--rule)] p-3 numeric text-center">22,6%</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-navy-500">1,618</td><td class="border border-[var(--rule)] p-3 numeric text-center">6,17%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Καστορίας</td><td class="border border-[var(--rule)] p-3 numeric text-right">64.295</td><td class="border border-[var(--rule)] p-3 numeric text-center">17,5%</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">0,691</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,69%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-ink-500 italic mb-6">Πηγή: ΕΛΣΤΑΤ STO12 T03 + INSETE Intelligence. Η Μύκονος μόνη ώριμη με ανάκαμψη < 1 (Butler stasis). Καστοριά εμφανίζει μηδενικό σχεδόν CAGR αλλοδαπών (διαρθρωτική στασιμότητα).</p>
+
+      <h3 class="font-serif text-xl text-navy-700 mb-3">Πίνακας 13.2 · Φέρουσα Ικανότητα Defert (canonical) και Εποχικότητα</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse bg-white">
+          <thead class="bg-navy-700 text-white">
+            <tr>
+              <th class="border border-navy-700 p-3 text-left">Προορισμός</th>
+              <th class="border border-navy-700 p-3 text-center">TFI Defert</th>
+              <th class="border border-navy-700 p-3 text-center">TII Defert</th>
+              <th class="border border-navy-700 p-3 text-center">Gini εποχικότητας</th>
+              <th class="border border-navy-700 p-3 text-center">% Υψ. σεζόν</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-700">
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Μυκόνου ¹</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">158,1</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">178,6</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,512</td><td class="border border-[var(--rule)] p-3 numeric text-center">72,2%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Κερκύρας</td><td class="border border-[var(--rule)] p-3 numeric text-center">49,9</td><td class="border border-[var(--rule)] p-3 numeric text-center">26,33</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">0,545</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">76,1%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ναυπλίου ²</td><td class="border border-[var(--rule)] p-3 numeric text-center">19,6</td><td class="border border-[var(--rule)] p-3 numeric text-center">21,7</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,333</td><td class="border border-[var(--rule)] p-3 numeric text-center">57,6%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ναυπακτίας ³</td><td class="border border-[var(--rule)] p-3 numeric text-center">16,45</td><td class="border border-[var(--rule)] p-3 numeric text-center">15,65</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,203</td><td class="border border-[var(--rule)] p-3 numeric text-center">46,2%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Χανίων</td><td class="border border-[var(--rule)] p-3 numeric text-center">33,1</td><td class="border border-[var(--rule)] p-3 numeric text-center">8,67</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,478</td><td class="border border-[var(--rule)] p-3 numeric text-center">68,6%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ιωαννίνων ⁴</td><td class="border border-[var(--rule)] p-3 numeric text-center">4,94</td><td class="border border-[var(--rule)] p-3 numeric text-center">5,665</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,280</td><td class="border border-[var(--rule)] p-3 numeric text-center">55,5%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Βόλου-Πηλίου ⁵</td><td class="border border-[var(--rule)] p-3 numeric text-center">5,95</td><td class="border border-[var(--rule)] p-3 numeric text-center">3,96</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,296</td><td class="border border-[var(--rule)] p-3 numeric text-center">55,7%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Αλεξ/πολης-Σαμοθράκης ⁶</td><td class="border border-[var(--rule)] p-3 numeric text-center">2,785</td><td class="border border-[var(--rule)] p-3 numeric text-center">3,315</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,374</td><td class="border border-[var(--rule)] p-3 numeric text-center">64,2%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Καστορίας</td><td class="border border-[var(--rule)] p-3 numeric text-center">3,612</td><td class="border border-[var(--rule)] p-3 numeric text-center">2,407</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-navy-500">0,151</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-navy-500">37,9%</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Τροιζηνίας-Μεθάνων-Γαλατά ⁷</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-navy-500">0,72</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-navy-500">0,93</td><td class="border border-[var(--rule)] p-3 numeric text-center">0,198</td><td class="border border-[var(--rule)] p-3 numeric text-center">47,3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-xs text-ink-500 space-y-1 mb-6">
+        <p><strong>Canonical Defert convention:</strong> TFI = (κλίνες × 100) / πληθυσμό· TII = διανυκτερεύσεις / πληθυσμό.</p>
+        <p><strong>Χωρικές βάσεις:</strong> ¹ Δήμος Μυκονίων· ² 3 Δήμοι Ναυπλιέων-Επιδαύρου-Ερμιονίδας· ³ Δήμος Ναυπακτίας· ⁴ ΠΕ Ιωαννίνων (NUTS3)· ⁵ 3 Δήμοι Βόλου-Ζαγοράς-Νοτίου Πηλίου· ⁶ ΠΕ Έβρου· ⁷ Δήμος Τροιζηνίας-Μεθάνων.</p>
+        <p>Καστοριά: χαμηλότερο Gini αλλά ομοιόμορφα χαμηλή ζήτηση, όχι 12μηνη λειτουργία (μήνας αιχμής Οκτώβριος).</p>
+      </div>
+    </section>
+
+    <!-- §13.2 POI θ̂ -->
+    <section class="mb-16">
+      <p class="section-marker">§ 13.2</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-4">Δείκτης Αντιληπτής Πίεσης Τουρισμού (POI θ̂)</h2>
+      <p class="text-ink-700 leading-relaxed mb-6">Σταθμισμένη κατάταξη από την πρωτογενή έρευνα κατοίκων (n=3.000), μέσω Item Response Theory Graded Response Model (Samejima 1969) σε 19 δηλώσεις πίεσης. <strong>Pearson(POI, TFI canonical 2024) = 0,711</strong>: η υποκειμενική και η αντικειμενική πίεση συγκλίνουν αλλά αναδεικνύονται διαγνωστικές αποκλίσεις.</p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="font-serif text-xl text-navy-700 mb-3">Πίνακας 13.3 · Κατάταξη POI θ̂</h3>
+          <table class="w-full text-sm border-collapse bg-white">
+            <thead class="bg-navy-700 text-white">
+              <tr>
+                <th class="border border-navy-700 p-2 text-center w-10">#</th>
+                <th class="border border-navy-700 p-2 text-left">Προορισμός</th>
+                <th class="border border-navy-700 p-2 text-center">POI θ̂</th>
+              </tr>
+            </thead>
+            <tbody class="text-ink-700">
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">1</td><td class="border border-[var(--rule)] p-2">Κερκύρας</td><td class="border border-[var(--rule)] p-2 numeric text-center font-semibold text-accent-700">+0,70</td></tr>
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">2</td><td class="border border-[var(--rule)] p-2">Χανίων</td><td class="border border-[var(--rule)] p-2 numeric text-center">+0,54</td></tr>
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">3</td><td class="border border-[var(--rule)] p-2">Μυκόνου</td><td class="border border-[var(--rule)] p-2 numeric text-center">+0,48</td></tr>
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">4</td><td class="border border-[var(--rule)] p-2">Αλεξ/πολης-Σαμοθράκης</td><td class="border border-[var(--rule)] p-2 numeric text-center">+0,25</td></tr>
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">5</td><td class="border border-[var(--rule)] p-2">Ιωαννίνων</td><td class="border border-[var(--rule)] p-2 numeric text-center">+0,04</td></tr>
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">6</td><td class="border border-[var(--rule)] p-2">Ναυπλίου</td><td class="border border-[var(--rule)] p-2 numeric text-center">−0,19</td></tr>
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">7</td><td class="border border-[var(--rule)] p-2">Βόλου-Πηλίου</td><td class="border border-[var(--rule)] p-2 numeric text-center">−0,24</td></tr>
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">8</td><td class="border border-[var(--rule)] p-2">Ναυπακτίας</td><td class="border border-[var(--rule)] p-2 numeric text-center">−0,25</td></tr>
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">9</td><td class="border border-[var(--rule)] p-2">Καστορίας</td><td class="border border-[var(--rule)] p-2 numeric text-center">−0,60</td></tr>
+              <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-2 text-center font-mono">10</td><td class="border border-[var(--rule)] p-2">Τροιζηνίας-Μεθάνων-Γαλατά</td><td class="border border-[var(--rule)] p-2 numeric text-center font-semibold text-navy-500">−0,68</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3 class="font-serif text-xl text-navy-700 mb-3">Τέσσερις διαγνωστικές αποκλίσεις</h3>
+          <div class="space-y-3 text-sm">
+            <div class="p-3 bg-navy-50 border-l-4 border-accent-500">
+              <p class="font-semibold text-navy-700">Μύκονος — κανονικοποίηση κορεσμού</p>
+              <p class="text-ink-700 mt-1">Αντικειμενικά ακραίο TII 178,6 με σχετικά διαχειρίσιμο POI +0,48. Οι κάτοικοι έχουν προσαρμοστεί στη μαζική παρουσία.</p>
+            </div>
+            <div class="p-3 bg-navy-50 border-l-4 border-accent-500">
+              <p class="font-semibold text-navy-700">Χανιά — υπερευαισθησία STR</p>
+              <p class="text-ink-700 mt-1">Μέτριο TFI 33,1 (ΠΕ) με υψηλό POI +0,54. Δήλωση συμφωνίας για πίεση βραχυχρόνιας μίσθωσης 91,4% (η υψηλότερη).</p>
+            </div>
+            <div class="p-3 bg-navy-50 border-l-4 border-accent-500">
+              <p class="font-semibold text-navy-700">Σαμοθράκη — τοπικός υπερτουρισμός</p>
+              <p class="text-ink-700 mt-1">Χαμηλό TFI ΠΕ Έβρου (2,785) αλλά POI +0,25 λόγω εντοπισμένου υπερτουρισμού στο νησί που δεν αποτυπώνεται στο NUTS3 aggregate.</p>
+            </div>
+            <div class="p-3 bg-navy-50 border-l-4 border-navy-500">
+              <p class="font-semibold text-navy-700">Τροιζηνία — αμοιβαία επιβεβαίωση χαμηλής έντασης</p>
+              <p class="text-ink-700 mt-1">Ελάχιστο TFI 0,72 με POI −0,68 (το χαμηλότερο). Ομογενής σύγκλιση αντικειμενικής και υποκειμενικής μέτρησης.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §13.3 LCA -->
+    <section class="mb-16">
+      <p class="section-marker">§ 13.3</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-4">Σταθμισμένη Doxey Τυπολογία (LCA)</h2>
+      <p class="text-ink-700 leading-relaxed mb-6">Latent Class Analysis (Lazarsfeld & Henry 1968) σε 12 δηλώσεις στάσης κατοίκων, K=5 κλάσεις: <strong>C1</strong> Αντιπαλότητα, <strong>C2</strong> Ενεργή Ευφορία, <strong>C3</strong> Ήπια Απάθεια, <strong>C4</strong> Συγκρουσιακή Ενόχληση, <strong>C5</strong> Καθαρή Ευφορία.</p>
+
+      <h3 class="font-serif text-xl text-navy-700 mb-3">Πίνακας 13.4 · LCA 5-κλάσεις (% ανά προορισμό)</h3>
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse bg-white">
+          <thead class="bg-navy-700 text-white">
+            <tr>
+              <th class="border border-navy-700 p-3 text-left">Προορισμός</th>
+              <th class="border border-navy-700 p-3 text-center">C1 Αντιπαλότητα</th>
+              <th class="border border-navy-700 p-3 text-center">C2 Ενεργή Ευφορία</th>
+              <th class="border border-navy-700 p-3 text-center">C3 Ήπια Απάθεια</th>
+              <th class="border border-navy-700 p-3 text-center">C4 Συγκρ. Ενόχληση</th>
+              <th class="border border-navy-700 p-3 text-center">C5 Καθαρή Ευφορία</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-700">
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Χανίων</td><td class="border border-[var(--rule)] p-3 numeric text-center">23,0</td><td class="border border-[var(--rule)] p-3 numeric text-center">20,8</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">27,0</td><td class="border border-[var(--rule)] p-3 numeric text-center">14,5</td><td class="border border-[var(--rule)] p-3 numeric text-center">14,8</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Κερκύρας</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">30,0</td><td class="border border-[var(--rule)] p-3 numeric text-center">21,2</td><td class="border border-[var(--rule)] p-3 numeric text-center">6,3</td><td class="border border-[var(--rule)] p-3 numeric text-center">20,2</td><td class="border border-[var(--rule)] p-3 numeric text-center">22,4</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Μυκόνου</td><td class="border border-[var(--rule)] p-3 numeric text-center">21,2</td><td class="border border-[var(--rule)] p-3 numeric text-center">29,1</td><td class="border border-[var(--rule)] p-3 numeric text-center">2,7</td><td class="border border-[var(--rule)] p-3 numeric text-center">19,2</td><td class="border border-[var(--rule)] p-3 numeric text-center">27,8</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ναυπλίου</td><td class="border border-[var(--rule)] p-3 numeric text-center">10,8</td><td class="border border-[var(--rule)] p-3 numeric text-center">18,0</td><td class="border border-[var(--rule)] p-3 numeric text-center">18,4</td><td class="border border-[var(--rule)] p-3 numeric text-center">10,3</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold">42,4</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Βόλου-Πηλίου</td><td class="border border-[var(--rule)] p-3 numeric text-center">6,2</td><td class="border border-[var(--rule)] p-3 numeric text-center">29,5</td><td class="border border-[var(--rule)] p-3 numeric text-center">18,9</td><td class="border border-[var(--rule)] p-3 numeric text-center">12,9</td><td class="border border-[var(--rule)] p-3 numeric text-center">32,5</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ιωαννίνων</td><td class="border border-[var(--rule)] p-3 numeric text-center">8,4</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold">42,3</td><td class="border border-[var(--rule)] p-3 numeric text-center">9,8</td><td class="border border-[var(--rule)] p-3 numeric text-center">17,4</td><td class="border border-[var(--rule)] p-3 numeric text-center">22,1</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Καστορίας</td><td class="border border-[var(--rule)] p-3 numeric text-center">3,7</td><td class="border border-[var(--rule)] p-3 numeric text-center">29,7</td><td class="border border-[var(--rule)] p-3 numeric text-center">24,2</td><td class="border border-[var(--rule)] p-3 numeric text-center">7,3</td><td class="border border-[var(--rule)] p-3 numeric text-center">35,1</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Αλεξ/πολης-Σαμοθράκης</td><td class="border border-[var(--rule)] p-3 numeric text-center">14,9</td><td class="border border-[var(--rule)] p-3 numeric text-center">20,6</td><td class="border border-[var(--rule)] p-3 numeric text-center">10,7</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">28,8</td><td class="border border-[var(--rule)] p-3 numeric text-center">25,0</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Τροιζηνίας-Μεθάνων-Γαλατά</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-navy-500">1,6</td><td class="border border-[var(--rule)] p-3 numeric text-center">30,2</td><td class="border border-[var(--rule)] p-3 numeric text-center">14,7</td><td class="border border-[var(--rule)] p-3 numeric text-center">5,0</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-navy-500">48,5</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ναυπακτίας</td><td class="border border-[var(--rule)] p-3 numeric text-center">7,7</td><td class="border border-[var(--rule)] p-3 numeric text-center">19,7</td><td class="border border-[var(--rule)] p-3 numeric text-center">18,6</td><td class="border border-[var(--rule)] p-3 numeric text-center">14,4</td><td class="border border-[var(--rule)] p-3 numeric text-center">39,6</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div class="p-4 bg-navy-50 border-l-4 border-accent-700">
+          <p class="font-semibold text-navy-700">Κέρκυρα — μοναδική κυρίαρχη Αντιπαλότητα</p>
+          <p class="text-ink-700 mt-1">C1 = 30,0%. Συσσωρευμένη κοινωνική κούραση μετά από δεκαετίες μαζικού τουρισμού.</p>
+        </div>
+        <div class="p-4 bg-navy-50 border-l-4 border-navy-500">
+          <p class="font-semibold text-navy-700">Τροιζηνία — ισχυρότατη νομιμοποίηση</p>
+          <p class="text-ink-700 mt-1">C1 μόλις 1,6% και C5 = 48,5%. Η ισχυρότερη κοινωνική νομιμοποίηση στο σύνολο του παραδοτέου.</p>
+        </div>
+        <div class="p-4 bg-navy-50 border-l-4 border-accent-500">
+          <p class="font-semibold text-navy-700">Αλεξανδρούπολη-Σαμοθράκη — Συγκρουσιακή Ενόχληση</p>
+          <p class="text-ink-700 mt-1">Μοναδική κυρίαρχη C4 = 28,8%. Διπολική κοινωνική δυναμική.</p>
+        </div>
+        <div class="p-4 bg-navy-50 border-l-4 border-accent-500">
+          <p class="font-semibold text-navy-700">Χανιά — Ήπια Απάθεια</p>
+          <p class="text-ink-700 mt-1">Μοναδική κυρίαρχη C3 = 27,0%. Pattern κοινωνικής επούλωσης σε ώριμο τουριστικό περιβάλλον.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- §13.4 Τυπολογία -->
+    <section class="mb-16">
+      <p class="section-marker">§ 13.4</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-4">Εμπειρική Τυπολογία 4 Κατηγοριών</h2>
+      <p class="text-ink-700 leading-relaxed mb-6">Σύνθεση αντικειμενικών και υποκειμενικών δεικτών. Η τυπολογία υπερβαίνει τη διχοτόμηση «ώριμοι έναντι αναπτυσσόμενων» σε δύο σημεία: η Μύκονος διακρίνεται ως ξεχωριστή κατηγορία· οι ηπειρωτικοί μικτοί διαφοροποιούνται από τους πραγματικά αναδυόμενους.</p>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-5 bg-white border border-navy-300 rounded-sm">
+          <p class="section-marker text-navy-500">Α</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Νησιωτικοί κορεσμένοι</h3>
+          <p class="text-sm font-medium text-ink-500 mt-1">Κέρκυρα · Χανιά</p>
+          <p class="text-sm text-ink-700 mt-3"><strong>Χαρακτηριστικά:</strong> > 1 εκ. αφίξεις, TII 8-26, Gini > 0,47, αλλοδαποί > 87%.</p>
+          <p class="text-sm text-ink-700 mt-2"><strong>Στρατηγική:</strong> Αποεποχικοποίηση, ποιοτική αναβάθμιση, ρύθμιση STR.</p>
+        </div>
+        <div class="p-5 bg-white border-l-4 border-accent-700 border-y border-r border-navy-300 rounded-sm">
+          <p class="section-marker text-accent-700">Β</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Νησιωτικός υπερκορεσμός</h3>
+          <p class="text-sm font-medium text-ink-500 mt-1">Μύκονος</p>
+          <p class="text-sm text-ink-700 mt-3"><strong>Χαρακτηριστικά:</strong> ADR > 600 €, ακραίος TII 178,6 (Δήμος, canonical), αναγνωρισμένος κορεσμός.</p>
+          <p class="text-sm text-ink-700 mt-2"><strong>Στρατηγική:</strong> Διαχείριση όγκου, visitor caps, πράσινο τέλος, διαφοροποίηση κοινού.</p>
+        </div>
+        <div class="p-5 bg-white border border-navy-300 rounded-sm">
+          <p class="section-marker text-navy-500">Γ</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Ηπειρωτικοί μικτοί</h3>
+          <p class="text-sm font-medium text-ink-500 mt-1">Ναύπλιο · Βόλος-Πήλιο · Ιωάννινα · Τροιζηνία-Μέθανα-Γαλατάς</p>
+          <p class="text-sm text-ink-700 mt-3"><strong>Χαρακτηριστικά:</strong> 180-450 χιλ. αφίξεις, μικτή αγορά, μέτρια εποχικότητα.</p>
+          <p class="text-sm text-ink-700 mt-2"><strong>Στρατηγική:</strong> Διεθνοποίηση, branding, τετράμηνη τουριστική περίοδος, εμπλουτισμός προϊόντος.</p>
+        </div>
+        <div class="p-5 bg-white border border-navy-300 rounded-sm">
+          <p class="section-marker text-navy-500">Δ</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Αναδυόμενοι</h3>
+          <p class="text-sm font-medium text-ink-500 mt-1">Αλεξανδρούπολη-Σαμοθράκη · Ναυπακτία · Καστοριά</p>
+          <p class="text-sm text-ink-700 mt-3"><strong>Χαρακτηριστικά:</strong> < 200 χιλ. αφίξεις, TII < 1,5, σημαντικό φυσικό κεφάλαιο.</p>
+          <p class="text-sm text-ink-700 mt-2"><strong>Στρατηγική:</strong> Στρατηγική τοποθέτηση, υποδομές, αναγνωρισιμότητα, εμπλοκή κοινωνικής βάσης.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- §13.5 5-Ζώνη × 3-Κατευθύνσεις -->
+    <section class="mb-16">
+      <p class="section-marker text-accent-500">§ 13.5 · ΠΡΩΤΟΤΥΠΗ ΣΥΝΕΙΣΦΟΡΑ</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-4">5-Ζώνη × 3-Κατευθύνσεις Ταξινόμηση Ενδογενούς Κριτικής</h2>
+      <p class="text-ink-700 leading-relaxed mb-6">Πρωτότυπη θεωρητική συνεισφορά της Λευκής Βίβλου στη διεθνή βιβλιογραφία. Διπλό πλέγμα ταξινόμησης: <strong>(α) Ζώνη pre-saturation</strong> (σχέση Defert × POI) × <strong>(β) Κατεύθυνση Ενδογενούς Κριτικής</strong> (διαφορική γνώση τουριστικά απασχολούμενων TOUR έναντι λοιπών κατοίκων NOT).</p>
+
+      <h3 class="font-serif text-xl text-navy-700 mb-3">Τρεις κανονικές κατευθύνσεις + μία απενεργοποιημένη</h3>
+      <div class="grid md:grid-cols-2 gap-4 mb-8 text-sm">
+        <div class="p-4 bg-white border border-navy-300 rounded-sm">
+          <p class="font-semibold text-navy-700">CLASSIC <span class="text-ink-500 font-normal">(Δpp > 0 στους δείκτες πίεσης)</span></p>
+          <p class="text-ink-700 mt-1">Οι TOUR αναγνωρίζουν συστηματικά περισσότερη πίεση μέσω προνομιακής front-line λειτουργικής γνώσης.</p>
+        </div>
+        <div class="p-4 bg-white border border-navy-300 rounded-sm">
+          <p class="font-semibold text-navy-700">REVERSE <span class="text-ink-500 font-normal">(Δpp < 0)</span></p>
+          <p class="text-ink-700 mt-1">Οι TOUR αναγνωρίζουν συστηματικά λιγότερη πίεση μέσω εξειδικευμένης πραγματιστικής γνώσης κλίμακας.</p>
+        </div>
+        <div class="p-4 bg-accent-50 border-l-4 border-accent-700 rounded-sm">
+          <p class="font-semibold text-navy-700">STEWARD <span class="text-accent-700 font-normal text-xs">· NOVEL ΛΕΥΚΗΣ ΒΙΒΛΟΥ</span></p>
+          <p class="text-ink-700 mt-1">Οι TOUR υποστηρίζουν ενεργά τη ρυθμιστική παρέμβαση ως προληπτικό μηχανισμό προστασίας. Μοναδική νέα συνεισφορά, εμπειρικά τεκμηριωμένη στη Ναυπακτία.</p>
+        </div>
+        <div class="p-4 bg-white border border-navy-300 rounded-sm">
+          <p class="font-semibold text-navy-700">κατώφλι-απενεργοποιημένη</p>
+          <p class="text-ink-700 mt-1">Συστηματική απενεργοποίηση λόγω deep under-touristic πλαισίου (Δpp συμπιεσμένα κάτω από κατώφλι 8-10pp).</p>
+        </div>
+      </div>
+
+      <h3 class="font-serif text-xl text-navy-700 mb-3">Πίνακας 13.6 · Ταξινόμηση ανά προορισμό (V2 FINAL CLOSURE)</h3>
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full text-sm border-collapse bg-white">
+          <thead class="bg-navy-700 text-white">
+            <tr>
+              <th class="border border-navy-700 p-3 text-left">Προορισμός (Κεφ.)</th>
+              <th class="border border-navy-700 p-3 text-left">Ζώνη pre-saturation</th>
+              <th class="border border-navy-700 p-3 text-left">Κατεύθυνση</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-700">
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Κέρκυρα (4)</td><td class="border border-[var(--rule)] p-3">Ώριμη επιθετική</td><td class="border border-[var(--rule)] p-3">Ώριμη CLASSIC</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Χανιά (5)</td><td class="border border-[var(--rule)] p-3">Ώριμη ισχυρή</td><td class="border border-[var(--rule)] p-3">Ώριμη CLASSIC</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Μύκονος (6)</td><td class="border border-[var(--rule)] p-3">Ώριμη extreme</td><td class="border border-[var(--rule)] p-3">Ώριμη CLASSIC</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ναύπλιο (7)</td><td class="border border-[var(--rule)] p-3">Ώριμος ηπειρωτικός healthy</td><td class="border border-[var(--rule)] p-3">Ώριμη CLASSIC</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Βόλος-Πήλιο (8)</td><td class="border border-[var(--rule)] p-3 font-medium">Ζώνη Γ-low post-Storm-Daniel</td><td class="border border-[var(--rule)] p-3 font-medium">REVERSE-leaning</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ιωάννινα (9)</td><td class="border border-[var(--rule)] p-3 font-medium">Ζώνη Α pre-saturation</td><td class="border border-[var(--rule)] p-3 font-medium">CLASSIC</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Καστοριά (10)</td><td class="border border-[var(--rule)] p-3 font-medium">Ζώνη Β υπο-τουριστική</td><td class="border border-[var(--rule)] p-3 font-medium">CLASSIC strong</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Αλεξ/πολη-Σαμοθράκη (11)</td><td class="border border-[var(--rule)] p-3 font-medium">Ζώνη Α′ διπολική γεωγραφία</td><td class="border border-[var(--rule)] p-3 font-medium">REVERSE</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Τροιζηνία-Μέθανα-Γαλατάς (12)</td><td class="border border-[var(--rule)] p-3 font-medium">Ζώνη Δ extreme pre-saturation</td><td class="border border-[var(--rule)] p-3 font-medium">κατώφλι-απενεργοποιημένη</td></tr>
+            <tr class="bg-accent-50"><td class="border border-[var(--rule)] p-3 font-semibold">Ναυπακτία (13)</td><td class="border border-[var(--rule)] p-3 font-semibold">Ζώνη Γ-mid mid-pressure</td><td class="border border-[var(--rule)] p-3 font-semibold text-accent-700">STEWARD novel (μοναδικό)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-ink-500 italic mb-6">Cardinal evidence STEWARD: «Στην περιοχή μου χρειάζονται μέτρα περιορισμού της τουριστικής δραστηριότητας» <strong>Δpp = +15,12pp</strong> SIG (TOUR 24,83% T2B έναντι NOT 9,71% T2B). Ναυπακτία Πίν. 13.34 + ΜΚ 13.6.1.α FINAL CLOSURE.</p>
+
+      <div class="p-6 bg-navy-50 border-l-4 border-accent-500">
+        <h3 class="font-serif text-xl text-navy-700 mb-3">Θεωρητική σημασία</h3>
+        <ol class="space-y-3 text-ink-700 text-sm list-decimal list-inside">
+          <li><strong>Η σχέση τουριστικής απασχόλησης × αναγνώρισης πίεσης δεν είναι γραμμική.</strong> Εκδηλώνεται σε τρεις διακριτές κατευθύνσεις, αναιρώντας την υπόθεση γραμμικότητας της κλασικής Doxey (1975) και της Social Exchange Theory των Ap (1992) και Andereck et al. (2005).</li>
+          <li><strong>Το STEWARD μοτίβο της Ναυπακτίας είναι μοναδική νέα συνεισφορά.</strong> Οι ενδογενείς πληροφοριοδότες λειτουργούν ως «επιστάτες» προληπτικής ρύθμισης, υπερβαίνοντας τη βραχυχρόνια λογική του economic-stake effect.</li>
+          <li><strong>Η Ζώνη Γ είναι κλιμακούμενη αρχιτεκτονική.</strong> Διασπάται εμπειρικά σε Γ-low (Βόλος-Πήλιο REVERSE-leaning) και Γ-mid (Ναυπακτία STEWARD UNIQUE) μέσω της αντικειμενικής Defert τιμής.</li>
+          <li><strong>Η Ζώνη Δ αποκαλύπτει νέα κατηγορία.</strong> Threshold-deactivated: το πρότυπο ενδογενούς κριτικής απενεργοποιείται σε deep under-touristic πλαίσιο (Τροιζηνία TII 0,93, POI −0,68).</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- §13.6 LCA Πόλωση -->
+    <section class="mb-16">
+      <p class="section-marker">§ 13.6</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-4">LCA Πόλωση Κοινωνικής Στάσης</h2>
+      <p class="text-ink-700 leading-relaxed mb-6">Καθαρή ισορροπία C5 − C1 αναδεικνύει το εύρος της κοινωνικής πόλωσης.</p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse bg-white">
+          <thead class="bg-navy-700 text-white">
+            <tr>
+              <th class="border border-navy-700 p-3 text-left">Προορισμός</th>
+              <th class="border border-navy-700 p-3 text-center">% C1</th>
+              <th class="border border-navy-700 p-3 text-center">% C5</th>
+              <th class="border border-navy-700 p-3 text-center">Καθαρή ισορροπία</th>
+              <th class="border border-navy-700 p-3 text-left">Χαρακτηρισμός</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-700">
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Τροιζηνίας-Μεθάνων-Γαλατά</td><td class="border border-[var(--rule)] p-3 numeric text-center">1,6</td><td class="border border-[var(--rule)] p-3 numeric text-center">48,5</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-navy-500">+46,9</td><td class="border border-[var(--rule)] p-3">Έντονη θετική πόλωση</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ναυπακτίας</td><td class="border border-[var(--rule)] p-3 numeric text-center">7,7</td><td class="border border-[var(--rule)] p-3 numeric text-center">39,6</td><td class="border border-[var(--rule)] p-3 numeric text-center">+31,9</td><td class="border border-[var(--rule)] p-3">Υγιής υποστήριξη</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ναυπλίου</td><td class="border border-[var(--rule)] p-3 numeric text-center">10,8</td><td class="border border-[var(--rule)] p-3 numeric text-center">42,4</td><td class="border border-[var(--rule)] p-3 numeric text-center">+31,6</td><td class="border border-[var(--rule)] p-3">Υγιής υποστήριξη</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Καστορίας</td><td class="border border-[var(--rule)] p-3 numeric text-center">3,7</td><td class="border border-[var(--rule)] p-3 numeric text-center">35,1</td><td class="border border-[var(--rule)] p-3 numeric text-center">+31,4</td><td class="border border-[var(--rule)] p-3">Υγιής υποστήριξη</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Βόλου-Πηλίου</td><td class="border border-[var(--rule)] p-3 numeric text-center">6,2</td><td class="border border-[var(--rule)] p-3 numeric text-center">32,5</td><td class="border border-[var(--rule)] p-3 numeric text-center">+26,3</td><td class="border border-[var(--rule)] p-3">Υγιής υποστήριξη</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Ιωαννίνων</td><td class="border border-[var(--rule)] p-3 numeric text-center">8,4</td><td class="border border-[var(--rule)] p-3 numeric text-center">22,1</td><td class="border border-[var(--rule)] p-3 numeric text-center">+13,7</td><td class="border border-[var(--rule)] p-3">Μετριασμένη</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Αλεξ/πολης-Σαμοθράκης</td><td class="border border-[var(--rule)] p-3 numeric text-center">14,9</td><td class="border border-[var(--rule)] p-3 numeric text-center">25,0</td><td class="border border-[var(--rule)] p-3 numeric text-center">+10,1</td><td class="border border-[var(--rule)] p-3">Οριακή θετική</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Μυκόνου</td><td class="border border-[var(--rule)] p-3 numeric text-center">21,2</td><td class="border border-[var(--rule)] p-3 numeric text-center">27,8</td><td class="border border-[var(--rule)] p-3 numeric text-center">+6,6</td><td class="border border-[var(--rule)] p-3">Διπολική</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Χανίων</td><td class="border border-[var(--rule)] p-3 numeric text-center">23,0</td><td class="border border-[var(--rule)] p-3 numeric text-center">14,8</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">−8,2</td><td class="border border-[var(--rule)] p-3">Πραγματική αρνητική</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3">Κερκύρας</td><td class="border border-[var(--rule)] p-3 numeric text-center">30,0</td><td class="border border-[var(--rule)] p-3 numeric text-center">22,4</td><td class="border border-[var(--rule)] p-3 numeric text-center font-semibold text-accent-700">−7,6</td><td class="border border-[var(--rule)] p-3 font-medium">Μοναδική κυρίαρχη Αντιπαλότητα</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-ink-500 italic mt-4">Κέρκυρα και Χανιά: οι μόνοι προορισμοί με αρνητική ισορροπία. Τροιζηνία: ισχυρότερη θετική (+46,9). Μύκονος: διπολική κοινωνία (21,2% αντίπαλοι + 27,8% υποστηρικτές).</p>
+    </section>
+
+    <!-- §13.7 Κοινές προκλήσεις -->
+    <section class="mb-16">
+      <p class="section-marker">§ 13.7</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-4">Τέσσερις Κοινές Προκλήσεις (10/10 προορισμοί)</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-5 bg-white border border-navy-300 rounded-sm">
+          <p class="section-marker text-navy-500">01</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Εποχικότητα παραμένει δομική</h3>
+          <p class="text-sm text-ink-700 mt-2">Κανένας προορισμός δεν έχει επιτύχει πραγματική 12μηνη λειτουργία. Καστοριά (Gini 0,151 χαμηλότερο όλων): ομοιόμορφα <em>χαμηλή</em> ζήτηση, όχι ισοκατανεμημένη υψηλή.</p>
+        </div>
+        <div class="p-5 bg-white border border-navy-300 rounded-sm">
+          <p class="section-marker text-navy-500">02</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Αδιαφάνεια NACE I σε ΠΕ</h3>
+          <p class="text-sm text-ink-700 mt-2">Η ΑΠΑ Καταλύματος & Εστίασης δεν δημοσιεύεται αυτοτελώς σε NUTS3 από ΕΛΣΤΑΤ ή Eurostat. Εμποδίζει ακριβή υπολογισμό τουριστικού GDP τοπικά.</p>
+        </div>
+        <div class="p-5 bg-white border border-navy-300 rounded-sm">
+          <p class="section-marker text-navy-500">03</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Έλλειψη ολοκληρωμένης STR ρύθμισης</h3>
+          <p class="text-sm text-ink-700 mt-2">Μερίδιο STR 10-25% στις αφίξεις, 16-28% στις διανυκτερεύσεις χωρίς ενιαίο εθνικό πλαίσιο. Αναλογία STR/ξενοδοχεία: 2:1 (Ναυπακτία) έως 6,6:1 (Καστοριά).</p>
+        </div>
+        <div class="p-5 bg-white border border-navy-300 rounded-sm">
+          <p class="section-marker text-navy-500">04</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Χωρικές ανισότητες εντός προορισμού</h3>
+          <p class="text-sm text-ink-700 mt-2">Συγκέντρωση σε ζώνες (Κέρκυρα Πόλη, Πλατανιάς, Χώρα Μυκόνου, Παλιά Πόλη Ναυπλίου, Ζαγορά-Μουρέσι) αφήνοντας ενδοχώρες υπο-αξιοποιημένες.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- §13.8 Πέντε στρατηγικά μηνύματα -->
+    <section class="mb-16">
+      <p class="section-marker">§ 13.9</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-4">Πέντε Στρατηγικά Μηνύματα Εθνικού Επιπέδου</h2>
+      <ol class="space-y-5">
+        <li class="p-5 bg-white border-l-4 border-navy-700">
+          <p class="section-marker text-navy-500">Μήνυμα 1</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Ο ελληνικός υπερτουρισμός είναι τοπικά εντοπισμένος, όχι γενικευμένος</h3>
+          <p class="text-sm text-ink-700 mt-2">Σε 6 από τους 10 προορισμούς η αντικειμενική και υποκειμενική πίεση παραμένει χαμηλή. Η εθνική πολιτική πρέπει να εστιάσει σε 4 περιοχές υψηλής πίεσης: Κέρκυρα, Χανιά, Μύκονος, Σαμοθράκη.</p>
+        </li>
+        <li class="p-5 bg-white border-l-4 border-accent-700">
+          <p class="section-marker text-accent-700">Μήνυμα 2</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Η Κέρκυρα συνιστά το πλέον επείγον στρατηγικό περιστατικό</h3>
+          <p class="text-sm text-ink-700 mt-2">Υψηλότερο POI θ̂ (+0,70), υψηλότερο % Αντιπαλότητας (30,0%), αρνητική ισορροπία LCA (−7,6). Απαιτεί συντεταγμένη παρέμβαση σε STR, διαφοροποίηση προϊόντος, εμπλοκή κατοίκων, αποεποχικοποίηση.</p>
+        </li>
+        <li class="p-5 bg-white border-l-4 border-navy-700">
+          <p class="section-marker text-navy-500">Μήνυμα 3</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Η 5-Ζώνη × 3-Κατευθύνσεις Ταξινόμηση αναιρεί την κλασική Doxey γραμμικότητα</h3>
+          <p class="text-sm text-ink-700 mt-2">Σε διαφορετικές ζώνες pre-saturation η σχέση εκδηλώνεται σε διακριτές κατευθύνσεις. Η κοινωνική παρακολούθηση δεν μπορεί να βασιστεί μόνο σε γενικευμένες έρευνες· απαιτεί στρωματοποιημένη ανάλυση με ρητή αναγνώριση Ζώνης και Κατεύθυνσης.</p>
+        </li>
+        <li class="p-5 bg-white border-l-4 border-navy-700">
+          <p class="section-marker text-navy-500">Μήνυμα 4</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Η Τροιζηνία αναδεικνύεται ως ο πιο αναξιοποίητος προορισμός</h3>
+          <p class="text-sm text-ink-700 mt-2">POI θ̂ −0,68, LCA θετική ισορροπία +46,9, αντικειμενικά χαμηλή ένταση. Ιδανικός προορισμός-υπόδειγμα για νέο μοντέλο αναπτυξιακής ένταξης με προ-εγκατεστημένη κοινωνική νομιμοποίηση.</p>
+        </li>
+        <li class="p-5 bg-white border-l-4 border-navy-700">
+          <p class="section-marker text-navy-500">Μήνυμα 5</p>
+          <h3 class="font-serif text-lg text-navy-700 mt-1">Η Μύκονος αξίζει αυτοτελή case study</h3>
+          <p class="text-sm text-ink-700 mt-2">Μοναδικός με ταυτόχρονη Butler stasis (recovery 0,878), ακραίο TII (178,6 Δήμος Μυκόνου canonical) και διπολική κοινωνική στάση (21,2% Αντιπαλότητα + 27,8% Καθαρή Ευφορία). Θα τεκμηριώσει βέλτιστες πρακτικές διαχείρισης ώριμου τουρισμού σε ευρωπαϊκή κλίμακα.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Cross-references -->
+    <section class="mb-12 p-6 bg-navy-50 border-l-4 border-accent-500">
+      <p class="section-marker text-accent-500">Πλήρης ανάλυση</p>
+      <h3 class="font-serif text-xl text-navy-700 mt-2 mb-4">Στο παραδοτέο docx</h3>
+      <ul class="space-y-2 text-ink-700">
+        <li>📘 <strong>Κεφάλαιο 13</strong> — Συγκριτική Ανάλυση (10 ενότητες, πλήρης μεθοδολογική θεμελίωση)</li>
+        <li>📗 <strong>Παράρτημα Α</strong> — 9 πίνακες cross-destination master panels (δυναμικό, STR, περιβάλλον)</li>
+        <li>📕 <strong>Παράρτημα Ε</strong> — Πίνακες πρωτογενούς έρευνας (POI θ̂, LCA shares, Doxey)</li>
+        <li>📒 <strong>Παράρτημα Η</strong> — Quadrant strategic ανάλυση: Αντικειμενική × Υποκειμενική Φέρουσα Ικανότητα</li>
+        <li>📓 <strong>Κεφάλαιο 13 ΜΚ 13.6.1.α FINAL CLOSURE</strong> — Κανονική θεμελίωση 5-Ζώνη × 3-Κατευθύνσεις (Ναυπακτία)</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy-900 text-white py-12 mt-0">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <p class="section-marker text-accent-300">Δείτε επίσης</p>
+        <ul class="space-y-1.5 mt-2">
+          <li><a href="methodology.html" class="hover:text-accent-300">Μεθοδολογικό πλαίσιο →</a></li>
+          <li><a href="data_sources.html" class="hover:text-accent-300">Πηγές δεδομένων →</a></li>
+          <li><a href="index.html" class="hover:text-accent-300">Όλοι οι 10 προορισμοί →</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Παραδοτέο</p>
+        <p class="font-serif text-lg mt-1">Λευκή Βίβλος ΠΕ2</p>
+        <p class="text-xs text-white/60 mt-2">Χρηματοδότηση μέσω Ταμείου Ανάκαμψης &amp; Ανθεκτικότητας / NextGenerationEU</p>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Έκδοση</p>
+        <p class="text-sm mt-1">v1.0 · 2026-05-15</p>
+        <p class="text-xs text-white/60 mt-2">Πιλοτικό τεύχος για ανατροφοδότηση συνεργατών.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

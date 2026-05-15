@@ -49,12 +49,46 @@
   }
   nav .logo span { color: var(--gold); }
   nav ul { list-style: none; display: flex; gap: 1.8rem; }
+  nav ul li { position: relative; }
   nav ul li a {
     color: rgba(255,255,255,0.8); text-decoration: none;
     font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px;
     text-transform: uppercase; transition: color 0.3s;
+    display: inline-block;
   }
   nav ul li a:hover { color: var(--gold); }
+
+  /* Dropdown menu */
+  nav .has-dropdown > a::after {
+    content: " \25BE"; font-size: 0.7rem; opacity: 0.7;
+  }
+  nav .dropdown-menu {
+    position: absolute; top: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    background: rgba(15, 43, 70, 0.98); backdrop-filter: blur(10px);
+    list-style: none; padding: 0.6rem 0; min-width: 260px;
+    border-top: 2px solid var(--gold);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+    z-index: 110;
+  }
+  nav .has-dropdown:hover .dropdown-menu,
+  nav .has-dropdown:focus-within .dropdown-menu {
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  nav .dropdown-menu li { display: block; position: static; }
+  nav .dropdown-menu li a {
+    display: block; padding: 0.55rem 1.1rem;
+    font-size: 0.8rem; text-transform: none; letter-spacing: 0.3px;
+    color: rgba(255,255,255,0.85);
+  }
+  nav .dropdown-menu li a:hover { background: rgba(200, 169, 81, 0.12); color: var(--gold); }
+  nav .dropdown-menu li a small {
+    display: block; font-size: 0.68rem; color: rgba(255,255,255,0.5);
+    margin-top: 2px; letter-spacing: 0.2px; text-transform: none;
+  }
 
   /* HERO */
   .hero {
@@ -340,6 +374,12 @@
     <li><a href="#publications">Publications</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#teaching">Teaching</a></li>
+    <li class="has-dropdown">
+      <a href="#" onclick="return false;">Studies</a>
+      <ul class="dropdown-menu">
+        <li><a href="pe2/index.html">ΠΕ2 · Λευκή Βίβλος Τουρισμού<small>10 Greek tourism destinations · 2030–2035</small></a></li>
+      </ul>
+    </li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#tools-projects" style="color:var(--gold)">Tools</a></li>
   </ul>
