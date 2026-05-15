@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Γλωσσάρι &amp; Ακρώνυμα · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+  <meta name="description" content="Κατάλογος ακρωνύμων και γλωσσάρι όρων του παραδοτέου ΠΕ2: δείκτες φέρουσας ικανότητας, στατιστικές μέθοδοι, γεωγραφικές ταξινομήσεις, πρωτότυπη ταξονομία Insider Critique.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/custom.css">
+
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: {
+        navy:   { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
+        accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
+        ink:    { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
+      },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
+    } } }
+  </script>
+</head>
+<body>
+
+  <!-- Top utility bar -->
+  <div class="bg-navy-900 text-white text-xs">
+    <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+      <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
+      <div class="flex items-center gap-4">
+        <a href="methodology.html" class="text-white/70 hover:text-white">Μεθοδολογία</a>
+        <a href="data_sources.html" class="text-white/70 hover:text-white">Πηγές</a>
+        <a href="comparative.html" class="text-white/70 hover:text-white">Συγκριτικά</a>
+        <a href="glossary.html" class="text-white font-medium">Γλωσσάρι</a>
+        <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="relative bg-navy-700 overflow-hidden py-24">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-700 to-navy-500"></div>
+    <svg class="absolute inset-0 w-full h-full opacity-[0.08]" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+    <div class="container mx-auto px-6 relative z-10 text-white max-w-4xl">
+      <p class="section-marker text-accent-300">Συνοδευτικά</p>
+      <h1 class="display text-5xl md:text-6xl mt-3 leading-tight">Γλωσσάρι &amp; Ακρώνυμα</h1>
+      <p class="text-xl mt-4 text-navy-50/85 max-w-3xl">Κατάλογος όλων των ακρωνύμων και τεχνικών όρων του παραδοτέου, ομαδοποιημένος κατά θεματικό άξονα. Cross-reference με μεθοδολογικά κεφάλαια και παραρτήματα.</p>
+    </div>
+  </header>
+
+  <!-- Jump nav -->
+  <nav class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-[var(--rule)]">
+    <div class="container mx-auto px-6 py-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+      <span class="text-ink-500 font-medium">Μετάβαση:</span>
+      <a href="#acronyms" class="text-navy-700 hover:text-accent-500">Ακρώνυμα</a>
+      <span class="text-ink-300">|</span>
+      <a href="#g-carrying" class="text-navy-700 hover:text-accent-500">Φέρουσα ικανότητα</a>
+      <a href="#g-talc" class="text-navy-700 hover:text-accent-500">Στάδια &amp; στάσεις</a>
+      <a href="#g-taxonomy" class="text-navy-700 hover:text-accent-500">Insider Critique</a>
+      <a href="#g-methods" class="text-navy-700 hover:text-accent-500">Στατιστικές μέθοδοι</a>
+      <a href="#g-geo" class="text-navy-700 hover:text-accent-500">Γεωγραφικές μονάδες</a>
+      <a href="#g-cert" class="text-navy-700 hover:text-accent-500">Καθεστώτα</a>
+      <a href="#g-market" class="text-navy-700 hover:text-accent-500">Αγορά &amp; δείκτες</a>
+      <a href="#g-codes" class="text-navy-700 hover:text-accent-500">Κωδικοί μεταβλητών</a>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-6 py-16 max-w-5xl">
+
+    <!-- ===================== ΑΚΡΩΝΥΜΑ ===================== -->
+    <section id="acronyms" class="mb-20 scroll-mt-20">
+      <p class="section-marker">Μέρος Α</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Κατάλογος Ακρωνύμων</h2>
+      <p class="text-ink-700 leading-relaxed mb-8">Συγκεντρωτικός κατάλογος ακρωνύμων που χρησιμοποιούνται στο παραδοτέο. Πλήρεις ορισμοί στο Γλωσσάρι (Μέρος Β κάτω).</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Acro group: Carrying capacity -->
+        <div>
+          <h3 class="font-serif text-lg text-navy-700 mb-3">Δείκτες φέρουσας ικανότητας &amp; επίδοσης</h3>
+          <table class="w-full text-sm border-collapse bg-white">
+            <tbody class="text-ink-700">
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700 w-24">TFI</td><td class="p-2">Tourist Function Index</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">TII</td><td class="p-2">Tourist Intensity Index</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">TALC</td><td class="p-2">Tourism Area Life Cycle</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ALoS</td><td class="p-2">Average Length of Stay</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ADR</td><td class="p-2">Average Daily Rate</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">STR</td><td class="p-2">Short-Term Rental</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">GVA</td><td class="p-2">Gross Value Added</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">CAGR</td><td class="p-2">Compound Annual Growth Rate</td></tr>
+              <tr><td class="p-2 font-mono font-semibold text-navy-700">DMMO</td><td class="p-2">Destination Management &amp; Marketing Organization</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Acro group: Geo -->
+        <div>
+          <h3 class="font-serif text-lg text-navy-700 mb-3">Γεωγραφικές &amp; στατιστικές ταξινομήσεις</h3>
+          <table class="w-full text-sm border-collapse bg-white">
+            <tbody class="text-ink-700">
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700 w-24">NUTS</td><td class="p-2">Nomenclature of Territorial Units for Statistics</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">LAU</td><td class="p-2">Local Administrative Unit</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">NACE</td><td class="p-2"><em>Nomenclature statistique des Activités économiques dans la Communauté Européenne</em></td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">SBR01</td><td class="p-2">Statistical Business Register (ΕΛΣΤΑΤ)</td></tr>
+              <tr><td class="p-2 font-mono font-semibold text-navy-700">STO12</td><td class="p-2">Στατιστικά Τουρισμού (ΕΛΣΤΑΤ)</td></tr>
+            </tbody>
+          </table>
+
+          <h3 class="font-serif text-lg text-navy-700 mt-6 mb-3">Μέθοδοι συλλογής πρωτογενών δεδομένων</h3>
+          <table class="w-full text-sm border-collapse bg-white">
+            <tbody class="text-ink-700">
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700 w-24">CATI</td><td class="p-2">Computer-Assisted Telephone Interviewing</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">CAWI</td><td class="p-2">Computer-Assisted Web Interviewing</td></tr>
+              <tr><td class="p-2 font-mono font-semibold text-navy-700">GDPR</td><td class="p-2">General Data Protection Regulation (Καν. ΕΕ 2016/679)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Acro group: Statistical methods -->
+        <div>
+          <h3 class="font-serif text-lg text-navy-700 mb-3">Στατιστικές μέθοδοι πρωτογενούς έρευνας</h3>
+          <table class="w-full text-sm border-collapse bg-white">
+            <tbody class="text-ink-700">
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700 w-24">IRT</td><td class="p-2">Item Response Theory</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">GRM</td><td class="p-2">Graded Response Model</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">IPF</td><td class="p-2">Iterative Proportional Fitting</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">CEM</td><td class="p-2">Coarsened Exact Matching</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">IPW</td><td class="p-2">Inverse Probability Weighting</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">LCA</td><td class="p-2">Latent Class Analysis</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">IPA</td><td class="p-2">Importance-Performance Analysis</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">DEFF</td><td class="p-2">Design Effect</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ICC</td><td class="p-2">Intraclass Correlation Coefficient</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">BH-FDR</td><td class="p-2">Benjamini-Hochberg False Discovery Rate</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">CFA</td><td class="p-2">Confirmatory Factor Analysis</td></tr>
+              <tr><td class="p-2 font-mono font-semibold text-navy-700">POI</td><td class="p-2">Perceived Overtourism Index</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Acro group: Funding + Bodies -->
+        <div>
+          <h3 class="font-serif text-lg text-navy-700 mb-3">Χρηματοδοτικά πλαίσια &amp; πολιτικές πρωτοβουλίες</h3>
+          <table class="w-full text-sm border-collapse bg-white">
+            <tbody class="text-ink-700">
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700 w-24">RRF</td><td class="p-2">Recovery and Resilience Facility</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ΤΑΑ</td><td class="p-2">Ταμείο Ανάκαμψης και Ανθεκτικότητας</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ΕΣΠΑ</td><td class="p-2">Εθνικό Στρατηγικό Πλαίσιο Αναφοράς</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">MaB</td><td class="p-2">Man and Biosphere Programme (UNESCO)</td></tr>
+              <tr><td class="p-2 font-mono font-semibold text-navy-700">WHS</td><td class="p-2">World Heritage Site (UNESCO)</td></tr>
+            </tbody>
+          </table>
+
+          <h3 class="font-serif text-lg text-navy-700 mt-6 mb-3">Φορείς &amp; πηγές δεδομένων</h3>
+          <table class="w-full text-sm border-collapse bg-white">
+            <tbody class="text-ink-700">
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700 w-24">ΕΛΣΤΑΤ</td><td class="p-2">Ελληνική Στατιστική Αρχή</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">INSETE</td><td class="p-2">Ινστιτούτο ΣΕΤΕ</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ΤτΕ / BoG</td><td class="p-2">Τράπεζα της Ελλάδος / Bank of Greece</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ΣΕΔΕΑ</td><td class="p-2">Σύλλογος Εταιρειών Δημοσκοπήσεων &amp; Έρευνας Αγοράς</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ESOMAR</td><td class="p-2">European Society for Opinion and Marketing Research</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ΕΟΤ</td><td class="p-2">Ελληνικός Οργανισμός Τουρισμού</td></tr>
+              <tr class="border-b border-[var(--rule)]"><td class="p-2 font-mono font-semibold text-navy-700">ΣΕΤΕ</td><td class="p-2">Σύνδεσμος Ελληνικών Τουριστικών Επιχειρήσεων</td></tr>
+              <tr><td class="p-2 font-mono font-semibold text-navy-700">OSM</td><td class="p-2">OpenStreetMap</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <hr class="editorial">
+
+    <!-- ===================== ΓΛΩΣΣΑΡΙ ===================== -->
+    <section class="mb-16">
+      <p class="section-marker">Μέρος Β</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Γλωσσάρι Όρων</h2>
+      <p class="text-ink-700 leading-relaxed mb-8">Συνοπτικοί ορισμοί των κρισιμότερων τεχνικών όρων του παραδοτέου. Πλήρης μεθοδολογική τεκμηρίωση παρέχεται στο Κεφάλαιο 2 (Μεθοδολογικό Πλαίσιο) και στο Παράρτημα Ζ (Στατιστική Μεθοδολογία).</p>
+    </section>
+
+    <!-- Α. Φέρουσα ικανότητα -->
+    <section id="g-carrying" class="mb-12 scroll-mt-20">
+      <h3 class="font-serif text-2xl text-navy-700 mb-4 pb-2 border-b-2 border-accent-500">Α · Φέρουσα Ικανότητα &amp; Τουριστική Πίεση</h3>
+      <dl class="space-y-5 text-ink-700">
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">TFI</span> · Tourist Function Index — Δείκτης Τουριστικής Λειτουργίας</dt>
+          <dd class="mt-1 leading-relaxed">Δείκτης κατά <strong>Pierre Defert (1967)</strong>. Ορίζεται ως ο λόγος (αριθμός κλινών × 100) προς τον μόνιμο πληθυσμό. Αποτελεί την πιο καθιερωμένη μέτρηση τουριστικής διαρθρωτικής έντασης σε σχέση με τον τοπικό πληθυσμό. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Κεφ. 2 § 2.4.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">TII</span> · Tourist Intensity Index — Δείκτης Τουριστικής Έντασης</dt>
+          <dd class="mt-1 leading-relaxed">Δείκτης κατά Defert (1967), συμπληρωμένος από <strong>Saveriades (2000)</strong>. Ορίζεται ως ο λόγος των ετήσιων διανυκτερεύσεων προς τον μόνιμο πληθυσμό. Παρέχει πιο ολοκληρωμένη μέτρηση πραγματικής τουριστικής επιβάρυνσης από τον TFI, καθώς ενσωματώνει τον δείκτη πληρότητας. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Κεφ. 2 § 2.4.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">POI θ̂</span> · Perceived Overtourism Index — Δείκτης Αντιληπτής Πίεσης Τουρισμού</dt>
+          <dd class="mt-1 leading-relaxed"><em>Latent trait estimate</em> που προκύπτει από εφαρμογή Item Response Theory σε δείκτες αντιληπτής τουριστικής πίεσης της πρωτογενούς έρευνας κατοίκων. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Παρ. Ζ § Ζ.4.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700">Defert κατώφλια</dt>
+          <dd class="mt-1 leading-relaxed">
+            Κανονιστικά διεθνή σημεία αναφοράς ερμηνείας του TFI/TII. Για TFI > 100 σηματοδοτείται υψηλή έως ακραία τουριστική εξειδίκευση. Για TII η μελέτη υιοθετεί τη Saveriades (2000) τυπολογία:
+            <ul class="mt-2 ml-5 space-y-1 list-disc text-sm">
+              <li>TII < 5 = χαμηλή τουριστική ένταση</li>
+              <li>TII 5-10 = μέτρια</li>
+              <li>TII 10-15 = υψηλή</li>
+              <li>TII > 15 = πολύ υψηλή / υπερκορεσμός</li>
+            </ul>
+            <p class="mt-2 text-sm"><strong>Ειδική περίπτωση Μυκόνου</strong>: TII Δήμου = 178,6 σε 11,9× υπέρβαση του κατωφλίου επείγουσας παρέμβασης.</p>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Β. Στάδια & στάσεις -->
+    <section id="g-talc" class="mb-12 scroll-mt-20">
+      <h3 class="font-serif text-2xl text-navy-700 mb-4 pb-2 border-b-2 border-accent-500">Β · Στάδια &amp; Στάσεις Τουριστικού Προορισμού</h3>
+      <dl class="space-y-5 text-ink-700">
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">TALC</span> · Tourism Area Life Cycle — Κύκλος Ζωής Τουριστικού Προορισμού</dt>
+          <dd class="mt-1 leading-relaxed">Σταδιοποίηση κατά <strong>Butler (1980)</strong> σε έξι διαδοχικά στάδια: <em>Εξερεύνηση, Εμπλοκή, Ανάπτυξη, Ενοποίηση, Στασιμότητα</em> και <em>Παρακμή ή Αναζωογόνηση</em>. Παρέχει αναλυτικό πλαίσιο σταδιοποιημένης πορείας προορισμών. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Κεφ. 2 § 2.7.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700">Doxey Irridex — Δείκτης Ερεθιστικότητας Doxey</dt>
+          <dd class="mt-1 leading-relaxed">Τυπολογία κοινωνικής αποδοχής τουρισμού κατά <strong>Doxey (1975)</strong>, σε τέσσερα στάδια: <em>Ευφορία, Απάθεια, Ενόχληση, Ανταγωνισμός</em>. Σύγχρονη εξέλιξη του μοντέλου σε ασιατικούς προορισμούς από Wu &amp; Chen (2018). <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Κεφ. 2 § 2.6.</span></dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Γ. Insider Critique -->
+    <section id="g-taxonomy" class="mb-12 scroll-mt-20">
+      <h3 class="font-serif text-2xl text-navy-700 mb-4 pb-2 border-b-2 border-accent-500">Γ · Πρωτότυπη Ταξονομία PE2 — Insider Critique</h3>
+      <dl class="space-y-5 text-ink-700">
+        <div class="p-4 bg-accent-50 border-l-4 border-accent-500 rounded-sm">
+          <dt class="font-semibold text-navy-700">Insider Critique 5-Zone × 3-Direction Taxonomy</dt>
+          <dd class="mt-1 leading-relaxed">Πρωτότυπη ταξονομία ταξινόμησης προορισμών σε <strong>15 cells</strong> (πέντε ζώνες τουριστικής έντασης × τρεις κατευθύνσεις insider critique), διατυπωμένη στο PE2 ως <em>POST-D13 ερευνητική συνεισφορά</em>. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: D11 Μεθοδολογικό κουτί 13.6.1.α (FINAL CLOSURE).</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="text-accent-700">STEWARD</span> direction</dt>
+          <dd class="mt-1 leading-relaxed">Κατεύθυνση insider critique όπου ο τουριστικά απασχολούμενος κάτοικος (insider) <strong>υποστηρίζει ρυθμιστική παρέμβαση</strong> παρά την προσωπική οικονομική εμπλοκή στον κλάδο. Αποτελεί αντιδιαισθητική στάση κοινωνικής υπευθυνότητας («προστάτη του προορισμού»). Στο δείγμα PE2, <strong>η Ναυπακτία αποτελεί τη μοναδική περίπτωση STEWARD direction</strong>, αναδεικνύοντας πρωτοτυπία ευρωπαϊκού επιπέδου.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700">CLASSIC direction</dt>
+          <dd class="mt-1 leading-relaxed">Κατεύθυνση όπου ο insider βλέπει <em>περισσότερη</em> πίεση από τον outsider, συμβατή με την κλασική προσδοκία αυξημένης ευαισθησίας λόγω καθημερινής έκθεσης στο τουριστικό φαινόμενο.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700">REVERSE direction</dt>
+          <dd class="mt-1 leading-relaxed">Κατεύθυνση όπου ο insider βλέπει <em>λιγότερη</em> πίεση από τον outsider, υποτιμώντας τη συνολική επίπτωση πιθανώς λόγω οικονομικής εξάρτησης από τον τουρισμό.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700">Threshold-Deactivated</dt>
+          <dd class="mt-1 leading-relaxed">Καθεστώς απενεργοποίησης της insider critique σε <em>deep under-touristic</em> περιβάλλον, όπου η συνολική τουριστική πίεση παραμένει τόσο χαμηλή ώστε δεν εμφανίζονται μετρήσιμες διαφορές οπτικής μεταξύ insiders και outsiders. Στο δείγμα PE2 αντιστοιχεί στην περίπτωση <strong>Τροιζηνίας-Μεθάνων-Γαλατά</strong>.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Δ. Στατιστικές μέθοδοι -->
+    <section id="g-methods" class="mb-12 scroll-mt-20">
+      <h3 class="font-serif text-2xl text-navy-700 mb-4 pb-2 border-b-2 border-accent-500">Δ · Στατιστικές Μέθοδοι Πρωτογενούς Έρευνας</h3>
+      <dl class="space-y-5 text-ink-700">
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">IPA</span> · Importance-Performance Analysis</dt>
+          <dd class="mt-1 leading-relaxed">Διαγνωστικό εργαλείο κατά <strong>Martilla &amp; James (1977)</strong>, που τοποθετεί διαστάσεις ικανοποίησης σε διδιάστατο πλαίσιο σπουδαιότητας × επίδοσης. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Κεφ. 2 § 2.10 και Παρ. Ζ § Ζ.3.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">LCA</span> · Latent Class Analysis</dt>
+          <dd class="mt-1 leading-relaxed">Μη-εποπτευόμενη μέθοδος ταξινόμησης σε K λανθάνουσες κλάσεις βάσει πολλαπλών παρατηρούμενων μεταβλητών. Στο PE2 χρησιμοποιείται για εμπειρική επικύρωση της Doxey τυπολογίας σε 12 δηλώσεις στάσης κατοίκων. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Παρ. Ζ § Ζ.6.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">IRT-GRM</span> · Item Response Theory — Graded Response Model</dt>
+          <dd class="mt-1 leading-relaxed">Παραμετρικό μοντέλο μέτρησης λανθάνοντος γνωρίσματος από διατεταγμένες κατηγορικές μεταβλητές, διατυπωμένο από τον <strong>Samejima (1969)</strong>. Στο PE2 παράγει τις εκτιμήσεις POI θ̂. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Παρ. Ζ § Ζ.4.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">DEFF</span> · Design Effect</dt>
+          <dd class="mt-1 leading-relaxed">Πολλαπλασιαστής της θεωρητικής διακύμανσης simple random sample λόγω σταθμίσεων ή/και cluster sampling. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Παρ. Ζ § Ζ.1.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">n_eff</span> · Effective Sample Size</dt>
+          <dd class="mt-1 leading-relaxed">Ισοδύναμο μέγεθος δείγματος μετά την ενσωμάτωση του DEFF. Ορίζεται ως <code class="bg-navy-50 px-1.5 py-0.5 rounded text-sm">n / DEFF</code>. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Παρ. Ζ § Ζ.1.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">CATI</span> &amp; <span class="font-mono">CAWI</span></dt>
+          <dd class="mt-1 leading-relaxed">Computer-Assisted Telephone / Web Interviewing. Τυπικές μέθοδοι ποσοτικής συλλογής δεδομένων σε έρευνες κοινής γνώμης. Στο PE2 εφαρμόζονται και οι δύο, με μετα-στρωμάτωση κατά Καλλικρατικό Δήμο, Φύλο και Ηλικία. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Παρ. Γ.</span></dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">IPW</span> &amp; <span class="font-mono">CEM</span></dt>
+          <dd class="mt-1 leading-relaxed">Inverse Probability Weighting &amp; Coarsened Exact Matching. Μέθοδοι αιτιακής ταυτοποίησης που εξισορροπούν ομάδες σύγκρισης κατά παρατηρούμενα χαρακτηριστικά για εκτίμηση μέσου αιτιακού αποτελέσματος. <span class="text-ink-500 text-sm">Πλήρης τεκμηρίωση: Παρ. Ζ § Ζ.8.</span></dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Ε. Γεωγραφικές μονάδες -->
+    <section id="g-geo" class="mb-12 scroll-mt-20">
+      <h3 class="font-serif text-2xl text-navy-700 mb-4 pb-2 border-b-2 border-accent-500">Ε · Γεωγραφικές &amp; Διοικητικές Μονάδες</h3>
+      <dl class="space-y-5 text-ink-700">
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">NUTS3</span> — Nomenclature of Territorial Units for Statistics, Επίπεδο 3</dt>
+          <dd class="mt-1 leading-relaxed">Eurostat γεωγραφικό επίπεδο που στην Ελλάδα αντιστοιχεί σε <strong>Νομούς ή Περιφερειακές Ενότητες</strong> (Καλλικρατική διαίρεση). Επίπεδο αναφοράς για τα περισσότερα στοιχεία τουριστικής ζήτησης και προσφοράς της παρούσας μελέτης.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">LAU</span> — Local Administrative Unit</dt>
+          <dd class="mt-1 leading-relaxed">Επίπεδο τοπικής διοικητικής μονάδας Eurostat που στην Ελλάδα αντιστοιχεί σε <strong>Καλλικρατικό Δήμο</strong>. Χρησιμοποιείται όπου διατίθενται στοιχεία ΕΛΣΤΑΤ STO12 πινάκων T10/T12/T15.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">SBR01</span> — Statistical Business Register</dt>
+          <dd class="mt-1 leading-relaxed">Στατιστικό Μητρώο Επιχειρήσεων ΕΛΣΤΑΤ. Χρησιμοποιείται για ανάλυση επιχειρηματικής δομής τουριστικού κλάδου σε επίπεδο NUTS3 × NACE.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">STO12</span> — Tourism Statistics (ΕΛΣΤΑΤ)</dt>
+          <dd class="mt-1 leading-relaxed">Σειρά στατιστικών δελτίων ΕΛΣΤΑΤ που καλύπτει τη δραστηριότητα ξενοδοχειακών καταλυμάτων, αφίξεις, διανυκτερεύσεις και πληρότητα.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- ΣΤ. Πιστοποιημένα καθεστώτα -->
+    <section id="g-cert" class="mb-12 scroll-mt-20">
+      <h3 class="font-serif text-2xl text-navy-700 mb-4 pb-2 border-b-2 border-accent-500">ΣΤ · Πιστοποιημένα Καθεστώτα</h3>
+      <dl class="space-y-5 text-ink-700">
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">MaB</span> — UNESCO Man and Biosphere Programme</dt>
+          <dd class="mt-1 leading-relaxed">Διεθνές πρόγραμμα Αποθεμάτων Βιόσφαιρας UNESCO. Στο δείγμα PE2 αναφέρεται στο <strong>Απόθεμα Σαμοθράκης</strong>.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">WHS</span> — UNESCO World Heritage Site</dt>
+          <dd class="mt-1 leading-relaxed">Καθεστώς Μνημείων Παγκόσμιας Πολιτιστικής Κληρονομιάς UNESCO. Στο δείγμα PE2 αναφέρεται στο <strong>Παλαιοχριστιανικό &amp; Βυζαντινό Μνημειακό Σύνολο της Παλιάς Πόλης Κέρκυρας</strong>.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Ζ. Αγορά & δείκτες -->
+    <section id="g-market" class="mb-12 scroll-mt-20">
+      <h3 class="font-serif text-2xl text-navy-700 mb-4 pb-2 border-b-2 border-accent-500">Ζ · Τουριστική Αγορά &amp; Δείκτες Επίδοσης</h3>
+      <dl class="space-y-5 text-ink-700">
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">STR</span> · Short-Term Rental</dt>
+          <dd class="mt-1 leading-relaxed">Βραχυχρόνια μίσθωση τύπου <em>Airbnb</em>. Παράμετρος ιδιαίτερης σημασίας για την κατανόηση της τουριστικής αγοράς διαμονής στους δέκα προορισμούς, με σαφή συσχέτιση με τη φέρουσα ικανότητα και τη στεγαστική κρίση.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">GVA</span> · Gross Value Added — Ακαθάριστη Προστιθέμενη Αξία</dt>
+          <dd class="mt-1 leading-relaxed">Συνεισφορά συγκεκριμένου τομέα στο ακαθάριστο εθνικό ή περιφερειακό προϊόν. Χρησιμοποιείται για τη μέτρηση της οικονομικής επίδρασης του τουρισμού.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">ALoS</span> · Average Length of Stay — Μέση Διάρκεια Παραμονής</dt>
+          <dd class="mt-1 leading-relaxed">Μέσος αριθμός διανυκτερεύσεων ανά άφιξη. Διαγνωστικός δείκτης ποιοτικού χαρακτηριστικού τουριστικής αγοράς.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">ADR</span> · Average Daily Rate — Μέση Ημερήσια Τιμή</dt>
+          <dd class="mt-1 leading-relaxed">Μέση χρέωση ανά διαθέσιμο δωμάτιο. Δείκτης ποιοτικού επιπέδου ξενοδοχειακής αγοράς.</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">DMMO</span> · Destination Management &amp; Marketing Organization</dt>
+          <dd class="mt-1 leading-relaxed">Φορέας Διαχείρισης και Προβολής Τουριστικού Προορισμού. Παρέχει συντονισμένη στρατηγική διαχείριση και προβολής του προορισμού σε διεθνές επίπεδο.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Η. Κωδικοί μεταβλητών -->
+    <section id="g-codes" class="mb-12 scroll-mt-20">
+      <h3 class="font-serif text-2xl text-navy-700 mb-4 pb-2 border-b-2 border-accent-500">Η · Πρωτογενούς Έρευνας — Κωδικοί Μεταβλητών</h3>
+      <p class="text-ink-700 mb-4 leading-relaxed">Οι παρακάτω κωδικοί παρουσιάζονται για cross-reference με τους πίνακες της πρωτογενούς έρευνας στο Παράρτημα Ε.</p>
+      <dl class="space-y-5 text-ink-700">
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">Q1_11</span></dt>
+          <dd class="mt-1 leading-relaxed">Δήλωση Likert για την ανάγκη μέτρων περιορισμού τουρισμού στον προορισμό (<em>resident attitude variable</em>, χρησιμοποιείται στην LCA τυπολογία και στην Insider Critique ταξονομία).</dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-navy-700"><span class="font-mono">Q15_any</span></dt>
+          <dd class="mt-1 leading-relaxed">Δηλωτικό Bernoulli για τουριστική απασχόληση του ερωτώμενου (<em>insider/outsider δείκτης</em> για την Insider Critique ταξονομία).</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Cross-references -->
+    <section class="mb-12 p-6 bg-navy-50 border-l-4 border-accent-500">
+      <p class="section-marker text-accent-500">Πλήρης τεκμηρίωση</p>
+      <h3 class="font-serif text-xl text-navy-700 mt-2 mb-4">Στο παραδοτέο docx</h3>
+      <ul class="space-y-2 text-ink-700">
+        <li>📘 <strong>00_ACRONYMS_v_final.md</strong> — Συγκεντρωτικός κατάλογος ακρωνύμων</li>
+        <li>📗 <strong>00_GLOSSARY_v_final.md</strong> — Πλήρες γλωσσάρι όρων</li>
+        <li>📕 <strong>Παράρτημα Δ</strong> — Πλήρης ακαδημαϊκή βιβλιογραφία αναφερόμενων μεθόδων</li>
+        <li>📒 <strong>Παράρτημα Α § Α.10</strong> — Ευρετήρια όρων</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy-900 text-white py-12 mt-0">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <p class="section-marker text-accent-300">Δείτε επίσης</p>
+        <ul class="space-y-1.5 mt-2">
+          <li><a href="methodology.html" class="hover:text-accent-300">Μεθοδολογικό πλαίσιο →</a></li>
+          <li><a href="data_sources.html" class="hover:text-accent-300">Πηγές δεδομένων →</a></li>
+          <li><a href="comparative.html" class="hover:text-accent-300">Συγκριτική ανάλυση 10 προορισμών →</a></li>
+          <li><a href="index.html" class="hover:text-accent-300">Όλοι οι 10 προορισμοί →</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Παραδοτέο</p>
+        <p class="font-serif text-lg mt-1">Λευκή Βίβλος ΠΕ2</p>
+        <p class="text-xs text-white/60 mt-2">Χρηματοδότηση μέσω Ταμείου Ανάκαμψης &amp; Ανθεκτικότητας / NextGenerationEU</p>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Έκδοση</p>
+        <p class="text-sm mt-1">v1.0 · 2026-05-15</p>
+        <p class="text-xs text-white/60 mt-2">Πιλοτικό τεύχος για ανατροφοδότηση συνεργατών.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
