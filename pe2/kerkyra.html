@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=5">
+ <link rel="stylesheet" href="assets/css/custom.css?v=6">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -234,6 +234,28 @@
  <hr class="editorial">
 
  <!-- ============== 02 DEMAND & SUPPLY ============== -->
+
+    <!-- Χωρική Ανάλυση -->
+    <section id="spatial" class="py-12">
+      <p class="section-marker">Χωρική Ανάλυση</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-2">Χωρική απεικόνιση</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-8">Πού βρίσκεται ο προορισμός στον εθνικό χάρτη πίεσης-ικανοποίησης, και πώς κατανέμεται η σχέση κατοίκου-τουρισμού εντός του.</p>
+      <div class="grid lg:grid-cols-2 gap-6">
+
+        <div class="chart-card bg-navy-50 border-l-4 border-navy-300">
+          <p class="chart-title">Χωρική ανάλυση εντός προορισμού</p>
+          <h3 class="chart-headline">Ο προορισμός αποτελείται από έναν Καλλικρατικό Δήμο</h3>
+          <p class="text-sm text-ink-700 mt-2">Χωρίς πολλαπλούς Δήμους, η F4-στρωματοποιημένη ικανοποίηση από την πρωτογενή έρευνα δεν παρέχει χωρική διαφοροποίηση σε επίπεδο LAU. Για συγκριτική χωρική θέση, βλ. <a href="comparative.html#spatial" class="text-accent-500 hover:underline">χωρική ανάλυση 10 προορισμών</a>.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Συγκριτικό · Αντικειμενική × Υποκειμενική πίεση</p>
+          <h3 class="chart-headline">Θέση στον bivariate χάρτη TFI × Ικανοποίηση κατοίκων</h3>
+          <img src="assets/maps/bivariate_tfi_q9sat.png" alt="Bivariate map TFI × Q9 satisfaction" style="width:100%; height:auto; border:1px solid var(--rule);">
+          <p class="chart-source">Συνδυασμός αντικειμενικού δείκτη φέρουσας ικανότητας (TFI Defert 2024) και υποκειμενικής ικανοποίησης κατοίκων (Q9_SAT) σε ένα δι-διαστάσιμο choropleth. Τέσσερις διακριτές καταστάσεις προορισμού.</p>
+        </div>
+      </div>
+    </section>
  <section id="demand" class="py-12">
  <p class="section-marker">Ενότητα 02</p>
  <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Ζήτηση &amp; Προσφορά</h2>
@@ -640,9 +662,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=5"></script>
- <script src="assets/js/charts.js?v=5"></script>
- <script src="assets/data/kerkyra-data.js?v=5"></script>
- <script src="assets/js/kerkyra-render.js?v=5"></script>
+ <script src="assets/js/app.js?v=6"></script>
+ <script src="assets/js/charts.js?v=6"></script>
+ <script src="assets/data/kerkyra-data.js?v=6"></script>
+ <script src="assets/js/kerkyra-render.js?v=6"></script>
 </body>
 </html>
