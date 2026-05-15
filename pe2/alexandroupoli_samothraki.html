@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=10">
+ <link rel="stylesheet" href="assets/css/custom.css?v=11">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -358,12 +358,77 @@
  </div>
  </div>
 
- <!-- Gap analysis infographic — βασικό Σχ. 11.10β format -->
+ <!-- Gap Analysis · native HTML expanded version -->
  <div class="chart-card mt-8">
- <p class="chart-title">Σχήμα 11.10β · Gap Analysis: τέσσερα κρίσιμα κενά Ζήτησης / Προσφοράς, ΠΕ Έβρου</p>
- <h3 class="chart-headline">Σύνθεση τεσσάρων διαστάσεων αναγνώρισης κενών</h3>
- <img src="assets/charts/alexandroupoli_samothraki/fig_11_10b_gap_analysis_v2.png" alt="Gap Analysis infographic τεσσάρων κρίσιμων κενών για την Αλεξανδρούπολη-Σαμοθράκη" class="w-full mt-4 rounded">
- <p class="chart-source">Σύνθεση δεικτών ΕΛΣΤΑΤ STO12, πρωτογενούς έρευνας κατοίκων, και POI overlay (OpenStreetMap 2025). Ίδια επεξεργασία. Τα τέσσερα κρίσιμα κενά αφορούν: (α) ξενοδοχειακή προσφορά φθίνουσα εν μέσω αυξανόμενης ζήτησης, (β) ακτοπλοϊκή αξιοπιστία Σαμοθράκης, (γ) στάθμευση αστικού πυρήνα Αλεξανδρούπολης, (δ) υδρολογική-Natura ευαλωτότητα Σαμοθράκης.</p>
+  <p class="chart-title">Σχήμα 11.10β · Gap Analysis Ζήτησης / Προσφοράς, ΠΕ Έβρου</p>
+  <h3 class="chart-headline">Τέσσερα κρίσιμα κενά τουριστικού μοντέλου</h3>
+  <p class="text-sm text-ink-700 mt-3 mb-6 leading-relaxed">Σύνθεση ποσοτικής έρευνας κατοίκων (n=300), ποιοτικής έρευνας στελεχών (n=5) και δευτερογενών δεδομένων. Κάθε κενό αξιολογείται από τη συνδυαστική σοβαρότητα (έκταση + αντίκτυπος) και αντιστοιχεί σε μία στρατηγική Πρόταση του master plan.</p>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-4">
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">1</span>
+      <span class="ml-2 section-marker text-accent-700">Ορατότητα · Διεθνές προφίλ</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Ισχυρή ανάκαμψη — αλλά γεωγραφικά συγκεντρωμένη</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">RR = 1,649</p>
+    <p class="text-xs text-ink-500 mb-3"><em>ανάκαμψη αλλοδαπών 2024/2019 — η υψηλότερη της δεκάδας</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Η Αλεξανδρούπολη-Σαμοθράκη παρουσιάζει την υψηλότερη ανάκαμψη αλλοδαπών αφίξεων 2024/2019 (+64,9% πάνω από τα προ-πανδημικά επίπεδα). Αλλά αυτή η ανάκαμψη είναι συγκεντρωμένη γεωγραφικά: <strong>Τουρκία, Βουλγαρία, Ρουμανία</strong> — γείτονες με σύντομη πτήση/οδικά. Η Δυτική Ευρώπη, Ηνωμένο Βασίλειο, ΗΠΑ παραμένουν περιορισμένα διεθνή κοινά. Η Σαμοθράκη διαθέτει 451 POIs αλλά είναι αόρατη σε αυτές τις αγορές παρά το ότι είναι UNESCO MaB Reserve από 2014.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> διεθνοποίηση brand σε Δυτική Ευρώπη + UK/USA + UNESCO MaB activation Σαμοθράκης + Δέλτα Έβρου Ramsar promotion.</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">2</span>
+      <span class="ml-2 section-marker text-accent-700">Παραμονή · Transit → destination</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Από διέλευση σε προορισμό</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">2,21</p>
+    <p class="text-xs text-ink-500 mb-3"><em>διανυκτερεύσεις ανά άφιξη — 3η χαμηλότερη</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">2,21 νύχτες ανά άφιξη: η Αλεξανδρούπολη λειτουργεί ως weekend city-break + επαγγελματικός τουρισμός κόμβος (συνέδρια, εμπορικές εκθέσεις), αλλά χωρίς experiential επέκταση παραμονής σε πενθήμερο πακέτο. Δεν υπάρχει ολοκληρωμένο product για 3-4 νύχτες: Δέλτα Έβρου (Ramsar/Natura) + Σαμοθράκη (UNESCO MaB) + Φέρες-Αλεξανδρούπολη + παράκτιο/εμπορικό + Θρακικά μνημεία. Η σύνδεση φέρρι Αλεξανδρούπολη-Σαμοθράκη λειτουργεί αλλά είναι εποχικά περιορισμένη.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> «ΑΜΘ-Θράκη Experience» 4-5 ημερών package + ψηφιακή διασύνδεση + ferry connectivity ολόχρονη.</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">3</span>
+      <span class="ml-2 section-marker text-accent-700">Δικτύωση · Σαμοθράκη pre-institutional</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Έλλειψη θεσμικού πλαισίου διαχείρισης</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">—</p>
+    <p class="text-xs text-ink-500 mb-3"><em>απουσία τοπικού DMO · μη υδροδιαμετρητέου · έλλειψη οδικού δικτύου</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Η Σαμοθράκη βρίσκεται σε <strong>προ-θεσμική φάση</strong> τουριστικής διαχείρισης. Δεν υπάρχει τοπικό DMO (Destination Management Organization), το οδικό δίκτυο είναι αλόγιστο (πολλοί χωμάτινοι δρόμοι σε ευαίσθητες ζώνες Natura), δεν υπάρχει υδροδιαμετρητής σε κρίσιμες θέσεις, και απουσιάζει συστηματικό monitoring/visitor management. <em>«Η εξύψη καταλαμβάνεται όταν οι ανθρώποι αναλάβουν οργανωμένες εμπειρίες»</em> — από συνέντευξη τοπικού στελέχους. Σήμερα ο επισκέπτης οδηγεί όπου θέλει, παρκάρει όπου βρει, και κάνει trekking χωρίς σήμανση.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> «Σαμοθράκη Master Plan» μέσω UNESCO MaB framework + θεσμοθέτηση τοπικού DMO + visitor management + carrying capacity Φωνά Πύργου.</p>
+   </div>
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">4</span>
+      <span class="ml-2 section-marker text-navy-700">Περιβαλλοντικό · Carrying capacity Σαμοθράκης</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Ευαίσθητο οικοσύστημα σε αιχμή Ιουλ-Αυγ</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">Ιουλ-Αυγ</p>
+    <p class="text-xs text-ink-500 mb-3"><em>συγκέντρωση επισκεπτών σε ευαίσθητο φυσικό περιβάλλον — single-point-of-failure</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Η Σαμοθράκη φιλοξενεί <strong>Natura 2000, βάθρος UNESCO MaB Reserve, οικοσύστημα Φονιά (Vaccinium-Quercus mixed)</strong> — όλα μοναδικά και ευαίσθητα. Η μεγάλη ζήτηση συγκεντρώνεται σε Ιουλ-Αυγ, που ταυτίζεται με τη φυσική ευαλωτότητα: ξηρή περίοδος, φωτιές, ταυτόχρονη ζήτηση σε νερά. <em>Single-point-of-failure</em>: μία ανεξέλεγκτη πυρκαγιά την περίοδο αιχμής μπορεί να καταστρέψει το βασικό προϊόν για 10-15 χρόνια. Η κλιματική αλλαγή επιδεινώνει αυτό το ρίσκο.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> climate adaptation strategy + Natura monitoring + visitor caps σε high-risk περιοχές + έγκαιρη συντήρηση δασικών δρόμων.</p>
+   </div>
+
+  </div>
+
+  <p class="chart-source mt-6">Πηγές: Πρωτογενής ποσοτική έρευνα κατοίκων Δήμων Αλεξανδρούπολης + Σαμοθράκης (n=300)· ΕΛΣΤΑΤ STO12· INSETE. Η ΠΕ Έβρου παρουσιάζει διπολική γεωγραφία: αστική 12μηνος Αλεξανδρούπολη + 2μηνη φυσιολατρική Σαμοθράκη. Διπλή στρατηγική αναγκαία.</p>
  </div>
  </section>
 
@@ -648,9 +713,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=10"></script>
- <script src="assets/js/charts.js?v=10"></script>
- <script src="assets/data/alexandroupoli_samothraki-data.js?v=10"></script>
- <script src="assets/js/alexandroupoli_samothraki-render.js?v=10"></script>
+ <script src="assets/js/app.js?v=11"></script>
+ <script src="assets/js/charts.js?v=11"></script>
+ <script src="assets/data/alexandroupoli_samothraki-data.js?v=11"></script>
+ <script src="assets/js/alexandroupoli_samothraki-render.js?v=11"></script>
 </body>
 </html>
