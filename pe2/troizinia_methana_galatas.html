@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=6">
+ <link rel="stylesheet" href="assets/css/custom.css?v=7">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -239,10 +239,11 @@
       <p class="text-lg text-ink-700 max-w-3xl mb-8">Πού βρίσκεται ο προορισμός στον εθνικό χάρτη πίεσης-ικανοποίησης, και πώς κατανέμεται η σχέση κατοίκου-τουρισμού εντός του.</p>
       <div class="grid lg:grid-cols-2 gap-6">
 
-        <div class="chart-card bg-navy-50 border-l-4 border-navy-300">
-          <p class="chart-title">Χωρική ανάλυση εντός προορισμού</p>
-          <h3 class="chart-headline">Ο προορισμός αποτελείται από έναν Καλλικρατικό Δήμο</h3>
-          <p class="text-sm text-ink-700 mt-2">Χωρίς πολλαπλούς Δήμους, η F4-στρωματοποιημένη ικανοποίηση από την πρωτογενή έρευνα δεν παρέχει χωρική διαφοροποίηση σε επίπεδο LAU. Για συγκριτική χωρική θέση, βλ. <a href="comparative.html#spatial" class="text-accent-500 hover:underline">χωρική ανάλυση 10 προορισμών</a>.</p>
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα · Χωρική ανάλυση εντός προορισμού</p>
+          <h3 class="chart-headline">Δήμος Τροιζηνίας-Μεθάνων — POI χωρική πυκνότητα</h3>
+          <img src="assets/maps/within_troizinia_methana_galatas.png" alt="Χωρική πυκνότητα POIs" style="width:100%; height:auto; border:1px solid var(--rule);">
+          <p class="chart-source">Χωρική πυκνότητα <span class="glossary" title="Σημεία τουριστικού ενδιαφέροντος (καταλύματα, εστίαση, αξιοθέατα, παραλίες, μουσεία, αναψυχή) από OpenStreetMap.">σημείων τουριστικού ενδιαφέροντος</span> (POIs OpenStreetMap) σε hex-grid εντός των ορίων του Δήμου. Πορτοκαλί ένταση δηλώνει υψηλότερη χωρική συγκέντρωση τουριστικής υποδομής.</p>
         </div>
 
         <div class="chart-card">
@@ -647,9 +648,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=6"></script>
- <script src="assets/js/charts.js?v=6"></script>
- <script src="assets/data/troizinia_methana_galatas-data.js?v=6"></script>
- <script src="assets/js/troizinia_methana_galatas-render.js?v=6"></script>
+ <script src="assets/js/app.js?v=7"></script>
+ <script src="assets/js/charts.js?v=7"></script>
+ <script src="assets/data/troizinia_methana_galatas-data.js?v=7"></script>
+ <script src="assets/js/troizinia_methana_galatas-render.js?v=7"></script>
 </body>
 </html>
