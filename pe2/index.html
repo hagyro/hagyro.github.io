@@ -14,7 +14,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-  <link rel="stylesheet" href="assets/css/custom.css?v=3">
+  <link rel="stylesheet" href="assets/css/custom.css?v=4">
 
   <script>
     tailwind.config = { theme: { extend: {
@@ -73,7 +73,7 @@
       <p class="section-marker text-accent-300">Δέκα προορισμοί · Μία αναλυτική ματιά</p>
       <h2 class="font-serif text-5xl md:text-6xl leading-tight mt-4">Από τη μαζική συγκέντρωση<br><em class="text-accent-300">στη βιώσιμη χωρική διάχυση.</em></h2>
       <p class="mt-8 text-lg leading-relaxed text-navy-50/90 max-w-2xl">
-        Πέντε ώριμοι προορισμοί στην ζώνη υπέρβασης φέρουσας ικανότητας. Πέντε προορισμοί με αναξιοποίητο δυναμικό. Δέκα διαφορετικές αναλυτικές αφηγήσεις, πάνω σε κοινή μεθοδολογική βάση πρωτογενούς έρευνας κατοίκων (n≈3.000), δευτερογενών στατιστικών (ΕΛΣΤΑΤ, Eurostat, Τράπεζα της Ελλάδος, INSETE) και χωρικής ανάλυσης (OpenStreetMap POIs, NUTS3 / LAU disaggregation).
+        Πέντε ώριμοι προορισμοί στην ζώνη υπέρβασης <span class="glossary">φέρουσας ικανότητας<span class="glossary-tip"><strong>Φέρουσα ικανότητα:</strong> μέγιστη τουριστική φιλοξενία χωρίς αλλοίωση τοπικών πόρων ή κοινωνικής συνοχής.</span></span>. Πέντε προορισμοί με αναξιοποίητο δυναμικό. Δέκα διαφορετικές αναλυτικές αφηγήσεις, πάνω σε κοινή μεθοδολογική βάση πρωτογενούς έρευνας κατοίκων (n≈3.000), δευτερογενών στατιστικών (ΕΛΣΤΑΤ, Eurostat, Τράπεζα της Ελλάδος, INSETE) και χωρικής ανάλυσης (OpenStreetMap POIs, NUTS3 / LAU disaggregation).
       </p>
       <div class="mt-10 flex flex-wrap gap-3 text-sm">
         <span class="px-3 py-1.5 bg-white/10 border border-white/20 rounded-sm backdrop-blur-sm">10 προορισμοί</span>
@@ -123,7 +123,7 @@
           <div class="text-sm space-y-1 numeric text-ink-700">
             <p>2,67 εκ. αφίξεις (2024)</p>
             <p>POI θ +0,70 · υψηλότερο της δεκάδας</p>
-            <p>LCA Αντιπαλότητα 30,0% · μοναδική κυρίαρχη</p>
+            <p>LCA «Δυσφορούντες» (<em>Αντιπαλότητα</em>) 30,0% · μοναδική κυρίαρχη</p>
           </div>
           <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-accent-500 group-hover:scale-150 transition-transform"></span>
         </a>
@@ -137,7 +137,7 @@
           <div class="text-sm space-y-1 numeric text-ink-700">
             <p>TII 178,6 (Δήμος) · ακραίο</p>
             <p>1,58 κλίνες/κάτοικο · υψηλότερο</p>
-            <p>Ανάκαμψη 0,878 · Butler stasis</p>
+            <p>Ανάκαμψη 0,878 · <span class="glossary">Butler<span class="glossary-tip"><strong>Butler TALC:</strong> κύκλος ζωής τουριστικού προορισμού σε 6 στάδια (Butler 1980): Εξερεύνηση → Εμπλοκή → Ανάπτυξη → Ενοποίηση → Στασιμότητα → Παρακμή/Αναζωογόνηση.</span></span> stasis</p>
           </div>
           <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-accent-500 group-hover:scale-150 transition-transform"></span>
         </a>
@@ -150,7 +150,7 @@
           <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 7 · Λευκή Βίβλος</p>
           <div class="text-sm space-y-1 numeric text-ink-700">
             <p>441 χιλ. αφίξεις (2024)</p>
-            <p>LCA Καθαρή Ευφορία 42,4% · υψηλή</p>
+            <p>LCA «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) 42,4% · υψηλή</p>
             <p>Επίδαυρος + Μυκήνες · UNESCO</p>
           </div>
           <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-accent-500 group-hover:scale-150 transition-transform"></span>
@@ -164,7 +164,7 @@
           <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 8 · Λευκή Βίβλος</p>
           <div class="text-sm space-y-1 numeric text-ink-700">
             <p>331 χιλ. αφίξεις (2024)</p>
-            <p>Insider Critique STRONGLY REVERSE +9,60pp</p>
+            <p>Insider Critique STRONGLY REVERSE +9,60 ποσοστιαίες μονάδες</p>
             <p>Natura 2000 · 3.941 km²</p>
           </div>
           <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-accent-500 group-hover:scale-150 transition-transform"></span>
@@ -178,7 +178,7 @@
           <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 9 · Λευκή Βίβλος</p>
           <div class="text-sm space-y-1 numeric text-ink-700">
             <p>CAGR αλλοδαπών +10,85% · υψηλότερο</p>
-            <p>LCA Ενεργή Ευφορία 42,3% · υψηλότερη</p>
+            <p>LCA «Ενεργοί Υποστηρικτές» (<em>Ενεργή Ευφορία</em>) 42,3% · υψηλότερη</p>
             <p>Ζαγόρι UNESCO Geopark (2023)</p>
           </div>
           <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-navy-700 group-hover:scale-150 transition-transform"></span>
@@ -206,7 +206,7 @@
           <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 11 · Λευκή Βίβλος</p>
           <div class="text-sm space-y-1 numeric text-ink-700">
             <p>Ανάκαμψη 1,649 · υψηλότερη</p>
-            <p>LCA Συγκρ. Ενόχληση 28,8% · μοναδική</p>
+            <p>LCA «Αμφίθυμοι» (<em>Συγκρ. Ενόχληση</em>) 28,8% · μοναδική</p>
             <p>Δέλτα Έβρου + Σαμοθράκη (2.596)</p>
           </div>
           <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-navy-700 group-hover:scale-150 transition-transform"></span>
@@ -219,7 +219,7 @@
           <p class="text-sm text-ink-500 mt-1">Αττική · ΠΕ Νήσων (EL307)</p>
           <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 12 · Λευκή Βίβλος</p>
           <div class="text-sm space-y-1 numeric text-ink-700">
-            <p>LCA Καθαρή Ευφορία 48,5% · υψηλότερη</p>
+            <p>LCA «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) 48,5% · υψηλότερη</p>
             <p>POI θ −0,68 · χαμηλότερο</p>
             <p>Πιο αναξιοποίητος προορισμός</p>
           </div>
@@ -234,7 +234,7 @@
           <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 13 · Λευκή Βίβλος</p>
           <div class="text-sm space-y-1 numeric text-ink-700">
             <p>Insider Critique STEWARD · μοναδικός</p>
-            <p>Q1_11 +15,1pp · πρωτότυπη συνεισφορά</p>
+            <p>δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» +15,1 ποσοστιαίες μονάδες · πρωτότυπη συνεισφορά</p>
             <p>13 Natura sites · ανάκαμψη 1,618</p>
           </div>
           <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-navy-700 group-hover:scale-150 transition-transform"></span>
@@ -298,6 +298,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=3"></script>
+  <script src="assets/js/app.js?v=4"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
-  <link rel="stylesheet" href="assets/css/custom.css?v=3">
+  <link rel="stylesheet" href="assets/css/custom.css?v=4">
 
   <script>
     tailwind.config = { theme: { extend: {
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <!-- HERO — Κέρκυρα: highest POI θ, dominant Antagonism, Butler stagnation -->
+  <!-- HERO — Κέρκυρα: highest POI θ, dominant Antagonism, <span class="glossary">Butler<span class="glossary-tip"><strong>Butler TALC:</strong> κύκλος ζωής τουριστικού προορισμού σε 6 στάδια (Butler 1980): Εξερεύνηση → Εμπλοκή → Ανάπτυξη → Ενοποίηση → Στασιμότητα → Παρακμή/Αναζωογόνηση.</span></span> stagnation -->
   <header class="relative h-[70vh] min-h-[520px] bg-navy-700 overflow-hidden flex items-end">
     <!-- Background photo: Παλιά Πόλη Κέρκυρας (UNESCO) -->
     <img src="assets/images/kerkyra_hero.jpg" alt="Παλιά Πόλη Κέρκυρας με Παλαιό Φρούριο, μνημείο UNESCO" class="absolute inset-0 w-full h-full object-cover">
@@ -83,7 +83,7 @@
           <span class="font-serif text-lg numeric">+0,70</span>
         </span>
         <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
-          <span class="block text-[11px] uppercase tracking-wider text-accent-300">LCA C1 Αντιπαλότητα · μοναδική κυρίαρχη</span>
+          <span class="block text-[11px] uppercase tracking-wider text-accent-300">LCA C1 «Δυσφορούντες» (<em>Αντιπαλότητα</em>) · μοναδική κυρίαρχη</span>
           <span class="font-serif text-lg numeric">30,0%</span>
         </span>
       </div>
@@ -111,14 +111,14 @@
     <!-- Executive Summary -->
     <section class="bg-navy-50 border-l-4 border-accent-500 px-8 py-7 mb-12 mt-4 rounded-r-sm">
       <p class="section-marker">Σύνοψη Διοίκησης</p>
-      <p class="text-xl leading-relaxed text-ink-700 mt-3 font-serif">Η Κέρκυρα είναι ο πιο πιεσμένος προορισμός της δεκάδας: 2,67 εκ. αφίξεις το 2024 (87,6% αλλοδαποί), μαζικός νησιωτικός κορεσμός σε ώριμο στάδιο. Είναι ο μοναδικός προορισμός όπου οι «Δυσφορούντες» κάτοικοι κυριαρχούν στην κοινωνική στάση (30,0%) και η αντιληπτή πίεση είναι η υψηλότερη του παραδοτέου (+0,70). Παρόλα αυτά, το προϊόν παραμένει εξαιρετικό — UNESCO World Heritage Site με την Παλιά Πόλη. Στρατηγική προτεραιότητα: συντονισμένη παρέμβαση σε τέσσερις άξονες (ρύθμιση βραχυχρόνιας μίσθωσης, διαφοροποίηση προϊόντος, εμπλοκή κατοίκων, αποεποχικοποίηση).</p>
+      <p class="text-xl leading-relaxed text-ink-700 mt-3 font-serif">Η Κέρκυρα είναι ο πιο πιεσμένος προορισμός της δεκάδας: 2,67 εκ. αφίξεις το 2024 (87,6% αλλοδαποί), μαζικός νησιωτικός κορεσμός σε ώριμο στάδιο. Είναι ο μοναδικός προορισμός όπου οι «Δυσφορούντες» κάτοικοι κυριαρχούν στην κοινωνική στάση (30,0%) και η <span class="glossary">αντιληπτή πίεση<span class="glossary-tip"><strong>POI θ̂:</strong> υποκειμενική αντίληψη κατοίκων για τουριστική πίεση, latent score από Item Response Theory.</span></span> είναι η υψηλότερη του παραδοτέου (+0,70). Παρόλα αυτά, το προϊόν παραμένει εξαιρετικό — UNESCO World Heritage Site με την Παλιά Πόλη. Στρατηγική προτεραιότητα: συντονισμένη παρέμβαση σε τέσσερις άξονες (ρύθμιση <span class="glossary">βραχυχρόνιας μίσθωσης<span class="glossary-tip"><strong>STR (Short-Term Rental):</strong> μισθώσεις τύπου Airbnb. Δείκτης πίεσης στη στεγαστική αγορά.</span></span>, διαφοροποίηση προϊόντος, εμπλοκή κατοίκων, αποεποχικοποίηση).</p>
     </section>
 
     <!-- ============== 01 OVERVIEW ============== -->
     <section id="overview" class="py-12">
       <p class="section-marker">Ενότητα 01</p>
       <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Επισκόπηση</h2>
-      <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαέξι δείκτες-κλειδιά που τοποθετούν την Κέρκυρα σε προχωρημένη φάση Butler TALC (Στάδιο 4-5): ώριμος προορισμός σε crisis zone — TII 26,33 (2η μετά Μύκονο), ακραία εποχικότητα (Gini 0,545 κορυφή των 10), μοναδική κυρίαρχη Αντιπαλότητα LCA (30,0%), POI θ̂ +0,68 (2η υψηλότερη).</p>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαέξι δείκτες-κλειδιά που τοποθετούν την Κέρκυρα σε προχωρημένη φάση Butler TALC (Στάδιο 4-5): ώριμος προορισμός σε crisis zone — TII 26,33 (2η μετά Μύκονο), ακραία εποχικότητα (Gini 0,545 κορυφή των 10), μοναδική κυρίαρχη «Δυσφορούντες» (<em>Αντιπαλότητα</em>) LCA (30,0%), POI θ̂ +0,68 (2η υψηλότερη).</p>
 
       <!-- 16 KPI cards -->
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -188,14 +188,14 @@
           <div class="kpi-delta down">2η θέση των 10</div>
         </div>
         <div class="kpi-card" data-reveal>
-          <div class="kpi-label"><span data-term="LCA">LCA</span> C1 Αντιπαλότητα</div>
+          <div class="kpi-label"><span data-term="LCA">LCA</span> C1 «Δυσφορούντες» (<em>Αντιπαλότητα</em>)</div>
           <div class="kpi-value"><span data-num="30.0" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
           <div class="kpi-delta down">υψηλότερη των 10</div>
         </div>
         <div class="kpi-card" data-reveal>
           <div class="kpi-label">Μερίδιο <span data-term="STR">STR</span> διανυκτ.</div>
           <div class="kpi-value"><span data-num="16.1" data-decimals="1">0</span><span class="kpi-unit">%</span></div>
-          <div class="kpi-delta up">+6,5pp σε 4 έτη</div>
+          <div class="kpi-delta up">+6,5 ποσοστιαίες μονάδες σε 4 έτη</div>
         </div>
         <div class="kpi-card" data-reveal>
           <div class="kpi-label">Natura 2000</div>
@@ -211,7 +211,7 @@
           <h3 class="display text-3xl text-navy-700 mt-2 mb-4">Ώριμος προορισμός σε Doxey Antagonism — επείγουσα δράση.</h3>
           <p class="text-ink-700 leading-relaxed mb-4">Η Κέρκυρα εμφανίζει χαρακτηριστικά ώριμου προορισμού σε προχωρημένη φάση Butler TALC: ισχυρότατη διεθνής ζήτηση (87,6% αλλοδαποί, 2,67 εκ. αφίξεις 2024 — κορυφή των 10), TII = 26,33 (+135% σε 14 χρόνια, 2η μετά τη Μύκονο), επιταχυνόμενη STR ανάπτυξη (16,1% μερίδιο διανυκτερεύσεων, 2.048 νομικές μονάδες έναντι 413 ξενοδοχείων — αναλογία 5:1), POI θ̂ = +0,68 (2η υψηλότερη υποκειμενική πίεση μετά τη Μύκονο).</p>
           <p class="text-ink-700 leading-relaxed mb-4">Διατηρούνται όμως ισχυρά πλεονεκτήματα: Παγκόσμια Κληρονομιά UNESCO (Παλιά Πόλη, 2007), 96% εξαιρετική ποιότητα υδάτων κολύμβησης, 16 Blue Flag ακτές, 9 Natura 2000 περιοχές (1.653,92 km²), 5.295 POIs στη συνολική ΠΕ (2.131 εντός Δ. Κεντρικής Κέρκυρας), αεροπορική και ακτοπλοϊκή προσβασιμότητα δωδεκάμηνη, υψηλή ALoS 5,36 νύχτες, κοσμοπολίτικη πολυπολιτισμική ταυτότητα.</p>
-          <p class="text-ink-700 leading-relaxed">Η στρατηγική θέση είναι ήδη <strong>«Doxey Antagonism» (Στάδιο 4)</strong>: 30,0% κατοίκων σε LCA Αντιπαλότητα — η υψηλότερη τιμή μεταξύ των δέκα προορισμών —, δραματική κρίση δημόσιων υποδομών στην αντίληψη κατοίκων (επάρκεια 6–18% σε τοπικό οδικό, στάθμευση, απορρίμματα, ύδρευση, υγεία), 86,1% αναγνωρίζει υπέρμετρη επιβάρυνση ενοίκων από STR. Προτεραιότητες: επείγουσα ρύθμιση STR, υποδομική παρέμβαση, αξιοποίηση UNESCO για αποεποχικοποίηση, σύσταση DMMO με συμμετοχική διακυβέρνηση 50/25/25.</p>
+          <p class="text-ink-700 leading-relaxed">Η στρατηγική θέση είναι ήδη <strong>«Doxey Antagonism» (Στάδιο 4)</strong>: 30,0% κατοίκων σε LCA «Δυσφορούντες» (<em>Αντιπαλότητα</em>) — η υψηλότερη τιμή μεταξύ των δέκα προορισμών —, δραματική κρίση δημόσιων υποδομών στην αντίληψη κατοίκων (επάρκεια 6–18% σε τοπικό οδικό, στάθμευση, απορρίμματα, ύδρευση, υγεία), 86,1% αναγνωρίζει υπέρμετρη επιβάρυνση ενοίκων από STR. Προτεραιότητες: επείγουσα ρύθμιση STR, υποδομική παρέμβαση, αξιοποίηση UNESCO για αποεποχικοποίηση, σύσταση DMMO με συμμετοχική διακυβέρνηση 50/25/25.</p>
         </div>
         <aside class="border-l-2 border-accent-500 pl-6">
           <p class="section-marker text-accent-500">Butler TALC</p>
@@ -377,7 +377,7 @@
           <p class="chart-title">Σχήμα 5.13β · Στρατηγικό τεταρτημόριο: Οικονομική εξάρτηση × Ικανοποίηση</p>
           <h3 class="chart-headline">«Κοινότητα εξαρτημένη από τουρισμό σε crisis zone» (61,6% × 3,54)</h3>
           <div id="chart_q_employment" style="height:480px"></div>
-          <p class="chart-source">Πρωτογενής έρευνα κατοίκων (n=300 Δ. Κεντρικής Κέρκυρας), σταθμισμένα ποσοστά εξάρτησης και μέση συνολική ικανοποίηση (Q9).</p>
+          <p class="chart-source">Πρωτογενής έρευνα κατοίκων (n=300 Δ. Κεντρικής Κέρκυρας), σταθμισμένα ποσοστά εξάρτησης και μέση συνολική ικανοποίηση (δήλωση γενικής ικανοποίησης).</p>
         </div>
 
         <div class="chart-card lg:col-span-2">
@@ -395,7 +395,7 @@
     <section id="society" class="py-12">
       <p class="section-marker">Ενότητα 05</p>
       <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Κοινωνία</h2>
-      <p class="text-lg text-ink-700 max-w-3xl mb-10">Φέρουσα ικανότητα, ποιότητα ζωής, στεγαστική κρίση από βραχυχρόνια μίσθωση, κοινωνική στάση κατοίκων μέσω Doxey Irridex και Latent Class Analysis. Η Κέρκυρα στη Crisis Zone — μοναδική μεταξύ ώριμων με αρνητικό LCA balance.</p>
+      <p class="text-lg text-ink-700 max-w-3xl mb-10">Φέρουσα ικανότητα, ποιότητα ζωής, στεγαστική κρίση από <span class="glossary">βραχυχρόνια μίσθωση<span class="glossary-tip"><strong>STR (Short-Term Rental):</strong> μισθώσεις τύπου Airbnb. Δείκτης πίεσης στη στεγαστική αγορά.</span></span>, κοινωνική στάση κατοίκων μέσω Doxey Irridex και Latent Class Analysis. Η Κέρκυρα στη Crisis Zone — μοναδική μεταξύ ώριμων με αρνητικό LCA balance.</p>
 
       <!-- Methodological box: Defert -->
       <div class="method-box" data-reveal>
@@ -405,7 +405,7 @@
 
       <div class="grid lg:grid-cols-2 gap-8">
         <div class="chart-card lg:col-span-2">
-          <p class="chart-title">Σχήμα 5.15 · Δείκτης Τουριστικής Έντασης (<span data-term="TII">TII</span>) Defert 2010–2024</p>
+          <p class="chart-title">Σχήμα 5.15 · <span class="glossary">Δείκτης <span class="glossary">Τουριστικής Έντασης<span class="glossary-tip"><strong>TII (Tourist Intensity Index):</strong> διανυκτερεύσεις / πληθυσμό. Saveriades 2000: >15 = υπερκορεσμός.</span></span><span class="glossary-tip"><strong>TII (Tourist Intensity Index):</strong> διανυκτερεύσεις / πληθυσμό. Defert 1967 + Saveriades 2000: >15 = ζώνη υπερκορεσμού.</span></span> (<span data-term="TII">TII</span>) Defert 2010–2024</p>
           <h3 class="chart-headline">Από 11,22 σε 26,33 — υπερδιπλασιασμός σε 14 έτη (+135%)</h3>
           <div id="chart_tii" style="height:420px"></div>
           <p class="chart-source">Διανυκτερεύσεις / κάτοικο × 100. Όριο πολύ υψηλής πίεσης (Defert) στη γραμμή TII = 15. Κέρκυρα τη ξεπέρασε ήδη το 2015.</p>
@@ -427,7 +427,7 @@
 
         <div class="chart-card lg:col-span-2">
           <p class="chart-title">Σχήμα 5.16 · Doxey Irridex Heatmap — 5 ώριμοι προορισμοί</p>
-          <h3 class="chart-headline">Κέρκυρα: ισχυρή αρνητική κλίση — μοναδική με κυρίαρχη Αντιπαλότητα</h3>
+          <h3 class="chart-headline">Κέρκυρα: ισχυρή αρνητική κλίση — μοναδική με κυρίαρχη «Δυσφορούντες» (<em>Αντιπαλότητα</em>)</h3>
           <div id="chart_doxey" style="height:380px"></div>
           <p class="chart-source">Πρωτογενής έρευνα Q1 (12 διαστάσεις Doxey) — μέσες τιμές κλίμακας 1–5. Πράσινο = θετικό, κόκκινο = αρνητικό.</p>
         </div>
@@ -436,15 +436,15 @@
       <!-- Methodological box: LCA -->
       <div class="method-box mt-8" data-reveal>
         <p class="method-box-title">Μεθοδολογικό κουτί 5.6.1.β — Γιατί χρησιμοποιούμε <span data-term="LCA">LCA</span></p>
-        <p class="method-box-content">Η Latent Class Analysis (Lazarsfeld &amp; Henry, 1968 · Hagenaars &amp; McCutcheon, 2002) ομαδοποιεί στατιστικά τους ερωτηθέντες σε εμπειρικά εμφανιζόμενες τυπολογίες, αποκαλύπτοντας υπόρρητους «τύπους κατοίκων» που δεν θα ξεχώριζαν από απλή περιγραφική στατιστική. Σε αντίθεση με a-priori cluster analysis, η LCA εκτιμά πιθανότητες ανάθεσης κάθε ατόμου σε κάθε class με βάση το συνολικό προφίλ απαντήσεων στις 12 διαστάσεις Q1 (Doxey items). Επιλέγουμε 5 classes με βάση BIC + ssaBIC + entropy (LMR-LRT p &lt; 0,01 για k=4 vs k=5· stable improvement σταματά μετά k=5). Τα 5 classes ταιριάζουν με τη Doxey τυπολογία: C1 Αντιπαλότητα ↔ Antagonism (stage 4), C4 Συγκρ. Ενόχληση ↔ Annoyance (stage 3), C3 Ήπια Απάθεια ↔ Apathy (stage 2), C2 Ενεργή Ευφορία ↔ Mild euphoria (stage 1), C5 Καθαρή Ευφορία ↔ Pure euphoria (stage 0).</p>
+        <p class="method-box-content">Η Latent Class Analysis (Lazarsfeld &amp; Henry, 1968 · Hagenaars &amp; McCutcheon, 2002) ομαδοποιεί στατιστικά τους ερωτηθέντες σε εμπειρικά εμφανιζόμενες τυπολογίες, αποκαλύπτοντας υπόρρητους «τύπους κατοίκων» που δεν θα ξεχώριζαν από απλή περιγραφική στατιστική. Σε αντίθεση με a-priori cluster analysis, η LCA εκτιμά πιθανότητες ανάθεσης κάθε ατόμου σε κάθε class με βάση το συνολικό προφίλ απαντήσεων στις 12 διαστάσεις Q1 (Doxey items). Επιλέγουμε 5 classes με βάση BIC + ssaBIC + entropy (LMR-LRT p &lt; 0,01 για k=4 vs k=5· stable improvement σταματά μετά k=5). Τα 5 classes ταιριάζουν με τη Doxey τυπολογία: C1 «Δυσφορούντες» (<em>Αντιπαλότητα</em>) ↔ Antagonism (stage 4), C4 «Αμφίθυμοι» (<em>Συγκρ. Ενόχληση</em>) ↔ Annoyance (stage 3), C3 «Αδιάφοροι» (<em>Ήπια Απάθεια</em>) ↔ Apathy (stage 2), C2 «Ενεργοί Υποστηρικτές» (<em>Ενεργή Ευφορία</em>) ↔ Mild euphoria (stage 1), C5 «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) ↔ Pure euphoria (stage 0).</p>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-8 mt-8">
         <div class="chart-card lg:col-span-2">
           <p class="chart-title">Σχήμα 5.17 · Latent Class Analysis — 10 προορισμοί</p>
-          <h3 class="chart-headline">Κέρκυρα: μοναδική κυρίαρχη Αντιπαλότητα 30,0% — αρνητικός πόλος 50,2%</h3>
+          <h3 class="chart-headline">Κέρκυρα: μοναδική κυρίαρχη «Δυσφορούντες» (<em>Αντιπαλότητα</em>) 30,0% — αρνητικός πόλος 50,2%</h3>
           <div id="chart_lca" style="height:520px"></div>
-          <p class="chart-source">Σταθμισμένο μερίδιο πληθυσμού ανά εμπειρική class (Κέρκυρα n=278 σταθμισμένα). Ταξινόμηση κατά Q9 ικανοποίηση (αύξουσα).</p>
+          <p class="chart-source">Σταθμισμένο μερίδιο πληθυσμού ανά εμπειρική class (Κέρκυρα n=278 σταθμισμένα). Ταξινόμηση κατά δήλωση γενικής ικανοποίησης ικανοποίηση (αύξουσα).</p>
         </div>
 
         <div class="chart-card lg:col-span-2">
@@ -634,9 +634,9 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=3"></script>
-  <script src="assets/js/charts.js?v=3"></script>
-  <script src="assets/data/kerkyra-data.js?v=3"></script>
-  <script src="assets/js/kerkyra-render.js?v=3"></script>
+  <script src="assets/js/app.js?v=4"></script>
+  <script src="assets/js/charts.js?v=4"></script>
+  <script src="assets/data/kerkyra-data.js?v=4"></script>
+  <script src="assets/js/kerkyra-render.js?v=4"></script>
 </body>
 </html>
