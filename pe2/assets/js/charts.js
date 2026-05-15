@@ -44,6 +44,12 @@ function fmtNum(v, decimals = 0) {
   });
 }
 
+// Self-destination name lookup — orange-highlights the current page's destination
+// in every comparative chart. Resolved lazily because charts.js loads before *-data.js.
+function SELF() {
+  return (window.WB_DATA && window.WB_DATA.destination && window.WB_DATA.destination.display) || '';
+}
+
 window.WBCharts = {
   PALETTE, fmtNum,
 
@@ -226,8 +232,9 @@ window.WBCharts = {
 
   // ---------- 4.10 POIs bar ----------
   pois(elId, data) {
+    const self = SELF();
     const sorted = data.slice().sort((a, b) => a.value - b.value);
-    const colors = sorted.map(d => d.dest === 'Χανιά' ? PALETTE.orange : PALETTE.navy);
+    const colors = sorted.map(d => d.dest === self ? PALETTE.orange : PALETTE.navy);
     Plotly.newPlot(elId, [{
       x: sorted.map(d => d.value),
       y: sorted.map(d => d.dest),
@@ -308,7 +315,7 @@ window.WBCharts = {
       fill: 'tozeroy',
       fillcolor: 'rgba(165,42,42,0.08)',
       hovertemplate: '<b>Έτος %{x}</b><br>TII = %{y:.2f}<br>(διανυκτ. ÷ πληθ. × 100)<extra></extra>',
-      name: 'TII Χανιά',
+      name: 'TII ' + SELF(),
     }], {
       ...BASE_LAYOUT,
       shapes: [
@@ -460,8 +467,9 @@ window.WBCharts = {
 
   // ---------- Recovery index horizontal bars ----------
   recovery(elId, data) {
+    const self = SELF();
     const sorted = data.slice().sort((a, b) => a.value - b.value);
-    const colors = sorted.map(d => d.dest === 'Χανιά' ? PALETTE.orange : PALETTE.navy);
+    const colors = sorted.map(d => d.dest === self ? PALETTE.orange : PALETTE.navy);
     Plotly.newPlot(elId, [{
       x: sorted.map(d => d.value), y: sorted.map(d => d.dest),
       type: 'bar', orientation: 'h',
