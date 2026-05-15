@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=10">
+ <link rel="stylesheet" href="assets/css/custom.css?v=11">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -370,12 +370,77 @@
  </div>
  </div>
 
- <!-- Gap analysis infographic (βασικό Σχ. 7.10β) -->
+ <!-- Gap Analysis · native HTML expanded version -->
  <div class="chart-card mt-8">
- <p class="chart-title">Σχήμα 7.10β · Gap Analysis: τέσσερα κρίσιμα κενά Ζήτησης / Προσφοράς, ΠΕ Αργολίδας</p>
- <h3 class="chart-headline">Σύνθεση τεσσάρων διαστάσεων αναγνώρισης κενών</h3>
- <img src="assets/charts/nauplio/fig_7_10b_gap_analysis_v2.png" alt="Gap Analysis infographic τεσσάρων κρίσιμων κενών για το Ναύπλιο" class="w-full mt-4 rounded">
- <p class="chart-source">Σύνθεση δεικτών ΕΛΣΤΑΤ STO12, πρωτογενούς έρευνας κατοίκων, και POI overlay (OSM 2025).</p>
+  <p class="chart-title">Σχήμα 7.10β · Gap Analysis Ζήτησης / Προσφοράς, ΠΕ Αργολίδας</p>
+  <h3 class="chart-headline">Τέσσερα κρίσιμα κενά τουριστικού μοντέλου</h3>
+  <p class="text-sm text-ink-700 mt-3 mb-6 leading-relaxed">Σύνθεση ποσοτικής έρευνας κατοίκων (n=300), ποιοτικής έρευνας στελεχών (n=5) και δευτερογενών δεδομένων. Κάθε κενό αξιολογείται από τη συνδυαστική σοβαρότητα (έκταση + αντίκτυπος) και αντιστοιχεί σε μία στρατηγική Πρόταση του master plan.</p>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-4">
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">1</span>
+      <span class="ml-2 section-marker text-accent-700">Χρονικό · Ενδοεβδομαδιαία αιχμή</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Σαββατοκύριακα υπερσυγκεντρωμένα</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">150%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>πληρότητα ΠΣΚ vs νεκρές καθημερινές</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το Ναύπλιο έχει Gini εποχικότητας 0,333 — από τους χαμηλότερους — γιατί λειτουργεί 8-9 μήνες. Αλλά το πραγματικό κενό δεν είναι μεταξύ μηνών· είναι <strong>μεταξύ ημερών εντός εβδομάδας</strong>. Τα Σαββατοκύριακα φτάνουν 150% πληρότητα (υπερβολικά) ενώ Δευτέρα-Πέμπτη η πληρότητα πέφτει στο 40-50%. Στρατηγικά το Ναύπλιο είναι ένας «weekend break destination» από την Αττική — ο 2,5-ώρες δρόμος εξυπηρετεί αυτό. Αλλά αυτή η εξάρτηση κρατά τον επισκέπτη σε μέση παραμονή 1,8 νύχτες, χωρίς διεθνή ζήτηση μέσης διάρκειας.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> στρατηγική μετατροπής weekend → 3-4ήμερου επισκέπτη μέσω Mid-Week packages + Επίδαυρος-Μυκήνες-Ναυπλίο combo + διεθνές positioning.</p>
+   </div>
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">2</span>
+      <span class="ml-2 section-marker text-navy-700">Χωρικό · Συγκέντρωση Παλαιά Πόλη</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">4 χώροι κυριαρχούν στις ροές</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">4</p>
+    <p class="text-xs text-ink-500 mb-3"><em>χώροι κυριαρχούν στις ροές · Argolic corridor υπολειτουργεί</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Τέσσερις χώροι κυριαρχούν στις ροές: Παλαμήδι, Μπούρτζι, Ακροναυπλία, Παλαιά Πόλη Ναυπλίου. Όλα εντός 2 χλμ. ακτίνας. Ο ευρύτερος Argolic heritage corridor — Επίδαυρος (UNESCO), Μυκήνες (UNESCO), Τίρυνθα, Άργος, Ερμιόνη — υπολειτουργεί σε σχέση με το δυναμικό του. Πολλοί επισκέπτες κάνουν το Ναύπλιο base, αλλά μένουν εντός πόλης ή κάνουν το πολύ μία ημερήσια εκδρομή σε Επίδαυρο/Μυκήνες. Η Ερμιονίδα (Πορτοχέλι, Σπέτσες-διεθνής gateway) λειτουργεί σχεδόν ως ξεχωριστός προορισμός.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> Argolic heritage corridor: ενιαία διαδρομή με συντονισμένο ωράριο μνημείων + shuttle + storytelling «Πελασγική Ελλάδα».</p>
+   </div>
+
+   <div class="border-2 border-red-300 bg-red-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-red-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">3</span>
+      <span class="ml-2 section-marker text-red-700">Ποιοτικό · UNESCO χωρίς διασύνδεση</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-red-800 bg-red-200 px-2 py-1 rounded">Ακραία σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Heritage assets χωρίς ξενοδοχειακή αξιοποίηση</h4>
+    <p class="font-serif text-3xl font-bold text-red-700 mb-3 numeric">1 : 1</p>
+    <p class="text-xs text-ink-500 mb-3"><em>αναλογία αρχαιολογικών επισκέψεων προς ξενοδοχειακές αφίξεις (διέλευση αντί παραμονής)</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">400 χιλιάδες επισκέπτες σε UNESCO sites (Μυκήνες + Τίρυνθα + Επίδαυρος) έναντι 441 χιλιάδων ξενοδοχειακών αφίξεων στην ΠΕ Αργολίδας — αναλογία σχεδόν 1:1. <strong>Αυτό σημαίνει ότι ΟΛΟΙ οι ξενοδοχειακοί επισκέπτες θα έπρεπε να επισκέπτονται UNESCO sites, ή ότι σημαντικό μέρος των UNESCO επισκεπτών είναι ημερήσιοι εκδρομείς που δεν αφήνουν χρήμα στον προορισμό.</strong> Η ποιότητα Ναυπλίου ως heritage destination είναι top-tier διεθνώς, αλλά η ξενοδοχειακή υποδομή είναι κυρίως 3-4★ family/boutique — δεν προσφέρει αρκετή premium κάλυψη για διεθνή heritage tourists που ψάχνουν βαθιά εμπειρία.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-red-300"><strong>Πρακτικά:</strong> premium boutique heritage hotels (επανάχρηση venetian κτιρίων) + Επιδαύρου Φεστιβάλ packages + UNESCO Sponsored Cultural Routes.</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">4</span>
+      <span class="ml-2 section-marker text-accent-700">Ρυθμιστικό · STR — reset window</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Παράθυρο προληπτικής ρύθμισης ανοιχτό</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">76,0%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>κατοίκων αναγνωρίζει STR στεγαστική πίεση — 3η μεταξύ ώριμων</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το 76,0% των κατοίκων αναγνωρίζει στεγαστική πίεση από STR — υψηλό αλλά όχι ακόμα σε επίπεδο Χανίων (90,6%) ή Κέρκυρας (86,1%). Το Ναύπλιο βρίσκεται σε <strong>«παράθυρο προληπτικής ρύθμισης»</strong>: ακόμα μπορεί να επιβληθεί πλαφόν STR ανά Δ.Ε. πριν η αγορά διογκωθεί. Η Μύκονος (57,0%) βρίσκεται σε ανάλογη φάση. Σε 2-3 χρόνια χωρίς ρύθμιση, η Παλαιά Πόλη Ναυπλίου ενδέχεται να μετατραπεί σε de facto Airbnb-museum κατά το πρότυπο της Φλωρεντίας ή της Βαρκελώνης.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> άμεση χρήση του reset window: STR cap στην Παλιά Πόλη + STR registry + κίνητρα μακροχρόνιας μίσθωσης για μόνιμους κατοίκους.</p>
+   </div>
+
+  </div>
+
+  <p class="chart-source mt-6">Πηγές: Πρωτογενής ποσοτική έρευνα κατοίκων Δήμου Ναυπλιέων (n=300)· ΕΛΣΤΑΤ STO12· INSETE Intelligence 2024· ΥΠΟ επισκεψιμότητα. Το Ναύπλιο διαθέτει το υψηλότερο πολιτισμικό κεφάλαιο της δεκάδας (2 UNESCO WHS εντός ευρύτερης περιοχής) — χωρίς διασύνδεση/αξιοποίηση χάνεται ως διεθνής heritage destination.</p>
  </div>
  </section>
 
@@ -663,9 +728,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=10"></script>
- <script src="assets/js/charts.js?v=10"></script>
- <script src="assets/data/nauplio-data.js?v=10"></script>
- <script src="assets/js/nauplio-render.js?v=10"></script>
+ <script src="assets/js/app.js?v=11"></script>
+ <script src="assets/js/charts.js?v=11"></script>
+ <script src="assets/data/nauplio-data.js?v=11"></script>
+ <script src="assets/js/nauplio-render.js?v=11"></script>
 </body>
 </html>
