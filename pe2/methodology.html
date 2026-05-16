@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/css/custom.css?v=17">
+  <link rel="stylesheet" href="assets/css/custom.css?v=14">
 
   <script>
     tailwind.config = { theme: { extend: {
@@ -82,6 +82,43 @@
       </div>
     </section>
 
+    <!-- §2.2 Επιλογή του δείγματος των δέκα προορισμών -->
+    <section class="mb-16">
+      <p class="section-marker">§ 2.2</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Επιλογή του δείγματος των δέκα προορισμών</h2>
+      <p class="text-lg text-ink-700 leading-relaxed mb-6">Η επιλογή των δέκα προορισμών βασίστηκε σε <strong>σκοπούμενη δειγματοληψία</strong> <em>(purposive sampling)</em> με τρία ταυτόχρονα κριτήρια: <strong>(α) τυπολογική κάλυψη</strong> του Butler TALC από στάδια πρώιμης ανάπτυξης έως στασιμότητας, <strong>(β) χωρική διασπορά</strong> σε νησιωτικούς και ηπειρωτικούς προορισμούς <strong>δέκα διαφορετικών Περιφερειών</strong>, και <strong>(γ) μεθοδολογική ετερογένεια</strong> ώστε κάθε προορισμός να εισφέρει διακριτή διαγνωστική αξία στα αναλυτικά εργαλεία της μελέτης. Η αναλογία ώριμων προς αναπτυσσόμενους τηρήθηκε <strong>5:5</strong> για να αποφευχθεί στατιστική ασυμμετρία στη συγκριτική ανάλυση.</p>
+
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse bg-white">
+          <thead class="bg-navy-700 text-white">
+            <tr>
+              <th class="border border-navy-700 p-3 text-center w-10">#</th>
+              <th class="border border-navy-700 p-3 text-left">Προορισμός</th>
+              <th class="border border-navy-700 p-3 text-left">Τύπος</th>
+              <th class="border border-navy-700 p-3 text-left">Συνεισφορά στο δείγμα</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-700">
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">1</td><td class="border border-[var(--rule)] p-3 font-medium">Χανιά</td><td class="border border-[var(--rule)] p-3">Ώριμος νησιωτικός κορεσμένος</td><td class="border border-[var(--rule)] p-3">Νησιωτικός κορεσμός με έντονη πίεση από βραχυχρόνιες μισθώσεις</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">2</td><td class="border border-[var(--rule)] p-3 font-medium">Κέρκυρα</td><td class="border border-[var(--rule)] p-3">Ώριμος νησιωτικός κορεσμένος</td><td class="border border-[var(--rule)] p-3">Ακραία περίπτωση κοινωνικής κόπωσης των κατοίκων από τον τουρισμό</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">3</td><td class="border border-[var(--rule)] p-3 font-medium">Μύκονος</td><td class="border border-[var(--rule)] p-3">Ώριμος νησιωτικός σε Butler stasis</td><td class="border border-[var(--rule)] p-3">Ακραίος υπερκορεσμός — δεκάδες τουρίστες ανά μόνιμο κάτοικο</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">4</td><td class="border border-[var(--rule)] p-3 font-medium">Ναύπλιο</td><td class="border border-[var(--rule)] p-3">Ώριμος ηπειρωτικός πολιτιστικός</td><td class="border border-[var(--rule)] p-3">Δείχνει ότι η ωριμότητα δεν φέρνει αναγκαστικά κοινωνική κόπωση</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">5</td><td class="border border-[var(--rule)] p-3 font-medium">Βόλος-Πήλιο</td><td class="border border-[var(--rule)] p-3">Ώριμος ηπειρωτικός μικτός</td><td class="border border-[var(--rule)] p-3">Έλεγχος της μελέτης σε προορισμό που χτύπησε η κακοκαιρία Daniel (2023)</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">6</td><td class="border border-[var(--rule)] p-3 font-medium">Ιωάννινα</td><td class="border border-[var(--rule)] p-3">Αναπτυσσόμενος αστικός</td><td class="border border-[var(--rule)] p-3">Ο ταχύτερα αναπτυσσόμενος ηπειρωτικός προορισμός — χρόνος για πρόληψη</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">7</td><td class="border border-[var(--rule)] p-3 font-medium">Καστοριά</td><td class="border border-[var(--rule)] p-3">Αναπτυσσόμενος ορεινός χειμερινός</td><td class="border border-[var(--rule)] p-3">Μοναδική φθινοπωρινή αιχμή σε ένα κατά τα άλλα στάσιμο τοπίο</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">8</td><td class="border border-[var(--rule)] p-3 font-medium">Αλεξανδρούπολη-Σαμοθράκη</td><td class="border border-[var(--rule)] p-3">Διπολικός (αστικός + νησιωτικός)</td><td class="border border-[var(--rule)] p-3">Ένας διοικητικός προορισμός, δύο πολύ διαφορετικές πραγματικότητες</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">9</td><td class="border border-[var(--rule)] p-3 font-medium">Τροιζηνία-Μέθανα-Γαλατάς</td><td class="border border-[var(--rule)] p-3">Αναπτυσσόμενος παράκτιος (Αττική)</td><td class="border border-[var(--rule)] p-3">Αναξιοποίητος προορισμός με κατοίκους που υποδέχονται θετικά την ανάπτυξη</td></tr>
+            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">10</td><td class="border border-[var(--rule)] p-3 font-medium">Ναυπακτία</td><td class="border border-[var(--rule)] p-3">Αναπτυσσόμενος ηπειρωτικός</td><td class="border border-[var(--rule)] p-3">Πλούσιο φυσικό κεφάλαιο και διεθνώς γνωστή ιστορία <em>(Ναυμαχία της Ναυπάκτου 1571)</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 p-5 bg-navy-50 border-l-4 border-accent-500">
+        <p class="section-marker text-accent-500">Μεθοδολογικός περιορισμός</p>
+        <p class="text-sm text-ink-700 mt-2">Το δείγμα είναι <strong>σκοπούμενο, όχι αντιπροσωπευτικό</strong> του συνόλου των ελληνικών τουριστικών προορισμών. Τα συμπεράσματα γενικεύονται <strong>θεωρητικά κατά τυπολογία</strong>, όχι στατιστικά κατά πληθυσμό. Η αναλυτική στρατηγική προτεραιοποιεί τη βαθιά συγκριτική κατανόηση των δέκα περιπτώσεων έναντι της επιφανειακής κάλυψης μεγαλύτερου αριθμού.</p>
+      </div>
+    </section>
+
     <!-- §2 Δέκα αναλυτικά εργαλεία -->
     <section class="mb-16">
       <p class="section-marker">§ 2.4 – § 2.13</p>
@@ -129,7 +166,7 @@
         <div class="border border-[var(--rule)] p-5 bg-white">
           <p class="section-marker text-accent-500">§ 2.10 Doxey Irridex</p>
           <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">Doxey θεωρία · LCA εμπειρική</h3>
-          <p class="text-sm text-ink-700">Θεωρητική σταδιοποίηση κατά <strong>George V. Doxey (1975)</strong>: Ευφορία → Απάθεια → Ενόχληση → Ανταγωνισμός. Εμπειρική τυπολογία 5 κλάσεων μέσω Latent Class Analysis (<strong>Lazarsfeld &amp; Henry 1968</strong>).</p>
+          <p class="text-sm text-ink-700">Θεωρητική σταδιοποίηση κατά <strong>George V. Doxey (1975)</strong>: Ευφορία → Απάθεια → Ενόχληση → Αντιπαλότητα. Εμπειρική τυπολογία 5 κλάσεων μέσω Latent Class Analysis (<strong>Lazarsfeld &amp; Henry 1968</strong>).</p>
         </div>
 
         <div class="border border-[var(--rule)] p-5 bg-white">
@@ -164,12 +201,12 @@
           <p class="section-marker text-navy-700">Ποσοτικό σκέλος</p>
           <h3 class="font-serif text-lg mt-2 mb-3">3.000 ερωτηματολόγια κατοίκων</h3>
           <ul class="text-sm text-ink-700 space-y-1">
-            <li>n=300 ανά προορισμό, ηλικίας 18+</li>
-            <li>Μέθοδος: CATI σταθερό + κινητό + CAWI online</li>
-            <li>Στρωμάτωση: Καλλικρατικός Δήμος × Φύλο × Ηλικία</li>
-            <li>115 μεταβλητές: 65 Likert items (Q1-Q12), 6 ranked (Q13-Q14), 45 πεδία απασχόλησης</li>
-            <li>Στάθμιση: rake/IPF με trimming στο 5× του μέσου όρου</li>
-            <li>Διάρκεια συνέντευξης: 14-18 λεπτά</li>
+            <li>• n=300 ανά προορισμό, ηλικίας 18+</li>
+            <li>• Μέθοδος: CATI σταθερό + κινητό + CAWI online</li>
+            <li>• Στρωμάτωση: Καλλικρατικός Δήμος × Φύλο × Ηλικία</li>
+            <li>• 115 μεταβλητές: 65 Likert items (Q1-Q12), 6 ranked (Q13-Q14), 45 πεδία απασχόλησης</li>
+            <li>• Στάθμιση: rake/IPF με trimming στο 5× του μέσου όρου</li>
+            <li>• Διάρκεια συνέντευξης: 14-18 λεπτά</li>
           </ul>
         </div>
 
@@ -177,12 +214,12 @@
           <p class="section-marker text-accent-500">Ποιοτικό σκέλος</p>
           <h3 class="font-serif text-lg mt-2 mb-3">50 σε βάθος συνεντεύξεις</h3>
           <ul class="text-sm text-ink-700 space-y-1">
-            <li>5 στελέχη ανά προορισμό</li>
-            <li>Διάρκεια 45-90 λεπτά</li>
-            <li>Σκοπούμενη + θεωρητική δειγματοληψία</li>
-            <li>Θεματική ανάλυση (Thematic Analysis)</li>
-            <li>Κατηγορίες: Τοπική Αυτοδιοίκηση, Αναπτυξιακές Εταιρείες, Επιμελητήρια, Επαγγελματικοί Σύλλογοι, Σύλλογοι Περιβάλλοντος, Συγκοινωνιακοί Φορείς</li>
-            <li>Ανώνυμη απόδοση verbatim quotes</li>
+            <li>• 5 στελέχη ανά προορισμό</li>
+            <li>• Διάρκεια 45-90 λεπτά</li>
+            <li>• Σκοπούμενη + θεωρητική δειγματοληψία</li>
+            <li>• Θεματική ανάλυση (Thematic Analysis)</li>
+            <li>• Κατηγορίες: Τοπική Αυτοδιοίκηση, Αναπτυξιακές Εταιρείες, Επιμελητήρια, Επαγγελματικοί Σύλλογοι, Σύλλογοι Περιβάλλοντος, Συγκοινωνιακοί Φορείς</li>
+            <li>• Ανώνυμη απόδοση verbatim quotes</li>
           </ul>
         </div>
       </div>
@@ -261,6 +298,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/app.js?v=17"></script>
+  <script src="assets/js/app.js?v=14"></script>
 </body>
 </html>
