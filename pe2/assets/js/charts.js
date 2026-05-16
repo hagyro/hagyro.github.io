@@ -89,16 +89,28 @@ window.WBCharts = {
       if (m === 4 || m === 5 || m === 10) return PALETTE.navy;
       return PALETTE.navyLt;
     });
+    // Compute % of annual total per month for data labels
+    const total = data.values.reduce((a, b) => a + b, 0);
+    const pct_labels = data.values.map(v => total > 0 ? (v / total * 100).toFixed(1) + '%' : '');
+    const text_colors = data.values.map((_, i) => {
+      const m = i + 1;
+      return (m >= 6 && m <= 9) ? 'white' : PALETTE.navy;
+    });
     const trace = {
       x: data.months,
       y: data.values,
       type: 'bar',
       marker: { color: colors, line: { color: 'white', width: 1 } },
-      hovertemplate: '<b>%{x}</b><br>Αφίξεις: %{y:,}<extra></extra>',
+      text: pct_labels,
+      textposition: 'outside',
+      textfont: { color: PALETTE.navy, family: 'Inter, sans-serif', size: 10 },
+      cliponaxis: false,
+      hovertemplate: '<b>%{x}</b><br>Αφίξεις: %{y:,}<br>Μερίδιο ετήσιο: %{text}<extra></extra>',
     };
     Plotly.newPlot(elId, [trace], {
       ...BASE_LAYOUT,
       yaxis: { ...BASE_LAYOUT.yaxis, title: { text: 'Αφίξεις', font: FONT_BODY }, tickformat: ',d' },
+      margin: { l: 60, r: 30, t: 30, b: 50 },
     }, CONFIG);
   },
 
@@ -226,7 +238,7 @@ window.WBCharts = {
     const hot = data[key].map(v => 100 - v);
     Plotly.newPlot(elId, [
       { x: data.years, y: hot, name: 'Ξενοδοχεία', type: 'bar', marker: { color: PALETTE.navy }, text: hot.map(v=>v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white' }, hovertemplate: '<b>%{x}</b><br>Ξενοδοχεία: %{y:.1f}%<extra></extra>' },
-      { x: data.years, y: data[key], name: 'STR', type: 'bar', marker: { color: PALETTE.orange }, text: data[key].map(v=>v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: PALETTE.navy }, hovertemplate: '<b>%{x}</b><br>STR: %{y:.1f}%<extra></extra>' },
+      { x: data.years, y: data[key], name: 'STR', type: 'bar', marker: { color: PALETTE.orange }, text: data[key].map(v=>v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white', size: 13, family: 'Inter, sans-serif' }, hovertemplate: '<b>%{x}</b><br>STR: %{y:.1f}%<extra></extra>' },
     ], { ...BASE_LAYOUT, barmode: 'stack', yaxis: { ...BASE_LAYOUT.yaxis, range: [0, 100], title: { text: 'Μερίδιο (%)', font: FONT_BODY } }, showlegend: true, legend: { orientation: 'h', x: 0.5, xanchor: 'center', y: -0.18 } }, CONFIG);
   },
 
@@ -245,13 +257,24 @@ window.WBCharts = {
       textposition: 'outside',
       textfont: { color: PALETTE.navy, family: 'Inter, sans-serif', size: 11 },
       hovertemplate: '<b>%{y}</b><br>POIs: %{x:,}<extra></extra>',
-    }], { ...BASE_LAYOUT, margin: { l: 160, r: 60, t: 20, b: 50 }, xaxis: { ...BASE_LAYOUT.xaxis, title: { text: 'Αριθμός POIs', font: FONT_BODY } } }, CONFIG);
+    }], { ...BASE_LAYOUT, margin: { l: 220, r: 60, t: 20, b: 50 }, xaxis: { ...BASE_LAYOUT.xaxis, title: { text: 'Αριθμός POIs', font: FONT_BODY } }, yaxis: { ...BASE_LAYOUT.yaxis, automargin: true, tickfont: { size: 11 } } }, CONFIG);
   },
 
   // ---------- 4.11 IPA scatter quadrant ----------
   ipa(elId, data) {
     const xMed = data.x.reduce((a,b)=>a+b,0)/data.x.length;
     const yMed = data.y.reduce((a,b)=>a+b,0)/data.y.length;
+    const xMin = Math.min(...data.x);
+    const xMax = Math.max(...data.x);
+    const yMin = Math.min(...data.y);
+    const yMax = Math.max(...data.y);
+    // Quadrant label positions: corners of the chart area
+    const qLabels = [
+      { x: xMin - (xMax-xMin)*0.04, y: yMax + (yMax-yMin)*0.06, text: '<b>Συγκέντρωση εδώ</b><br><span style="font-size:9px">Υψηλή σπουδαιότητα · Χαμηλή αξιολόγηση</span>', xanchor: 'left',  yanchor: 'top',    bgcolor: 'rgba(224,123,0,0.10)' },
+      { x: xMax + (xMax-xMin)*0.04, y: yMax + (yMax-yMin)*0.06, text: '<b>Διατήρηση καλής επίδοσης</b><br><span style="font-size:9px">Υψηλή σπουδαιότητα · Υψηλή αξιολόγηση</span>', xanchor: 'right', yanchor: 'top',    bgcolor: 'rgba(45,122,77,0.10)' },
+      { x: xMin - (xMax-xMin)*0.04, y: yMin - (yMax-yMin)*0.06, text: '<b>Χαμηλή προτεραιότητα</b><br><span style="font-size:9px">Χαμηλή σπουδαιότητα · Χαμηλή αξιολόγηση</span>', xanchor: 'left',  yanchor: 'bottom', bgcolor: 'rgba(91,100,115,0.10)' },
+      { x: xMax + (xMax-xMin)*0.04, y: yMin - (yMax-yMin)*0.06, text: '<b>Πιθανή υπερβολή</b><br><span style="font-size:9px">Χαμηλή σπουδαιότητα · Υψηλή αξιολόγηση</span>', xanchor: 'right', yanchor: 'bottom', bgcolor: 'rgba(127,155,190,0.10)' },
+    ];
     Plotly.newPlot(elId, [{
       x: data.x, y: data.y,
       mode: 'markers+text',
@@ -264,15 +287,22 @@ window.WBCharts = {
         color: data.cat.map(c => c === 'Τουριστικές υποδομές' ? PALETTE.orange : PALETTE.navy),
         line: { color: 'white', width: 1.5 },
       },
-      hovertemplate: '<b>%{text}</b><br>Σπουδαιότητα: %{x:.3f}<br>Αξιολόγηση: %{y:.2f}<extra></extra>',
+      hovertemplate: '<b>%{text}</b><br>Σχετική Σπουδαιότητα: %{x:.3f}<br>Μέση Αξιολόγηση (1–5): %{y:.2f}<extra></extra>',
     }], {
       ...BASE_LAYOUT,
       shapes: [
         { type: 'line', x0: xMed, x1: xMed, y0: 0, y1: 1, yref: 'paper', line: { color: PALETTE.muted, width: 1, dash: 'dash' } },
         { type: 'line', x0: 0, x1: 1, xref: 'paper', y0: yMed, y1: yMed, line: { color: PALETTE.muted, width: 1, dash: 'dash' } },
       ],
-      xaxis: { ...BASE_LAYOUT.xaxis, title: { text: 'Σπουδαιότητα (τυποποιημένη)', font: FONT_BODY } },
-      yaxis: { ...BASE_LAYOUT.yaxis, title: { text: 'Αξιολόγηση κατοίκων (1–5)', font: FONT_BODY } },
+      annotations: qLabels.map(q => ({
+        x: q.x, y: q.y, text: q.text,
+        showarrow: false, xanchor: q.xanchor, yanchor: q.yanchor,
+        font: { size: 11, color: PALETTE.navy, family: 'Inter, sans-serif' },
+        bgcolor: q.bgcolor, borderpad: 6,
+      })),
+      xaxis: { ...BASE_LAYOUT.xaxis, title: { text: 'Σχετική Σπουδαιότητα (Random Forest weights)', font: FONT_BODY }, automargin: true },
+      yaxis: { ...BASE_LAYOUT.yaxis, title: { text: 'Μέση Αξιολόγηση Κατοίκων (κλίμακα 1–5)', font: FONT_BODY }, automargin: true, range: [Math.max(1, yMin - 0.4), Math.min(5, yMax + 0.4)] },
+      margin: { l: 90, r: 50, t: 70, b: 80 },
     }, CONFIG);
   },
 
@@ -482,8 +512,9 @@ window.WBCharts = {
       ...BASE_LAYOUT,
       shapes: [{ type: 'line', x0: 1, x1: 1, y0: -0.5, y1: sorted.length-0.5, line: { color: '#c0392b', width: 1.5, dash: 'dash' } }],
       annotations: [{ x: 1, y: 0.5, text: 'Επίπεδο 2019', showarrow: false, font: { size: 10, color: '#c0392b' }, xanchor: 'left', xshift: 5 }],
-      margin: { l: 160, r: 60, t: 20, b: 50 },
+      margin: { l: 220, r: 60, t: 20, b: 50 },
       xaxis: { ...BASE_LAYOUT.xaxis, title: { text: 'Λόγος ανάκαμψης 2024 / 2019', font: FONT_BODY } },
+      yaxis: { ...BASE_LAYOUT.yaxis, automargin: true, tickfont: { size: 11 } },
     }, CONFIG);
   },
 
