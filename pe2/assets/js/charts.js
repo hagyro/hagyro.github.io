@@ -261,49 +261,111 @@ window.WBCharts = {
   },
 
   // ---------- 4.11 IPA scatter quadrant ----------
+  // Renders scatter + emits ranked legend table into a sibling div with id "{elId}_legend"
   ipa(elId, data) {
-    const xMed = data.x.reduce((a,b)=>a+b,0)/data.x.length;
-    const yMed = data.y.reduce((a,b)=>a+b,0)/data.y.length;
+    const n = data.x.length;
+    const xMed = data.x.reduce((a,b)=>a+b,0)/n;
+    const yMed = data.y.reduce((a,b)=>a+b,0)/n;
     const xMin = Math.min(...data.x);
     const xMax = Math.max(...data.x);
     const yMin = Math.min(...data.y);
     const yMax = Math.max(...data.y);
-    // Quadrant label positions: corners of the chart area
+
+    // Use numeric labels 1..N for the scatter (avoids overlap with long Greek text)
+    const numLabels = data.x.map((_, i) => String(i + 1));
+
+    // Classify each item into one of 4 quadrants
+    function quadrant(x, y) {
+      if (x >= xMed && y >= yMed) return { name: 'Διατήρηση', color: '#2d7a4d', bg: 'rgba(45,122,77,0.10)' };
+      if (x >= xMed && y < yMed)  return { name: 'Συγκέντρωση εδώ', color: '#b8423a', bg: 'rgba(184,66,58,0.10)' };
+      if (x < xMed  && y >= yMed) return { name: 'Πιθανή υπερβολή', color: '#7f9bbe', bg: 'rgba(127,155,190,0.10)' };
+      return { name: 'Χαμηλή προτεραιότητα', color: '#5b6473', bg: 'rgba(91,100,115,0.10)' };
+    }
+
+    // Quadrant corner labels
     const qLabels = [
-      { x: xMin - (xMax-xMin)*0.04, y: yMax + (yMax-yMin)*0.06, text: '<b>Συγκέντρωση εδώ</b><br><span style="font-size:9px">Υψηλή σπουδαιότητα · Χαμηλή αξιολόγηση</span>', xanchor: 'left',  yanchor: 'top',    bgcolor: 'rgba(224,123,0,0.10)' },
-      { x: xMax + (xMax-xMin)*0.04, y: yMax + (yMax-yMin)*0.06, text: '<b>Διατήρηση καλής επίδοσης</b><br><span style="font-size:9px">Υψηλή σπουδαιότητα · Υψηλή αξιολόγηση</span>', xanchor: 'right', yanchor: 'top',    bgcolor: 'rgba(45,122,77,0.10)' },
-      { x: xMin - (xMax-xMin)*0.04, y: yMin - (yMax-yMin)*0.06, text: '<b>Χαμηλή προτεραιότητα</b><br><span style="font-size:9px">Χαμηλή σπουδαιότητα · Χαμηλή αξιολόγηση</span>', xanchor: 'left',  yanchor: 'bottom', bgcolor: 'rgba(91,100,115,0.10)' },
-      { x: xMax + (xMax-xMin)*0.04, y: yMin - (yMax-yMin)*0.06, text: '<b>Πιθανή υπερβολή</b><br><span style="font-size:9px">Χαμηλή σπουδαιότητα · Υψηλή αξιολόγηση</span>', xanchor: 'right', yanchor: 'bottom', bgcolor: 'rgba(127,155,190,0.10)' },
+      { x: xMin - (xMax-xMin)*0.04, y: yMax + (yMax-yMin)*0.06, text: '<b>Πιθανή υπερβολή</b><br><span style="font-size:9px">χαμ. σπουδ. · υψ. αξιολ.</span>', xanchor: 'left',  yanchor: 'top',    bgcolor: 'rgba(127,155,190,0.15)' },
+      { x: xMax + (xMax-xMin)*0.04, y: yMax + (yMax-yMin)*0.06, text: '<b>Διατήρηση καλής επίδοσης</b><br><span style="font-size:9px">υψ. σπουδ. · υψ. αξιολ.</span>', xanchor: 'right', yanchor: 'top',    bgcolor: 'rgba(45,122,77,0.15)' },
+      { x: xMin - (xMax-xMin)*0.04, y: yMin - (yMax-yMin)*0.06, text: '<b>Χαμηλή προτεραιότητα</b><br><span style="font-size:9px">χαμ. σπουδ. · χαμ. αξιολ.</span>', xanchor: 'left',  yanchor: 'bottom', bgcolor: 'rgba(91,100,115,0.15)' },
+      { x: xMax + (xMax-xMin)*0.04, y: yMin - (yMax-yMin)*0.06, text: '<b>ΣΥΓΚΕΝΤΡΩΣΗ ΕΔΩ</b><br><span style="font-size:9px">υψ. σπουδ. · χαμ. αξιολ. — κρίσιμη παρέμβαση</span>', xanchor: 'right', yanchor: 'bottom', bgcolor: 'rgba(184,66,58,0.18)' },
     ];
+
     Plotly.newPlot(elId, [{
       x: data.x, y: data.y,
       mode: 'markers+text',
       type: 'scatter',
-      text: data.labels,
-      textposition: 'top center',
-      textfont: { size: 11, family: 'Inter, sans-serif', color: PALETTE.ink },
+      text: numLabels,
+      textposition: 'middle center',
+      textfont: { size: 11, family: 'Inter, sans-serif', color: 'white', weight: 'bold' },
       marker: {
-        size: 14,
+        size: 22,
         color: data.cat.map(c => c === 'Τουριστικές υποδομές' ? PALETTE.orange : PALETTE.navy),
-        line: { color: 'white', width: 1.5 },
+        line: { color: 'white', width: 2 },
       },
-      hovertemplate: '<b>%{text}</b><br>Σχετική Σπουδαιότητα: %{x:.3f}<br>Μέση Αξιολόγηση (1–5): %{y:.2f}<extra></extra>',
+      hovertemplate: '<b>%{customdata}</b><br>Σχετική Σπουδαιότητα: %{x:.3f}<br>Μέση Αξιολόγηση (1–5): %{y:.2f}<extra></extra>',
+      customdata: data.labels,
     }], {
       ...BASE_LAYOUT,
       shapes: [
-        { type: 'line', x0: xMed, x1: xMed, y0: 0, y1: 1, yref: 'paper', line: { color: PALETTE.muted, width: 1, dash: 'dash' } },
-        { type: 'line', x0: 0, x1: 1, xref: 'paper', y0: yMed, y1: yMed, line: { color: PALETTE.muted, width: 1, dash: 'dash' } },
+        { type: 'line', x0: xMed, x1: xMed, y0: 0, y1: 1, yref: 'paper', line: { color: PALETTE.muted, width: 1.5, dash: 'dash' } },
+        { type: 'line', x0: 0, x1: 1, xref: 'paper', y0: yMed, y1: yMed, line: { color: PALETTE.muted, width: 1.5, dash: 'dash' } },
       ],
-      annotations: qLabels.map(q => ({
-        x: q.x, y: q.y, text: q.text,
-        showarrow: false, xanchor: q.xanchor, yanchor: q.yanchor,
-        font: { size: 11, color: PALETTE.navy, family: 'Inter, sans-serif' },
-        bgcolor: q.bgcolor, borderpad: 6,
-      })),
-      xaxis: { ...BASE_LAYOUT.xaxis, title: { text: 'Σχετική Σπουδαιότητα (Random Forest weights)', font: FONT_BODY }, automargin: true },
+      annotations: [
+        ...qLabels.map(q => ({
+          x: q.x, y: q.y, text: q.text,
+          showarrow: false, xanchor: q.xanchor, yanchor: q.yanchor,
+          font: { size: 11, color: PALETTE.navy, family: 'Inter, sans-serif' },
+          bgcolor: q.bgcolor, borderpad: 6,
+        })),
+        // Median value annotations
+        { x: xMed, y: yMin - (yMax-yMin)*0.12, text: `Διάμεσος x = ${xMed.toFixed(3)}`, showarrow: false, font: { size: 10, color: PALETTE.muted, family: 'Inter, sans-serif' }, yanchor: 'top' },
+        { x: xMin - (xMax-xMin)*0.10, y: yMed, text: `Διάμεσος y = ${yMed.toFixed(2)}`, showarrow: false, font: { size: 10, color: PALETTE.muted, family: 'Inter, sans-serif' }, xanchor: 'right', textangle: -90 },
+      ],
+      xaxis: { ...BASE_LAYOUT.xaxis, title: { text: 'Σχετική Σπουδαιότητα · Random Forest weight (0-1)', font: FONT_BODY }, automargin: true },
       yaxis: { ...BASE_LAYOUT.yaxis, title: { text: 'Μέση Αξιολόγηση Κατοίκων (κλίμακα 1–5)', font: FONT_BODY }, automargin: true, range: [Math.max(1, yMin - 0.4), Math.min(5, yMax + 0.4)] },
-      margin: { l: 90, r: 50, t: 70, b: 80 },
+      margin: { l: 100, r: 60, t: 80, b: 90 },
     }, CONFIG);
+
+    // === Render ranked legend table below chart ===
+    const legendEl = document.getElementById(elId + '_legend');
+    if (legendEl) {
+      // Build items array with full info, then sort by x descending (most important first)
+      const items = data.labels.map((label, i) => ({
+        idx: i + 1,
+        label: label,
+        x: data.x[i],
+        y: data.y[i],
+        cat: data.cat[i],
+        q: quadrant(data.x[i], data.y[i]),
+      }));
+      items.sort((a, b) => b.x - a.x);
+
+      const rows = items.map(item => `
+        <tr>
+          <td style="text-align:center; padding:6px 8px; background:${item.cat === 'Τουριστικές υποδομές' ? '#e07b00' : '#1f4e79'}; color:white; font-weight:bold; border-radius:3px;">${item.idx}</td>
+          <td style="padding:6px 10px; font-weight:500;">${item.label}</td>
+          <td style="text-align:right; padding:6px 10px; font-variant-numeric:tabular-nums;">${item.x.toFixed(3)}</td>
+          <td style="text-align:right; padding:6px 10px; font-variant-numeric:tabular-nums;">${item.y.toFixed(2)}</td>
+          <td style="padding:6px 10px;"><span style="background:${item.q.bg}; color:${item.q.color}; padding:2px 8px; border-radius:3px; font-weight:600; font-size:0.85em;">${item.q.name}</span></td>
+        </tr>
+      `).join('');
+
+      legendEl.innerHTML = `
+        <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-top:1rem;">
+          <thead>
+            <tr style="background:#1f4e79; color:white;">
+              <th style="padding:8px; text-align:center; width:48px;">#</th>
+              <th style="padding:8px; text-align:left;">Υποδομή</th>
+              <th style="padding:8px; text-align:right; width:110px;">Σπουδαιότητα</th>
+              <th style="padding:8px; text-align:right; width:100px;">Αξιολόγηση</th>
+              <th style="padding:8px; text-align:left;">Τεταρτημόριο</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+        <p style="font-size:0.78em; color:#5b6473; margin-top:0.6rem; font-style:italic;">Ταξινόμηση από υψηλότερη προς χαμηλότερη Σπουδαιότητα. Πορτοκαλί αριθμοί = Τουριστικές υποδομές · Σκούρο μπλε = Δημόσιες υποδομές.</p>
+      `;
+    }
   },
 
   // ---------- 4.12 Turnover hotels vs STR ----------

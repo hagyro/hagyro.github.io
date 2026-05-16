@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=15">
+ <link rel="stylesheet" href="assets/css/custom.css?v=16">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -368,9 +368,39 @@
 
  <div class="chart-card lg:col-span-2">
  <p class="chart-title">Σχήμα 8.11 · <span data-term="IPA">IPA</span> Quadrant — Σπουδαιότητα × Αξιολόγηση υποδομών</p>
- <h3 class="chart-headline">Στάθμευση, τοπικό οδικό Πηλίου και τηλεπικοινωνίες στο τεταρτημόριο «Συγκέντρωση εδώ»</h3>
- <div id="chart_ipa" style="height:520px"></div>
- <p class="chart-source">Random Forest importance × μέση αξιολόγηση κλίμακας 1–5. Πορτοκαλί = τουριστικές υποδομές, μπλε = δημόσιες. Πρωτογενής έρευνα Q5.</p>
+ <h3 class="chart-headline">Ακτοπλοΐα/Αερ. και Ύδρευση στο τεταρτημόριο «Συγκέντρωση εδώ»</h3>
+      <details class="mt-3 mb-4 bg-navy-50 border-l-4 border-navy-700 px-5 py-4 rounded-r-sm">
+  <summary class="cursor-pointer font-semibold text-navy-700 text-sm" style="list-style: revert;">Τι δείχνει αυτό το γράφημα; (πλήρης οδηγός)</summary>
+  <div class="mt-4 space-y-3 text-sm leading-relaxed text-ink-700">
+    <p>Το <strong>IPA Quadrant</strong> (Importance-Performance Analysis, Martilla &amp; James 1977) είναι στρατηγικό εργαλείο που μας λέει <em>τι να κάνουμε</em> για κάθε υποδομή. Είναι 2-διαστάσιμο: κάθε υποδομή τοποθετείται με βάση πόσο <strong>σημαντική</strong> είναι (οριζόντιος άξονας) και πόσο <strong>καλά λειτουργεί</strong> (κάθετος άξονας).</p>
+
+    <p><strong>Άξονας x — Σχετική Σπουδαιότητα (0-1):</strong> Δείχνει πόσο η αξιολόγηση μιας υποδομής <em>εξηγεί</em> τη συνολική ικανοποίηση των κατοίκων. Παράγεται από Random Forest μοντέλο. Τιμή 0,30 ≈ η υποδομή αυτή είναι ένας από τους κύριους «προσδιοριστές» της ικανοποίησης. Τιμή 0,10 ≈ μικρή στατιστική σύνδεση με τη συνολική ικανοποίηση.</p>
+
+    <p><strong>Άξονας y — Μέση Αξιολόγηση Κατοίκων (1-5):</strong> Πόσο καλά οι κάτοικοι αξιολογούν αυτή την υποδομή. 5 = εξαιρετική, 1 = πολύ ανεπαρκής, 3 = μέτρια.</p>
+
+    <p><strong>Δύο διακεκομμένες γραμμές</strong> διαχωρίζουν το γράφημα στα <strong>4 τεταρτημόρια</strong> πάνω στις διάμεσες τιμές. Κάθε τεταρτημόριο = διαφορετική στρατηγική προτεραιότητα:</p>
+
+    <ul class="ml-5 space-y-1.5 list-disc">
+      <li><strong style="color:#b8423a">Συγκέντρωση εδώ</strong> (κάτω-δεξιά): <em>υψηλή σπουδαιότητα + χαμηλή αξιολόγηση</em>. <strong>ΚΡΙΣΙΜΗ ΠΑΡΕΜΒΑΣΗ ΕΔΩ.</strong> Υποδομές που οι κάτοικοι κρίνουν σημαντικές αλλά λειτουργούν κακά.</li>
+      <li><strong style="color:#2d7a4d">Διατήρηση καλής επίδοσης</strong> (πάνω-δεξιά): υψηλή σπουδαιότητα + υψηλή αξιολόγηση. <em>Συνεχίστε όπως είναι — μην αλλάξετε αυτά που λειτουργούν.</em></li>
+      <li><strong style="color:#5b6473">Χαμηλή προτεραιότητα</strong> (κάτω-αριστερά): χαμηλή σπουδαιότητα + χαμηλή αξιολόγηση. Λειτουργούν μέτρια, αλλά δεν επηρεάζουν πολύ τη συνολική ικανοποίηση. <em>Δευτερεύουσα προτεραιότητα.</em></li>
+      <li><strong style="color:#7f9bbe">Πιθανή υπερβολή</strong> (πάνω-αριστερά): χαμηλή σπουδαιότητα + υψηλή αξιολόγηση. Λειτουργούν εξαιρετικά αλλά οι κάτοικοι δεν τις θεωρούν κρίσιμες. <em>Πιθανώς υπερ-επένδυση.</em></li>
+    </ul>
+
+    <div class="bg-white border border-navy-300 rounded-sm p-3 mt-3">
+      <p class="font-semibold text-navy-700 mb-1">Παράδειγμα: πώς να διαβάσετε ένα σημείο</p>
+      <p>Έστω ότι μια υποδομή Α έχει συντεταγμένες (0,28 · 2,5). Σημαίνει: η σπουδαιότητά της είναι 0,28 (πάνω από μέσο όρο των υπολοίπων), αλλά η αξιολόγησή της 2,5/5 (κάτω από μέσο όρο). Πέφτει στο τεταρτημόριο <strong style="color:#b8423a">«Συγκέντρωση εδώ»</strong> — δηλαδή είναι κρίσιμη ανάγκη παρέμβασης.</p>
+    </div>
+
+    <div class="bg-orange-50 border border-orange-300 rounded-sm p-3 mt-3">
+      <p class="font-semibold text-orange-800 mb-1">⚠ Παράδοξο: «Σπουδαιότητα» ≠ διαισθητική σημασία</p>
+      <p>Η Σπουδαιότητα στο IPA δεν είναι αυτό που <em>πιστεύουν</em> οι κάτοικοι ότι είναι σημαντικό, αλλά αυτό που <em>στατιστικά εξηγεί</em> την ικανοποίησή τους. Παράδειγμα: αν η Στάθμευση είναι χρόνια κακή σε έναν προορισμό, οι κάτοικοι την έχουν «παραιτηθεί» — δεν τη συνδέουν με την ικανοποίησή τους πια. Έτσι το Random Forest της δίνει χαμηλό βάρος και φαίνεται «χαμηλή προτεραιότητα» — αν και διαισθητικά είναι κρίσιμη. Διαβάστε προσεκτικά.</p>
+    </div>
+  </div>
+</details>
+      <div id="chart_ipa" style="height:520px"></div>
+ <div id="chart_ipa_legend" class="mt-2"></div>
+      <p class="chart-source"><em>Σπουδαιότητα</em> = εξαγόμενο βάρος Random Forest (πόσο η υποδομή εξηγεί τη γενική ικανοποίηση), όχι δηλωτική σημασία. <em>Αξιολόγηση</em> = μέση τιμή σε κλίμακα 1-5. Πορτοκαλί αριθμοί = Τουριστικές υποδομές · Σκούρο μπλε = Δημόσιες υποδομές. Ο πίνακας από κάτω ταξινομεί τις 15 υποδομές κατά Σπουδαιότητα. Πρωτογενής έρευνα Q5.</p>
  </div>
  </div>
 
@@ -805,9 +835,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=15"></script>
- <script src="assets/js/charts.js?v=15"></script>
- <script src="assets/data/volos_pelio-data.js?v=15"></script>
- <script src="assets/js/volos_pelio-render.js?v=15"></script>
+ <script src="assets/js/app.js?v=16"></script>
+ <script src="assets/js/charts.js?v=16"></script>
+ <script src="assets/data/volos_pelio-data.js?v=16"></script>
+ <script src="assets/js/volos_pelio-render.js?v=16"></script>
 </body>
 </html>
