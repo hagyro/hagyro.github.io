@@ -262,6 +262,8 @@ window.WBCharts = {
 
   // ---------- 4.11 IPA scatter quadrant ----------
   // Renders scatter + emits ranked legend table into a sibling div with id "{elId}_legend"
+  // Numbering: by x-value ASCENDING (leftmost point = #1, rightmost = #N) so the chart
+  // reads naturally left-to-right and matches the legend table order.
   ipa(elId, data) {
     const n = data.x.length;
     const xMed = data.x.reduce((a,b)=>a+b,0)/n;
@@ -271,8 +273,12 @@ window.WBCharts = {
     const yMin = Math.min(...data.y);
     const yMax = Math.max(...data.y);
 
-    // Use numeric labels 1..N for the scatter (avoids overlap with long Greek text)
-    const numLabels = data.x.map((_, i) => String(i + 1));
+    // Compute rank for each point by x-ascending. rank[i] = position when sorted by x asc, 1-indexed.
+    const indices = data.x.map((_, i) => i);
+    indices.sort((a, b) => data.x[a] - data.x[b]);
+    const xRank = new Array(n);
+    indices.forEach((origIdx, sortedIdx) => { xRank[origIdx] = sortedIdx + 1; });
+    const numLabels = xRank.map(r => String(r));
 
     // Classify each item into one of 4 quadrants
     function quadrant(x, y) {
@@ -329,16 +335,16 @@ window.WBCharts = {
     // === Render ranked legend table below chart ===
     const legendEl = document.getElementById(elId + '_legend');
     if (legendEl) {
-      // Build items array with full info, then sort by x descending (most important first)
+      // Build items array with full info, then sort by x ASCENDING (matches chart left-to-right reading)
       const items = data.labels.map((label, i) => ({
-        idx: i + 1,
+        idx: xRank[i],  // Number assigned by x-ascending sort
         label: label,
         x: data.x[i],
         y: data.y[i],
         cat: data.cat[i],
         q: quadrant(data.x[i], data.y[i]),
       }));
-      items.sort((a, b) => b.x - a.x);
+      items.sort((a, b) => a.idx - b.idx);  // Display in ascending number order (= ascending x = left-to-right on chart)
 
       const rows = items.map(item => `
         <tr>
@@ -363,7 +369,7 @@ window.WBCharts = {
           </thead>
           <tbody>${rows}</tbody>
         </table>
-        <p style="font-size:0.78em; color:#5b6473; margin-top:0.6rem; font-style:italic;">Ταξινόμηση από υψηλότερη προς χαμηλότερη Σπουδαιότητα. Πορτοκαλί αριθμοί = Τουριστικές υποδομές · Σκούρο μπλε = Δημόσιες υποδομές.</p>
+        <p style="font-size:0.78em; color:#5b6473; margin-top:0.6rem; font-style:italic;"><strong>#1 = αριστερότερο σημείο (χαμηλότερη Σπουδαιότητα) · #${n} = δεξιότερο (υψηλότερη)</strong>. Στον πίνακα αυτή τη φορά η σειρά #1 → #${n} είναι σε αύξουσα σπουδαιότητα — αν διαβάσεις το γράφημα αριστερά → δεξιά βλέπεις τα ίδια νούμερα στην ίδια σειρά. Πορτοκαλί νούμερο = Τουριστική υποδομή · Σκούρο μπλε = Δημόσια υποδομή.</p>
       `;
     }
   },
