@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=10">
+ <link rel="stylesheet" href="assets/css/custom.css?v=11">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -374,12 +374,77 @@
  </div>
  </div>
 
- <!-- Gap analysis infographic (βασικό Σχ. 8.10β) -->
+ <!-- Gap Analysis · native HTML expanded version -->
  <div class="chart-card mt-8">
- <p class="chart-title">Σχήμα 8.10β · Gap Analysis: τέσσερα κρίσιμα κενά Ζήτησης / Προσφοράς, ΠΕ Μαγνησίας</p>
- <h3 class="chart-headline">Τρία αναπτυξιακά κενά + δύο προληπτικά</h3>
- <img src="assets/charts/volos_pelio/fig_8_10b_gap_analysis_v2.png" alt="Gap Analysis infographic τεσσάρων κρίσιμων κενών για τον Βόλο-Πήλιο" class="w-full mt-4 rounded">
- <p class="chart-source">Σύνθεση δεικτών ΕΛΣΤΑΤ STO12, πρωτογενούς έρευνας κατοίκων (n=300), και POI overlay (OpenStreetMap 2025). Ίδια επεξεργασία.</p>
+  <p class="chart-title">Σχήμα 8.10β · Gap Analysis Ζήτησης / Προσφοράς, ΠΕ Μαγνησίας</p>
+  <h3 class="chart-headline">Τέσσερα κρίσιμα κενά τουριστικού μοντέλου</h3>
+  <p class="text-sm text-ink-700 mt-3 mb-6 leading-relaxed">Σύνθεση ποσοτικής έρευνας κατοίκων (n=300), ποιοτικής έρευνας στελεχών (n=5) και δευτερογενών δεδομένων. Κάθε κενό αξιολογείται από τη συνδυαστική σοβαρότητα (έκταση + αντίκτυπος) και αντιστοιχεί σε μία στρατηγική Πρόταση του master plan.</p>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-4">
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">1</span>
+      <span class="ml-2 section-marker text-navy-700">Χρονικό · Υπο-αξιοποίηση 12μηνου</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Δομικά 12μηνος, λειτουργικά εποχικός</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">0,296</p>
+    <p class="text-xs text-ink-500 mb-3"><em>συντελεστής Gini εποχικότητας — δομικά η χαμηλότερη της μελέτης</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το Πήλιο διαθέτει το χαμηλότερο Gini εποχικότητας μετά την Καστοριά (0,296) — δομικά είναι ένας 12μηνος προορισμός: το αστικό Βόλου + ορεινό Αγριολευκή + παράκτιο Πήλιο καλύπτουν χειμερινό, ανοιξιάτικο, καλοκαιρινό, φθινοπωρινό προϊόν αντίστοιχα. <strong>Αλλά μόλις το 38,8% των κατοίκων αναγνωρίζει χειμερινή σεζόν</strong> — δηλαδή η αγορά δεν λειτουργεί σε αυτή τη βάση. Η πληρότητα δεν ακολουθεί τη χωρητικότητα: η χειμερινή Αγριολευκή είναι 60% παρά τη σχετική ζήτηση· το αστικό Βόλος συντηρείται από επαγγελματικό-εκπαιδευτικό κοινό.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> integrated 4-season marketing + Πανεπιστήμιο Θεσσαλίας ως conferences anchor + Αγριολευκή ski rebranding.</p>
+   </div>
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">2</span>
+      <span class="ml-2 section-marker text-navy-700">Χωρικό · Αν. Πήλιο bottlenecks</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Top 4 ενσύνια συγκεντρωτικά</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">Top 4</p>
+    <p class="text-xs text-ink-500 mb-3"><em>ενσύνια συγκεντρώνουν διανυκτερεύσεις: Τσαγκαράδα, Άγ. Ιωάννης, Νταμούχαρη, Παπά Νερό</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Στο Ανατολικό Πήλιο, τέσσερις προορισμοί απορροφούν τις περισσότερες διανυκτερεύσεις: Τσαγκαράδα, Άγιος Ιωάννης, Νταμούχαρη, Παπά Νερό. Αυτά λειτουργούν σε ΠΕΚ blockages (Παραδοσιακούς Εκπαιδευμένους Κανόνες) που περιορίζουν νέα ανάπτυξη — σωστή προστασία αλλά δημιουργεί τοπικό κορεσμό αγοράς. Το Δυτικό Πήλιο (Μηλιές, Βυζίτσα, Πινακάτες — όλα στο UNESCO tentative list) και η αστική περιοχή Βόλου παραμένουν υπο-αξιοποιημένα παρά την προσβασιμότητα.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> στρατηγική χωρικής διάχυσης: Δυτικό Πήλιο ως «slow village circuit» + Βόλος αστικό cluster (γαστρονομία/Αργοναυτικά).</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">3</span>
+      <span class="ml-2 section-marker text-accent-700">Ποιοτικό · Mosaic-to-narrative</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Πλούσιο μωσαϊκό, χωρίς ενιαίο αφήγημα</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">0</p>
+    <p class="text-xs text-ink-500 mb-3"><em>UNESCO World Heritage Sites εντός Δήμων προορισμού</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το Πήλιο διαθέτει εξαιρετικά πλούσιο πολιτιστικό κεφάλαιο — αρχαία Δημητριάδα, 24 ηγηγιάθηκα ΠΔ (Παραδοσιακά Δικτυωτά), Σχολειονδρόμος Μηλιών, Κένταυροι/Αργοναύτες μυθολογία — αλλά κανένα UNESCO WHS εντός των ορίων του προορισμού. Η αξιοποίηση είναι κατακερματισμένη: κάθε χωριό διηγείται τη δική του ιστορία, χωρίς ενιαία αφηγηματική γραμμή «Αργοναυτική Δυτική Θεσσαλία». Ο επισκέπτης που έρχεται από Αθήνα ή Θεσσαλονίκη γνωρίζει το «παραδοσιακό Πήλιο» σαν αόριστη ιδέα, χωρίς συγκεκριμένο cultural product.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> «Αργοναυτική Διαδρομή» integrated brand + UNESCO tentative push για Δυτικό Πήλιο σύνολο + ψηφιακή πλατφόρμα.</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">4</span>
+      <span class="ml-2 section-marker text-accent-700">Ρυθμιστικό · STR + Κλιματική ανθεκτικότητα</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Νέο πεδίο: μετά την κακοκαιρία Daniel</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">57,2%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>αναγνώριση STR στεγαστικής πίεσης — αυξανόμενη</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το 57,2% των κατοίκων αναγνωρίζει στεγαστική πίεση από STR — μέτρια συγκριτικά με Χανιά/Κέρκυρα. Αλλά η Μαγνησία αντιμετωπίζει ένα δεύτερο διπλό κενό: <strong>κλιματική ανθεκτικότητα</strong>. Μετά την κακοκαιρία Daniel (Σεπτέμβριος 2023), οι παράκτιες/πεδινές υποδομές παρουσίασαν δομικές αδυναμίες. Πληρώματα αναπλάσεων αρπάζονται από εστίες Airbnb (μη-νομικές μονάδες ανακαινισμένες ως ΕΧΡΟ τύπου), εξαφανίζοντας το πραγματικό σπιτικό απόθεμα. Διπλή πρόκληση: STR ρύθμιση + αντιπληημμυρικά infrastructure investment.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> συνδυασμένο STR + climate resilience program: STR cap σε high-risk ζώνες + flood-resilient infrastructure + insurance reform.</p>
+   </div>
+
+  </div>
+
+  <p class="chart-source mt-6">Πηγές: Πρωτογενής ποσοτική έρευνα κατοίκων 3 Δήμων Βόλου-Ζαγοράς-Νότιου Πηλίου (n=300)· ΕΛΣΤΑΤ STO12· OSM POIs· INSETE. Ο Βόλος-Πήλιο είναι ο μόνος ώριμος προορισμός με αντίστροφο insider critique pattern (REVERSE) μετά την εμπειρία Daniel — οι τουριστικά απασχολούμενοι αντιλαμβάνονται την πίεση χαμηλότερη.</p>
  </div>
 
  <!-- 4-quadrant breakdown grid (πρόσθετο, δεν αντικαθιστά το infographic) -->
@@ -740,9 +805,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=10"></script>
- <script src="assets/js/charts.js?v=10"></script>
- <script src="assets/data/volos_pelio-data.js?v=10"></script>
- <script src="assets/js/volos_pelio-render.js?v=10"></script>
+ <script src="assets/js/app.js?v=11"></script>
+ <script src="assets/js/charts.js?v=11"></script>
+ <script src="assets/data/volos_pelio-data.js?v=11"></script>
+ <script src="assets/js/volos_pelio-render.js?v=11"></script>
 </body>
 </html>
