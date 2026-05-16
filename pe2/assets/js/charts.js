@@ -182,12 +182,12 @@ window.WBCharts = {
 
   // ---------- 4.7 Monthly occupancy ----------
   occupancy(elId, data) {
-    const colors = data.values.map(v => v >= 70 ? PALETTE.orange : v >= 40 ? PALETTE.navy : PALETTE.navyLt);
+    const colors = data.values.map(v => v == null ? PALETTE.muted : v >= 70 ? PALETTE.orange : v >= 40 ? PALETTE.navy : PALETTE.navyLt);
     Plotly.newPlot(elId, [{
       x: data.months, y: data.values,
       type: 'bar',
       marker: { color: colors, line: { color: 'white', width: 1 } },
-      text: data.values.map(v => v.toFixed(0) + '%'),
+      text: data.values.map(v => v == null ? '' : v.toFixed(0) + '%'),
       textposition: 'outside',
       textfont: { color: PALETTE.navy, size: 11, family: 'Inter, sans-serif' },
       hovertemplate: '<b>%{x}</b><br>Πληρότητα: %{y:.0f}%<extra></extra>',
@@ -206,28 +206,43 @@ window.WBCharts = {
       marker: { size: 7 },
       fill: 'tozeroy',
       fillcolor: 'rgba(31,78,121,0.08)',
+      connectgaps: true,
       hovertemplate: '<b>%{x}</b><br>ALoS: %{y:.2f} ημ.<extra></extra>',
       name: 'ALoS',
     };
-    // Linear trend
-    const n = data.years.length;
-    const xMean = data.years.reduce((a,b)=>a+b,0)/n;
-    const yMean = data.values.reduce((a,b)=>a+b,0)/n;
-    let num=0, den=0;
-    for (let i=0; i<n; i++) { num += (data.years[i]-xMean)*(data.values[i]-yMean); den += (data.years[i]-xMean)**2; }
-    const slope = num/den;
-    const intercept = yMean - slope*xMean;
-    const trend = {
-      x: data.years,
-      y: data.years.map(x => intercept + slope*x),
-      type: 'scatter', mode: 'lines',
-      line: { color: PALETTE.muted, width: 1.5, dash: 'dash' },
-      name: `Τάση: ${slope >= 0 ? '+' : ''}${slope.toFixed(3)} ημ./έτος`,
-      hoverinfo: 'skip',
-    };
-    Plotly.newPlot(elId, [main, trend], {
+    // Linear trend — filter nulls before regression
+    const pairs = data.years.map((x, i) => [x, data.values[i]]).filter(p => p[1] != null);
+    const traces = [main];
+    let trendName = '';
+    if (pairs.length >= 2) {
+      const xs = pairs.map(p => p[0]);
+      const ys = pairs.map(p => p[1]);
+      const n = pairs.length;
+      const xMean = xs.reduce((a,b)=>a+b,0)/n;
+      const yMean = ys.reduce((a,b)=>a+b,0)/n;
+      let num=0, den=0;
+      for (let i=0; i<n; i++) { num += (xs[i]-xMean)*(ys[i]-yMean); den += (xs[i]-xMean)**2; }
+      const slope = den === 0 ? 0 : num/den;
+      const intercept = yMean - slope*xMean;
+      trendName = `Τάση: ${slope >= 0 ? '+' : ''}${slope.toFixed(3)} ημ./έτος`;
+      traces.push({
+        x: data.years,
+        y: data.years.map(x => intercept + slope*x),
+        type: 'scatter', mode: 'lines',
+        line: { color: PALETTE.muted, width: 1.5, dash: 'dash' },
+        name: trendName,
+        hoverinfo: 'skip',
+      });
+    }
+    // Auto-range από τα valid values με padding
+    const validVals = data.values.filter(v => v != null);
+    const vMin = Math.min(...validVals), vMax = Math.max(...validVals);
+    const pad = Math.max(0.3, (vMax - vMin) * 0.25);
+    const yRange = [Math.max(0, vMin - pad), vMax + pad];
+    Plotly.newPlot(elId, traces, {
       ...BASE_LAYOUT,
-      yaxis: { ...BASE_LAYOUT.yaxis, title: { text: 'ALoS (διανυκτ./άφιξη)', font: FONT_BODY }, range: [4, 7] },
+      yaxis: { ...BASE_LAYOUT.yaxis, type: 'linear', title: { text: 'ALoS (διανυκτ./άφιξη)', font: FONT_BODY }, range: yRange },
+      xaxis: { ...BASE_LAYOUT.xaxis, type: 'linear' },
       showlegend: true,
       legend: { x: 0.55, y: 0.98 },
     }, CONFIG);
@@ -237,8 +252,8 @@ window.WBCharts = {
   strShare(elId, data, key) {
     const hot = data[key].map(v => 100 - v);
     Plotly.newPlot(elId, [
-      { x: data.years, y: hot, name: 'Ξενοδοχεία', type: 'bar', marker: { color: PALETTE.navy }, text: hot.map(v=>v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white' }, hovertemplate: '<b>%{x}</b><br>Ξενοδοχεία: %{y:.1f}%<extra></extra>' },
-      { x: data.years, y: data[key], name: 'STR', type: 'bar', marker: { color: PALETTE.orange }, text: data[key].map(v=>v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white', size: 13, family: 'Inter, sans-serif' }, hovertemplate: '<b>%{x}</b><br>STR: %{y:.1f}%<extra></extra>' },
+      { x: data.years, y: hot, name: 'Ξενοδοχεία', type: 'bar', marker: { color: PALETTE.navy }, text: hot.map(v => v == null ? '' : v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white' }, hovertemplate: '<b>%{x}</b><br>Ξενοδοχεία: %{y:.1f}%<extra></extra>' },
+      { x: data.years, y: data[key], name: 'STR', type: 'bar', marker: { color: PALETTE.orange }, text: data[key].map(v => v == null ? '' : v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white', size: 13, family: 'Inter, sans-serif' }, hovertemplate: '<b>%{x}</b><br>STR: %{y:.1f}%<extra></extra>' },
     ], { ...BASE_LAYOUT, barmode: 'stack', yaxis: { ...BASE_LAYOUT.yaxis, range: [0, 100], title: { text: 'Μερίδιο (%)', font: FONT_BODY } }, showlegend: true, legend: { orientation: 'h', x: 0.5, xanchor: 'center', y: -0.18 } }, CONFIG);
   },
 
@@ -412,17 +427,19 @@ window.WBCharts = {
 
   // ---------- 4.15 TII Defert ----------
   tii(elId, data) {
-    const yMax = Math.max(14, Math.max(...data.values) * 1.25);
+    const validVals = data.values.filter(v => v != null);
+    const yMax = Math.max(14, Math.max(...validVals) * 1.25);
     Plotly.newPlot(elId, [{
       x: data.years, y: data.values,
       type: 'scatter', mode: 'lines+markers+text',
       line: { color: PALETTE.red, width: 3 },
       marker: { size: 8, color: PALETTE.red, line: { color: 'white', width: 2 } },
-      text: data.values.map(v => v.toFixed(1)),
+      text: data.values.map(v => v == null ? '' : v.toFixed(1)),
       textposition: 'top center',
       textfont: { size: 10, color: PALETTE.red, family: 'Inter, sans-serif' },
       fill: 'tozeroy',
       fillcolor: 'rgba(165,42,42,0.08)',
+      connectgaps: true,
       hovertemplate: '<b>Έτος %{x}</b><br>TII = %{y:.2f}<br>(διανυκτ. ÷ πληθ. × 100)<extra></extra>',
       name: 'TII ' + SELF(),
     }], {
