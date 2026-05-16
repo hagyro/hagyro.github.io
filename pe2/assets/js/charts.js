@@ -567,6 +567,7 @@ window.WBCharts = {
                automargin: true },
       yaxis: { ...BASE_LAYOUT.yaxis,
                title: { text: yTitle, font: FONT_BODY, standoff: 12 },
+               type: data.yLog ? 'log' : 'linear',
                range: [yLo, yHi],
                tickmode: 'array', tickvals: yT.vals, ticktext: yT.vals.map(v => String(v)),
                automargin: true },
