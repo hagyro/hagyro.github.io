@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=10">
+ <link rel="stylesheet" href="assets/css/custom.css?v=11">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -350,12 +350,77 @@
  </div>
  </div>
 
- <!-- Gap analysis infographic (βασικό Σχ. X.10β) -->
+ <!-- Gap Analysis · native HTML expanded version -->
  <div class="chart-card mt-8">
- <p class="chart-title">Σχήμα 4.10β · Gap Analysis: τέσσερα κρίσιμα κενά Ζήτησης / Προσφοράς, ΠΕ Χανίων</p>
- <h3 class="chart-headline">Σύνθεση τεσσάρων διαστάσεων αναγνώρισης κενών</h3>
- <img src="assets/charts/chania/fig_4_10b_gap_analysis_v2.png" alt="Gap Analysis infographic τεσσάρων κρίσιμων κενών για τα Χανιά" class="w-full mt-4 rounded">
- <p class="chart-source">Σύνθεση δεικτών ΕΛΣΤΑΤ STO12, πρωτογενούς έρευνας κατοίκων, και POI overlay (OpenStreetMap 2025). Ίδια επεξεργασία.</p>
+  <p class="chart-title">Σχήμα 4.10β · Gap Analysis Ζήτησης / Προσφοράς, ΠΕ Χανίων</p>
+  <h3 class="chart-headline">Τέσσερα κρίσιμα κενά τουριστικού μοντέλου</h3>
+  <p class="text-sm text-ink-700 mt-3 mb-6 leading-relaxed">Σύνθεση ποσοτικής έρευνας κατοίκων (n=300), ποιοτικής έρευνας στελεχών (n=5) και δευτερογενών δεδομένων. Κάθε κενό αξιολογείται από τη συνδυαστική σοβαρότητα (έκταση + αντίκτυπος) και αντιστοιχεί σε μία στρατηγική Πρόταση του master plan.</p>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-4">
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">1</span>
+      <span class="ml-2 section-marker text-accent-700">Χρονικό · Εποχικότητα</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Δομικά υπερσυγκεντρωμένη σεζόν</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">51%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>ετήσια απόσυρση κλινών εκτός εμπορικής περιόδου</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το 51% των ξενοδοχειακών κλινών κλείνει εκτός εμπορικής περιόδου, ενώ <strong>68,6% των αφίξεων συγκεντρώνονται σε μόλις τέσσερις μήνες</strong> (Ιούνιος-Σεπτέμβριος). Η πληρότητα τον χειμώνα (Νοέμβριος-Μάρτιος) πέφτει στο 4-9%, έναντι 28-60% Απρίλιο-Μάιο, που σημαίνει ότι ακόμα και η «προ-σεζόν» δουλεύει 2-3× καλύτερα από τον χειμώνα. Δομικό κενό επιμήκυνσης σεζόν: το προϊόν παραμένει αυστηρά παράκτιο/καλοκαιρινό παρά τη Δυτική Κρήτη ως all-season προορισμό (φύση, γαστρονομία, βυζαντινό κεφάλαιο).</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> στόχευση «Φθινοπωρινής Κρήτης» (Οκτ-Δεκ) + ορεινό/Άκρα Σφακιά Φεβ-Απρ. Επιμήκυνση 2 μηνών = €70-90 εκ. πρόσθετα έσοδα.</p>
+   </div>
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">2</span>
+      <span class="ml-2 section-marker text-navy-700">Χωρικό · Βορράς vs Νότος</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Υπερσυγκέντρωση σε βόρεια ακτή</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">85%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>τουριστικής δραστηριότητας στη Βόρεια Ζώνη της ΠΕ Χανίων</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το 85% των διανυκτερεύσεων συγκεντρώνεται στη Βόρεια Ζώνη: Πλατανιάς, Αγία Μαρίνα, Σταλός, Χανιά Παλιά Πόλη. Η Νότια Κρήτη (Παλαιόχωρα, Σούγια, Λουτρό, Φραγκοκάστελλο) και η Δυτική (Φαλάσαρνα, Ελαφονήσι, Γαύδος) παραμένουν τουριστικά υπο-ανεπτυγμένες παρά τους εξαιρετικούς πόρους και την υψηλότερη ποιότητα παραλιών της Ευρώπης (Ελαφονήσι · Φαλάσαρνα). Η χωρική διάχυση είναι από τους πιο άμεσα διαθέσιμους μοχλούς για ισόρροπη ανάπτυξη.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> στρατηγική χωρικής διάχυσης μέσω Νότιας Κρήτης + Δυτικού άξονα. Πρόταση Πρότ. 2 master plan.</p>
+   </div>
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">3</span>
+      <span class="ml-2 section-marker text-navy-700">Ποιοτικό · Cultural brand</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Πολιτιστικό κεφάλαιο υπο-αξιοποιημένο</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">10%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>αξιοποίηση πολιτιστικών πόρων (επισκέπτες μουσείων / σύνολο αφίξεων)</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Από 1,36 εκ. ετήσιες αφίξεις στην ΠΕ Χανίων, μόλις 136.220 επισκέπτονται μουσεία και αρχαιολογικούς χώρους — αναλογία 10%. Η πολιτιστική κατανάλωση παραμένει δευτερεύουσα έναντι της θαλάσσιας/γαστρονομικής. Το Αρχαιολογικό Μουσείο Χανίων, το Ναυτικό Μουσείο, η Δημοτική Πινακοθήκη, οι βυζαντινές εκκλησίες της Λευκής Ορεινής, και τα μινωικά Κίσσαμος-Φαλάσαρνα υπολειτουργούν παρά την παγκόσμια ζήτηση για heritage tourism.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> Cultural Brand programme με ψηφιακή πλατφόρμα + ενιαία διαδρομή «Μινωικά + Βυζαντινά + Βενετσιάνικα Χανιά».</p>
+   </div>
+
+   <div class="border-2 border-red-300 bg-red-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-red-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">4</span>
+      <span class="ml-2 section-marker text-red-700">Ρυθμιστικό · Ανέλεγκτη STR</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-red-800 bg-red-200 px-2 py-1 rounded">Ακραία σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Στεγαστική πίεση από βραχυχρόνια μίσθωση</h4>
+    <p class="font-serif text-3xl font-bold text-red-700 mb-3 numeric">24,8%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>μερίδιο STR στις συνολικές διανυκτερεύσεις — το υψηλότερο της δεκάδας</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Η βραχυχρόνια μίσθωση (Airbnb/Booking τύπου) κατέχει το 24,8% των συνολικών διανυκτερεύσεων στα Χανιά — <strong>η υψηλότερη διεισδυτικότητα STR στους 10 προορισμούς</strong> της μελέτης. Από το 91,4% των κατοίκων που δηλώνει υπερβολική επιβάρυνση ενοίκων ως αναγνωρισμένο πρόβλημα — μοναδικό ρεκόρ της μελέτης. Η αναλογία STR listings προς νομικές μονάδες είναι 4:1· επιπλέον, ένα μη μικρό μέρος των listings ανήκει σε επαγγελματικούς διαχειριστές με 10+ ακίνητα (corporate STR), όχι σε ιδιοκτήτες μεμονωμένου ακινήτου.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-red-300"><strong>Πρακτικά:</strong> άμεση εφαρμογή Καλλικρατικού regulation STR ζώνες/cap + caps σε corporate listings ανά Δ.Ε. Πρότ. 4 master plan.</p>
+   </div>
+
+  </div>
+
+  <p class="chart-source mt-6">Πηγές: Πρωτογενής ποσοτική έρευνα κατοίκων (n=300, Απρίλιος 2026)· ΕΛΣΤΑΤ STO12 (αφίξεις, διανυκτερεύσεις, πληρότητα)· INSETE Intelligence Reports· OSM POIs Δεκέμβριος 2025. Συνθετική παρατήρηση ποιοτικής έρευνας: «<em>Τα Χανιά έχουν φτάσει στην οριακή φάση όπου η ίδια η επιτυχία του προορισμού γίνεται εμπόδιο για τους κατοίκους</em>». Κάθε κενό αντιστοιχεί σε μία Πρόταση του master plan.</p>
  </div>
  </section>
 
@@ -643,9 +708,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=10"></script>
- <script src="assets/js/charts.js?v=10"></script>
- <script src="assets/data/chania-data.js?v=10"></script>
- <script src="assets/js/chania-render.js?v=10"></script>
+ <script src="assets/js/app.js?v=11"></script>
+ <script src="assets/js/charts.js?v=11"></script>
+ <script src="assets/data/chania-data.js?v=11"></script>
+ <script src="assets/js/chania-render.js?v=11"></script>
 </body>
 </html>
