@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=10">
+ <link rel="stylesheet" href="assets/css/custom.css?v=12">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -59,7 +59,7 @@
  </svg>
 
  <div class="container mx-auto px-6 pb-12 relative z-10 text-white">
- <p class="section-marker text-accent-300">Κεφάλαιο 09 · Προορισμός με περιθώριο ανάπτυξης · Ηπειρωτικός αστικός</p>
+ <p class="section-marker text-accent-300">Κεφάλαιο 9 · Προορισμός με περιθώριο ανάπτυξης · Ηπειρωτικός αστικός</p>
  <h1 class="display text-7xl md:text-8xl mt-3 leading-none">Ιωάννινα</h1>
  <p class="text-xl mt-3 text-navy-50/85 max-w-2xl">Ήπειρος · ΠΕ Ιωαννίνων · Δ. Ιωαννιτών + Δ. Ζαγορίου · Πληθυσμός 160.773 (Απογραφή 2021) · ⚠ NUTS3 EL541 = Άρτα-Πρέβεζα (βλ. §9.4.3)</p>
 
@@ -191,7 +191,7 @@
  <div class="kpi-delta flat">μεσαία ζώνη</div>
  </div>
  <div class="kpi-card" data-reveal>
- <div class="kpi-label">LCA C1 «Δυσφορούντες» (<em>Αντιπαλότητα</em>)</div>
+ <div class="kpi-label">LCA C1 «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>)</div>
  <div class="kpi-value"><span data-num="8.4" data-decimals="1">8,4</span><span class="kpi-unit">%</span></div>
  <div class="kpi-delta up">χαμηλή των αναπτυσσόμενων</div>
  </div>
@@ -219,11 +219,11 @@
  <aside class="border-l-2 border-accent-500 pl-6">
  <p class="section-marker text-accent-500"><span class="glossary" title="Butler TALC: κύκλος ζωής τουριστικού προορισμού σε 6 στάδια (Butler 1980): Εξερεύνηση → Εμπλοκή → Ανάπτυξη → Ενοποίηση → Στασιμότητα → Παρακμή/Αναζωογόνηση.">Butler</span> TALC</p>
  <p class="text-2xl font-serif text-navy-700 mt-2">Late Development / Early Maturity</p>
- <p class="text-sm text-ink-500 mt-3">Διπλό χαρακτηριστικό: αντικειμενική ένταση οριακά πάνω από κατώφλι Saveriades (TII 5,665) + υποκειμενική αντίληψη οριακά θετική (POI θ̂ +0,0403). Πεπερασμένο reset window.</p>
+ <p class="text-sm text-ink-500 mt-3">Διπλό χαρακτηριστικό: αντικειμενική ένταση οριακά πάνω από κατώφλι Saveriades (TII 5,665) + υποκειμενική αντίληψη οριακά θετική (POI θ̂ +0,04). Πεπερασμένο reset window.</p>
  <hr class="my-5 border-[var(--rule)]">
  <p class="section-marker text-accent-500">Doxey Irridex</p>
  <p class="text-2xl font-serif text-navy-700 mt-2">Ευφορία → πρώιμη Απάθεια</p>
- <p class="text-sm text-ink-500 mt-3">LCA C2+C5 θετικές κλάσεις 64,4%, αρνητικές C1+C4 25,8% (2ος μεταξύ αναπτυσσόμενων). «Αμφίθυμοι» (<em>Συγκρ. Ενόχληση</em>) C4 17,4% αποτυπώνει μοτίβο κριτικής εκ των έσω σε υπο-ομάδες.</p>
+ <p class="text-sm text-ink-500 mt-3">LCA C2+C5 θετικές κλάσεις 64,4%, αρνητικές C1+C4 25,8% (2ος μεταξύ αναπτυσσόμενων). «Αμφιταλαντευόμενοι» (<em>Συγκρ. Ενόχληση</em>) C4 17,4% αποτυπώνει μοτίβο κριτικής εκ των έσω σε υπο-ομάδες.</p>
  </aside>
  </div>
  </section>
@@ -358,12 +358,77 @@
  </div>
  </div>
 
- <!-- Gap analysis infographic (βασικό Σχ. 9.10β) -->
+ <!-- Gap Analysis · native HTML expanded version -->
  <div class="chart-card mt-8">
- <p class="chart-title">Σχήμα 9.10β · Gap Analysis: τέσσερα κρίσιμα κενά Ζήτησης / Προσφοράς, ΠΕ Ιωαννίνων</p>
- <h3 class="chart-headline">Τέσσερις heritage πυλώνες χωρίς ενιαία αφηγηματική σύνθεση</h3>
- <img src="assets/charts/ioannina/fig_9_10b_gap_analysis_v2.png" alt="Gap Analysis infographic τεσσάρων κρίσιμων κενών για τα Ιωάννινα" class="w-full mt-4 rounded">
- <p class="chart-source">«Το προϊόν λειτουργεί ως μωσαϊκό εμπειριών και όχι ως ενιαίο αφήγημα.» — Συμπερασματική παρατήρηση ποιοτικής έρευνας στελεχών. Λύση: Heritage Corridor Πρότ. 2 + branding ομπρέλα Visit Epirus / Epirus Pass / Epirus Food Trail. Ίδια επεξεργασία.</p>
+  <p class="chart-title">Σχήμα 9.10β · Gap Analysis Ζήτησης / Προσφοράς, ΠΕ Ιωαννίνων</p>
+  <h3 class="chart-headline">Τέσσερα κρίσιμα κενά τουριστικού μοντέλου</h3>
+  <p class="text-sm text-ink-700 mt-3 mb-6 leading-relaxed">Σύνθεση ποσοτικής έρευνας κατοίκων (n=300), ποιοτικής έρευνας στελεχών (n=5) και δευτερογενών δεδομένων. Κάθε κενό αξιολογείται από τη συνδυαστική σοβαρότητα (έκταση + αντίκτυπος) και αντιστοιχεί σε μία στρατηγική Πρόταση του master plan.</p>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-4">
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">1</span>
+      <span class="ml-2 section-marker text-accent-700">Χρονικό · Βραχεία ALoS</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Πόλη που λειτουργεί ως διέλευση</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">2,06</p>
+    <p class="text-xs text-ink-500 mb-3"><em>νύχτες ανά άφιξη — 2η χαμηλότερη της δεκάδας μετά την Καστοριά</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Η μέση διάρκεια παραμονής στα Ιωάννινα είναι 2,06 νύχτες — εξαιρετικά χαμηλή. Παρά το ότι το Gini εποχικότητας είναι ευνοϊκό (0,280), η αστική φύση εξυπηρετεί κυρίως 1-2 διανυκτερεύσεις: πέρασμα προς Ζαγόρι, βραχύ city break, ή επαγγελματικό-εκπαιδευτικό κοινό. <strong>Δεν μετριάζεται με πολυάμερο παραθέρισμα Ζαγορίου-Μετσόβου-Δωδώνης</strong>, παρά το ότι το Ζαγόρι έγινε UNESCO Global Geopark Βίκου-Αώου (2023) και διαθέτει 46 παραδοσιακούς οικισμούς. Ο επισκέπτης πιο πιθανό να κάνει το Ζαγόρι μονοήμερη εκδρομή από Αθήνα ή Θεσσαλονίκη.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> integrated Πόλη + Ζαγόρι + Μέτσοβο + Δωδώνη + Πάργα κλειστή διαδρομή 5-7 ημερών με ενιαία πακετοποίηση + accommodation chain.</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">2</span>
+      <span class="ml-2 section-marker text-accent-700">Χωρικό · Συγκέντρωση πόλης</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Δήμος Ιωαννιτών απορροφά τις ροές</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">>95%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>POIs εντός Δήμου Ιωαννιτών (πόλη)</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Πάνω από το 95% των POIs εντοπίζεται στον Δήμο Ιωαννιτών (κυρίως αστικός πυρήνας: Κάστρο, Πλατεία Πύργου, λίμνη Παμβώτιδα). Το Ζαγόρι, UNESCO Global Geopark Βίκου-Αώου με 46 παραδοσιακούς οικισμούς (Πάπιγγο, Μικρό/Μεγάλο Πάπιγκο, Αρίστη, Βίκος, Μονοδέντρι κλπ.), <strong>υπο-εκπροσωπείται σε ροές</strong> παρά το διεθνές heritage βάρος. Παρομοίως το Μέτσοβο, η Δωδώνη (αρχαίο μαντείο), και η ΒΔ Ζαγορίτικη ΠΕ Ποταμοι. Διεθνώς αναγνωρίσιμα προϊόντα παρά τη heritage value.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> wayfinding/branding του Ζαγορίου ως «UNESCO Global Geopark» + connectivity hub με Ιωάννινα + boutique accommodation density.</p>
+   </div>
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">3</span>
+      <span class="ml-2 section-marker text-navy-700">Ποιοτικό · Mosaic-to-narrative</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Πολλαπλοί πυλώνες χωρίς ενιαία αφηγηματική γραμμή</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">21,1%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>ξενοδοχείων ήδη 5★ — η υποδομή υπάρχει· λείπει το storytelling</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Τα Ιωάννινα έχουν 21,1% των ξενοδοχείων σε 5★ κατηγορία — premium θύλακες υπάρχουν (Καρενσέ, Du Lac, κ.ά.). <strong>Δεν είναι κενό capacity</strong>· είναι κενό αφηγηματικής διασύνδεσης τεσσάρων πυλώνων: (i) Ζαγόρι UNESCO Geopark, (ii) Λίμνη Παμβώτιδα + νησίδα Αλή Πασά, (iii) Δωδώνη αρχαίο μαντείο, (iv) Μέτσοβο/Πίνδος ορεινό. Καθένας λειτουργεί ξεχωριστά. Η Αθλητική ταυτότητα (πανεπιστημιακό κέντρο) δίνει 22.000 φοιτητές Σεπ-Ιουν αλλά δεν συνδέεται με τον τουρισμό.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> integrated brand «Ήπειρος UNESCO Geopark + Αρχαίο Μαντείο + Αλή Πασάς + Επικός Πίνδος» + φοιτητικό knowledge tourism program.</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">4</span>
+      <span class="ml-2 section-marker text-accent-700">Ρυθμιστικό · STR + φοιτητική στέγη</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Διπλή πίεση στέγασης</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">70,5%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>αναγνώριση STR στεγαστικής πίεσης + 22.000 φοιτητές διπλή πίεση</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το 70,5% των κατοίκων αναγνωρίζει STR στεγαστική πίεση. Στα Ιωάννινα όμως αυτή η πίεση είναι <strong>διπλή</strong>: 22.000 φοιτητές απαιτούν στέγη Σεπ-Ιουν, και STR καταλαμβάνει τα ίδια ακίνητα Ιουλ-Σεπ. Το Πανεπιστήμιο Ιωαννίνων δεν έχει φοιτητικές εστίες σε επαρκή κλίμακα — οι φοιτητές ενοικιάζουν στην ανοιχτή αγορά, στην ίδια αγορά που εξυπηρετεί τουρισμό. <strong>DMMO Ανάπτυξης Ηπείρου ΑΕ pending activation από 2021-22</strong> — ο μηχανισμός υπάρχει στο χαρτί αλλά δεν λειτουργεί 4 χρόνια μετά.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> activation DMMO Ηπείρου + STR cap σε φοιτητικές ζώνες + επένδυση σε φοιτητικές εστίες (RRF/ΕΣΠΑ).</p>
+   </div>
+
+  </div>
+
+  <p class="chart-source mt-6">Πηγές: Πρωτογενής ποσοτική έρευνα κατοίκων 2 Δήμων Ιωαννιτών + Ζαγορίου (n=300)· ΕΛΣΤΑΤ STO12, SBR01. Τα Ιωάννινα έχουν τον υψηλότερο CAGR αλλοδαπών (+10,85%) της δεκάδας — δυναμική αγορά αλλά χωρίς ενιαία στρατηγική.</p>
  </div>
  </section>
 
@@ -466,7 +531,7 @@
  <p class="chart-title">Σχήμα 9.17β · Τεταρτημόριο πόλωσης: Class 1 × Class 5</p>
  <h3 class="chart-headline">Ιωάννινα στη ζώνη «Υγιής συναίνεση με πρώιμα σήματα» (8,4% × 22,1%)</h3>
  <div id="chart_q_lca" style="height:480px"></div>
- <p class="chart-source">Χαμηλή Class 1 («Δυσφορούντες» (<em>Αντιπαλότητα</em>)) + μέτρια Class 5 («Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>)) = συναινετικός προορισμός. Ωστόσο, C4 17,4% («Αμφίθυμοι» (<em>Συγκρ. Ενόχληση</em>)) αποκαλύπτει το μοτίβο κριτικής εκ των έσω σε υπο-ομάδες.</p>
+ <p class="chart-source">Χαμηλή Class 1 («Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>)) + μέτρια Class 5 («Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>)) = συναινετικός προορισμός. Ωστόσο, C4 17,4% («Αμφιταλαντευόμενοι» (<em>Συγκρ. Ενόχληση</em>)) αποκαλύπτει το μοτίβο κριτικής εκ των έσω σε υπο-ομάδες.</p>
  </div>
  </div>
 
@@ -538,7 +603,7 @@
  <p class="chart-title">Σχήμα 9.18 · Αντίληψη αρνητικών επιπτώσεων (% συμφωνώ + απόλυτα)</p>
  <h3 class="chart-headline">STR/Airbnb επίδραση 70,5% · Στεγαστική κρίση 55,1% — χαμηλότερα νησιωτικών ώριμων</h3>
  <div id="chart_env_heat" style="height:420px"></div>
- <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 10 προορισμών. Τα Ιωάννινα διατηρούν διαχειρίσιμα επίπεδα αλλά με σαφή Insider Critique σε ηχορύπανση + απορρίμματα από εργαζόμενους στον τουρισμό.</p>
+ <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 10 προορισμών. Τα Ιωάννινα διατηρούν διαχειρίσιμα επίπεδα αλλά με σαφή Κριτική Εκ των Έσω σε ηχορύπανση + απορρίμματα από εργαζόμενους στον τουρισμό.</p>
  </div>
  </section>
 
@@ -648,9 +713,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=10"></script>
- <script src="assets/js/charts.js?v=10"></script>
- <script src="assets/data/ioannina-data.js?v=10"></script>
- <script src="assets/js/ioannina-render.js?v=10"></script>
+ <script src="assets/js/app.js?v=12"></script>
+ <script src="assets/js/charts.js?v=12"></script>
+ <script src="assets/data/ioannina-data.js?v=12"></script>
+ <script src="assets/js/ioannina-render.js?v=12"></script>
 </body>
 </html>
