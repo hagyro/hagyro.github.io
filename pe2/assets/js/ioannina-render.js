@@ -158,7 +158,7 @@
   if (data.mrb_overall) {
     const items = ['Q1_2','Q1_3','Q1_7','Q1_9','Q1_10','Q1_11'];
     const labels = ['Ασφάλεια','Φιλικότητα','Στεγ. επίδραση','Ανταγωνισμός','Ευθύνη υποβάθμισης','Στήριξη μέτρων'];
-    const dests = ['Κέρκυρα','Χανιά','Μύκονος','Βόλος-Πήλιο','Ναύπλιο'];
+    const dests = ['Ιωάννινα','Κέρκυρα','Χανιά','Μύκονος','Ναύπλιο'];
     // Use mrb_cross would need pivoting — skip for now use placeholder actual values from doxey heatmap
     C.heatmap('chart_doxey', {
       rows: labels,
@@ -204,9 +204,9 @@
     const q3 = data.mrb_cross.Q3;
     const q7 = data.mrb_cross.Q7;
     const labels = ['Ηχορύπανση','Απορρίμματα','Πίεση οικοσυστημάτων','Ποιότητα υδάτων','Αρχιτεκτ. αλλοίωση','Αύξηση τιμών','STR/Airbnb επίδραση','Στεγαστική κρίση'];
-    const dest_pretty = ['Κέρκυρα','Χανιά','Μύκονος','Βόλος-Πήλιο','Ναύπλιο'];
+    const dest_pretty = ['Ιωάννινα','Κέρκυρα','Χανιά','Μύκονος','Ναύπλιο'];
     const idx = ['Q7_1','Q7_2','Q7_3','Q7_4','Q7_5','Q3_3','Q3_4','Q3_5'];
-    const dest_codes = ['ΚΕΡΚΥΡΑ','ΧΑΝΙΑ','ΜΥΚΟΝΟΣ','ΒΟΛΟΣ_ΠΗΛΙΟ','ΝΑΥΠΛΙΟ'];
+    const dest_codes = ['ΙΩΑΝΝΙΝΑ','ΚΕΡΚΥΡΑ','ΧΑΝΙΑ','ΜΥΚΟΝΟΣ','ΝΑΥΠΛΙΟ'];
     const z = idx.map(it => {
       const block = it.startsWith('Q3') ? q3 : q7;
       const i = block.items.indexOf(it);

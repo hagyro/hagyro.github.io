@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=14">
+ <link rel="stylesheet" href="assets/css/custom.css?v=15">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -63,7 +63,7 @@
  <div class="container mx-auto px-6 pb-12 relative z-10 text-white">
  <p class="section-marker text-accent-300">Κεφάλαιο 7 · Ώριμος προορισμός · Ηπειρωτικός μικτός</p>
  <h1 class="display text-7xl md:text-8xl mt-3 leading-none">Ναύπλιο</h1>
- <p class="text-xl mt-3 text-navy-50/85 max-w-2xl">Πελοπόννησος · ΠΕ Αργολίδας (NUTS3 EL651) · Δ. Ναυπλιέων + Επιδαύρου + Ερμιονίδας · Πληθυσμός 93.216 (Απογραφή 2021)</p>
+ <p class="text-xl mt-3 text-navy-50/85 max-w-2xl">Πελοπόννησος · ΠΕ Αργολίδας (NUTS3 EL651) · Δ. Ναυπλιέων + Επιδαύρου + Ερμιονίδας · Πληθυσμός 55.096 (Απογραφή 2021 · 3 Δήμοι canonical)</p>
 
  <!-- Photo credit -->
  <p class="absolute bottom-2 right-4 text-[10px] text-white/40">Φωτογραφία: Μπούρτζι &amp; Παλαμήδι Ναυπλίου</p>
@@ -268,7 +268,7 @@
  <p class="chart-title">Σχήμα 7.1 · Αφίξεις 2010–2024</p>
  <h3 class="chart-headline">Διπολική δυναμική: εκρηκτική διεθνής επέκταση, στάσιμη εγχώρια κατανάλωση</h3>
  <div id="chart_arrivals" style="height:380px"></div>
- <p class="chart-source">Πηγή: ΕΛΣΤΑΤ STO12 T03 (αφίξεις σε ξενοδοχειακά καταλύματα). 88,7% αλλοδαποί επισκέπτες το 2024.</p>
+ <p class="chart-source">Πηγή: ΕΛΣΤΑΤ STO12 T03 (αφίξεις σε ξενοδοχειακά καταλύματα). 42,3% αλλοδαποί επισκέπτες — μικτή αγορά εσωτερικού/αλλοδαπού.</p>
  </div>
 
  <!-- Recovery index -->
@@ -316,13 +316,13 @@
  <p class="chart-title">Σχήμα 7.7 · Μηνιαίο ποσοστό πληρότητας 2024</p>
  <h3 class="chart-headline">Αιχμή Αυγούστου 86% — Φεβρουάριος μόλις 4%</h3>
  <div id="chart_occupancy" style="height:380px"></div>
- <p class="chart-source">Περιφέρεια Κρήτης (NUTS2). Ευρείες ζώνες αξιοποίησης σε Απρ–Μαϊ και Οκτ.</p>
+ <p class="chart-source">Περιφέρεια Πελοποννήσου (NUTS2 EL65). Ευρείες ζώνες αξιοποίησης σε Απρ–Μαι και Σεπ-Οκτ.</p>
  </div>
 
  <!-- ALoS -->
  <div class="chart-card">
  <p class="chart-title">Σχήμα 7.8 · Μέση διάρκεια παραμονής (<span data-term="ALoS">ALoS</span>)</p>
- <h3 class="chart-headline">Μείωση −1 ημέρα σε δεκαετία (από 6,4 σε 5,4)</h3>
+ <h3 class="chart-headline">Σταθεροποιημένο ALoS 1,8 νύχτες — δομική weekend dominance, χρειάζεται strategy επιμήκυνσης</h3>
  <div id="chart_alos" style="height:380px"></div>
  <p class="chart-source">Σταθερή πτωτική τάση — πιθανή σύνδεση με αύξηση short-haul / city-break τουρισμού.</p>
  </div>
@@ -500,7 +500,7 @@
  <div class="grid lg:grid-cols-2 gap-8">
  <div class="chart-card lg:col-span-2">
  <p class="chart-title">Σχήμα 7.15 · <span class="glossary" title="TII (Tourist Intensity Index): διανυκτερεύσεις / πληθυσμό. Saveriades 2000: >15 = υπερκορεσμός.">Δείκτης Τουριστικής Έντασης</span> (<span data-term="TII">TII</span>) Defert 2010–2024</p>
- <h3 class="chart-headline">Από 3,78 σε 8,67 — υπερδιπλασιασμός σε 14 έτη</h3>
+ <h3 class="chart-headline">TII Δήμων 21,7 (2024 · 3 Δήμοι) σε ζώνη υψηλής έντασης — δομικός υπερτουρισμός εντοπισμένος</h3>
  <div id="chart_tii" style="height:420px"></div>
  <p class="chart-source">Διανυκτερεύσεις / κάτοικο × 100. Όριο υπερκορεσμού (Defert) στη γραμμή TII = 10.</p>
  </div>
@@ -573,14 +573,14 @@
  <section id="environment" class="py-12">
  <p class="section-marker">Ενότητα 06</p>
  <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Περιβάλλον</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">100% εξαιρετική ποιότητα υδάτων κολύμβησης. Αλλά τεχνητή γη +25,2% σε 4 έτη και Greek <span data-term="WEI+">WEI+</span> 12,51 (μέτρια πίεση). Μικτή κατάσταση με ορατούς κινδύνους.</p>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">100% εξαιρετική ποιότητα υδάτων κολύμβησης. Πελοπόννησος EL65 χαμηλή τεχνητή γη (≈1,5%), μέτρια υδατική πίεση, σημαντική Natura 2000 κάλυψη + 2 UNESCO WHS στην ευρύτερη περιοχή.</p>
 
  <div class="grid lg:grid-cols-2 gap-8">
  <div class="chart-card">
- <p class="chart-title">Eurostat lan_lcv_ovw · Χρήση γης Κρήτης 2022</p>
- <h3 class="chart-headline">388 km² τεχνητή γη — 4,65% του συνόλου 8.346 km²</h3>
- <div id="chart_landcover" style="height:380px"></div>
- <p class="chart-source">Land Use/Cover Area frame Survey (LUCAS), NUTS2 EL43.</p>
+ <p class="chart-title">ΠΕ Αργολίδας · Χωρικά χαρακτηριστικά</p>
+ <h3 class="chart-headline">2.214 km² ΠΕ Αργολίδας · 3 Δήμοι προορισμού (Ναυπλιέων + Επιδαύρου + Ερμιονίδας)</h3>
+ <p class="text-sm text-ink-700 leading-relaxed mt-3">Η ΠΕ Αργολίδας καλύπτει 2.214 km² στο βορειοανατολικό κομμάτι της Πελοποννήσου. Οι 3 Δήμοι του προορισμού (Ναυπλιέων, Επιδαύρου, Ερμιονίδας) συγκεντρώνουν 55.096 μόνιμους κατοίκους και αποτελούν συμπυκνωμένο πολιτιστικό σύμπλεγμα: UNESCO Επίδαυρος + UNESCO Μυκήνες-Τίρυνς + βενετσιάνικη Παλιά Πόλη Ναυπλίου. Λείπουν Eurostat NUTS2 EL65 land cover data — Πελοπόννησος aggregate.</p>
+ <p class="chart-source">Census 2021 (πληθυσμός 3 Δήμων) · ΕΛΣΤΑΤ ΑΣΥΕ έκταση ΠΕ Αργολίδας.</p>
  </div>
 
  <div class="chart-card">
@@ -593,30 +593,30 @@
 
  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
  <div class="kpi-card">
- <div class="kpi-label">Τεχνητή γη Κρήτης 2022</div>
- <div class="kpi-value"><span data-num="4.65" data-decimals="2">4,65</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta down">+25,2% (2018→2022)</div>
+ <div class="kpi-label">Έκταση ΠΕ Αργολίδας</div>
+ <div class="kpi-value"><span data-num="2214">2.214</span><span class="kpi-unit">km²</span></div>
+ <div class="kpi-delta flat">3 Δήμοι προορισμού</div>
  </div>
  <div class="kpi-card">
- <div class="kpi-label">Greek WEI+ 2023</div>
- <div class="kpi-value"><span data-num="12.51" data-decimals="2">12,51</span></div>
- <div class="kpi-delta down">μέτρια πίεση</div>
+ <div class="kpi-label">UNESCO World Heritage</div>
+ <div class="kpi-value"><span data-num="2">2</span></div>
+ <div class="kpi-delta up">Επίδαυρος + Μυκήνες-Τίρυνς</div>
  </div>
  <div class="kpi-card">
- <div class="kpi-label">Greek απορρ. 2023</div>
- <div class="kpi-value"><span data-num="523">523</span><span class="kpi-unit">kg/cap</span></div>
- <div class="kpi-delta flat">~EU avg</div>
+ <div class="kpi-label">Natura 2000 περιοχές</div>
+ <div class="kpi-value"><span data-num="5">5</span></div>
+ <div class="kpi-delta flat">Αργολικός κόλπος + ορεινή</div>
  </div>
  <div class="kpi-card">
- <div class="kpi-label">Blue Flag ΠΕ Χανίων 2024</div>
- <div class="kpi-value"><span data-num="43">43</span></div>
- <div class="kpi-delta up">28% Greek total</div>
+ <div class="kpi-label">Γαλάζιες Σημαίες ΠΕ Αργολίδας</div>
+ <div class="kpi-value"><span data-num="8">8</span></div>
+ <div class="kpi-delta flat">μικρή λίστα ακτών</div>
  </div>
  </div>
 
  <div class="chart-card lg:col-span-2 mt-8">
  <p class="chart-title">Σχήμα 7.18 · Αντίληψη αρνητικών επιπτώσεων (% συμφωνώ + απόλυτα)</p>
- <h3 class="chart-headline">STR/Airbnb επίδραση 91% · Στεγαστική κρίση 86% — υψηλότερα της Μυκόνου</h3>
+ <h3 class="chart-headline">Ναύπλιο: 76% αναγνωρίζει STR στεγαστική πίεση — παράθυρο προληπτικής ρύθμισης</h3>
  <div id="chart_env_heat" style="height:420px"></div>
  <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 5 ώριμων προορισμών.</p>
  </div>
@@ -676,7 +676,7 @@
  <div class="flex-1">
  <p class="section-marker text-accent-500">PDF · Ποσοτική έρευνα</p>
  <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Πρωτογενούς Ποσοτικής Έρευνας</p>
- <p class="text-xs text-ink-500 mt-1">Δήμος Χανίων · Δ. Αποκορώνου · Δ. Πλατανιά · Μάιος 2026</p>
+ <p class="text-xs text-ink-500 mt-1">Δ. Ναυπλιέων · Δ. Επιδαύρου · Δ. Ερμιονίδας · Απρίλιος 2026</p>
  <p class="text-xs text-ink-500 mt-2 numeric">68 σελίδες · 1,7 MB</p>
  </div>
  </div>
@@ -706,7 +706,7 @@
  <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
  <div>
  <p class="section-marker text-accent-300">Επόμενος προορισμός</p>
- <p class="font-serif text-xl text-white mt-2">Κέρκυρα →</p>
+ <p class="font-serif text-xl text-white mt-2">Βόλος-Πήλιο →</p>
  <p class="text-xs text-white/50 mt-1">Σύντομα διαθέσιμο</p>
  </div>
  <div>
@@ -728,9 +728,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=14"></script>
- <script src="assets/js/charts.js?v=14"></script>
- <script src="assets/data/nauplio-data.js?v=14"></script>
- <script src="assets/js/nauplio-render.js?v=14"></script>
+ <script src="assets/js/app.js?v=15"></script>
+ <script src="assets/js/charts.js?v=15"></script>
+ <script src="assets/data/nauplio-data.js?v=15"></script>
+ <script src="assets/js/nauplio-render.js?v=15"></script>
 </body>
 </html>

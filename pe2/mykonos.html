@@ -15,7 +15,7 @@
  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
- <link rel="stylesheet" href="assets/css/custom.css?v=14">
+ <link rel="stylesheet" href="assets/css/custom.css?v=15">
 
  <script>
  tailwind.config = { theme: { extend: {
@@ -260,7 +260,7 @@
  <section id="demand" class="py-12">
  <p class="section-marker">Ενότητα 02</p>
  <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Ζήτηση &amp; Προσφορά</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκατέσσερα έτη εξέλιξης ζήτησης (2010–2024), ξενοδοχειακό δυναμικό 51.917 κλινών, αγορά <span class="glossary" title="STR (Short-Term Rental): μισθώσεις τύπου Airbnb. Δείκτης πίεσης στη στεγαστική αγορά.">βραχυχρόνιας μίσθωσης</span> που έχει φτάσει ένα τέταρτο των διανυκτερεύσεων.</p>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκατέσσερα έτη εξέλιξης ζήτησης (2010–2024), ξενοδοχειακό δυναμικό 16.921 κλινών, αγορά <span class="glossary" title="STR (Short-Term Rental): μισθώσεις τύπου Airbnb. Δείκτης πίεσης στη στεγαστική αγορά.">βραχυχρόνιας μίσθωσης</span> που έχει φτάσει ένα τέταρτο των διανυκτερεύσεων.</p>
 
  <div class="grid lg:grid-cols-2 gap-8">
  <!-- Arrivals foreign vs domestic -->
@@ -268,13 +268,13 @@
  <p class="chart-title">Σχήμα 6.1 · Αφίξεις 2010–2024</p>
  <h3 class="chart-headline">Διπολική δυναμική: εκρηκτική διεθνής επέκταση, στάσιμη εγχώρια κατανάλωση</h3>
  <div id="chart_arrivals" style="height:380px"></div>
- <p class="chart-source">Πηγή: ΕΛΣΤΑΤ STO12 T03 (αφίξεις σε ξενοδοχειακά καταλύματα). 88,7% αλλοδαποί επισκέπτες το 2024.</p>
+ <p class="chart-source">Πηγή: ΕΛΣΤΑΤ STO12 T03 (αφίξεις σε ξενοδοχειακά καταλύματα). 90,2% αλλοδαποί επισκέπτες το 2024.</p>
  </div>
 
  <!-- Recovery index -->
  <div class="chart-card">
  <p class="chart-title">Σχήμα 6.2 · Δείκτης ανάκαμψης 2024/2019</p>
- <h3 class="chart-headline">Ανάκαμψη ολοκληρωμένη — αλλά πιο αργή από Κέρκυρα</h3>
+ <h3 class="chart-headline">Recovery 0,878 — μοναδικός ώριμος που δεν επανέφερε προ-πανδημικά επίπεδα (Butler stasis)</h3>
  <div id="chart_recovery" style="height:480px"></div>
  <p class="chart-source">Σύγκριση 10 προορισμών. Λόγος >1 σημαίνει ξεπέρασε την ανάκαμψη.</p>
  </div>
@@ -352,12 +352,12 @@
  <section id="product" class="py-12">
  <p class="section-marker">Ενότητα 03</p>
  <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Τουριστικό προϊόν</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Από 3.137 σημεία τουριστικού ενδιαφέροντος μέχρι την αξιολόγηση 15 διακριτών υποδομών από τους κατοίκους — η αξιολόγηση «τι λειτουργεί καλά» στον προορισμό.</p>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Από 1.941 σημεία τουριστικού ενδιαφέροντος μέχρι την αξιολόγηση 15 διακριτών υποδομών από τους κατοίκους — η αξιολόγηση «τι λειτουργεί καλά» στον προορισμό.</p>
 
  <div class="grid lg:grid-cols-2 gap-8">
  <div class="chart-card lg:col-span-2">
  <p class="chart-title">Σχήμα 6.10 · Σημεία Τουριστικού Ενδιαφέροντος (POIs OSM)</p>
- <h3 class="chart-headline">3.137 POIs — 2η θέση των 10 προορισμών (μετά Κέρκυρα)</h3>
+ <h3 class="chart-headline">1.941 POIs · κορυφαία πυκνότητα 22,7 POIs/km² των 10 προορισμών</h3>
  <div id="chart_pois" style="height:420px"></div>
  <p class="chart-source">OpenStreetMap Overpass API, εξαγωγή 2025. Κατηγορίες: παραλίες, μουσεία, εστίαση, καταλύματα, αξιοθέατα.</p>
  </div>
@@ -469,7 +469,7 @@
 
  <div class="chart-card lg:col-span-2">
  <p class="chart-title">Σχήμα 6.13β · Στρατηγικό τεταρτημόριο: Οικονομική εξάρτηση × Ικανοποίηση</p>
- <h3 class="chart-headline">«Κοινότητα στηριζόμενη από τουρισμό» (46,7% × 3,61) — διακριτή θέση από Κέρκυρα</h3>
+ <h3 class="chart-headline">Μύκονος στη ζώνη «Έντονη οικονομική εξάρτηση + διπολική στάση» — υψηλή Q15 + πολωμένη Q9_SAT</h3>
  <div id="chart_q_employment" style="height:480px"></div>
  <p class="chart-source">Πρωτογενής έρευνα κατοίκων (n_total ~3.000), σταθμισμένα ποσοστά Q15 και μέση δήλωση γενικής ικανοποίησης.</p>
  </div>
@@ -573,14 +573,14 @@
  <section id="environment" class="py-12">
  <p class="section-marker">Ενότητα 06</p>
  <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Περιβάλλον</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">100% εξαιρετική ποιότητα υδάτων κολύμβησης. Αλλά τεχνητή γη +25,2% σε 4 έτη και Greek <span data-term="WEI+">WEI+</span> 12,51 (μέτρια πίεση). Μικτή κατάσταση με ορατούς κινδύνους.</p>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">100% εξαιρετική ποιότητα υδάτων κολύμβησης. Δομικά ευάλωτο νησιωτικό οικοσύστημα: άνυδρο, με υψηλή πίεση υδροφόρου τη θερινή αιχμή. Δήλος-Ρήνεια Natura 2000 — Δήμος Μυκόνου χωρίς Γαλάζια Σημαία.</p>
 
  <div class="grid lg:grid-cols-2 gap-8">
  <div class="chart-card">
- <p class="chart-title">Eurostat lan_lcv_ovw · Χρήση γης Κρήτης 2022</p>
- <h3 class="chart-headline">388 km² τεχνητή γη — 4,65% του συνόλου 8.346 km²</h3>
- <div id="chart_landcover" style="height:380px"></div>
- <p class="chart-source">Land Use/Cover Area frame Survey (LUCAS), NUTS2 EL43.</p>
+ <p class="chart-title">Δήμος Μυκόνου · Χωρικά χαρακτηριστικά</p>
+ <h3 class="chart-headline">Δήμος 105,2 km² · 16.921 κλίνες σε 10.704 κατοίκους — 1,58 κλίνες/κάτοικο (υψηλότερη Ευρώπη)</h3>
+ <p class="text-sm text-ink-700 leading-relaxed mt-3">Η Μύκονος είναι ένα από τα μικρότερα νησιά των Κυκλάδων σε έκταση (105,2 km²), αλλά συγκεντρώνει υπερβολική ανάπτυξη τουριστικών υποδομών για το μέγεθος της. Η αναλογία κλινών ανά μόνιμο κάτοικο (1,58:1) είναι από τις υψηλότερες στην Ευρώπη και αντανακλά τη δομική υπερβολή. Λείπουν Eurostat NUTS2 EL42 land cover data σε επίπεδο νησιού — Cyclades aggregate δεν αντανακλά Μύκονο.</p>
+ <p class="chart-source">Census 2021 (πληθυσμός) · ΕΛΣΤΑΤ STO12 T01 (κλίνες) · Επιφάνεια Δήμου Μυκόνου: επίσημα κτηματολογικά στοιχεία.</p>
  </div>
 
  <div class="chart-card">
@@ -593,30 +593,30 @@
 
  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
  <div class="kpi-card">
- <div class="kpi-label">Τεχνητή γη Κρήτης 2022</div>
- <div class="kpi-value"><span data-num="4.65" data-decimals="2">4,65</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta down">+25,2% (2018→2022)</div>
+ <div class="kpi-label">Έκταση Δήμου Μυκόνου</div>
+ <div class="kpi-value"><span data-num="105.2" data-decimals="1">105,2</span><span class="kpi-unit">km²</span></div>
+ <div class="kpi-delta flat">μικρό νησί</div>
  </div>
  <div class="kpi-card">
- <div class="kpi-label">Greek WEI+ 2023</div>
- <div class="kpi-value"><span data-num="12.51" data-decimals="2">12,51</span></div>
- <div class="kpi-delta down">μέτρια πίεση</div>
+ <div class="kpi-label">Κλίνες ανά κάτοικο</div>
+ <div class="kpi-value"><span data-num="1.58" data-decimals="2">1,58</span></div>
+ <div class="kpi-delta down">υψηλότερη Ευρώπης</div>
  </div>
  <div class="kpi-card">
- <div class="kpi-label">Greek απορρ. 2023</div>
- <div class="kpi-value"><span data-num="523">523</span><span class="kpi-unit">kg/cap</span></div>
- <div class="kpi-delta flat">~EU avg</div>
+ <div class="kpi-label">Natura 2000 περιοχές</div>
+ <div class="kpi-value"><span data-num="1">1</span></div>
+ <div class="kpi-delta flat">Δήλος-Ρήνεια</div>
  </div>
  <div class="kpi-card">
- <div class="kpi-label">Blue Flag ΠΕ Χανίων 2024</div>
- <div class="kpi-value"><span data-num="43">43</span></div>
- <div class="kpi-delta up">28% Greek total</div>
+ <div class="kpi-label">Γαλάζιες Σημαίες 2024</div>
+ <div class="kpi-value"><span data-num="0">0</span></div>
+ <div class="kpi-delta down">καμία πιστοποίηση</div>
  </div>
  </div>
 
  <div class="chart-card lg:col-span-2 mt-8">
  <p class="chart-title">Σχήμα 6.18 · Αντίληψη αρνητικών επιπτώσεων (% συμφωνώ + απόλυτα)</p>
- <h3 class="chart-headline">STR/Airbnb επίδραση 91% · Στεγαστική κρίση 86% — υψηλότερα της Μυκόνου</h3>
+ <h3 class="chart-headline">Μύκονος: 57% αναγνωρίζει STR επίδραση · διπολική κοινωνία 21% C1 vs 28% C5</h3>
  <div id="chart_env_heat" style="height:420px"></div>
  <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 5 ώριμων προορισμών.</p>
  </div>
@@ -676,7 +676,7 @@
  <div class="flex-1">
  <p class="section-marker text-accent-500">PDF · Ποσοτική έρευνα</p>
  <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Πρωτογενούς Ποσοτικής Έρευνας</p>
- <p class="text-xs text-ink-500 mt-1">Δήμος Χανίων · Δ. Αποκορώνου · Δ. Πλατανιά · Μάιος 2026</p>
+ <p class="text-xs text-ink-500 mt-1">Δήμος Μυκόνου · Απρίλιος 2026</p>
  <p class="text-xs text-ink-500 mt-2 numeric">68 σελίδες · 1,7 MB</p>
  </div>
  </div>
@@ -728,9 +728,9 @@
  </div>
  </footer>
 
- <script src="assets/js/app.js?v=14"></script>
- <script src="assets/js/charts.js?v=14"></script>
- <script src="assets/data/mykonos-data.js?v=14"></script>
- <script src="assets/js/mykonos-render.js?v=14"></script>
+ <script src="assets/js/app.js?v=15"></script>
+ <script src="assets/js/charts.js?v=15"></script>
+ <script src="assets/data/mykonos-data.js?v=15"></script>
+ <script src="assets/js/mykonos-render.js?v=15"></script>
 </body>
 </html>
