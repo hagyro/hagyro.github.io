@@ -9,7 +9,8 @@
   const C = window.WBCharts;
   if (!C) { console.error('WBCharts not loaded — include charts.js before nauplio-render.js'); return; }
 
-  // ---------- Charts ----------
+  // ---------- Charts (wrapped: chart crash MUST NOT block strategy/data sections) ----------
+  try {
   // 4.1 Arrivals
   if (data.demand) {
     C.arrivals('chart_arrivals', {
@@ -238,6 +239,7 @@
   if (data.water_exploitation) {
     C.wei('chart_wei', data.water_exploitation);
   }
+  } catch(e) { console.error('Nauplio chart phase crashed (sections below still render):', e); }
 
   // ---------- SWOT ----------
   if (data.swot) {
@@ -297,13 +299,15 @@
     `).join('');
   }
 
-  // ---------- MRB raw table ----------
+  // ---------- MRB raw table (null-safe) ----------
   if (data.mrb_overall) {
-    const tbody = document.querySelector('#mrb_table tbody');
-    const rows = Object.entries(data.mrb_overall).map(([k, v]) => `
-      <tr><td><code class="text-xs">${k}</code></td><td class="num">${v.mean.toFixed(2)}</td><td class="num">${v.pct_agree.toFixed(1)}%</td><td class="num">${v.n_valid}</td></tr>
-    `).join('');
-    tbody.innerHTML = rows;
+    try {
+      const tbody = document.querySelector('#mrb_table tbody');
+      const rows = Object.entries(data.mrb_overall).map(([k, v]) => `
+        <tr><td><code class="text-xs">${k}</code></td><td class="num">${v.mean == null ? '—' : v.mean.toFixed(2)}</td><td class="num">${v.pct_agree == null ? '—' : v.pct_agree.toFixed(1) + '%'}</td><td class="num">${v.n_valid}</td></tr>
+      `).join('');
+      tbody.innerHTML = rows;
+    } catch(e) { console.error('MRB table render error:', e); }
   }
 
   // ---------- Methodological boxes (data annex) ----------
