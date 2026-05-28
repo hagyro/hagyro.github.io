@@ -182,12 +182,12 @@ window.WBCharts = {
 
   // ---------- 4.7 Monthly occupancy ----------
   occupancy(elId, data) {
-    const colors = data.values.map(v => v == null ? PALETTE.muted : v >= 70 ? PALETTE.orange : v >= 40 ? PALETTE.navy : PALETTE.navyLt);
+    const colors = data.values.map(v => v >= 70 ? PALETTE.orange : v >= 40 ? PALETTE.navy : PALETTE.navyLt);
     Plotly.newPlot(elId, [{
       x: data.months, y: data.values,
       type: 'bar',
       marker: { color: colors, line: { color: 'white', width: 1 } },
-      text: data.values.map(v => v == null ? '' : v.toFixed(0) + '%'),
+      text: data.values.map(v => v.toFixed(0) + '%'),
       textposition: 'outside',
       textfont: { color: PALETTE.navy, size: 11, family: 'Inter, sans-serif' },
       hovertemplate: '<b>%{x}</b><br>Πληρότητα: %{y:.0f}%<extra></extra>',
@@ -206,43 +206,28 @@ window.WBCharts = {
       marker: { size: 7 },
       fill: 'tozeroy',
       fillcolor: 'rgba(31,78,121,0.08)',
-      connectgaps: true,
       hovertemplate: '<b>%{x}</b><br>ALoS: %{y:.2f} ημ.<extra></extra>',
       name: 'ALoS',
     };
-    // Linear trend — filter nulls before regression
-    const pairs = data.years.map((x, i) => [x, data.values[i]]).filter(p => p[1] != null);
-    const traces = [main];
-    let trendName = '';
-    if (pairs.length >= 2) {
-      const xs = pairs.map(p => p[0]);
-      const ys = pairs.map(p => p[1]);
-      const n = pairs.length;
-      const xMean = xs.reduce((a,b)=>a+b,0)/n;
-      const yMean = ys.reduce((a,b)=>a+b,0)/n;
-      let num=0, den=0;
-      for (let i=0; i<n; i++) { num += (xs[i]-xMean)*(ys[i]-yMean); den += (xs[i]-xMean)**2; }
-      const slope = den === 0 ? 0 : num/den;
-      const intercept = yMean - slope*xMean;
-      trendName = `Τάση: ${slope >= 0 ? '+' : ''}${slope.toFixed(3)} ημ./έτος`;
-      traces.push({
-        x: data.years,
-        y: data.years.map(x => intercept + slope*x),
-        type: 'scatter', mode: 'lines',
-        line: { color: PALETTE.muted, width: 1.5, dash: 'dash' },
-        name: trendName,
-        hoverinfo: 'skip',
-      });
-    }
-    // Auto-range από τα valid values με padding
-    const validVals = data.values.filter(v => v != null);
-    const vMin = Math.min(...validVals), vMax = Math.max(...validVals);
-    const pad = Math.max(0.3, (vMax - vMin) * 0.25);
-    const yRange = [Math.max(0, vMin - pad), vMax + pad];
-    Plotly.newPlot(elId, traces, {
+    // Linear trend
+    const n = data.years.length;
+    const xMean = data.years.reduce((a,b)=>a+b,0)/n;
+    const yMean = data.values.reduce((a,b)=>a+b,0)/n;
+    let num=0, den=0;
+    for (let i=0; i<n; i++) { num += (data.years[i]-xMean)*(data.values[i]-yMean); den += (data.years[i]-xMean)**2; }
+    const slope = num/den;
+    const intercept = yMean - slope*xMean;
+    const trend = {
+      x: data.years,
+      y: data.years.map(x => intercept + slope*x),
+      type: 'scatter', mode: 'lines',
+      line: { color: PALETTE.muted, width: 1.5, dash: 'dash' },
+      name: `Τάση: ${slope >= 0 ? '+' : ''}${slope.toFixed(3)} ημ./έτος`,
+      hoverinfo: 'skip',
+    };
+    Plotly.newPlot(elId, [main, trend], {
       ...BASE_LAYOUT,
-      yaxis: { ...BASE_LAYOUT.yaxis, type: 'linear', title: { text: 'ALoS (διανυκτ./άφιξη)', font: FONT_BODY }, range: yRange },
-      xaxis: { ...BASE_LAYOUT.xaxis, type: 'linear' },
+      yaxis: { ...BASE_LAYOUT.yaxis, title: { text: 'ALoS (διανυκτ./άφιξη)', font: FONT_BODY }, range: [4, 7] },
       showlegend: true,
       legend: { x: 0.55, y: 0.98 },
     }, CONFIG);
@@ -252,8 +237,8 @@ window.WBCharts = {
   strShare(elId, data, key) {
     const hot = data[key].map(v => 100 - v);
     Plotly.newPlot(elId, [
-      { x: data.years, y: hot, name: 'Ξενοδοχεία', type: 'bar', marker: { color: PALETTE.navy }, text: hot.map(v => v == null ? '' : v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white' }, hovertemplate: '<b>%{x}</b><br>Ξενοδοχεία: %{y:.1f}%<extra></extra>' },
-      { x: data.years, y: data[key], name: 'STR', type: 'bar', marker: { color: PALETTE.orange }, text: data[key].map(v => v == null ? '' : v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white', size: 13, family: 'Inter, sans-serif' }, hovertemplate: '<b>%{x}</b><br>STR: %{y:.1f}%<extra></extra>' },
+      { x: data.years, y: hot, name: 'Ξενοδοχεία', type: 'bar', marker: { color: PALETTE.navy }, text: hot.map(v=>v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white' }, hovertemplate: '<b>%{x}</b><br>Ξενοδοχεία: %{y:.1f}%<extra></extra>' },
+      { x: data.years, y: data[key], name: 'STR', type: 'bar', marker: { color: PALETTE.orange }, text: data[key].map(v=>v.toFixed(0)+'%'), textposition: 'inside', textfont: { color: 'white', size: 13, family: 'Inter, sans-serif' }, hovertemplate: '<b>%{x}</b><br>STR: %{y:.1f}%<extra></extra>' },
     ], { ...BASE_LAYOUT, barmode: 'stack', yaxis: { ...BASE_LAYOUT.yaxis, range: [0, 100], title: { text: 'Μερίδιο (%)', font: FONT_BODY } }, showlegend: true, legend: { orientation: 'h', x: 0.5, xanchor: 'center', y: -0.18 } }, CONFIG);
   },
 
@@ -276,136 +261,58 @@ window.WBCharts = {
   },
 
   // ---------- 4.11 IPA scatter quadrant ----------
-  // Renders scatter + emits ranked legend table into a sibling div with id "{elId}_legend"
-  // Numbering: by x-value ASCENDING (leftmost point = #1, rightmost = #N) so the chart
-  // reads naturally left-to-right and matches the legend table order.
   ipa(elId, data) {
-    const n = data.x.length;
-    const xMed = data.x.reduce((a,b)=>a+b,0)/n;
-    const yMed = data.y.reduce((a,b)=>a+b,0)/n;
+    const xMed = data.x.reduce((a,b)=>a+b,0)/data.x.length;
+    const yMed = data.y.reduce((a,b)=>a+b,0)/data.y.length;
     const xMin = Math.min(...data.x);
     const xMax = Math.max(...data.x);
     const yMin = Math.min(...data.y);
     const yMax = Math.max(...data.y);
-
-    // Compute rank for each point by x-ascending. rank[i] = position when sorted by x asc, 1-indexed.
-    const indices = data.x.map((_, i) => i);
-    indices.sort((a, b) => data.x[a] - data.x[b]);
-    const xRank = new Array(n);
-    indices.forEach((origIdx, sortedIdx) => { xRank[origIdx] = sortedIdx + 1; });
-    const numLabels = xRank.map(r => String(r));
-
-    // Classify each item into one of 4 quadrants
-    function quadrant(x, y) {
-      if (x >= xMed && y >= yMed) return { name: 'Διατήρηση', color: '#2d7a4d', bg: 'rgba(45,122,77,0.10)' };
-      if (x >= xMed && y < yMed)  return { name: 'Συγκέντρωση εδώ', color: '#b8423a', bg: 'rgba(184,66,58,0.10)' };
-      if (x < xMed  && y >= yMed) return { name: 'Πιθανή υπερβολή', color: '#7f9bbe', bg: 'rgba(127,155,190,0.10)' };
-      return { name: 'Χαμηλή προτεραιότητα', color: '#5b6473', bg: 'rgba(91,100,115,0.10)' };
-    }
-
-    // Quadrant corner labels
+    // Quadrant label positions: paper-anchored corners (έξω από το plot area · δεν καλύπτουν data points)
     const qLabels = [
-      { x: xMin - (xMax-xMin)*0.04, y: yMax + (yMax-yMin)*0.06, text: '<b>Πιθανή υπερβολή</b><br><span style="font-size:9px">χαμ. σπουδ. · υψ. αξιολ.</span>', xanchor: 'left',  yanchor: 'top',    bgcolor: 'rgba(127,155,190,0.15)' },
-      { x: xMax + (xMax-xMin)*0.04, y: yMax + (yMax-yMin)*0.06, text: '<b>Διατήρηση καλής επίδοσης</b><br><span style="font-size:9px">υψ. σπουδ. · υψ. αξιολ.</span>', xanchor: 'right', yanchor: 'top',    bgcolor: 'rgba(45,122,77,0.15)' },
-      { x: xMin - (xMax-xMin)*0.04, y: yMin - (yMax-yMin)*0.06, text: '<b>Χαμηλή προτεραιότητα</b><br><span style="font-size:9px">χαμ. σπουδ. · χαμ. αξιολ.</span>', xanchor: 'left',  yanchor: 'bottom', bgcolor: 'rgba(91,100,115,0.15)' },
-      { x: xMax + (xMax-xMin)*0.04, y: yMin - (yMax-yMin)*0.06, text: '<b>ΣΥΓΚΕΝΤΡΩΣΗ ΕΔΩ</b><br><span style="font-size:9px">υψ. σπουδ. · χαμ. αξιολ. — κρίσιμη παρέμβαση</span>', xanchor: 'right', yanchor: 'bottom', bgcolor: 'rgba(184,66,58,0.18)' },
+      { xref: 'paper', yref: 'paper', x: 0.01, y: 0.99, text: '<b>Συγκέντρωση εδώ</b><br><span style="font-size:8.5px">Υψηλή σπουδαιότητα · Χαμηλή αξιολόγηση</span>', xanchor: 'left',  yanchor: 'top',    bgcolor: 'rgba(224,123,0,0.85)', bordercolor: 'rgba(224,123,0,1)', borderwidth: 1, fontColor: '#fff' },
+      { xref: 'paper', yref: 'paper', x: 0.99, y: 0.99, text: '<b>Διατήρηση καλής επίδοσης</b><br><span style="font-size:8.5px">Υψηλή σπουδαιότητα · Υψηλή αξιολόγηση</span>', xanchor: 'right', yanchor: 'top',    bgcolor: 'rgba(45,122,77,0.85)',  bordercolor: 'rgba(45,122,77,1)',  borderwidth: 1, fontColor: '#fff' },
+      { xref: 'paper', yref: 'paper', x: 0.01, y: 0.01, text: '<b>Χαμηλή προτεραιότητα</b><br><span style="font-size:8.5px">Χαμηλή σπουδαιότητα · Χαμηλή αξιολόγηση</span>', xanchor: 'left',  yanchor: 'bottom', bgcolor: 'rgba(91,100,115,0.85)', bordercolor: 'rgba(91,100,115,1)', borderwidth: 1, fontColor: '#fff' },
+      { xref: 'paper', yref: 'paper', x: 0.99, y: 0.01, text: '<b>Πιθανή υπερβολή</b><br><span style="font-size:8.5px">Χαμηλή σπουδαιότητα · Υψηλή αξιολόγηση</span>', xanchor: 'right', yanchor: 'bottom', bgcolor: 'rgba(127,155,190,0.85)', bordercolor: 'rgba(127,155,190,1)', borderwidth: 1, fontColor: '#fff' },
     ];
-
     Plotly.newPlot(elId, [{
       x: data.x, y: data.y,
       mode: 'markers+text',
       type: 'scatter',
-      text: numLabels,
-      textposition: 'middle center',
-      textfont: { size: 11, family: 'Inter, sans-serif', color: 'white', weight: 'bold' },
+      text: data.labels,
+      textposition: 'top center',
+      textfont: { size: 11, family: 'Inter, sans-serif', color: PALETTE.ink },
       marker: {
-        size: 22,
+        size: 14,
         color: data.cat.map(c => c === 'Τουριστικές υποδομές' ? PALETTE.orange : PALETTE.navy),
-        line: { color: 'white', width: 2 },
+        line: { color: 'white', width: 1.5 },
       },
-      hovertemplate: '<b>%{customdata}</b><br>Σχετική Σπουδαιότητα: %{x:.3f}<br>Μέση Αξιολόγηση (1–5): %{y:.2f}<extra></extra>',
-      customdata: data.labels,
+      hovertemplate: '<b>%{text}</b><br>Σχετική Σπουδαιότητα: %{x:.3f}<br>Μέση Αξιολόγηση (1–5): %{y:.2f}<extra></extra>',
     }], {
       ...BASE_LAYOUT,
       shapes: [
-        { type: 'line', x0: xMed, x1: xMed, y0: 0, y1: 1, yref: 'paper', line: { color: PALETTE.muted, width: 1.5, dash: 'dash' } },
-        { type: 'line', x0: 0, x1: 1, xref: 'paper', y0: yMed, y1: yMed, line: { color: PALETTE.muted, width: 1.5, dash: 'dash' } },
+        { type: 'line', x0: xMed, x1: xMed, y0: 0, y1: 1, yref: 'paper', line: { color: PALETTE.muted, width: 1, dash: 'dash' } },
+        { type: 'line', x0: 0, x1: 1, xref: 'paper', y0: yMed, y1: yMed, line: { color: PALETTE.muted, width: 1, dash: 'dash' } },
       ],
-      annotations: [
-        ...qLabels.map(q => ({
-          x: q.x, y: q.y, text: q.text,
-          showarrow: false, xanchor: q.xanchor, yanchor: q.yanchor,
-          font: { size: 11, color: PALETTE.navy, family: 'Inter, sans-serif' },
-          bgcolor: q.bgcolor, borderpad: 6,
-        })),
-        // Median value annotations
-        { x: xMed, y: yMin - (yMax-yMin)*0.12, text: `Διάμεσος x = ${xMed.toFixed(3)}`, showarrow: false, font: { size: 10, color: PALETTE.muted, family: 'Inter, sans-serif' }, yanchor: 'top' },
-        { x: xMin - (xMax-xMin)*0.10, y: yMed, text: `Διάμεσος y = ${yMed.toFixed(2)}`, showarrow: false, font: { size: 10, color: PALETTE.muted, family: 'Inter, sans-serif' }, xanchor: 'right', textangle: -90 },
-      ],
-      xaxis: { ...BASE_LAYOUT.xaxis,
-               type: 'linear',
-               title: { text: 'Σχετική Σπουδαιότητα · Random Forest weight (0-1)', font: FONT_BODY },
-               range: [Math.max(0, xMin - (xMax-xMin)*0.12), xMax + (xMax-xMin)*0.12],
-               tickmode: 'linear', tick0: 0.10, dtick: 0.05,
-               tickformat: '.2f',
-               automargin: true },
-      yaxis: { ...BASE_LAYOUT.yaxis,
-               type: 'linear',
-               title: { text: 'Μέση Αξιολόγηση Κατοίκων (κλίμακα 1–5)', font: FONT_BODY },
-               range: [Math.max(1, yMin - 0.4), Math.min(5, yMax + 0.4)],
-               tickmode: 'linear', tick0: 1, dtick: 0.5,
-               automargin: true },
-      margin: { l: 100, r: 60, t: 80, b: 90 },
+      annotations: qLabels.map(q => ({
+        x: q.x, y: q.y, text: q.text,
+        showarrow: false, xanchor: q.xanchor, yanchor: q.yanchor,
+        font: { size: 11, color: PALETTE.navy, family: 'Inter, sans-serif' },
+        bgcolor: q.bgcolor, borderpad: 6,
+      })),
+      xaxis: { ...BASE_LAYOUT.xaxis, title: { text: 'Σχετική Σπουδαιότητα (Random Forest weights)', font: FONT_BODY }, automargin: true },
+      yaxis: { ...BASE_LAYOUT.yaxis, title: { text: 'Μέση Αξιολόγηση Κατοίκων (κλίμακα 1–5)', font: FONT_BODY }, automargin: true, range: [Math.max(1, yMin - 0.4), Math.min(5, yMax + 0.4)] },
+      margin: { l: 90, r: 50, t: 70, b: 80 },
     }, CONFIG);
-
-    // === Render ranked legend table below chart ===
-    const legendEl = document.getElementById(elId + '_legend');
-    if (legendEl) {
-      // Build items array with full info, then sort by x ASCENDING (matches chart left-to-right reading)
-      const items = data.labels.map((label, i) => ({
-        idx: xRank[i],  // Number assigned by x-ascending sort
-        label: label,
-        x: data.x[i],
-        y: data.y[i],
-        cat: data.cat[i],
-        q: quadrant(data.x[i], data.y[i]),
-      }));
-      items.sort((a, b) => a.idx - b.idx);  // Display in ascending number order (= ascending x = left-to-right on chart)
-
-      const rows = items.map(item => `
-        <tr>
-          <td style="text-align:center; padding:6px 8px; background:${item.cat === 'Τουριστικές υποδομές' ? '#e07b00' : '#1f4e79'}; color:white; font-weight:bold; border-radius:3px;">${item.idx}</td>
-          <td style="padding:6px 10px; font-weight:500;">${item.label}</td>
-          <td style="text-align:right; padding:6px 10px; font-variant-numeric:tabular-nums;">${item.x.toFixed(3)}</td>
-          <td style="text-align:right; padding:6px 10px; font-variant-numeric:tabular-nums;">${item.y.toFixed(2)}</td>
-          <td style="padding:6px 10px;"><span style="background:${item.q.bg}; color:${item.q.color}; padding:2px 8px; border-radius:3px; font-weight:600; font-size:0.85em;">${item.q.name}</span></td>
-        </tr>
-      `).join('');
-
-      legendEl.innerHTML = `
-        <table style="width:100%; border-collapse:collapse; font-size:0.92em; margin-top:1rem;">
-          <thead>
-            <tr style="background:#1f4e79; color:white;">
-              <th style="padding:8px; text-align:center; width:48px;">#</th>
-              <th style="padding:8px; text-align:left;">Υποδομή</th>
-              <th style="padding:8px; text-align:right; width:110px;">Σπουδαιότητα</th>
-              <th style="padding:8px; text-align:right; width:100px;">Αξιολόγηση</th>
-              <th style="padding:8px; text-align:left;">Τεταρτημόριο</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
-        <p style="font-size:0.78em; color:#5b6473; margin-top:0.6rem; font-style:italic;"><strong>#1 = αριστερότερο σημείο (χαμηλότερη Σπουδαιότητα) · #${n} = δεξιότερο (υψηλότερη)</strong>. Στον πίνακα αυτή τη φορά η σειρά #1 → #${n} είναι σε αύξουσα σπουδαιότητα — αν διαβάσεις το γράφημα αριστερά → δεξιά βλέπεις τα ίδια νούμερα στην ίδια σειρά. Πορτοκαλί νούμερο = Τουριστική υποδομή · Σκούρο μπλε = Δημόσια υποδομή.</p>
-      `;
-    }
   },
 
   // ---------- 4.12 Turnover hotels vs STR ----------
   turnover(elId, data) {
+    const fmtBar = v => (v == null ? '' : (v >= 100 ? v.toFixed(0) : v.toFixed(1)));
     Plotly.newPlot(elId, [
-      { x: data.years, y: data.hotel, name: 'Ξενοδοχεία', type: 'bar', marker: { color: PALETTE.navy }, hovertemplate: '<b>%{x}</b><br>Ξενοδοχεία: %{y:.0f} εκ. €<extra></extra>' },
-      { x: data.years, y: data.str, name: 'STR', type: 'bar', marker: { color: PALETTE.orange }, hovertemplate: '<b>%{x}</b><br>STR: %{y:.0f} εκ. €<extra></extra>' },
-    ], { ...BASE_LAYOUT, barmode: 'group', yaxis: { ...BASE_LAYOUT.yaxis, title: { text: 'Τζίρος (εκ. €)', font: FONT_BODY } }, showlegend: true, legend: { x: 0.02, y: 0.98 } }, CONFIG);
+      { x: data.years, y: data.hotel, name: 'Ξενοδοχεία', type: 'bar', marker: { color: PALETTE.navy }, text: data.hotel.map(fmtBar), textposition: 'outside', textfont: { size: 10, color: PALETTE.navy, family: 'Inter, sans-serif' }, cliponaxis: false, hovertemplate: '<b>%{x}</b><br>Ξενοδοχεία: %{y:.1f} εκ. €<extra></extra>' },
+      { x: data.years, y: data.str, name: 'STR', type: 'bar', marker: { color: PALETTE.orange }, text: data.str.map(fmtBar), textposition: 'outside', textfont: { size: 10, color: PALETTE.orange, family: 'Inter, sans-serif' }, cliponaxis: false, hovertemplate: '<b>%{x}</b><br>STR: %{y:.1f} εκ. €<extra></extra>' },
+    ], { ...BASE_LAYOUT, barmode: 'group', xaxis: { ...BASE_LAYOUT.xaxis, title: { text: 'Έτος', font: FONT_BODY }, type: 'category' }, yaxis: { ...BASE_LAYOUT.yaxis, title: { text: 'Εκτιμώμενος τζίρος (εκ. €)', font: FONT_BODY } }, showlegend: true, legend: { x: 0.02, y: 0.98 }, margin: { l: 60, r: 30, t: 30, b: 50 } }, CONFIG);
   },
 
   // ---------- 4.13 GVA stacked area ----------
@@ -427,19 +334,17 @@ window.WBCharts = {
 
   // ---------- 4.15 TII Defert ----------
   tii(elId, data) {
-    const validVals = data.values.filter(v => v != null);
-    const yMax = Math.max(14, Math.max(...validVals) * 1.25);
+    const yMax = Math.max(14, Math.max(...data.values) * 1.25);
     Plotly.newPlot(elId, [{
       x: data.years, y: data.values,
       type: 'scatter', mode: 'lines+markers+text',
       line: { color: PALETTE.red, width: 3 },
       marker: { size: 8, color: PALETTE.red, line: { color: 'white', width: 2 } },
-      text: data.values.map(v => v == null ? '' : v.toFixed(1)),
+      text: data.values.map(v => v.toFixed(1)),
       textposition: 'top center',
       textfont: { size: 10, color: PALETTE.red, family: 'Inter, sans-serif' },
       fill: 'tozeroy',
       fillcolor: 'rgba(165,42,42,0.08)',
-      connectgaps: true,
       hovertemplate: '<b>Έτος %{x}</b><br>TII = %{y:.2f}<br>(διανυκτ. ÷ πληθ. × 100)<extra></extra>',
       name: 'TII ' + SELF(),
     }], {
@@ -571,10 +476,10 @@ window.WBCharts = {
         { type: 'line', x0: 0, x1: 1, xref: 'paper', y0: yMed, y1: yMed, line: { color: PALETTE.muted, width: 1, dash: 'dash' } },
       ],
       annotations: [
-        { xref: 'paper', yref: 'paper', x: 0.02, y: 0.97, text: data.labels_q?.tl || '', showarrow: false, font: { size: 10, color: PALETTE.navy, weight: 600 }, xanchor: 'left',  yanchor: 'top',    bgcolor: 'rgba(255,255,255,0.85)', borderpad: 3 },
-        { xref: 'paper', yref: 'paper', x: 0.98, y: 0.97, text: data.labels_q?.tr || '', showarrow: false, font: { size: 10, color: PALETTE.navy, weight: 600 }, xanchor: 'right', yanchor: 'top',    bgcolor: 'rgba(255,255,255,0.85)', borderpad: 3 },
-        { xref: 'paper', yref: 'paper', x: 0.02, y: 0.03, text: data.labels_q?.bl || '', showarrow: false, font: { size: 10, color: PALETTE.muted },               xanchor: 'left',  yanchor: 'bottom', bgcolor: 'rgba(255,255,255,0.85)', borderpad: 3 },
-        { xref: 'paper', yref: 'paper', x: 0.98, y: 0.03, text: data.labels_q?.br || '', showarrow: false, font: { size: 10, color: PALETTE.muted },               xanchor: 'right', yanchor: 'bottom', bgcolor: 'rgba(255,255,255,0.85)', borderpad: 3 },
+        { xref: 'paper', yref: 'paper', x: 0.00, y: 1.07, text: data.labels_q?.tl || '', showarrow: false, font: { size: 9, color: PALETTE.navy, weight: 600 }, xanchor: 'left',  yanchor: 'bottom', bgcolor: 'rgba(238,242,248,0.95)', borderpad: 3 },
+        { xref: 'paper', yref: 'paper', x: 1.00, y: 1.07, text: data.labels_q?.tr || '', showarrow: false, font: { size: 9, color: PALETTE.navy, weight: 600 }, xanchor: 'right', yanchor: 'bottom', bgcolor: 'rgba(238,242,248,0.95)', borderpad: 3 },
+        { xref: 'paper', yref: 'paper', x: 0.00, y: -0.20, text: data.labels_q?.bl || '', showarrow: false, font: { size: 9, color: PALETTE.muted },             xanchor: 'left',  yanchor: 'top',    bgcolor: 'rgba(238,242,248,0.95)', borderpad: 3 },
+        { xref: 'paper', yref: 'paper', x: 1.00, y: -0.20, text: data.labels_q?.br || '', showarrow: false, font: { size: 9, color: PALETTE.muted },             xanchor: 'right', yanchor: 'top',    bgcolor: 'rgba(238,242,248,0.95)', borderpad: 3 },
       ],
       xaxis: { ...BASE_LAYOUT.xaxis,
                title: { text: xTitle, font: FONT_BODY, standoff: 14 },
@@ -584,11 +489,10 @@ window.WBCharts = {
                automargin: true },
       yaxis: { ...BASE_LAYOUT.yaxis,
                title: { text: yTitle, font: FONT_BODY, standoff: 12 },
-               type: data.yLog ? 'log' : 'linear',
                range: [yLo, yHi],
                tickmode: 'array', tickvals: yT.vals, ticktext: yT.vals.map(v => String(v)),
                automargin: true },
-      margin: { l: 90, r: 50, t: 50, b: 80 },
+      margin: { l: 90, r: 50, t: 80, b: 120 },
     }, CONFIG);
   },
 
@@ -635,9 +539,9 @@ window.WBCharts = {
       hovertemplate: '<b>%{y}</b><br>%{x:,.0f} km²<extra></extra>',
     }], {
       ...BASE_LAYOUT,
-      margin: { l: 140, r: 110, t: 20, b: 50 },
+      margin: { l: 140, r: 160, t: 20, b: 50 },
       xaxis: { ...BASE_LAYOUT.xaxis,
-               title: { text: 'Έκταση (km²) — σύνολο Κρήτης 8.346 km²', font: FONT_BODY },
+               title: { text: 'Έκταση (km²)', font: FONT_BODY },
                tickformat: ',d' },
       yaxis: { ...BASE_LAYOUT.yaxis, automargin: true },
     }, CONFIG);
