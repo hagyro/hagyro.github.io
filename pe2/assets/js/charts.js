@@ -358,7 +358,9 @@ window.WBCharts = {
   // ---------- 4.15 TII Defert ----------
   tii(elId, data) {
     const validVals = data.values.filter(v => v != null);
-    const yMax = Math.max(14, Math.max(...validVals) * 1.25);
+    // Saveriades (2000) + Coccossis & Mexa (2004) thresholds: <5 χαμηλή · 5-10 μέτρια · 10-15 υψηλή · 15-30 πολύ υψηλή · >30 ΥΠΕΡΚΟΡΕΣΜΟΣ
+    // yMax: κρατά ορατή τη ζώνη υπερκορεσμού (min 35) αλλά scales για ακραίες τιμές (Μύκονος 178,6 · Κέρκυρα 141)
+    const yMax = Math.max(35, Math.max(...validVals) * 1.12);
     Plotly.newPlot(elId, [{
       x: data.years, y: data.values,
       type: 'scatter', mode: 'lines+markers+text',
@@ -375,17 +377,21 @@ window.WBCharts = {
     }], {
       ...BASE_LAYOUT,
       shapes: [
-        // Threshold ζώνες χρωματιστές
-        { type:'rect', xref:'paper', x0:0, x1:1, y0:0,  y1:5,  fillcolor:'rgba(45,122,77,0.05)', line:{width:0}, layer:'below' },
-        { type:'rect', xref:'paper', x0:0, x1:1, y0:5,  y1:10, fillcolor:'rgba(244,196,48,0.06)', line:{width:0}, layer:'below' },
-        { type:'rect', xref:'paper', x0:0, x1:1, y0:10, y1:15, fillcolor:'rgba(224,123,0,0.08)', line:{width:0}, layer:'below' },
-        { type:'rect', xref:'paper', x0:0, x1:1, y0:15, y1:yMax, fillcolor:'rgba(165,42,42,0.10)', line:{width:0}, layer:'below' },
-        { type:'line', xref:'paper', x0:0, x1:1, y0:10, y1:10, line:{ color:'#a52a2a', width:1.5, dash:'dash' } },
+        // Threshold ζώνες Saveriades — 5 διακριτές ζώνες πίεσης
+        { type:'rect', xref:'paper', x0:0, x1:1, y0:0,  y1:5,  fillcolor:'rgba(45,122,77,0.05)',  line:{width:0}, layer:'below' },  // χαμηλή
+        { type:'rect', xref:'paper', x0:0, x1:1, y0:5,  y1:10, fillcolor:'rgba(244,196,48,0.06)', line:{width:0}, layer:'below' },  // μέτρια
+        { type:'rect', xref:'paper', x0:0, x1:1, y0:10, y1:15, fillcolor:'rgba(224,123,0,0.08)',  line:{width:0}, layer:'below' },  // υψηλή
+        { type:'rect', xref:'paper', x0:0, x1:1, y0:15, y1:30, fillcolor:'rgba(217,79,52,0.10)',  line:{width:0}, layer:'below' },  // πολύ υψηλή
+        { type:'rect', xref:'paper', x0:0, x1:1, y0:30, y1:yMax, fillcolor:'rgba(139,26,31,0.18)', line:{width:0}, layer:'below' }, // υπερκορεσμός
+        // Διακεκομμένη γραμμή στο κατώφλι υπερκορεσμού Saveriades (TII = 30)
+        { type:'line', xref:'paper', x0:0, x1:1, y0:30, y1:30, line:{ color:'#8b1a1f', width:1.8, dash:'dash' } },
       ],
       annotations: [
-        { xref:'paper', x:0.99, y:2.5, text:'Χαμηλή πίεση', showarrow:false, font:{size:10, color:PALETTE.muted}, xanchor:'right' },
-        { xref:'paper', x:0.99, y:7.5, text:'Μέτρια πίεση', showarrow:false, font:{size:10, color:PALETTE.muted}, xanchor:'right' },
-        { xref:'paper', x:0.99, y:12.5,text:'Υψηλή πίεση — όριο υπερκορεσμού Defert', showarrow:false, font:{size:10, color:'#a52a2a'}, xanchor:'right' },
+        { xref:'paper', x:0.99, y:2.5,  text:'Χαμηλή',     showarrow:false, font:{size:10, color:PALETTE.muted}, xanchor:'right' },
+        { xref:'paper', x:0.99, y:7.5,  text:'Μέτρια',     showarrow:false, font:{size:10, color:PALETTE.muted}, xanchor:'right' },
+        { xref:'paper', x:0.99, y:12.5, text:'Υψηλή',      showarrow:false, font:{size:10, color:PALETTE.muted}, xanchor:'right' },
+        { xref:'paper', x:0.99, y:22.5, text:'Πολύ υψηλή', showarrow:false, font:{size:10, color:'#a52a2a'},     xanchor:'right' },
+        { xref:'paper', x:0.99, y:Math.min(yMax-2, 32), text:'<b>Υπερκορεσμός</b> — κατώφλι Saveriades (TII &gt; 30)', showarrow:false, font:{size:10, color:'#8b1a1f'}, xanchor:'right' },
       ],
       yaxis: { ...BASE_LAYOUT.yaxis,
                title: { text: 'TII (διανυκτερεύσεις ÷ κάτοικο × 100) ↑ μεγαλύτερη πίεση', font: FONT_BODY },
