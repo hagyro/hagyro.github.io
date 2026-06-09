@@ -3,413 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Μεθοδολογία · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
-  <meta name="description" content="Ενιαία μεθοδολογική βάση της Λευκής Βίβλου ΠΕ2: δέκα αναλυτικά εργαλεία από Defert TFI και Doxey Irridex έως IRT-GRM POI, LCA και Κριτική Εκ των Έσω 5-Zone × 3-Direction Taxonomy.">
-
+  <title>Υπό ενημέρωση · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+  <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/css/custom.css?v=14">
-
-  <script>
-    tailwind.config = { theme: { extend: {
-      colors: {
-        navy:   { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
-        accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
-        ink:    { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
-      },
-      fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
-    } } }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-900:#0d2440; --navy-700:#1f4e79; --navy-500:#3a73a8; --navy-50:#eef2f8;
+      --accent-500:#e07b00; --accent-300:#ffa951;
+      --ink-700:#2d3441; --ink-500:#5b6473;
+      --rule:rgba(13,36,64,0.10);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Inter', system-ui, sans-serif;
+      color:var(--ink-700);
+      background:linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 55%, var(--navy-500) 100%);
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:24px;
+      position:relative; overflow:hidden;
+    }
+    /* subtle grid backdrop */
+    body::before {
+      content:''; position:absolute; inset:0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size:60px 60px;
+      pointer-events:none;
+    }
+    .card {
+      position:relative; z-index:1;
+      background:#fff;
+      max-width:560px; width:100%;
+      padding:56px 48px;
+      border-radius:4px;
+      box-shadow:0 30px 80px -20px rgba(0,0,0,0.45);
+      border-top:4px solid var(--accent-500);
+    }
+    .eyebrow {
+      font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--accent-500); font-weight:600;
+      display:flex; align-items:center; gap:10px; margin-bottom:22px;
+    }
+    .eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
+    h1 {
+      font-family:'Fraunces', Georgia, serif;
+      font-size:34px; line-height:1.18; color:var(--navy-700);
+      font-weight:600; margin-bottom:18px;
+    }
+    h1 em { color:var(--accent-500); font-style:italic; }
+    p { font-size:15.5px; line-height:1.65; color:var(--ink-700); margin-bottom:16px; }
+    p.muted { color:var(--ink-500); font-size:14px; }
+    .status {
+      display:inline-flex; align-items:center; gap:9px;
+      background:var(--navy-50); border:1px solid var(--rule);
+      padding:9px 16px; border-radius:3px; margin:8px 0 26px;
+      font-size:13.5px; font-weight:500; color:var(--navy-700);
+    }
+    .dot {
+      width:9px; height:9px; border-radius:50%;
+      background:var(--accent-500);
+      box-shadow:0 0 0 0 rgba(224,123,0,0.5);
+      animation:pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow:0 0 0 0 rgba(224,123,0,0.45); }
+      70%  { box-shadow:0 0 0 9px rgba(224,123,0,0); }
+      100% { box-shadow:0 0 0 0 rgba(224,123,0,0); }
+    }
+    .footer {
+      margin-top:30px; padding-top:22px; border-top:1px solid var(--rule);
+      font-size:12px; color:var(--ink-500); line-height:1.6;
+    }
+    .footer strong { color:var(--ink-700); font-weight:600; }
+  </style>
 </head>
 <body>
-
-  <!-- Top utility bar -->
-  <div class="bg-navy-900 text-white text-xs">
-    <div class="container mx-auto px-6 py-2 flex justify-between items-center">
-      <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
-      <div class="flex items-center gap-4">
-        <a href="methodology.html" class="text-white font-medium">Μεθοδολογία</a>
-        <a href="data_sources.html" class="text-white/70 hover:text-white">Πηγές</a>
-        <a href="comparative.html" class="text-white/70 hover:text-white">Συγκριτικά</a>
-        <a href="glossary.html" class="text-white/70 hover:text-white">Γλωσσάρι</a>
-        <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
-      </div>
+  <main class="card">
+    <p class="eyebrow">Παραδοτέο ΠΕ2 · Ψηφιακό συνοδευτικό</p>
+    <h1>Το ψηφιακό συνοδευτικό βρίσκεται <em>προσωρινά υπό ενημέρωση</em>.</h1>
+    <div class="status"><span class="dot"></span> Προσωρινά μη διαθέσιμο</div>
+    <p>Πραγματοποιούμε ενημέρωση του ψηφιακού συνοδευτικού της μελέτης. Η πρόσβαση θα αποκατασταθεί σύντομα.</p>
+    <p class="muted">Για επείγουσα ανάγκη ή πρόσβαση στο περιεχόμενο, παρακαλούμε επικοινωνήστε με την ομάδα έργου.</p>
+    <div class="footer">
+      <strong>Λευκή Βίβλος Τουριστικού Μετασχηματισμού &amp; Ανάπτυξης 2030–2035</strong><br>
+      Πακέτο Εργασίας 2 · Μελέτες δέκα τουριστικών προορισμών
     </div>
-  </div>
-
-  <!-- HERO -->
-  <header class="relative bg-navy-700 overflow-hidden py-24">
-    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-700 to-navy-500"></div>
-    <svg class="absolute inset-0 w-full h-full opacity-[0.08]" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)"/>
-    </svg>
-    <div class="container mx-auto px-6 relative z-10 text-white max-w-4xl">
-      <p class="section-marker text-accent-300">Κεφάλαιο 02 · Ενιαία μεθοδολογική βάση</p>
-      <h1 class="display text-5xl md:text-6xl mt-3 leading-tight">Μεθοδολογικό Πλαίσιο</h1>
-      <p class="text-xl mt-4 text-navy-50/85 max-w-3xl">Δέκα αναλυτικά εργαλεία, μικτή μεθοδολογία ποσοτικής και ποιοτικής έρευνας, 17 πηγές δευτερογενών δεδομένων + 3.000 ερωτηματολόγια κατοίκων + 50 σε βάθος συνεντεύξεις στελεχών.</p>
-    </div>
-  </header>
-
-  <main class="container mx-auto px-6 py-16 max-w-4xl">
-
-    <!-- §1 Φιλοσοφία -->
-    <section class="mb-16">
-      <p class="section-marker">§ 2.1</p>
-      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Φιλοσοφία ανάλυσης: μικτή μεθοδολογία</h2>
-      <p class="text-lg text-ink-700 leading-relaxed mb-4">Η μελέτη υιοθετεί <strong>εμπεριστατωμένη μικτή μεθοδολογία</strong> (mixed-methods design) που συνδυάζει τρεις διακριτές πηγές αποδείξεων:</p>
-      <ul class="space-y-3 mt-6 text-ink-700">
-        <li class="border-l-2 border-accent-500 pl-4">
-          <strong>Ποσοτική δευτερογενής ανάλυση</strong>: συστηματική επεξεργασία 17 πηγών διοικητικών και ερευνητικών δεδομένων (ΕΛΣΤΑΤ, Eurostat, ΤτΕ, INSETE, EEA, OSM) — 54.000+ εγγραφές.
-        </li>
-        <li class="border-l-2 border-accent-500 pl-4">
-          <strong>Ποσοτική πρωτογενής έρευνα κατοίκων</strong>: 3.000 ερωτηματολόγια (n=300 ανά προορισμό, CATI/CAWI), στρωματοποιημένο δείγμα με post-fieldwork στάθμιση (rake/IPF).
-        </li>
-        <li class="border-l-2 border-accent-500 pl-4">
-          <strong>Ποιοτική πρωτογενής έρευνα στελεχών</strong>: 50 ημι-δομημένες σε βάθος συνεντεύξεις (5 ανά προορισμό), σκοπούμενη δειγματοληψία, θεματική ανάλυση.
-        </li>
-      </ul>
-      <div class="mt-6 p-5 bg-navy-50 border-l-4 border-navy-700">
-        <p class="section-marker text-navy-700">Αρχή τριγωνοποίησης</p>
-        <p class="text-sm text-ink-700 mt-2">Κάθε στρατηγικό συμπέρασμα τεκμηριώνεται από τουλάχιστον δύο ανεξάρτητες πηγές: αντικειμενικό δείκτη + υποκειμενική αντίληψη κατοίκων + ποιοτικό λόγο στελεχών (όπου διαθέσιμο).</p>
-      </div>
-    </section>
-
-    <!-- §2.2 Επιλογή του δείγματος των δέκα προορισμών -->
-    <section class="mb-16">
-      <p class="section-marker">§ 2.2</p>
-      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Επιλογή του δείγματος των δέκα προορισμών</h2>
-      <p class="text-lg text-ink-700 leading-relaxed mb-6">Η επιλογή των δέκα προορισμών βασίστηκε σε <strong>σκοπούμενη δειγματοληψία</strong> <em>(purposive sampling)</em> με τρία ταυτόχρονα κριτήρια: <strong>(α) τυπολογική κάλυψη</strong> του Butler TALC από στάδια πρώιμης ανάπτυξης έως στασιμότητας, <strong>(β) χωρική διασπορά</strong> σε νησιωτικούς και ηπειρωτικούς προορισμούς <strong>δέκα διαφορετικών Περιφερειών</strong>, και <strong>(γ) μεθοδολογική ετερογένεια</strong> ώστε κάθε προορισμός να εισφέρει διακριτή διαγνωστική αξία στα αναλυτικά εργαλεία της μελέτης. Η αναλογία ώριμων προς αναπτυσσόμενους τηρήθηκε <strong>5:5</strong> για να αποφευχθεί στατιστική ασυμμετρία στη συγκριτική ανάλυση.</p>
-
-      <div class="overflow-x-auto mb-6">
-        <table class="w-full text-sm border-collapse bg-white">
-          <thead class="bg-navy-700 text-white">
-            <tr>
-              <th class="border border-navy-700 p-3 text-center w-10">#</th>
-              <th class="border border-navy-700 p-3 text-left">Προορισμός</th>
-              <th class="border border-navy-700 p-3 text-left">Τύπος</th>
-              <th class="border border-navy-700 p-3 text-left">Συνεισφορά στο δείγμα</th>
-            </tr>
-          </thead>
-          <tbody class="text-ink-700">
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">1</td><td class="border border-[var(--rule)] p-3 font-medium">Χανιά</td><td class="border border-[var(--rule)] p-3">Ώριμος νησιωτικός κορεσμένος</td><td class="border border-[var(--rule)] p-3">Νησιωτικός κορεσμός με έντονη πίεση από βραχυχρόνιες μισθώσεις</td></tr>
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">2</td><td class="border border-[var(--rule)] p-3 font-medium">Κέρκυρα</td><td class="border border-[var(--rule)] p-3">Ώριμος νησιωτικός κορεσμένος</td><td class="border border-[var(--rule)] p-3">Ακραία περίπτωση κοινωνικής κόπωσης των κατοίκων από τον τουρισμό</td></tr>
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">3</td><td class="border border-[var(--rule)] p-3 font-medium">Μύκονος</td><td class="border border-[var(--rule)] p-3">Ώριμος νησιωτικός σε Butler stasis</td><td class="border border-[var(--rule)] p-3">Ακραίος υπερκορεσμός — δεκάδες τουρίστες ανά μόνιμο κάτοικο</td></tr>
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">4</td><td class="border border-[var(--rule)] p-3 font-medium">Ναύπλιο</td><td class="border border-[var(--rule)] p-3">Ώριμος ηπειρωτικός πολιτιστικός</td><td class="border border-[var(--rule)] p-3">Δείχνει ότι η ωριμότητα δεν φέρνει αναγκαστικά κοινωνική κόπωση</td></tr>
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">5</td><td class="border border-[var(--rule)] p-3 font-medium">Βόλος-Πήλιο</td><td class="border border-[var(--rule)] p-3">Ώριμος ηπειρωτικός μικτός</td><td class="border border-[var(--rule)] p-3">Έλεγχος της μελέτης σε προορισμό που χτύπησε η κακοκαιρία Daniel (2023)</td></tr>
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">6</td><td class="border border-[var(--rule)] p-3 font-medium">Ιωάννινα</td><td class="border border-[var(--rule)] p-3">Αναπτυσσόμενος αστικός</td><td class="border border-[var(--rule)] p-3">Ο ταχύτερα αναπτυσσόμενος ηπειρωτικός προορισμός — χρόνος για πρόληψη</td></tr>
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">7</td><td class="border border-[var(--rule)] p-3 font-medium">Καστοριά</td><td class="border border-[var(--rule)] p-3">Αναπτυσσόμενος ορεινός χειμερινός</td><td class="border border-[var(--rule)] p-3">Μοναδική φθινοπωρινή αιχμή σε ένα κατά τα άλλα στάσιμο τοπίο</td></tr>
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">8</td><td class="border border-[var(--rule)] p-3 font-medium">Αλεξανδρούπολη-Σαμοθράκη</td><td class="border border-[var(--rule)] p-3">Διπολικός (αστικός + νησιωτικός)</td><td class="border border-[var(--rule)] p-3">Ένας διοικητικός προορισμός, δύο πολύ διαφορετικές πραγματικότητες</td></tr>
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">9</td><td class="border border-[var(--rule)] p-3 font-medium">Τροιζηνία-Μέθανα-Γαλατάς</td><td class="border border-[var(--rule)] p-3">Αναπτυσσόμενος παράκτιος (Αττική)</td><td class="border border-[var(--rule)] p-3">Αναξιοποίητος προορισμός με κατοίκους που υποδέχονται θετικά την ανάπτυξη</td></tr>
-            <tr class="hover:bg-navy-50"><td class="border border-[var(--rule)] p-3 text-center font-mono">10</td><td class="border border-[var(--rule)] p-3 font-medium">Ναυπακτία</td><td class="border border-[var(--rule)] p-3">Αναπτυσσόμενος ηπειρωτικός</td><td class="border border-[var(--rule)] p-3">Πλούσιο φυσικό κεφάλαιο και διεθνώς γνωστή ιστορία <em>(Λεπάντο 1571)</em></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="mt-6 p-5 bg-navy-50 border-l-4 border-accent-500">
-        <p class="section-marker text-accent-500">Μεθοδολογικός περιορισμός</p>
-        <p class="text-sm text-ink-700 mt-2">Η <strong>Διακήρυξη του έργου</strong> δεν προέβλεπε αντιπροσωπευτικό δείγμα του συνόλου των ελληνικών τουριστικών προορισμών, αλλά <strong>αναλυτική μελέτη συγκεκριμένων περιπτώσεων</strong>. Η σκοπούμενη δειγματοληψία αποτελεί τη <strong>μεθοδολογικά ορθή επιλογή</strong> για τέτοιο σκοπό: επιτρέπει βαθιά συγκριτική κατανόηση και <strong>θεωρητική γενίκευση κατά τυπολογία</strong>, ενώ δεν αποσκοπεί σε στατιστική γενίκευση κατά πληθυσμό.</p>
-      </div>
-    </section>
-
-    <!-- §2 Δέκα αναλυτικά εργαλεία -->
-    <section class="mb-16">
-      <p class="section-marker">§ 2.4 – § 2.13</p>
-      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Δέκα αναλυτικά εργαλεία</h2>
-      <p class="text-lg text-ink-700 leading-relaxed mb-8">Τα μεθοδολογικά εργαλεία της μελέτης ενσωματώνουν τις πιο καθιερωμένες παραδόσεις της βιβλιογραφίας τουριστικής έρευνας, με μια πρωτότυπη θεωρητική συνεισφορά POST-D13.</p>
-
-      <div class="grid md:grid-cols-2 gap-5">
-
-        <div class="border border-[var(--rule)] p-5 bg-white">
-          <p class="section-marker text-accent-500">§ 2.4 Ζήτηση</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">CAGR · Ανάκαμψη · ALoS</h3>
-          <p class="text-sm text-ink-700">Σύνθετος Ετήσιος Ρυθμός Ανάπτυξης για τρεις υποπεριόδους (2015→2024 πλήρης, 2015→2019 προ-COVID, 2024/2019 ανάκαμψη). Μέση Διάρκεια Παραμονής (ALoS) σε νύχτες ανά επισκέπτη.</p>
-          <details class="mt-4 pt-3 border-t border-[var(--rule)]">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί χρησιμοποιήθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Η ανάλυση ζήτησης ξεκινά από τρεις απλούς αλλά αποκαλυπτικούς δείκτες. Ο <strong>σύνθετος ετήσιος ρυθμός μεταβολής (CAGR)</strong> δείχνει αν ένας προορισμός μεγαλώνει σταθερά ή στάσιμα σε δεκαετή ορίζοντα — απομονώνοντας το ετήσιο σήμα από τις πτώσεις και τις αναπηδήσεις. Ο <strong>δείκτης ανάκαμψης 2024/2019</strong> μετρά πόσο γρήγορα ένας προορισμός επανήλθε μετά την πανδημία· τιμή 1 σημαίνει πλήρης επαναφορά, κάτω από 1 ότι υπάρχει ακόμη έλλειμμα. Η <strong>μέση διάρκεια παραμονής (ALoS)</strong> δείχνει αν οι επισκέπτες μένουν για διακοπές ή απλά περαστικοί. Μαζί απαντούν: «πόσο μεγαλώνει, πόσο επανήλθε, πόσο μένει ο επισκέπτης».</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Lim, C. (1997). Review of international tourism demand models. <em>Annals of Tourism Research</em>, 24(4), 835–849. <a href="https://doi.org/10.1016/S0160-7383(97)00049-2" class="hover:text-accent-700">doi.org/10.1016/S0160-7383(97)00049-2</a></li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="border border-[var(--rule)] p-5 bg-white">
-          <p class="section-marker text-accent-500">§ 2.5 Εποχικότητα</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">Gini · HHI · λόγος αιχμής</h3>
-          <p class="text-sm text-ink-700">Συντελεστής Gini κατά <strong>Lundtorp (2001)</strong> για ανισοκατανομή μηνιαίων αφίξεων. Κλίμακα κατά Cuccia &amp; Rizzo (2011): G&lt;0,20 χαμηλή, G≥0,40 υψηλή.</p>
-          <details class="mt-4 pt-3 border-t border-[var(--rule)]">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί χρησιμοποιήθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Το βασικό ερώτημα είναι αν η ζήτηση κατανέμεται ισόρροπα μέσα στον χρόνο ή συγκεντρώνεται σε λίγους μήνες. Ο <strong>συντελεστής Gini</strong> (γνωστός από την ανισότητα εισοδήματος) εφαρμόζεται εδώ στους 12 μήνες: τιμή 0 σημαίνει τέλεια ισόρροπη κατανομή, τιμή 1 ότι όλη η ζήτηση πέφτει σε έναν μήνα. Ο <strong>δείκτης Herfindahl-Hirschman (HHI)</strong> ποσοτικοποιεί τη συγκέντρωση, ο <strong>λόγος αιχμής</strong> συγκρίνει τον υψηλότερο με τον χαμηλότερο μήνα. Η σύγκριση των τριών δείχνει αν ένας προορισμός είναι θερινός μονοκαλλιεργητής (Μύκονος) ή ολόχρονος (Καστοριά — όχι λόγω επιτυχίας αλλά λόγω ομοιόμορφα χαμηλής ζήτησης).</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Lundtorp, S. (2001). Measuring tourism seasonality. In T. Baum &amp; S. Lundtorp (Eds.), <em>Seasonality in tourism</em> (pp. 23–50). Pergamon.</li>
-                <li>BarOn, R. R. V. (1975). <em>Seasonality in tourism: A guide to the analysis of seasonality and trends for policy making</em> (Technical Series No. 2). The Economist Intelligence Unit.</li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="border border-[var(--rule)] p-5 bg-white">
-          <p class="section-marker text-accent-500">§ 2.6 Φέρουσα ικανότητα</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">Defert TFI / TII · Cifuentes PCC</h3>
-          <p class="text-sm text-ink-700"><strong>Δείκτης Τουριστικής Λειτουργίας</strong> κατά <strong>Pierre Defert (1967)</strong>: <code class="bg-navy-50 px-1.5 py-0.5 rounded text-xs">TFI = (κλίνες × 100) / πληθυσμός</code>. <strong>Δείκτης Τουριστικής Έντασης</strong> κατά Defert (1967), συμπληρωμένος από <strong>Saveriades (2000)</strong>: <code class="bg-navy-50 px-1.5 py-0.5 rounded text-xs">TII = διανυκτερεύσεις / πληθυσμός</code>. <strong>Κλίμακα Saveriades για TII:</strong> &lt;5 χαμηλή ένταση, 5-10 μέτρια, 10-15 υψηλή, &gt;15 πολύ υψηλή/υπερκορεσμός. Συμπλήρωμα: <strong>Cifuentes (1992) PCC</strong> για προστατευόμενες περιοχές.</p>
-          <details class="mt-4 pt-3 border-t border-[var(--rule)]">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί χρησιμοποιήθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Πώς μετράμε αν ένας προορισμός είναι «γεμάτος»; Ο γάλλος Defert πρότεινε δύο δείκτες που έγιναν διεθνώς canonical: τον <strong>TFI</strong> (κλίνες ÷ μόνιμος πληθυσμός × 100) και τον <strong>TII</strong> (διανυκτερεύσεις ÷ μόνιμος πληθυσμός × 100). Όσο μεγαλύτερες οι τιμές, τόσο πιο τουριστοκεντρικός ο προορισμός σε σχέση με τους κατοίκους του. Ο Saveriades πρότεινε κατώφλια ερμηνείας με κρίσιμο όριο TII &gt; 15. Η Μύκονος (TII 178,6) ξεπερνά αυτό το όριο σχεδόν δώδεκα φορές.</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Defert, P. (1967). <em>Le taux de fonction touristique: Mise au point et critique</em> (Cahiers du tourisme, Série C, No. 5). Centre des Hautes Études Touristiques, Université d'Aix-Marseille.</li>
-                <li>Cifuentes, M. (1992). <em>Determinación de capacidad de carga turística en áreas protegidas</em> (Serie Técnica, Informe Técnico No. 194). CATIE.</li>
-                <li>Saveriades, A. (2000). Establishing the social tourism carrying capacity for the tourist resorts of the east coast of the Republic of Cyprus. <em>Tourism Management</em>, 21(2), 147–156. <a href="https://doi.org/10.1016/S0261-5177(99)00044-8" class="hover:text-accent-700">doi.org/10.1016/S0261-5177(99)00044-8</a></li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="border border-[var(--rule)] p-5 bg-white">
-          <p class="section-marker text-accent-500">§ 2.7 Shift-Share</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">Dunn classical · Esteban-Marquillas NCE+AE</h3>
-          <p class="text-sm text-ink-700">Κλασική αποσύνθεση κατά <strong>Dunn (1960)</strong>: ΔΕ = NS + IM + RS. Επέκταση κατά <strong>Esteban-Marquillas (1972)</strong>: RS = NCE + AE — διαχωρισμός καθαρού ανταγωνιστικού αποτελέσματος από τομεακή σύνθεση.</p>
-          <details class="mt-4 pt-3 border-t border-[var(--rule)]">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί χρησιμοποιήθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Όταν η τουριστική απασχόληση μεγαλώνει σε έναν προορισμό, το ερώτημα είναι: μεγαλώνει επειδή πάει καλά ολόκληρη η ελληνική οικονομία, ή επειδή ο συγκεκριμένος τόπος έχει ξεχωριστά πλεονεκτήματα; Η ανάλυση <strong>shift-share</strong> χωρίζει τη συνολική αλλαγή σε τρία συστατικά: εθνική τάση, τομεακή σύνθεση, τοπικός παράγοντας. Η επέκταση Esteban-Marquillas απομονώνει επιπλέον το «αλληλεπιδρασιακό» τμήμα — αν ένας τόπος έχει συγκριτικό πλεονέκτημα στους τομείς που ήδη αναπτύσσονται. Η μέθοδος απαντά αν η τοπική επιτυχία είναι <strong>δομική ή τυχαία</strong>.</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Dunn, E. S. (1960). A statistical and analytical technique for regional analysis. <em>Papers and Proceedings of the Regional Science Association</em>, 6(1), 97–112. <a href="https://doi.org/10.1111/j.1435-5597.1960.tb01705.x" class="hover:text-accent-700">doi.org/10.1111/j.1435-5597.1960.tb01705.x</a></li>
-                <li>Esteban-Marquillas, J. M. (1972). A reinterpretation of shift-share analysis. <em>Regional and Urban Economics</em>, 2(3), 249–255. <a href="https://doi.org/10.1016/0034-3331(72)90033-4" class="hover:text-accent-700">doi.org/10.1016/0034-3331(72)90033-4</a></li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="border border-[var(--rule)] p-5 bg-white">
-          <p class="section-marker text-accent-500">§ 2.8 Location Quotient</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">Isserman LQ — τρεις διαστάσεις</h3>
-          <p class="text-sm text-ink-700">LQ κατά <strong>Isserman (1977)</strong> σε νομικές μονάδες, απασχόληση και τζίρο επί NACE 551-563. LQ&gt;1,25 σαφής εξειδίκευση, LQ&lt;0,75 υπο-εκπροσώπηση.</p>
-          <details class="mt-4 pt-3 border-t border-[var(--rule)]">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί χρησιμοποιήθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Πόσο εξειδικευμένος είναι ένας προορισμός στον τουρισμό σε σχέση με τον εθνικό μέσο όρο; Ο <strong>Location Quotient</strong> απαντά με μία απλή αναλογία: το τοπικό μερίδιο μιας δραστηριότητας διαιρεμένο με το εθνικό μερίδιο της ίδιας. Τιμή LQ &gt; 1,25 σημαίνει συγκριτικό πλεονέκτημα — ο προορισμός είναι σαφώς πιο τουριστοκεντρικός από τον μέσο όρο της χώρας. Τιμή &lt; 0,75 σημαίνει υποαντιπροσώπευση. Η μελέτη υπολογίζει LQ σε <strong>τρεις διαστάσεις</strong>: απασχόληση, αριθμό επιχειρήσεων και τζίρο, ώστε να αποκαλυφθεί αν η εξειδίκευση είναι παραγωγική ή απλώς επιφανειακή.</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Isserman, A. M. (1977). The location quotient approach to estimating regional economic impacts. <em>Journal of the American Institute of Planners</em>, 43(1), 33–41. <a href="https://doi.org/10.1080/01944367708977758" class="hover:text-accent-700">doi.org/10.1080/01944367708977758</a></li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="border border-[var(--rule)] p-5 bg-white">
-          <p class="section-marker text-accent-500">§ 2.9 IPA</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">Importance-Performance · Johnson Relative Weights</h3>
-          <p class="text-sm text-ink-700">Quadrant analysis σπουδαιότητας × επίδοσης. Σχετικά βάρη κατά <strong>Johnson (2000)</strong>: ορθογωνιοποιημένος μετασχηματισμός που αποφεύγει προβλήματα πολυσυγγραμμικότητας.</p>
-          <details class="mt-4 pt-3 border-t border-[var(--rule)]">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί χρησιμοποιήθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Η <strong>Importance-Performance Analysis</strong> είναι εργαλείο προτεραιοποίησης πολιτικής. Σταυρώνει δύο διαστάσεις: πόσο σημαντική θεωρούν οι κάτοικοι μια υποδομή (στάθμευση, υγεία, καθαριότητα…) με το πόσο ικανοποιημένοι είναι από αυτήν. Το αποτέλεσμα είναι χάρτης τεσσάρων τεταρτημορίων όπου ξεχωρίζει το <strong>«Συγκέντρωση εδώ»</strong> (κρίσιμες υποδομές με χαμηλή απόδοση) από το <strong>«Πιθανή υπερβολή»</strong> (καλά μέτρα σε λιγότερο επείγοντα πεδία). Η μελέτη υπολογίζει τη σημαντικότητα μέσω <strong>Random Forest weights</strong> αντί να ρωτήσει απευθείας — μέθοδος που εξουδετερώνει τη γνωστή προκατάληψη «όλα είναι σημαντικά».</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Martilla, J. A., &amp; James, J. C. (1977). Importance-performance analysis. <em>Journal of Marketing</em>, 41(1), 77–79. <a href="https://doi.org/10.1177/002224297704100112" class="hover:text-accent-700">doi.org/10.1177/002224297704100112</a></li>
-                <li>Johnson, J. W. (2000). A heuristic method for estimating the relative weight of predictor variables in multiple regression. <em>Multivariate Behavioral Research</em>, 35(1), 1–19. <a href="https://doi.org/10.1207/S15327906MBR3501_1" class="hover:text-accent-700">doi.org/10.1207/S15327906MBR3501_1</a></li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="border border-[var(--rule)] p-5 bg-white">
-          <p class="section-marker text-accent-500">§ 2.10 Doxey Irridex</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">Doxey θεωρία · LCA εμπειρική</h3>
-          <p class="text-sm text-ink-700">Θεωρητική σταδιοποίηση κατά <strong>George V. Doxey (1975)</strong>: Ευφορία → Απάθεια → Ενόχληση → Αντιπαλότητα. Εμπειρική τυπολογία 5 κλάσεων μέσω Latent Class Analysis (<strong>Lazarsfeld &amp; Henry 1968</strong>).</p>
-          <details class="mt-4 pt-3 border-t border-[var(--rule)]">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί χρησιμοποιήθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Πώς αντιμετωπίζουν οι κάτοικοι τον τουρισμό; Ο <strong>Doxey</strong> πρότεινε μια τετραστάδια εξέλιξη: από Ευφορία σε Απάθεια, μετά σε Ενόχληση και τελικά σε Ανταγωνισμό. Η μελέτη μετρά εμπειρικά αυτά τα στάδια με <strong>Latent Class Analysis</strong> — στατιστική μέθοδο που ανιχνεύει υποομάδες μέσα σε έναν πληθυσμό βάσει του προτύπου των απαντήσεών τους. Έτσι κατατάσσει κάθε προορισμό σε <strong>5 εμπειρικές κλάσεις</strong>, από τους «Επιφυλακτικούς» έως τους «Ένθερμους Υποστηρικτές». Πλέον δεν μιλάμε για στάδια θεωρητικά, αλλά για κατανομές πληθυσμού μετρήσιμες. Η ευρύτερη τοποθέτηση στο μοντέλο εξέλιξης τουριστικών περιοχών του Butler συμπληρώνει την ανάγνωση.</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Doxey, G. V. (1975). A causation theory of visitor-resident irritants: Methodology and research inferences. In <em>The impact of tourism: Sixth annual conference proceedings of the Travel and Tourism Research Association</em> (pp. 195–198). TTRA.</li>
-                <li>Lazarsfeld, P. F., &amp; Henry, N. W. (1968). <em>Latent structure analysis</em>. Houghton Mifflin.</li>
-                <li>Hagenaars, J. A., &amp; McCutcheon, A. L. (Eds.). (2002). <em>Applied latent class analysis</em>. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511499531" class="hover:text-accent-700">doi.org/10.1017/CBO9780511499531</a></li>
-                <li>Butler, R. W. (1980). The concept of a tourist area cycle of evolution: Implications for management of resources. <em>Canadian Geographer / Le Géographe canadien</em>, 24(1), 5–12. <a href="https://doi.org/10.1111/j.1541-0064.1980.tb00970.x" class="hover:text-accent-700">doi.org/10.1111/j.1541-0064.1980.tb00970.x</a></li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="border border-[var(--rule)] p-5 bg-white">
-          <p class="section-marker text-accent-500">§ 2.11 IRT-GRM POI</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">Samejima GRM · Δείκτης POI θ̂</h3>
-          <p class="text-sm text-ink-700">Item Response Theory — Graded Response Model κατά <strong>Samejima (1969)</strong> σε 19 saturation items. Σταθμισμένη συσχέτιση Pearson(POI, TFI 2024) = 0,711 — ισχυρή σύγκλιση υποκειμενικού-αντικειμενικού.</p>
-          <details class="mt-4 pt-3 border-t border-[var(--rule)]">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί χρησιμοποιήθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Πώς συνοψίζουμε πέντε ή έξι ερωτήσεις για τον αντιληπτό τουριστικό κορεσμό σε έναν δείκτη; Το πρόβλημα: κάθε ερώτηση έχει διαφορετική «δυσκολία» — άλλος συμφωνεί εύκολα ότι «οι τουρίστες είναι πολλοί», άλλος δύσκολα. Η <strong>Graded Response Model</strong> του Samejima, από την ψυχομετρία, λύνει αυτό το πρόβλημα: εκτιμά για κάθε κάτοικο έναν λανθάνον δείκτη <strong>θ̂</strong> (theta-hat) που αντιπροσωπεύει το προσωπικό του επίπεδο αντίληψης πίεσης, σταθμισμένο με βάση τη δυσκολία κάθε ερώτησης. Το αποτέλεσμα είναι ένας δείκτης συγκρίσιμος μεταξύ προορισμών — και ποιοτικά πιο ακριβής από έναν απλό μέσο όρο απαντήσεων.</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Samejima, F. (1969). Estimation of latent ability using a response pattern of graded scores. <em>Psychometrika Monograph Supplement</em>, 34(4, Pt. 2), 1–97. <a href="https://doi.org/10.1007/BF03372160" class="hover:text-accent-700">doi.org/10.1007/BF03372160</a></li>
-                <li>van der Linden, W. J., &amp; Hambleton, R. K. (Eds.). (1997). <em>Handbook of modern item response theory</em>. Springer. <a href="https://doi.org/10.1007/978-1-4757-2691-6" class="hover:text-accent-700">doi.org/10.1007/978-1-4757-2691-6</a></li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="border border-2 border-accent-500 p-5 bg-accent-50">
-          <p class="section-marker text-accent-700">§ 2.12 POST-D13 NEW</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">Κριτική Εκ των Έσω 5-Zone × 3-Direction Taxonomy</h3>
-          <p class="text-sm text-ink-700">Πρωτότυπη θεωρητική συνεισφορά. Ταξινόμηση 10 προορισμών σε 15 cells: 5 ζώνες αναγνώρισης (Α έως Δ) × 3 κατευθύνσεις (CLASSIC / REVERSE / STEWARD). Αναιρεί την κλασική γραμμική Doxey υπόθεση. Canonical reference: Ναυπακτία (STEWARD).</p>
-          <details class="mt-4 pt-3 border-t border-accent-300">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί αναπτύχθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Η μελέτη προτείνει <strong>πρωτότυπη ταξονομία</strong> που εμπλουτίζει τη Doxey θεωρία. Τι γίνεται όταν οι <strong>τουριστικά εργαζόμενοι κάτοικοι</strong> — αυτοί που ζουν <em>από</em> τον τουρισμό — βλέπουν περισσότερα προβλήματα από τους υπόλοιπους; Η κλασική θεωρία προβλέπει το αντίθετο: οι ωφελούμενοι υποστηρίζουν τον τουρισμό. Όταν συμβαίνει το αντίθετο (μοτίβο <strong>CLASSIC</strong>), εμπεριέχεται ισχυρό σήμα κορεσμού. Όταν αντί για αντίθεση εμφανίζεται συμμετρία υπέρ ρυθμιστικής παρέμβασης, αναδεικνύεται το <strong>STEWARD</strong> μοτίβο — οι εργαζόμενοι ως θεματοφύλακες του προορισμού, που πρωτο-τεκμηριώθηκε εμπειρικά στη Ναυπακτία.</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Υποστηρικτική βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Smith, V. L. (Ed.). (1989). <em>Hosts and guests: The anthropology of tourism</em> (2nd ed.). University of Pennsylvania Press.</li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="border border-[var(--rule)] p-5 bg-white">
-          <p class="section-marker text-accent-500">§ 2.13 Causal</p>
-          <h3 class="font-serif text-xl text-navy-700 mt-2 mb-2">IPW + CEM · Kish DEFF</h3>
-          <p class="text-sm text-ink-700">Διπλή προσέγγιση αιτιακής ταυτοποίησης: Inverse Probability Weighting με Random Forest propensity score + Coarsened Exact Matching. Survey-weighted εκτιμητής κατά <strong>Kish (1965, DEFF)</strong>.</p>
-          <details class="mt-4 pt-3 border-t border-[var(--rule)]">
-            <summary class="cursor-pointer text-sm text-navy-700 hover:text-accent-700 font-medium">Γιατί χρησιμοποιήθηκε</summary>
-            <div class="mt-3 text-sm text-ink-700 leading-relaxed">
-              <p>Όταν συγκρίνουμε δύο υποομάδες κατοίκων (π.χ. τουριστικά εργαζομένους με υπόλοιπους), η διαφορά στις απαντήσεις τους μπορεί να οφείλεται στον τουρισμό — αλλά και σε άλλα χαρακτηριστικά (ηλικία, μόρφωση, εισόδημα). Δύο τεχνικές καθαρίζουν αυτή τη σύγχυση. Η <strong>Inverse Probability Weighting</strong> δίνει μεγαλύτερο βάρος σε άτομα με χαρακτηριστικά που υποαντιπροσωπεύονται. Το <strong>Coarsened Exact Matching</strong> ταιριάζει κάθε άτομο από τη μία ομάδα με ένα «δίδυμό» του στην άλλη με ίδια δημογραφικά. Συνδυασμός: η διαφορά που μένει είναι <strong>καθαρό σήμα</strong> τουριστικής εμπλοκής, όχι σύνδεση συμπτωμάτων.</p>
-              <p class="mt-3 text-xs uppercase tracking-wide text-ink-500 font-semibold">Βιβλιογραφία</p>
-              <ul class="text-xs text-ink-500 space-y-1.5 mt-1 list-disc list-inside">
-                <li>Robins, J. M., Hernán, M. Á., &amp; Brumback, B. (2000). Marginal structural models and causal inference in epidemiology. <em>Epidemiology</em>, 11(5), 550–560. <a href="https://doi.org/10.1097/00001648-200009000-00011" class="hover:text-accent-700">doi.org/10.1097/00001648-200009000-00011</a></li>
-                <li>Iacus, S. M., King, G., &amp; Porro, G. (2012). Causal inference without balance checking: Coarsened exact matching. <em>Political Analysis</em>, 20(1), 1–24. <a href="https://doi.org/10.1093/pan/mpr013" class="hover:text-accent-700">doi.org/10.1093/pan/mpr013</a></li>
-                <li>Rosenbaum, P. R., &amp; Rubin, D. B. (1983). The central role of the propensity score in observational studies for causal effects. <em>Biometrika</em>, 70(1), 41–55. <a href="https://doi.org/10.1093/biomet/70.1.41" class="hover:text-accent-700">doi.org/10.1093/biomet/70.1.41</a></li>
-                <li>Kish, L. (1965). <em>Survey sampling</em>. John Wiley &amp; Sons.</li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- §3 Πρωτογενής έρευνα -->
-    <section class="mb-16">
-      <p class="section-marker">§ 2.3</p>
-      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Πρωτογενής έρευνα</h2>
-      <p class="text-ink-700 leading-relaxed mb-6">Διενεργήθηκε από τον <strong>υπεύθυνο ανάδοχο για την πρωτογενή έρευνα</strong> (μέλος ΣΕΔΕΑ και ESOMAR) εντός Απριλίου 2026, σύμφωνα με GDPR και τους Κώδικες Δεοντολογίας ΣΕΔΕΑ/ESOMAR.</p>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="p-5 bg-navy-50 border-l-4 border-navy-700">
-          <p class="section-marker text-navy-700">Ποσοτικό σκέλος</p>
-          <h3 class="font-serif text-lg mt-2 mb-3">3.000 ερωτηματολόγια κατοίκων</h3>
-          <ul class="text-sm text-ink-700 space-y-1">
-            <li>• n=300 ανά προορισμό, ηλικίας 18+</li>
-            <li>• Μέθοδος: CATI σταθερό + κινητό + CAWI online</li>
-            <li>• Στρωμάτωση: Καλλικρατικός Δήμος × Φύλο × Ηλικία</li>
-            <li>• 115 μεταβλητές: 65 Likert items (Q1-Q12), 6 ranked (Q13-Q14), 45 πεδία απασχόλησης</li>
-            <li>• Στάθμιση: rake/IPF με trimming στο 5× του μέσου όρου</li>
-            <li>• Διάρκεια συνέντευξης: 14-18 λεπτά</li>
-          </ul>
-        </div>
-
-        <div class="p-5 bg-navy-50 border-l-4 border-accent-500">
-          <p class="section-marker text-accent-500">Ποιοτικό σκέλος</p>
-          <h3 class="font-serif text-lg mt-2 mb-3">50 σε βάθος συνεντεύξεις</h3>
-          <ul class="text-sm text-ink-700 space-y-1">
-            <li>• 5 στελέχη ανά προορισμό</li>
-            <li>• Διάρκεια 45-90 λεπτά</li>
-            <li>• Σκοπούμενη + θεωρητική δειγματοληψία</li>
-            <li>• Θεματική ανάλυση (Thematic Analysis)</li>
-            <li>• Κατηγορίες: Τοπική Αυτοδιοίκηση, Αναπτυξιακές Εταιρείες, Επιμελητήρια, Επαγγελματικοί Σύλλογοι, Σύλλογοι Περιβάλλοντος, Συγκοινωνιακοί Φορείς</li>
-            <li>• Ανώνυμη απόδοση verbatim quotes</li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="text-sm text-ink-500 italic mt-6">Στην παρούσα έκδοση, η ποιοτική έρευνα είναι ολοκληρωμένη για 2 από τους 10 προορισμούς (Χανιά, Τροιζηνία-Μέθανα-Γαλατάς) με πλήρεις πίνακες· για τους υπόλοιπους 8 διατίθενται preliminary qualitative extracts.</p>
-    </section>
-
-    <!-- §4 NUTS3 Caveat -->
-    <section class="mb-16">
-      <p class="section-marker">§ 2.15</p>
-      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">⚠ Διόρθωση Eurostat NUTS3 Mislabeling</h2>
-      <p class="text-ink-700 leading-relaxed mb-4">Κατά τη διασταύρωση Eurostat NUTS3 με εθνικά δεδομένα ΕΛΣΤΑΤ/SBR01, εντοπίστηκαν δύο σφάλματα αντιστοίχισης labels:</p>
-
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm border-collapse">
-          <thead class="bg-navy-50">
-            <tr>
-              <th class="border border-[var(--rule)] p-3 text-left">Eurostat label</th>
-              <th class="border border-[var(--rule)] p-3 text-left">Λανθασμένη ονομασία</th>
-              <th class="border border-[var(--rule)] p-3 text-left">Πραγματική γεωγραφική αναφορά</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="border border-[var(--rule)] p-3 font-mono">EL541 ⚠</td>
-              <td class="border border-[var(--rule)] p-3">Ιωάννινα</td>
-              <td class="border border-[var(--rule)] p-3 font-semibold">Άρτα-Πρέβεζα</td>
-            </tr>
-            <tr>
-              <td class="border border-[var(--rule)] p-3 font-mono">EL531 ⚠</td>
-              <td class="border border-[var(--rule)] p-3">Καστοριά</td>
-              <td class="border border-[var(--rule)] p-3 font-semibold">Γρεβενά-Κοζάνη</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p class="text-ink-700 leading-relaxed mt-4">Για τα κεφάλαια Ιωαννίνων (Κεφ. 9) και Καστοριάς (Κεφ. 10), εφαρμόστηκε <strong>substitution από εθνικά SBR01/ΕΛΣΤΑΤ δεδομένα</strong> με σωστή αντιστοίχιση. Όπου η ανάλυση εξαρτάται από Eurostat-only μεταβλητές, εφαρμόζεται ρητή caveat στο σώμα του κεφαλαίου.</p>
-    </section>
-
-    <!-- Cross-references -->
-    <section class="mb-12 p-6 bg-navy-50 border-l-4 border-accent-500">
-      <p class="section-marker text-accent-500">Πλήρης τεκμηρίωση</p>
-      <h3 class="font-serif text-xl text-navy-700 mt-2 mb-4">Στο παραδοτέο docx</h3>
-      <ul class="space-y-2 text-ink-700">
-        <li>📘 <strong>Κεφάλαιο 2 — Μεθοδολογικό Πλαίσιο</strong> (17 sections, 3.313 λέξεις) — single source of truth</li>
-        <li>📗 <strong>Παράρτημα Β — Πλήρες Μεθοδολογικό Πλαίσιο</strong> (207 γραμμές, με τύπους + κλίμακες + βιβλιογραφία)</li>
-        <li>📕 <strong>Παράρτημα Γ — Πρωτογενής Έρευνα</strong> (352 γραμμές, αναλυτική δομή ερωτηματολογίου + Doxey Irridex 12 items)</li>
-        <li>📒 <strong>Παράρτημα Ζ — Στατιστική Μεθοδολογία</strong> (616 γραμμές, 8 WP statistical analyses: IRT-GRM, LCA, IPW+CEM, Bayesian Multilevel)</li>
-      </ul>
-    </section>
-
   </main>
-
-  <!-- Footer -->
-  <footer class="bg-navy-900 text-white py-12 mt-0">
-    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
-      <div>
-        <p class="section-marker text-accent-300">Δείτε επίσης</p>
-        <ul class="space-y-1.5 mt-2">
-          <li><a href="data_sources.html" class="hover:text-accent-300">Πηγές δεδομένων →</a></li>
-          <li><a href="comparative.html" class="hover:text-accent-300">Συγκριτική ανάλυση 10 προορισμών →</a></li>
-          <li><a href="index.html" class="hover:text-accent-300">Όλοι οι 10 προορισμοί →</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="section-marker text-accent-300">Παραδοτέο</p>
-        <p class="font-serif text-lg mt-1">Λευκή Βίβλος ΠΕ2</p>
-        <p class="text-xs text-white/60 mt-2">Χρηματοδότηση μέσω Ταμείου Ανάκαμψης &amp; Ανθεκτικότητας / NextGenerationEU</p>
-      </div>
-      <div>
-        <p class="section-marker text-accent-300">Έκδοση</p>
-        <p class="text-sm mt-1">v1.0 · 2026-05-15</p>
-        <p class="text-xs text-white/60 mt-2">Πιλοτικό τεύχος για ανατροφοδότηση συνεργατών.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="assets/js/app.js?v=14"></script>
 </body>
 </html>

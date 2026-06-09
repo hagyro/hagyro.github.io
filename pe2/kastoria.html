@@ -1,751 +1,97 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Καστοριά · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
- <meta name="description" content="Προφίλ Καστοριάς: αναπτυσσόμενος προορισμός με τη χαμηλότερη εποχικότητα της δεκάδας (Gini 0,151) και μήνα αιχμής Οκτώβριο — μοναδικό φθινοπωρινό προφίλ. Ζώνη Β προληπτικό παράθυρο.">
-
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
-
- <script src="https://cdn.tailwindcss.com"></script>
- <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
- <link rel="stylesheet" href="assets/css/custom.css?v=17">
-
- <script>
- tailwind.config = { theme: { extend: {
- colors: {
- navy: { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
- accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
- ink: { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
- },
- fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
- } } }
- </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Υπό ενημέρωση · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-900:#0d2440; --navy-700:#1f4e79; --navy-500:#3a73a8; --navy-50:#eef2f8;
+      --accent-500:#e07b00; --accent-300:#ffa951;
+      --ink-700:#2d3441; --ink-500:#5b6473;
+      --rule:rgba(13,36,64,0.10);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Inter', system-ui, sans-serif;
+      color:var(--ink-700);
+      background:linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 55%, var(--navy-500) 100%);
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:24px;
+      position:relative; overflow:hidden;
+    }
+    /* subtle grid backdrop */
+    body::before {
+      content:''; position:absolute; inset:0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size:60px 60px;
+      pointer-events:none;
+    }
+    .card {
+      position:relative; z-index:1;
+      background:#fff;
+      max-width:560px; width:100%;
+      padding:56px 48px;
+      border-radius:4px;
+      box-shadow:0 30px 80px -20px rgba(0,0,0,0.45);
+      border-top:4px solid var(--accent-500);
+    }
+    .eyebrow {
+      font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--accent-500); font-weight:600;
+      display:flex; align-items:center; gap:10px; margin-bottom:22px;
+    }
+    .eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
+    h1 {
+      font-family:'Fraunces', Georgia, serif;
+      font-size:34px; line-height:1.18; color:var(--navy-700);
+      font-weight:600; margin-bottom:18px;
+    }
+    h1 em { color:var(--accent-500); font-style:italic; }
+    p { font-size:15.5px; line-height:1.65; color:var(--ink-700); margin-bottom:16px; }
+    p.muted { color:var(--ink-500); font-size:14px; }
+    .status {
+      display:inline-flex; align-items:center; gap:9px;
+      background:var(--navy-50); border:1px solid var(--rule);
+      padding:9px 16px; border-radius:3px; margin:8px 0 26px;
+      font-size:13.5px; font-weight:500; color:var(--navy-700);
+    }
+    .dot {
+      width:9px; height:9px; border-radius:50%;
+      background:var(--accent-500);
+      box-shadow:0 0 0 0 rgba(224,123,0,0.5);
+      animation:pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow:0 0 0 0 rgba(224,123,0,0.45); }
+      70%  { box-shadow:0 0 0 9px rgba(224,123,0,0); }
+      100% { box-shadow:0 0 0 0 rgba(224,123,0,0); }
+    }
+    .footer {
+      margin-top:30px; padding-top:22px; border-top:1px solid var(--rule);
+      font-size:12px; color:var(--ink-500); line-height:1.6;
+    }
+    .footer strong { color:var(--ink-700); font-weight:600; }
+  </style>
 </head>
 <body>
-
- <!-- Top utility bar -->
- <div class="bg-navy-900 text-white text-xs">
- <div class="container mx-auto px-6 py-2 flex justify-between items-center">
- <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
- <div class="flex items-center gap-4">
- <a href="methodology.html" class="text-white/70 hover:text-white">Μεθοδολογία</a>
- <a href="data_sources.html" class="text-white/70 hover:text-white">Πηγές</a>
- <a href="comparative.html" class="text-white/70 hover:text-white">Συγκριτικά</a>
- <a href="glossary.html" class="text-white/70 hover:text-white">Γλωσσάρι</a>
- <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
- </div>
- </div>
- </div>
-
- <!-- HERO — Καστοριά: μοναδικό χειμερινό-φθινοπωρινό προφίλ, χαμηλότερο Gini, χαμηλότερη ανάκαμψη, JTF -->
- <header class="relative h-[70vh] min-h-[520px] bg-navy-700 overflow-hidden flex items-end">
- <!-- Background photo: Λίμνη Ορεστιάδα Καστοριάς -->
- <img src="assets/images/kastoria_hero.jpg" alt="Καστοριά και Λίμνη Ορεστιάδα την ώρα του ηλιοβασιλέματος" class="absolute inset-0 w-full h-full object-cover">
- <div class="absolute inset-0 bg-gradient-to-b from-navy-900/30 via-navy-900/40 to-navy-900/95"></div>
- <svg class="absolute inset-0 w-full h-full opacity-[0.06]" preserveAspectRatio="xMidYMid slice">
- <defs>
- <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
- <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
- </pattern>
- </defs>
- <rect width="100%" height="100%" fill="url(#grid)"/>
- </svg>
-
- <div class="container mx-auto px-6 pb-12 relative z-10 text-white">
- <p class="section-marker text-accent-300">Κεφάλαιο 10 · Προορισμός με περιθώριο ανάπτυξης · Λίμνη &amp; Βυζάντιο</p>
- <h1 class="display text-7xl md:text-8xl mt-3 leading-none">Καστοριά</h1>
- <p class="text-xl mt-3 text-navy-50/85 max-w-2xl">Δυτική Μακεδονία · ΠΕ Καστοριάς · Δ. Καστοριάς · Πληθυσμός 45.929 (Απογραφή 2021) · ⚠ Eurostat NUTS3 EL531 = «Grevena, Kozani» (βλ. §10.4.3)</p>
-
- <p class="absolute bottom-2 right-4 text-[10px] text-white/40">Φωτογραφία: Λίμνη Ορεστιάδα &amp; βυζαντινός ναός Καστοριάς</p>
-
- <!-- Quick stats — Καστοριά signature: χαμηλότερη Gini, μήνας αιχμής Οκτώβριος, χαμηλότερη ανάκαμψη, JTF -->
- <div class="mt-10 flex flex-wrap gap-2">
- <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
- <span class="block text-[11px] uppercase tracking-wider text-accent-300">Gini εποχικότητας · χαμηλότερο της δεκάδας</span>
- <span class="font-serif text-lg numeric">0,151</span>
- </span>
- <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
- <span class="block text-[11px] uppercase tracking-wider text-accent-300">Μήνας αιχμής · μοναδικός φθινοπωρινός</span>
- <span class="font-serif text-lg">Οκτώβριος</span>
- </span>
- <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
- <span class="block text-[11px] uppercase tracking-wider text-white/60">Ανάκαμψη 2024/2019 · χαμηλότερη</span>
- <span class="font-serif text-lg numeric">0,691</span>
- </span>
- <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
- <span class="block text-[11px] uppercase tracking-wider text-white/60">Just Transition Fund · διαθέσιμο</span>
- <span class="font-serif text-lg">JTF</span>
- </span>
- </div>
- </div>
- </header>
-
- <!-- STICKY NAV -->
- <nav class="sticky top-0 bg-white/95 backdrop-blur border-b border-[var(--rule)] z-40 shadow-sm">
- <div class="container mx-auto px-6 overflow-x-auto">
- <ul class="flex gap-7 whitespace-nowrap">
- <li><a href="#overview" class="nav-tab" data-num="01">Επισκόπηση</a></li>
- <li><a href="#demand" class="nav-tab" data-num="02">Ζήτηση &amp; Προσφορά</a></li>
- <li><a href="#product" class="nav-tab" data-num="03">Τουριστικό προϊόν</a></li>
- <li><a href="#economy" class="nav-tab" data-num="04">Οικονομία</a></li>
- <li><a href="#society" class="nav-tab" data-num="05">Κοινωνία</a></li>
- <li><a href="#environment" class="nav-tab" data-num="06">Περιβάλλον</a></li>
- <li><a href="#strategy" class="nav-tab" data-num="07">Στρατηγική</a></li>
- <li><a href="#data" class="nav-tab" data-num="08">Δεδομένα</a></li>
- </ul>
- </div>
- </nav>
-
- <main class="container mx-auto px-6 py-12 max-w-7xl">
-
- <!-- Executive Summary -->
- <section class="bg-navy-50 border-l-4 border-accent-500 px-8 py-7 mb-12 mt-4 rounded-r-sm">
- <p class="section-marker">Επιτελική Σύνοψη</p>
- <p class="text-xl leading-relaxed text-ink-700 mt-3 font-serif">Η Καστοριά είναι αναπτυσσόμενος ορεινός χειμερινός προορισμός με ιδιαίτερο προφίλ: 64.295 αφίξεις το 2024 — ένας από τους μικρότερους όγκους της δεκάδας — και ανάκαμψη μόλις 69% σε σχέση με προ-πανδημικά επίπεδα. Διαθέτει τη χαμηλότερη εποχικότητα όλων (<span class="glossary" title="Συντελεστής Gini εποχικότητας: 0 = ομοιόμορφη κατανομή 12 μηνών, 1 = πλήρης συγκέντρωση σε έναν μήνα.">συντελεστής Gini</span> 0,151), αλλά αυτό αντανακλά ομοιόμορφα χαμηλή ζήτηση και όχι μια πραγματική 12μηνη λειτουργία — με μήνα αιχμής μάλιστα τον Οκτώβριο. Διαθέτει σημαντικό φυσικό κεφάλαιο (λίμνη Ορεστιάδα, 72 βυζαντινές εκκλησίες) και προσβάσιμη χρηματοδότηση JTF λόγω μετα-λιγνιτικής μετάβασης. Στρατηγική προτεραιότητα: αναγνωρισιμότητα, υποδομές, στρατηγική τοποθέτηση στην ορεινή/πολιτιστική αγορά.</p>
- </section>
-
-    <!-- Τι σημαίνει πρακτικά -->
-    <section class="bg-white border-l-4 border-navy-700 px-8 py-6 mb-12 rounded-r-sm shadow-sm">
-      <p class="section-marker text-navy-700">Τι σημαίνει πρακτικά</p>
-      <p class="text-lg leading-relaxed text-ink-700 mt-3">Η χαμηλή εποχικότητα της Καστοριάς δεν είναι επιτυχία από μόνη της — αντανακλά ομοιόμορφα χαμηλή ζήτηση. Πρέπει να χτιστεί νέα ζήτηση γύρω από τη λίμνη Ορεστιάδα, τη βυζαντινή κληρονομιά (72 εκκλησίες), τη δημιουργική οικονομία της γούνας, τη γαστρονομία και την προσβάσιμη χρηματοδότηση JTF (Ταμείο Δίκαιης Μετάβασης) — όχι να μιμηθεί νησιωτικά μοντέλα.</p>
-    </section>
-
- <!-- ============== 01 OVERVIEW ============== -->
- <section id="overview" class="py-12">
- <p class="section-marker">Ενότητα 01</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Επισκόπηση</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαέξι δείκτες-κλειδιά που τοποθετούν την Καστοριά ως τον <strong>πιο διακριτό αναπτυσσόμενο προορισμό</strong> της μελέτης, με τη χαμηλότερη εποχικότητα Gini 0,151 και μοναδικό μήνα αιχμής Οκτώβριο — φθινοπωρινό προφίλ Λίμνης Ορεστιάδας. Ταυτόχρονα η Καστοριά είναι το <strong>πρώτο εμπειρικά τεκμηριωμένο διασταυρωτικό πεδίο επικύρωσης</strong> του μοτίβο κριτικής εκ των έσω σε αντικειμενικά υπο-τουριστικό περιβάλλον (Ζώνη Β προληπτικό παράθυρο).</p>
-
- <!-- 16 KPI cards -->
- <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Αφίξεις 2024</div>
- <div class="kpi-value"><span data-num="64295">64.295</span></div>
- <div class="kpi-delta down">CAGR αλλοδαπών +0,69% (χαμηλότερος)</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Διανυκτερεύσεις 2024</div>
- <div class="kpi-value"><span data-num="110508">110.508</span></div>
- <div class="kpi-delta down">−24,6% vs 2019</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Μερίδιο αλλοδαπών 2024</div>
- <div class="kpi-value"><span data-num="17.5" data-decimals="1">17,5</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta flat">−5,2 pp vs 2018</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label"><span data-term="ALoS">ALoS</span> 2024</div>
- <div class="kpi-value"><span data-num="1.72" data-decimals="2">1,72</span></div>
- <div class="kpi-delta down">χαμηλότερη της δεκάδας</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Recovery 2024/2019</div>
- <div class="kpi-value"><span data-num="0.691" data-decimals="3">0,691</span></div>
- <div class="kpi-delta down">χαμηλότερη της δεκάδας</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Ξενοδοχειακές μονάδες 2024</div>
- <div class="kpi-value"><span data-num="35">35</span></div>
- <div class="kpi-delta down">−7,9% δεκαετία (μοναδική συρρίκνωση)</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Συνολικές κλίνες 2024</div>
- <div class="kpi-value"><span data-num="1659">1.659</span></div>
- <div class="kpi-delta down">−13,5% (2015-2024)</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label"><span data-term="TFI">TFI</span> Defert βασικό 2024</div>
- <div class="kpi-value"><span data-num="3.612" data-decimals="3">3,612</span></div>
- <div class="kpi-delta down">καθαρά &lt; Saveriades 5</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label"><span data-term="TII">TII</span> 2024 (Δήμος Καστοριάς)</div>
- <div class="kpi-value"><span data-num="2.84" data-decimals="2">2,84</span></div>
- <div class="kpi-delta down">καθαρά &lt; Saveriades 5 · 2,407 (ΠΕ)</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Gini εποχικότητας 2024</div>
- <div class="kpi-value"><span data-num="0.151" data-decimals="3">0,151</span></div>
- <div class="kpi-delta up">χαμηλότερη της δεκάδας</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">HHI εποχικότητας 2024</div>
- <div class="kpi-value"><span data-num="896">896</span></div>
- <div class="kpi-delta up">ομοιόμορφη κατανομή</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label"><span data-term="POI">POI</span> θ̂ (αντίληψη)</div>
- <div class="kpi-value"><span data-num="-0.599" data-decimals="2">-0,60</span></div>
- <div class="kpi-delta up">2η most-negative</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label"><span data-term="LCA">LCA</span> C5 «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>)</div>
- <div class="kpi-value"><span data-num="35.11" data-decimals="2">35,11</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta up">2η υψηλότερη της δεκάδας</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">LCA C1 «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>)</div>
- <div class="kpi-value"><span data-num="3.73" data-decimals="2">3,73</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta up">2η χαμηλότερη της δεκάδας</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Natura 2000 ΠΕ</div>
- <div class="kpi-value"><span data-num="3">3</span><span class="kpi-unit">τόποι</span></div>
- <div class="kpi-delta flat">424,30 km² (Ορεστιάδα Ramsar)</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">TripAdvisor avg hotel rating</div>
- <div class="kpi-value"><span data-num="4.49" data-decimals="2">4,49</span></div>
- <div class="kpi-delta up">υψηλή των αναπτυσσόμενων</div>
- </div>
- </div>
-
- <!-- Executive narrative -->
- <div class="mt-16 grid md:grid-cols-3 gap-12">
- <div class="md:col-span-2">
- <p class="section-marker">Στρατηγική σύνοψη</p>
- <h3 class="display text-3xl text-navy-700 mt-2 mb-4">Ζώνη Β προληπτικό παράθυρο με Δίκαιη Μετάβαση JTF</h3>
- <p class="text-ink-700 leading-relaxed mb-4">Η Καστοριά αποτελεί τον <strong>πιο διακριτό αναπτυσσόμενο προορισμό</strong> από εποχικά χαρακτηριστικά: ο μοναδικός με μήνα αιχμής Οκτώβριο (φθινοπωρινός προφίλ Λίμνης Ορεστιάδας) και ο χαμηλότερος συντελεστής Gini εποχικότητας (0,151). Ταυτόχρονα παρουσιάζει τη χαμηλότερη ανάκαμψη της μελέτης (0,691) και αποτελεί το πιο σαφές περιστατικό <strong>διαρθρωτικής στασιμότητας</strong> μετά την πανδημία. Η Καστοριά συγκλίνει επιπλέον σε τέσσερις ταυτοχρόνους «χαμηλότερη» δηλώσεις: ανάκαμψη 0,691, ALoS 1,72, bed turnover 66,65 και Gini 0,151.</p>
- <p class="text-ink-700 leading-relaxed mb-4">Ταυτόχρονα η Καστοριά είναι ο πρώτος προορισμός όπου τεκμηριώνεται εμπειρικά το μοτίβο κριτικής εκ των έσω σε αντικειμενικά υπο-τουριστικό περιβάλλον (<strong>TII 2,84 Δήμος Καστοριάς / 2,407 ΠΕ</strong> καθαρά &lt; Saveriades 5, POI θ̂ −0,60 δεύτερη πιο αρνητική). Έξι από οκτώ δείκτες της resident-side έρευνας εμφανίζουν στατιστικά σημαντικά Δpp στην insider υπο-ομάδα Q15: «Στάθμευση» +19,0 ποσοστιαίες μονάδες (η μεγαλύτερη ασυμμετρία της μελέτης), «Στέγη» +14,0 ποσοστιαίες μονάδες, «Περιβάλλον» +12,4 ποσοστιαίες μονάδες, δήλωση γενικής ικανοποίησης «Ικανοποίηση gap» +10,9 ποσοστιαίες μονάδες, «Μέτρα» +9,8 ποσοστιαίες μονάδες, δήλωση αναγνώρισης κορεσμού «Κορεσμός» +8,1 ποσοστιαίες μονάδες.</p>
- <p class="text-ink-700 leading-relaxed">Η στρατηγική θέση είναι <strong>«Όψιμη Εξερεύνηση και Πρώιμη Εμπλοκή σε Ζώνη Β»</strong>: ένα πεπερασμένο προληπτικό παράθυρο για ενεργοποίηση λειτουργικής δημοτικής δομής (Πρόταση 1 DMMO ή Μακεδνός ΑΕ), αφηγηματική σύνθεση τεσσάρων πυλώνων (72 βυζαντινές εκκλησίες + Λίμνη Ορεστιάδα + αρχοντικά + Δισπηλιό), ALoS lift 1,72 → 3,0+ μέσω Διαδρομής Κληρονομιάς Β. Ελλάδας, και θεσμοθέτησης Πίνακα Πρώιμης Προειδοποίησης ως <strong>πρωτότυπη συμβολή</strong> στη Λευκή Βίβλο. ⚠ <em>Eurostat NUTS3 EL531 αντιστοιχεί σε «Grevena, Kozani» (όχι ΠΕ Καστοριάς) — υποκατάσταση μέσω ΕΛΣΤΑΤ SEL45 αυτοτελής Π.Ε. + Eurostat NUTS2 EL53 ως ευρύτερο πλαίσιο· πλήρης τεκμηρίωση §10.4.3.</em></p>
- </div>
- <aside class="border-l-2 border-accent-500 pl-6">
- <p class="section-marker text-accent-500"><span class="glossary" title="Butler TALC: κύκλος ζωής τουριστικού προορισμού σε 6 στάδια (Butler 1980): Εξερεύνηση → Εμπλοκή → Ανάπτυξη → Ενοποίηση → Στασιμότητα → Παρακμή/Αναζωογόνηση.">Butler</span> TALC</p>
- <p class="text-2xl font-serif text-navy-700 mt-2">Όψιμη Εξερεύνηση / Πρώιμη Εμπλοκή · Ζώνη Β</p>
- <p class="text-sm text-ink-500 mt-3">Διπλό χαρακτηριστικό: αντικειμενική υπο-τουριστική κατάσταση (TII 2,84 Δήμος / 2,407 ΠΕ, POI θ̂ −0,60) + παράδοξη υποκειμενική divergence κριτικής εκ των έσω σε 6/8 σήματα. Πεπερασμένο προληπτικό παράθυρο.</p>
- <hr class="my-5 border-[var(--rule)]">
- <p class="section-marker text-accent-500">Doxey Irridex</p>
- <p class="text-2xl font-serif text-navy-700 mt-2">Ευφορία με insider early-warning</p>
- <p class="text-sm text-ink-500 mt-3">LCA C2+C5 θετικές κλάσεις 64,80% (η 2η υψηλότερη μεταξύ αναπτυσσόμενων), αρνητικές C1+C4 10,99% (η 2η χαμηλότερη μετά Τροιζηνία). Κριτική Εκ των Έσω 6/8 σημαντικά Δpp παρά τη χαμηλή aggregate πίεση.</p>
- </aside>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 02 DEMAND & SUPPLY ============== -->
-
-    <!-- Χωρική Ανάλυση -->
-    <section id="spatial" class="py-12">
-      <p class="section-marker">Χωρική Ανάλυση</p>
-      <h2 class="display text-3xl text-navy-700 mt-2 mb-2">Χωρική απεικόνιση</h2>
-      <p class="text-lg text-ink-700 max-w-3xl mb-8">Πού βρίσκεται ο προορισμός στον εθνικό χάρτη πίεσης-ικανοποίησης, και πώς κατανέμεται η σχέση κατοίκου-τουρισμού εντός του.</p>
-      <div class="grid lg:grid-cols-2 gap-6">
-
-        <div class="chart-card">
-          <p class="chart-title">Σχήμα · Χωρική ανάλυση εντός προορισμού</p>
-          <h3 class="chart-headline">Δήμος Καστοριάς — POI χωρική πυκνότητα</h3>
-          <img src="assets/maps/within_kastoria.png" alt="Χωρική πυκνότητα POIs" style="width:100%; height:auto; border:1px solid var(--rule);">
-          <p class="chart-source">Χωρική πυκνότητα <span class="glossary" title="Σημεία τουριστικού ενδιαφέροντος (καταλύματα, εστίαση, αξιοθέατα, παραλίες, μουσεία, αναψυχή) από OpenStreetMap.">σημείων τουριστικού ενδιαφέροντος</span> (POIs OpenStreetMap) σε hex-grid εντός των ορίων του Δήμου. Πορτοκαλί ένταση δηλώνει υψηλότερη χωρική συγκέντρωση τουριστικής υποδομής.</p>
-        </div>
-
-        <div class="chart-card">
-          <p class="chart-title">Συγκριτικό · Αντικειμενική × Υποκειμενική πίεση</p>
-          <h3 class="chart-headline">Θέση στον bivariate χάρτη TFI × Ικανοποίηση κατοίκων</h3>
-          <img src="assets/maps/bivariate_tfi_q9sat.png" alt="Bivariate map TFI × Q9 satisfaction" style="width:100%; height:auto; border:1px solid var(--rule);">
-          <p class="chart-source">Συνδυασμός αντικειμενικού δείκτη φέρουσας ικανότητας (TFI Defert 2024) και υποκειμενικής ικανοποίησης κατοίκων (Q9_SAT) σε ένα δι-διαστάσιμο choropleth. Τέσσερις διακριτές καταστάσεις προορισμού.</p>
-        </div>
-      </div>
-    </section>
- <section id="demand" class="py-12">
- <p class="section-marker">Ενότητα 02</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Ζήτηση &amp; Προσφορά</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαπέντε έτη εξέλιξης ζήτησης (2010–2024) με δομική στασιμότητα της αλλοδαπής αγοράς και νέα κάμψη −3,2% στο 2024. Ξενοδοχειακό δυναμικό 1.659 κλινών σε 35 μονάδες με συρρίκνωση −13,5% κλινών στη δεκαετία — η μοναδική τέτοια αρνητική δυναμική μεταξύ δέκα προορισμών. Αγορά STR 12,6% διανυκτερεύσεων με αναλογία 6,6:1 προς ξενοδοχεία (η υψηλότερη της μελέτης).</p>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.1 · Αφίξεις 2010–2024</p>
- <h3 class="chart-headline">Δομική στασιμότητα: CAGR αλλοδαπών +0,69% (η χαμηλότερη των δέκα)</h3>
- <div id="chart_arrivals" style="height:380px"></div>
- <p class="chart-source">INSETE Intelligence + ΕΛΣΤΑΤ STO12. 82,5% ημεδαποί 2024 — η υψηλότερη κυριαρχία εγχώριου τουρισμού της δεκάδας. Στασιμότητα 2015→2024 παρά μερική προ-πανδημική επιτάχυνση 2015-2019.</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Σχήμα 10.2 · Δείκτης ανάκαμψης 2024/2019</p>
- <h3 class="chart-headline">Ανάκαμψη 0,691 — η χαμηλότερη της δεκάδας</h3>
- <div id="chart_recovery" style="height:480px"></div>
- <p class="chart-source">Σύγκριση 10 προορισμών. Λόγος &gt;1 σημαίνει ξεπέρασε την προ-πανδημική επίδοση. Η Καστοριά δεν έχει υπερβεί τα προ-πανδημικά επίπεδα (−30,9% αλλοδαπές αφίξεις vs 2019) και παρουσιάζει νέα κάμψη −3,2% το 2024.</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Σχήμα 10.3 · Μηνιαία κατανομή 2024 (NUTS2 Δ. Μακεδονίας)</p>
- <h3 class="chart-headline">Μοναδικός μήνας αιχμής Οκτώβριος (peak ratio 1,58)</h3>
- <div id="chart_monthly" style="height:380px"></div>
- <p class="chart-source">Πορτοκαλί = αιχμή · σκούρο μπλε = ώμος · ανοιχτό μπλε = χαμηλή. Η Καστοριά είναι ο μοναδικός προορισμός της μελέτης με φθινοπωρινό μήνα αιχμής. Μερίδιο αιχμής 37,9% — το χαμηλότερο της δεκάδας.</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Σχήμα 10.4 · Εποχικότητα: Συντελεστής Gini</p>
- <h3 class="chart-headline">Gini 0,151 (2024) — η χαμηλότερη της δεκάδας</h3>
- <div id="chart_gini" style="height:380px"></div>
- <p class="chart-source">Gini=0 τέλεια κατανομή · Gini=1 πλήρης συγκέντρωση. Η τιμή 0,151 αποτυπώνει «ομοιόμορφα χαμηλή ζήτηση» όχι ισχυρή 12μηνη λειτουργία. HHI 896 (7,5% πάνω από το όριο ομοιόμορφης κατανομής 833). Έντονη διαφορά από Μύκονο (Gini 0,512) και Χανιά (0,478).</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Σχήμα 10.6 · Ξενοδοχειακή δυναμικότητα 2015–2024</p>
- <h3 class="chart-headline">Συρρίκνωση −13,5% κλινών σε δεκαετία — μοναδική της δεκάδας</h3>
- <div id="chart_capacity" style="height:380px"></div>
- <p class="chart-source">ΕΛΣΤΑΤ STO12 T01 ΠΕ Καστοριάς. Μέσο μέγεθος μονάδας 50 (2015) → 47 (2024). Η μη βιωσιμότητα μονάδων χαμηλής κατηγορίας σε πληρότητα 23,7% επέφερε σταδιακή έξοδο μονάδων.</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Σχήμα 10.5 · Δωμάτια ανά κατηγορία αστεριών (2024)</p>
- <h3 class="chart-headline">Boutique κυριαρχία 3★+4★ (77,7% κλινών) — μικρή 5★ παρουσία 6,3%</h3>
- <div id="chart_donut" style="height:380px"></div>
- <p class="chart-source">Μέσος αριθμός δωματίων ανά μονάδα 23 — ο χαμηλότερος της δεκάδας (Κέρκυρα 41, Μύκονος 39). Αντικατοπτρίζει boutique χαρακτήρα ανακαινισμένων αρχοντικών Ντολτσό-Απόζαρι.</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Σχήμα 10.7 · Μηνιαίο ποσοστό πληρότητας 2024 (NUTS2 Δ. Μακεδονίας)</p>
- <h3 class="chart-headline">Αιχμή Οκτωβρίου 37,4% — ετήσιος μέσος 23,7% (χαμηλότερος της δεκάδας)</h3>
- <div id="chart_occupancy" style="height:380px"></div>
- <p class="chart-source">INSETE Intelligence Καστοριάς (ετήσιος) + ΕΛΣΤΑΤ STO12 T14 (μηνιαία NUTS2 EL53). Ακόμη και στον μήνα αιχμής η πληρότητα παραμένει &lt;40%, εικόνα ποιοτικά διαφορετική από νησιωτικούς προορισμούς (Ιούλιος-Αύγουστος &gt;90% σε Κέρκυρα/Μύκονο).</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Σχήμα 10.8 · Μέση διάρκεια παραμονής (<span data-term="ALoS">ALoS</span>)</p>
- <h3 class="chart-headline">ALoS 1,72 νύχτες — η χαμηλότερη της δεκάδας</h3>
- <div id="chart_alos" style="height:380px"></div>
- <p class="chart-source">Πρότυπο τριήμερου σαββατοκυριακάτικης εκδρομής, διαχρονικά πτωτική τάση (1,90 → 1,72 σε δεκαετία). Recovery διανυκτερεύσεων αλλοδαπών 0,493 — ιδιαίτερα ανησυχητικό. Πρόταση 2: ALoS lift 1,72 → 3,0+ διανυκτερεύσεις ορίζοντας 2030 μέσω Διαδρομής Κληρονομιάς.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.9 · Μερίδιο <span data-term="STR">STR</span> έναντι ξενοδοχείων (2020–2024)</p>
- <h3 class="chart-headline">STR/ξεν. αναλογία 6,6:1 — η υψηλότερη της δεκάδας</h3>
- <div class="grid md:grid-cols-2 gap-8 mt-4">
- <div>
- <p class="text-sm text-ink-500 mb-2">Αφίξεις</p>
- <div id="chart_str_arrivals" style="height:340px"></div>
- </div>
- <div>
- <p class="text-sm text-ink-500 mb-2">Διανυκτερεύσεις</p>
- <div id="chart_str_overnights" style="height:340px"></div>
- </div>
- </div>
- <p class="chart-source">INSETE Intelligence + AirDNA. 230 ενεργές μονάδες STR σε 35 ξενοδοχειακές. Σε αντίθεση με νησιωτικούς προορισμούς όπου εκφράζει στεγαστική κρίση, στην Καστοριά η υψηλή αναλογία αντανακλά (α) μετατροπή κενών κατοικιών μετά δημογραφική μείωση -15% και (β) boutique χαμηλή πύλη εισόδου σε ανακαινισμένα αρχοντικά. Πληρότητα STR 39,6% &gt;&gt; ξενοδοχειακή 23,7%.</p>
- </div>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 03 PRODUCT ============== -->
- <section id="product" class="py-12">
- <p class="section-marker">Ενότητα 03</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Τουριστικό προϊόν</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">264 σημεία τουριστικού ενδιαφέροντος σε επίπεδο ΠΕ — η μικρότερη τιμή της δεκάδας — αλλά τέσσερις ισχυρά heritage πυλώνες: 72 βυζαντινές εκκλησίες 10ου-14ου αιώνα (μοναδική σε ευρωπαϊκό επίπεδο συγκέντρωση), Λίμνη Ορεστιάδα Natura 2000 Ramsar, αρχοντικά Ντολτσό-Απόζαρι, και νεολιθικός λιμναίος οικισμός Δισπηλιού (5500 π.Χ.). Mosaic-to-narrative challenge: ο επισκέπτης δεν συνδέει αυτά σε ενιαία εμπειρία.</p>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.10 · Σημεία Τουριστικού Ενδιαφέροντος (POIs OSM)</p>
- <h3 class="chart-headline">264 POIs · μικρότερος προορισμός της δεκάδας σε έκταση POI</h3>
- <div id="chart_pois" style="height:420px"></div>
- <p class="chart-source">OpenStreetMap Overpass API, εξαγωγή 2025. Η Καστοριά (264) είναι η μικρότερη τιμή της δεκάδας εκτός Τροιζηνίας-Μέθανα (125). Χαμηλό ψηφιακό αποτύπωμα παρά τους τέσσερις heritage πυλώνες — Mosaic-to-Narrative Gap που τροφοδοτεί την Πρόταση 2 (Διαδρομή Κληρονομιάς).</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.12 · <span data-term="IPA">IPA</span> Quadrant — Σπουδαιότητα × Αξιολόγηση υποδομών</p>
- <h3 class="chart-headline">Διασκέδαση στο τεταρτημόριο «Συγκέντρωση εδώ» · Δημ. Υγεία και Στάθμευση οριακές</h3>
-      <details class="mt-3 mb-4 bg-navy-50 border-l-4 border-navy-700 px-5 py-4 rounded-r-sm">
-  <summary class="cursor-pointer font-semibold text-navy-700 text-sm" style="list-style: revert;">Τι δείχνει αυτό το γράφημα; (πλήρης οδηγός)</summary>
-  <div class="mt-4 space-y-3 text-sm leading-relaxed text-ink-700">
-    <p>Το <strong>IPA Quadrant</strong> (Importance-Performance Analysis, Martilla &amp; James 1977) είναι στρατηγικό εργαλείο που μας λέει <em>τι να κάνουμε</em> για κάθε υποδομή. Είναι 2-διαστάσιμο: κάθε υποδομή τοποθετείται με βάση πόσο <strong>σημαντική</strong> είναι (οριζόντιος άξονας) και πόσο <strong>καλά λειτουργεί</strong> (κάθετος άξονας).</p>
-
-    <p><strong>Άξονας x — Σχετική Σπουδαιότητα (0-1):</strong> Δείχνει πόσο η αξιολόγηση μιας υποδομής <em>εξηγεί</em> τη συνολική ικανοποίηση των κατοίκων. Παράγεται από Random Forest μοντέλο. Τιμή 0,30 ≈ η υποδομή αυτή είναι ένας από τους κύριους «προσδιοριστές» της ικανοποίησης. Τιμή 0,10 ≈ μικρή στατιστική σύνδεση με τη συνολική ικανοποίηση.</p>
-
-    <p><strong>Άξονας y — Μέση Αξιολόγηση Κατοίκων (1-5):</strong> Πόσο καλά οι κάτοικοι αξιολογούν αυτή την υποδομή. 5 = εξαιρετική, 1 = πολύ ανεπαρκής, 3 = μέτρια.</p>
-
-    <p><strong>Δύο διακεκομμένες γραμμές</strong> διαχωρίζουν το γράφημα στα <strong>4 τεταρτημόρια</strong> πάνω στις διάμεσες τιμές. Κάθε τεταρτημόριο = διαφορετική στρατηγική προτεραιότητα:</p>
-
-    <ul class="ml-5 space-y-1.5 list-disc">
-      <li><strong style="color:#b8423a">Συγκέντρωση εδώ</strong> (κάτω-δεξιά): <em>υψηλή σπουδαιότητα + χαμηλή αξιολόγηση</em>. <strong>ΚΡΙΣΙΜΗ ΠΑΡΕΜΒΑΣΗ ΕΔΩ.</strong> Υποδομές που οι κάτοικοι κρίνουν σημαντικές αλλά λειτουργούν κακά.</li>
-      <li><strong style="color:#2d7a4d">Διατήρηση καλής επίδοσης</strong> (πάνω-δεξιά): υψηλή σπουδαιότητα + υψηλή αξιολόγηση. <em>Συνεχίστε όπως είναι — μην αλλάξετε αυτά που λειτουργούν.</em></li>
-      <li><strong style="color:#5b6473">Χαμηλή προτεραιότητα</strong> (κάτω-αριστερά): χαμηλή σπουδαιότητα + χαμηλή αξιολόγηση. Λειτουργούν μέτρια, αλλά δεν επηρεάζουν πολύ τη συνολική ικανοποίηση. <em>Δευτερεύουσα προτεραιότητα.</em></li>
-      <li><strong style="color:#7f9bbe">Πιθανή υπερβολή</strong> (πάνω-αριστερά): χαμηλή σπουδαιότητα + υψηλή αξιολόγηση. Λειτουργούν εξαιρετικά αλλά οι κάτοικοι δεν τις θεωρούν κρίσιμες. <em>Πιθανώς υπερ-επένδυση.</em></li>
-    </ul>
-
-    <div class="bg-white border border-navy-300 rounded-sm p-3 mt-3">
-      <p class="font-semibold text-navy-700 mb-1">Παράδειγμα: πώς να διαβάσετε ένα σημείο</p>
-      <p>Έστω ότι μια υποδομή Α έχει συντεταγμένες (0,28 · 2,5). Σημαίνει: η σπουδαιότητά της είναι 0,28 (πάνω από μέσο όρο των υπολοίπων), αλλά η αξιολόγησή της 2,5/5 (κάτω από μέσο όρο). Πέφτει στο τεταρτημόριο <strong style="color:#b8423a">«Συγκέντρωση εδώ»</strong> — δηλαδή είναι κρίσιμη ανάγκη παρέμβασης.</p>
+  <main class="card">
+    <p class="eyebrow">Παραδοτέο ΠΕ2 · Ψηφιακό συνοδευτικό</p>
+    <h1>Το ψηφιακό συνοδευτικό βρίσκεται <em>προσωρινά υπό ενημέρωση</em>.</h1>
+    <div class="status"><span class="dot"></span> Προσωρινά μη διαθέσιμο</div>
+    <p>Πραγματοποιούμε ενημέρωση του ψηφιακού συνοδευτικού της μελέτης. Η πρόσβαση θα αποκατασταθεί σύντομα.</p>
+    <p class="muted">Για επείγουσα ανάγκη ή πρόσβαση στο περιεχόμενο, παρακαλούμε επικοινωνήστε με την ομάδα έργου.</p>
+    <div class="footer">
+      <strong>Λευκή Βίβλος Τουριστικού Μετασχηματισμού &amp; Ανάπτυξης 2030–2035</strong><br>
+      Πακέτο Εργασίας 2 · Μελέτες δέκα τουριστικών προορισμών
     </div>
-
-    <div class="bg-orange-50 border border-orange-300 rounded-sm p-3 mt-3">
-      <p class="font-semibold text-orange-800 mb-1">⚠ Παράδοξο: «Σπουδαιότητα» ≠ διαισθητική σημασία</p>
-      <p>Η Σπουδαιότητα στο IPA δεν είναι αυτό που <em>πιστεύουν</em> οι κάτοικοι ότι είναι σημαντικό, αλλά αυτό που <em>στατιστικά εξηγεί</em> την ικανοποίησή τους. Παράδειγμα: αν η Στάθμευση είναι χρόνια κακή σε έναν προορισμό, οι κάτοικοι την έχουν «παραιτηθεί» — δεν τη συνδέουν με την ικανοποίησή τους πια. Έτσι το Random Forest της δίνει χαμηλό βάρος και φαίνεται «χαμηλή προτεραιότητα» — αν και διαισθητικά είναι κρίσιμη. Διαβάστε προσεκτικά.</p>
-    </div>
-  </div>
-</details>
-      <div id="chart_ipa" style="height:520px"></div>
- <div id="chart_ipa_legend" class="mt-2"></div>
-      <p class="chart-source"><em>Σπουδαιότητα</em> = εξαγόμενο βάρος Random Forest (πόσο η υποδομή εξηγεί τη γενική ικανοποίηση), όχι δηλωτική σημασία. <em>Αξιολόγηση</em> = μέση τιμή σε κλίμακα 1-5. Πορτοκαλί αριθμοί = Τουριστικές υποδομές · Σκούρο μπλε = Δημόσιες υποδομές. Ο πίνακας από κάτω ταξινομεί τις 15 υποδομές κατά Σπουδαιότητα. Παράδοξο στάθμευσης δήλωση «ανεπάρκεια στάθμευσης»: insider κάτοικοι αναγνωρίζουν επάρκεια 19,0 ποσοστιαίες μονάδες πάνω από τον γενικό πληθυσμό — η μεγαλύτερη ασυμμετρία της μελέτης (§10.6.1).</p>
- </div>
- </div>
-
- <!-- Gap Analysis · native HTML expanded version -->
- <div class="chart-card mt-8">
-  <p class="chart-title">Σχήμα 10.10β · Gap Analysis Ζήτησης / Προσφοράς, ΠΕ Καστοριάς</p>
-  <h3 class="chart-headline">Τέσσερα κρίσιμα κενά τουριστικού μοντέλου</h3>
-  <p class="text-sm text-ink-700 mt-3 mb-6 leading-relaxed">Σύνθεση ποσοτικής έρευνας κατοίκων (n=300), ποιοτικής έρευνας στελεχών (n=5) και δευτερογενών δεδομένων. Κάθε κενό αξιολογείται από τη συνδυαστική σοβαρότητα (έκταση + αντίκτυπος) και αντιστοιχεί σε μία στρατηγική Πρόταση του master plan.</p>
-
-  <div class="grid md:grid-cols-2 gap-5 mt-4">
-
-   <div class="border-2 border-red-300 bg-red-50/40 rounded p-5">
-    <div class="flex items-start justify-between mb-3">
-     <div>
-      <span class="inline-block w-7 h-7 rounded-full bg-red-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">1</span>
-      <span class="ml-2 section-marker text-red-700">Αξιοποίηση · Δυναμικότητα κλινών</span>
-     </div>
-     <span class="text-[10px] uppercase tracking-wider font-bold text-red-800 bg-red-200 px-2 py-1 rounded">Ακραία σοβαρότητα</span>
-    </div>
-    <h4 class="font-serif text-lg text-navy-700 mb-2">Ξενοδοχειακή υποαξιοποίηση</h4>
-    <p class="font-serif text-3xl font-bold text-red-700 mb-3 numeric">18,3%</p>
-    <p class="text-xs text-ink-500 mb-3"><em>ξενοδοχειακή αξιοποίηση — η χαμηλότερη της δεκάδας</em></p>
-    <p class="text-sm text-ink-700 leading-relaxed">Μόλις το 18,3% των ξενοδοχειακών κλινών της Καστοριάς αξιοποιείται ετησίως — η χαμηλότερη αξιοποίηση της δεκάδας. Συγκεκριμένα: 110.508 νύχτες πραγματικές (έναντι θεωρητικής χωρητικότητας 605.535 = 1.659 κλίνες × 365 — αξιοποίηση 18,3%) αντί για ~600.000 που θα ήταν φυσιολογικό για 60-70% πληρότητα. Αύξηση ζήτησης δεν είναι το ίδιο με <em>αύξηση των κλινών</em>· είναι <strong>αύξηση της διεθνούς ορατότητας και της επιμήκυνσης παραμονής</strong> — η ίδια υποδομή με 50% πληρότητα θα δικαιολογούσε 280.000 νύχτες αντί για 110.000.</p>
-    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-red-300"><strong>Πρακτικά:</strong> δεν χρειάζεται νέες κλίνες — χρειάζεται marketing + connectivity + product enrichment. JTF (Just Transition Fund) διαθέσιμο για bridging investments.</p>
-   </div>
-
-   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
-    <div class="flex items-start justify-between mb-3">
-     <div>
-      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">2</span>
-      <span class="ml-2 section-marker text-accent-700">Ορατότητα · Διεθνές αποτύπωμα</span>
-     </div>
-     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
-    </div>
-    <h4 class="font-serif text-lg text-navy-700 mb-2">Εξάρτηση από ημερησιά κοντινή αγορά</h4>
-    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">17,5%</p>
-    <p class="text-xs text-ink-500 mb-3"><em>μερίδιο αλλοδαπών αφίξεων — η υψηλότερη ημερησιά εξάρτηση</em></p>
-    <p class="text-sm text-ink-700 leading-relaxed">Μόλις 17,5% των αφίξεων είναι αλλοδαπές — η χαμηλότερη διεθνής διείσδυση μεταξύ ώριμων + αναπτυσσόμενων. Η Καστοριά είναι κατά κύριο λόγο ένας <em>ημερησιάς αγοράς</em> προορισμός: επισκέπτες από Θεσσαλονίκη, Δ. Μακεδονία, Β. Ελλάδα για 1-2 νύχτες. 264 POIs — οι λιγότεροι μεταξύ δέκα. 9.194 μουσειακοί επισκέπτες έναντι 505.319 Κέρκυρας (×55). <strong>Branding lock-in «γούνα»</strong>: το πρώτο πράγμα που σκέφτεται κανείς όταν ακούει «Καστοριά» είναι η γούνα — όχι η βυζαντινή κληρονομιά (72 εκκλησίες), η λίμνη Ορεστιάδα, ή η αρχαία γεωγραφική θέση.</p>
-    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> rebranding «Βυζαντινή Καστοριά» + UNESCO push για το βυζαντινό σύνολο + δυτικός Geopark πρόταση + ψηφιακό marketing σε Δ. Ευρώπη.</p>
-   </div>
-
-   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
-    <div class="flex items-start justify-between mb-3">
-     <div>
-      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">3</span>
-      <span class="ml-2 section-marker text-accent-700">Παραμονή · ALoS τριήμερου</span>
-     </div>
-     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
-    </div>
-    <h4 class="font-serif text-lg text-navy-700 mb-2">Σύντομες επισκέψεις, χαμηλή απορρόφηση</h4>
-    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">1,72</p>
-    <p class="text-xs text-ink-500 mb-3"><em>νύχτες ανά άφιξη — η χαμηλότερη της δεκάδας</em></p>
-    <p class="text-sm text-ink-700 leading-relaxed">1,72 νύχτες ανά άφιξη είναι η χαμηλότερη ALoS της δεκάδας — λιγότερο από μία γεμάτη παραμονή. Σημαίνει ότι ο μέσος επισκέπτης φτάνει Σαββατοκύριακο, βλέπει την πόλη και ορισμένα μνημεία, και επιστρέφει. Δεν υπάρχει διασύνδεση με άλλα ΠΕΚ της περιοχής (Πρέσπες, Φλώρινα, Νυμφαίο, Δισπηλιό), που θα δικαιολογούσε τριήμερη ή τετραήμερη παραμονή. <em>«Πρέπει να πυκνώνουν τα τριήμερα και να γίνουν τετραήμερα»</em> — διαπίστωση από όλες τις συνεντεύξεις στελεχών.</p>
-    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> πακέτα 3+1 ή 4+1 ημερών «Βυζαντινή Δυτική Μακεδονία» + Heritage Corridor 6 πόλεων + γαστρονομικό+δημιουργικό cluster.</p>
-   </div>
-
-   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
-    <div class="flex items-start justify-between mb-3">
-     <div>
-      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">4</span>
-      <span class="ml-2 section-marker text-navy-700">Δικτύωση · Heritage Corridor αδρανής</span>
-     </div>
-     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
-    </div>
-    <h4 class="font-serif text-lg text-navy-700 mb-2">Έξι πόλεις δυνητικού άξονα ασυνεργειακές</h4>
-    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">6</p>
-    <p class="text-xs text-ink-500 mb-3"><em>πόλεις δυνητικού ενεργού κύκλου Β. Ελλάδας — απουσία συν-διαχείρισης</em></p>
-    <p class="text-sm text-ink-700 leading-relaxed">Έξι πόλεις της Βόρειας Ελλάδας θα μπορούσαν να λειτουργήσουν ως ενιαίος ταξιδιωτικός κύκλος: <strong>Πρέσπες · Φλώρινα · Νυμφαίο · Καστοριά · Δισπηλιό · Ιωάννινα</strong>. Όλες διαθέτουν διαφορετικό αλλά συνεκτικό προϊόν: λίμνη, βυζαντινή κληρονομιά, ορεινό landscape, φυσική ομορφιά, αρχαία γεωγραφία. <strong>Δυνητικό αλλά ανενεργό</strong> — δεν υπάρχει συν-διαχείριση/συν-marketing/συν-shuttle. Κάθε προορισμός κουβαλά μόνος του.</p>
-    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> «Heritage Corridor Β. Ελλάδας» integrated marketing + κοινό DMMO ή PE-level συντονιστής + multi-night packages + RRF/JTF συν-χρηματοδότηση.</p>
-   </div>
-
-  </div>
-
-  <p class="chart-source mt-6">Πηγές: Πρωτογενής ποσοτική έρευνα κατοίκων Δήμου Καστοριάς (n=300)· ΕΛΣΤΑΤ STO12· INSETE Intelligence· OSM POIs. Η Καστοριά συγκεντρώνει το χαμηλότερο recovery 2024/2019 της δεκάδας (0,691) — αλλά διαθέτει διαθέσιμο JTF χρηματοδοτικό πλαίσιο λόγω μετα-λιγνιτικής μετάβασης για bridging investments.</p>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 04 ECONOMY ============== -->
- <section id="economy" class="py-12">
- <p class="section-marker">Ενότητα 04</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Οικονομία</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Μεταβατική οικονομία μετά τη συρρίκνωση γουνοποιίας: 24,0% οικιακή τουριστική εξάρτηση (9η θέση της δεκάδας), 37,06 εκ. € τζίρος NACE I+N+R (SBR01 2023), 1.820 απασχολούμενοι. Διπλό σήμα: ΑΠΑ G-I αύξηση +15,4% (2015-2023) ταχύτερη από συνολική ΑΠΑ +12,1% — ο τουρισμός ως αναπτυσσόμενος αντικαταστάτης πυλώνας. ⚠ Eurostat NUTS3 EL531 = «Grevena, Kozani», όχι Καστοριά — υποκατάσταση από ΕΛΣΤΑΤ SEL45 αυτοτελής Π.Ε.</p>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <div class="chart-card">
- <p class="chart-title">Σχήμα 10.13 · Εκτιμώμενος τζίρος καταλυμάτων</p>
- <h3 class="chart-headline">Ξενοδοχεία 9,4 εκ. € · STR 1,8 εκ. € (2024)</h3>
- <div id="chart_turnover" style="height:380px"></div>
- <p class="chart-source">Εκτίμηση: hotel = διανυκτ. × €85 · STR = διανυκτ. × €110 (boutique pricing). ΤτΕ Έρευνα Συνόρων NUTS2 EL53 (Δ. Μακεδονία) 4,46 εκ. € · αναγωγή pro-rata Π.Ε. Καστοριάς 1,87 εκ. €.</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Σχήμα 10.15 · ΑΠΑ G-I έναντι σύνολο (Π.Ε. Καστοριάς, ΕΛΣΤΑΤ SEL45)</p>
- <h3 class="chart-headline">Ταχύτερη ανάπτυξη G-I +15,4% έναντι συνολικής +12,1% (2015-2023)</h3>
- <div id="chart_gva" style="height:380px"></div>
- <p class="chart-source">ΕΛΣΤΑΤ Περιφερειακοί Λογαριασμοί SEL45 (Π.Ε. Καστοριάς αυτοτελής), τρέχουσες τιμές. Στρατηγικό σήμα τομεακής αναπροσαρμογής μετά τη συρρίκνωση γουνοποιίας: η ΑΠΑ G-I (92,7 εκ. € 2023) αυξάνεται γρηγορότερα από τη συνολική (514,6 εκ. € 2023). Eurostat NUTS3 EL531 = «Grevena, Kozani», βλ. §10.4.3.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.23 · Στρατηγικό τεταρτημόριο: Οικονομική εξάρτηση × Ικανοποίηση</p>
- <h3 class="chart-headline">«Περιορισμένος τουρισμός / χαμηλή ικανοποίηση aggregate» (24,0% × 2,45) — Ζώνη Β</h3>
- <div id="chart_q_employment" style="height:480px"></div>
- <p class="chart-source">Πρωτογενής έρευνα κατοίκων (n=300, σταθμισμένο), Q15 οικιακή τουριστική εξάρτηση × δήλωση γενικής ικανοποίησης μέση ικανοποίηση. Η Καστοριά εμφανίζει χαμηλή εξάρτηση + ξεχωριστή θέση aggregate δήλωση γενικής ικανοποίησης — εικόνα συμβατή με Ζώνη Β υπο-τουριστική με πρώιμα insider σήματα.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.14 · Νέες οικοδομικές άδειες &amp; επιφάνεια (2015–2025)</p>
- <h3 class="chart-headline">Ανάκαμψη 2021-2025: από 17 σε 36 άδειες — επιφάνεια 2025 +75%</h3>
- <div id="chart_permits" style="height:380px"></div>
- <p class="chart-source">ΕΛΣΤΑΤ SOP03 Π.Ε. Καστοριάς. 2025 = προσωρινά. Μέση επιφάνεια ανά άδεια 488 m² (2025) έναντι 335 m² (2024) — ένδειξη μεμονωμένων μεγάλων ξενοδοχειακών έργων προετοιμασίας ενόψει Ε65 (Πρόταση 6).</p>
- </div>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 05 SOCIETY ============== -->
- <section id="society" class="py-12">
- <p class="section-marker">Ενότητα 05</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Κοινωνία</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Φέρουσα ικανότητα καθαρά κάτω από Saveriades 5 (TII 2,84 Δήμος Καστοριάς / 2,407 ΠΕ), POI θ̂ −0,60 (δεύτερη πιο αρνητική), αλλά παράδοξη υποκειμενική divergence: 6 από 8 στατιστικά σημαντικά Δpp στην insider υπο-ομάδα τουριστικά εργαζομένων. κεντρικό εύρημα §10.5.4 — πρώτο εμπειρικά τεκμηριωμένο διασταυρωτικό πεδίο επικύρωσης του μοτίβο κριτικής εκ των έσω σε υπο-τουριστικό περιβάλλον.</p>
-
- <div class="method-box" data-reveal>
- <p class="method-box-title">Μεθοδολογικό κουτί 10.5.1.α — Defert <span data-term="TFI">TFI</span>/<span data-term="TII">TII</span> + κατώφλια Saveriades</p>
- <p class="method-box-content">Ο γαλλικός γεωγράφος Pierre Defert εισήγαγε τον TFI το 1967: TFI = κλίνες × 100 / πληθυσμός. Ο TII μετρά <strong>διανυκτερεύσεις/πληθυσμό</strong> (ορισμός §2.7.2 του Μεθοδολογικού Πλαισίου). Διεθνή κατώφλια ζώνης (Saveriades 2000· Coccossis &amp; Mexa 2004): TII &lt; 5 χαμηλή, 5–10 μέτρια, 10–15 υψηλή, 15–30 πολύ υψηλή, <strong>&gt; 30 υπερκορεσμός</strong>. Στην Καστοριά: <strong>TII 2,84 (Δήμος Καστοριάς, κανονική αναφορά) / 2,407 (ΠΕ)</strong> — καθαρά κάτω από Saveriades 5. TFI βασικό 3,612. Σε σύγκριση τα Ιωάννινα ξεπερνούν οριακά Saveriades 5 (TII 5,665), ενώ Κέρκυρα 141,0 (ΠΕ, 50× υψηλότερη της Καστοριάς) και Μύκονος 178,6 (63× υψηλότερη). Ο TII δεν υπερέβη ποτέ την τιμή 3,2 σε ολόκληρη τη χρονοσειρά 2010-2024.</p>
- </div>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.16 · <span class="glossary" title="TII (Tourist Intensity Index): διανυκτερεύσεις / πληθυσμό. Saveriades 2000: >15 = υπερκορεσμός.">Δείκτης Τουριστικής Έντασης</span> (<span data-term="TII">TII</span>) Defert 2010–2024</p>
- <h3 class="chart-headline">Από 2,86 (2010) σε 2,41 (2024) — στασιμότητα κάτω από Saveriades 5</h3>
- <div id="chart_tii" style="height:420px"></div>
- <p class="chart-source">Διανυκτερεύσεις / κάτοικο. Όριο Saveriades 5 (κατώφλι ωριμότητας). Ο TII δεν υπερέβη ποτέ την τιμή 3,2, εικόνα στασιμότητας και υπο-τουριστικής τροχιάς. Σοκ 2020 (TII 0,734, −77% vs 2019), μερική ανάκαμψη 2023 (2,56), νέα κάμψη 2024 (2,41).</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.17 · Στρατηγικό τεταρτημόριο: Αντικειμενική × Υποκειμενική πίεση</p>
- <h3 class="chart-headline">Καστοριά στη Ζώνη Β: TFI 3,612 + POI θ̂ −0,60 με κεντρικό εύρημα §10.5.4</h3>
- <div id="chart_q_tfi_poi" style="height:480px"></div>
- <p class="chart-source">POI θ̂ μέσω <span data-term="IRT">IRT</span>-<span data-term="GRM">GRM</span>. TFI σε log10 για visual ισοκατανομή. Η Καστοριά τοποθετείται κάτω-αριστερά (Ζώνη Β): υπο-τουριστική + πρώιμα insider σήματα. Συνολική κατάταξη POI θ̂: Κέρκυρα +0,70, Χανιά +0,54, Μύκονος +0,49, Αλεξανδρούπολη +0,25, Ιωάννινα +0,04, Ναύπλιο −0,19, Βόλος-Πήλιο −0,24, Ναυπακτία −0,25, <strong>Καστοριά −0,60</strong>, Τροιζηνία −0,68.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.18 · Doxey Irridex Heatmap — σύγκριση προορισμών</p>
- <h3 class="chart-headline">Καστοριά: υψηλότερη αποδοχή επισκεπτών Q1_2 = 98,29% της δεκάδας</h3>
- <div id="chart_doxey" style="height:380px"></div>
- <p class="chart-source">Πρωτογενής έρευνα Q1 — μέσες τιμές κλίμακας 1–5. Πράσινο = θετικό, κόκκινο = αρνητικό. Η Καστοριά διατηρεί την υψηλότερη ασφάλεια και αποδοχή επισκεπτών της δεκάδας, με χαμηλά επίπεδα στεγαστικής επίδρασης και ανταγωνισμού — εικόνα συμβατή με υπο-τουριστική Ζώνη Β.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.17β · Στρατηγικό τεταρτημόριο: STR × Στεγαστική κρίση</p>
- <h3 class="chart-headline">Καστοριά «Καμία πίεση aggregate» (18,1% × 37,4%) — αλλά δήλωση «πρόβλημα στέγης» Δpp +14,0 ποσοστιαίες μονάδες insider</h3>
- <div id="chart_q_str_housing" style="height:480px"></div>
- <p class="chart-source">Πρωτογενής έρευνα Q3_7 × δήλωση «πρόβλημα στέγης». Η aggregate τιμή χαμηλή, αλλά η insider Δpp +14,0 ποσοστιαίες μονάδες στη στεγαστική πίεση τεκμηριώνει χωρική συγκέντρωση σε hot-spot Ντολτσό-Απόζαρι (Πρόταση 6 cap STR + Πρόταση 5 Λίμνη).</p>
- </div>
- </div>
-
- <div class="method-box mt-8" data-reveal>
- <p class="method-box-title">Μεθοδολογικό κουτί 10.6.1.α — Μοτίβο Κριτικής Εκ των Έσω, κεντρικό εύρημα §10.5.4 (πρωτότυπη συμβολή)</p>
- <p class="method-box-content">Στην Καστοριά τεκμηριώνεται <strong>πρώτο εμπειρικά τεκμηριωμένο διασταυρωτικό πεδίο επικύρωσης</strong> του μοτίβο κριτικής εκ των έσω σε αντικειμενικά υπο-τουριστικό περιβάλλον. Η σύγκλιση τεσσάρων αντικειμενικών bottom-2 δεικτών (TII 2,407, TFI 3,612, bed turnover 66,65 χαμηλότερη, ALoS 1,72 χαμηλότερη, POI θ̂ −0,60 2η most-negative) με 6 από 8 στατιστικά σημαντικά Δpp στην insider υπο-ομάδα (δήλωση «ανεπάρκεια στάθμευσης» +19,0 ποσοστιαίες μονάδες · δήλωση «πρόβλημα στέγης» +14,0 ποσοστιαίες μονάδες · δήλωση «υποβάθμιση φυσικού περιβάλλοντος» +12,4 ποσοστιαίες μονάδες · δήλωση γενικής ικανοποίησης +10,9 ποσοστιαίες μονάδες · δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» +9,8 ποσοστιαίες μονάδες · δήλωση αναγνώρισης κορεσμού +8,1 ποσοστιαίες μονάδες) τοποθετεί την Καστοριά σε Ζώνη Β: «aggregate υπο-τουριστική κατάσταση σε σύζευξη με πρώιμα σήματα κριτικής εκ των έσω». Η εμπειρική αυτή τεκμηρίωση επεκτείνει το πρότυπο από Ζώνη Α (Ιωάννινα προ-κορεσμός) σε ολόκληρη την καμπύλη Butler. Η Πρόταση 4 EWD μετατρέπει αυτό το διαγνωστικό εύρημα σε επιχειρησιακό μηχανισμό προληπτικής τριμηνιαίας παρακολούθησης — πρωτότυπη μεθοδολογική συμβολή της Λευκής Βίβλου.</p>
- </div>
-
- <div class="grid lg:grid-cols-2 gap-8 mt-8">
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.19 · Latent Class Analysis — 10 προορισμοί</p>
- <h3 class="chart-headline">Καστοριά: J-shape με «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) C5 35,11% — 2η υψηλότερη της δεκάδας</h3>
- <div id="chart_lca" style="height:520px"></div>
- <p class="chart-source">Σταθμισμένο μερίδιο πληθυσμού ανά εμπειρική class. Στην Καστοριά: C5 35,11% + C2 29,69% = 64,80% θετικές (2η υψηλότερη μεταξύ αναπτυσσόμενων μετά Τροιζηνία 78,71%). C1 «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>) μόλις 3,73% — 2η χαμηλότερη της δεκάδας μετά Τροιζηνία (1,59%). Σε αντίθεση με Ιωάννινα όπου κυριαρχεί η C2 «Ενεργοί Υποστηρικτές» (<em>Ενεργή Ευφορία</em>) 42,33% (insider αναγνώριση πιέσεων), στην Καστοριά κυριαρχεί η C5 «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) — απερίσπαστη θετική στάση χωρίς αναγνώριση πιέσεων στον γενικό πληθυσμό.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 10.20 · Τεταρτημόριο πόλωσης: Class 1 × Class 5</p>
- <h3 class="chart-headline">Καστοριά «Υγιής συναίνεση» (3,73% × 35,11%) — προφίλ κοντινό Τροιζηνίας</h3>
- <div id="chart_q_lca" style="height:480px"></div>
- <p class="chart-source">Χαμηλή Class 1 («Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>)) + υψηλή Class 5 («Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>)) = υγιής συναινετική κοινωνία. Διαφορά από Ιωάννινα: στην Καστοριά κυριαρχεί η «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>), ενώ στα Ιωάννινα η «Ενεργοί Υποστηρικτές» (<em>Ενεργή Ευφορία</em>) αναγνωρίζει επιμέρους πιέσεις. μοτίβο κριτικής εκ των έσω παρόν παρά τη κυρίαρχη «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) στον γενικό πληθυσμό.</p>
- </div>
- </div>
-
- <div class="mt-16">
- <p class="section-marker">Ποιοτική έρευνα · 14 αυτούσια αποσπάσματα</p>
- <h3 class="display text-3xl text-navy-700 mt-2 mb-6">Φωνές των στελεχών</h3>
- <div class="quotes-deck" data-carousel>
- <div class="quotes-rail" id="quotes_rail"></div>
- <div class="flex gap-2 mt-4 justify-end">
- <button data-carousel-prev class="theme-toggle" aria-label="Προηγούμενο">
- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
- </button>
- <button data-carousel-next class="theme-toggle" aria-label="Επόμενο">
- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
- </button>
- </div>
- </div>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 06 ENVIRONMENT ============== -->
- <section id="environment" class="py-12">
- <p class="section-marker">Ενότητα 06</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Περιβάλλον</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">3 Natura 2000 τόποι σε 424,30 km² (Λίμνη Ορεστιάδα GR1320001 + ζώνη Ramsar). Χρόνιος ευτροφισμός λίμνης και κληρονομιά χρωμίου από γουνοβιομηχανία αποτελούν το πρωτεύον περιβαλλοντικό asset υπό απειλή. «Απορρίμματα-λύματα» 21,27% aggregate (υψηλότερο πεδίο) με Δpp insider +8,2 ποσοστιαίες μονάδες. Greek <span data-term="WEI+">WEI+</span> Δ. Μακεδονίας ~10,5 (μέτρια πίεση).</p>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <div class="chart-card">
- <p class="chart-title">Eurostat lan_lcv_ovw · Χρήση γης Δ. Μακεδονίας 2022 (NUTS2 EL53)</p>
- <h3 class="chart-headline">Δάση + Θαμνώδης 59,9% — ορεινός χαρακτήρας</h3>
- <div id="chart_landcover" style="height:380px"></div>
- <p class="chart-source">Land Use/Cover Area frame Survey (LUCAS), NUTS2 EL53 Δ. Μακεδονίας. Τεχνητή γη 1,59% — από τις χαμηλότερες της χώρας. Καλλιεργήσιμη 19,26% αντικατοπτρίζει την παραγωγική βάση φασολιών Πρεσπών και πιπεριών Φλωρίνης.</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Eurostat sdg_06_60 · Greek <span data-term="WEI+">WEI+</span> 2003–2023</p>
- <h3 class="chart-headline">Σταθερή πορεία στη μέτρια ζώνη — από 9,9 σε 10,8</h3>
- <div id="chart_wei" style="height:380px"></div>
- <p class="chart-source">4ετής μέσος όρος. Ζώνες: πράσινο &lt;10 χαμηλή · κίτρινο 10-20 μέτρια · κόκκινο &gt;20 έντονη. Η Δ. Μακεδονία διατηρεί σταθερά μέτρια πίεση. Στην Καστοριά η Λίμνη Ορεστιάδα διαθέτει διακριτή ευαλωτότητα ευτροφισμού και χρωμίου από γουνοβιομηχανία (Πρόταση 5 Πρόγραμμα Αποκατάστασης).</p>
- </div>
- </div>
-
- <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
- <div class="kpi-card">
- <div class="kpi-label">Τεχνητή γη Δ. Μακεδονίας 2022</div>
- <div class="kpi-value"><span data-num="1.59" data-decimals="2">1,59</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta up">πολύ χαμηλή πίεση</div>
- </div>
- <div class="kpi-card">
- <div class="kpi-label">Greek WEI+ 2023</div>
- <div class="kpi-value"><span data-num="10.78" data-decimals="2">10,78</span></div>
- <div class="kpi-delta flat">μέτρια πίεση</div>
- </div>
- <div class="kpi-card">
- <div class="kpi-label">Greek απορρ. 2023</div>
- <div class="kpi-value"><span data-num="523">523</span><span class="kpi-unit">kg/cap</span></div>
- <div class="kpi-delta flat">~EU avg</div>
- </div>
- <div class="kpi-card">
- <div class="kpi-label">Natura 2000 Π.Ε. Καστοριάς</div>
- <div class="kpi-value"><span data-num="3">3</span><span class="kpi-unit">τόποι</span></div>
- <div class="kpi-delta up">424,30 km² (Ορεστιάδα Ramsar)</div>
- </div>
- </div>
-
- <div class="chart-card lg:col-span-2 mt-8">
- <p class="chart-title">Σχήμα 10.21 · Αντίληψη αρνητικών επιπτώσεων (% συμφωνώ + απόλυτα)</p>
- <h3 class="chart-headline">Καστοριά: STR/Airbnb επίδραση 37,4% · στεγαστική κρίση 19,3% — η 2η χαμηλότερη πίεση της δεκάδας</h3>
- <div id="chart_env_heat" style="height:420px"></div>
- <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 5 προορισμών (Κέρκυρα, Χανιά, Μύκονος, Ιωάννινα, Καστοριά). Η Καστοριά παρουσιάζει συστηματικά χαμηλότερες aggregate τιμές αντίληψης περιβαλλοντικής επιβάρυνσης από κάθε άλλον προορισμό της σύγκρισης — εικόνα συμβατή με υπο-τουριστική Ζώνη Β. Παράλληλα δήλωση «υποβάθμιση φυσικού περιβάλλοντος» insider Δpp +12,4 ποσοστιαίες μονάδες τεκμηριώνει το ισχυρότερο insider σήμα στην περιβαλλοντική διάσταση.</p>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 07 STRATEGY ============== -->
- <section id="strategy" class="py-12">
- <p class="section-marker">Ενότητα 07</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Στρατηγική</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">SWOT ανάλυση, πέντε Άξονες Πολιτικής (Ζώνη Β προληπτικό παράθυρο), και επτά Επιχειρησιακές Προτάσεις. Η <strong>Πρόταση 4 (Πίνακας Πρώιμης Προειδοποίησης ως προληπτικό όργανο)</strong> αποτελεί την πρωτότυπη μεθοδολογική συμβολή της Καστοριάς στη Λευκή Βίβλο — διακριτή ποιοτική επέκταση από το αντιδραστικό όργανο D7 Ιωαννίνων.</p>
-
- <h3 class="font-serif text-2xl text-navy-700 mb-4">SWOT Ανάλυση</h3>
- <div class="swot-grid mb-12" id="swot_grid"></div>
-
- <h3 class="font-serif text-2xl text-navy-700 mb-4">Πέντε Άξονες Πολιτικής</h3>
- <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12" id="axes_grid"></div>
-
- <h3 class="font-serif text-2xl text-navy-700 mb-4">Επτά Επιχειρησιακές Προτάσεις</h3>
- <div class="space-y-3" id="proposals_list"></div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 08 DATA ANNEX ============== -->
- <section id="data" class="py-12">
- <p class="section-marker">Ενότητα 08</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Δεδομένα &amp; Παράρτημα</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Πλήρης πρόσβαση στα 64 items της πρωτογενούς έρευνας στον Δήμο Καστοριάς (n=300, Απρίλιος 2026), στους 26 πίνακες του κεφαλαίου, και στις 10 πηγές δευτερογενών δεδομένων.</p>
-
- <h3 class="font-serif text-2xl text-navy-700 mb-4">Πρωτογενής έρευνα — Όλα τα 64 items (Καστοριά)</h3>
- <div class="overflow-x-auto">
- <table class="editorial-table" id="mrb_table">
- <thead>
- <tr><th>Item</th><th>Μέσος (1–5)</th><th>% Συμφωνώ</th><th>n valid</th></tr>
- </thead>
- <tbody></tbody>
- </table>
- </div>
-
- <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Μεθοδολογικά Κουτιά</h3>
- <div class="space-y-4" id="method_boxes"></div>
-
- <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγές δεδομένων</h3>
- <ul class="text-sm text-ink-700 space-y-2 list-disc list-inside" id="sources_list"></ul>
-
- <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγαίες παρουσιάσεις πρωτογενούς έρευνας</h3>
- <p class="text-sm text-ink-700 mb-6 max-w-3xl">Αυτούσιες παρουσιάσεις του φορέα δημοσκοπικής έρευνας με τα πλήρη ευρήματα ποσοτικής και ποιοτικής έρευνας στους κατοίκους και στα στελέχη του προορισμού. Διαθέσιμες ως PDF για μεταφόρτωση.</p>
- <div class="grid md:grid-cols-2 gap-4">
- <a href="assets/downloads/kastoria_quantitative.pdf" target="_blank" rel="noopener"
- class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
- <div class="flex items-start gap-4">
- <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
- </div>
- <div class="flex-1">
- <p class="section-marker text-accent-500">PDF · Ποσοτική έρευνα</p>
- <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Πρωτογενούς Ποσοτικής Έρευνας</p>
- <p class="text-xs text-ink-500 mt-1">Δήμος Καστοριάς · Απρίλιος 2026</p>
- <p class="text-xs text-ink-500 mt-2 numeric">~70 σελίδες · 1,7 MB</p>
- </div>
- </div>
- </a>
-
- <a href="assets/downloads/kastoria_qualitative.pdf" target="_blank" rel="noopener"
- class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
- <div class="flex items-start gap-4">
- <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
- </div>
- <div class="flex-1">
- <p class="section-marker text-accent-500">PDF · Ποιοτική έρευνα</p>
- <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Ποιοτικής Έρευνας σε Στελέχη</p>
- <p class="text-xs text-ink-500 mt-1">5 συνεντεύξεις σε στελέχη Καστοριάς · Απρίλιος 2026</p>
- <p class="text-xs text-ink-500 mt-2 numeric">~60 σελίδες · 1,1 MB</p>
- </div>
- </div>
- </a>
- </div>
- </section>
-
- </main>
-
- <!-- Footer -->
- <footer class="bg-navy-900 text-white/80 py-12 mt-12">
- <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
- <div>
- <p class="section-marker text-accent-300">Επόμενος προορισμός</p>
- <p class="font-serif text-xl text-white mt-2">Αλεξανδρούπολη-Σαμοθράκη →</p>
- <p class="text-xs text-white/50 mt-1">Σύντομα διαθέσιμο</p>
- </div>
- <div>
- <p class="section-marker text-accent-300">Λήψεις</p>
- <ul class="space-y-1.5 mt-2">
- <li><a href="assets/downloads/kastoria_quantitative.pdf" target="_blank" class="hover:text-accent-300">Ποσοτική έρευνα PDF (1,7 MB)</a></li>
- <li><a href="assets/downloads/kastoria_qualitative.pdf" target="_blank" class="hover:text-accent-300">Ποιοτική έρευνα PDF (1,1 MB)</a></li>
- <li><a href="assets/data/kastoria-data.js" class="hover:text-accent-300">Δεδομένα JS (επί τόπου)</a></li>
- </ul>
- </div>
- <div>
- <p class="section-marker text-accent-300">Πιστοποίηση πηγών</p>
- <p class="text-xs text-white/60 mt-2 leading-relaxed">Όλα τα στατιστικά δεδομένα από επίσημες πηγές (ΕΛΣΤΑΤ, Eurostat, ΤτΕ, INSETE). Πρωτογενής έρευνα κατοίκων από εξωτερική εταιρεία πρωτογενούς έρευνας. ⚠ Eurostat NUTS3 EL531 = «Grevena, Kozani» — υποκατάσταση ΑΠΑ από ΕΛΣΤΑΤ SEL45 αυτοτελής Π.Ε. Καστοριάς + Eurostat NUTS2 EL53, βλ. §10.4.3.</p>
- </div>
- </div>
- <div class="container mx-auto px-6 mt-10 pt-6 border-t border-white/10 text-xs text-white/40 flex justify-between">
- <p>Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035 · ΠΕ2 · Κεφάλαιο 10 Καστοριά</p>
- <p class="numeric">v1.0 · 2026-05-15</p>
- </div>
- </footer>
-
- <script src="assets/js/app.js?v=17"></script>
- <script src="assets/js/charts.js?v=23"></script>
- <script src="assets/data/kastoria-data.js?v=18"></script>
- <script src="assets/js/kastoria-render.js?v=17"></script>
+  </main>
 </body>
 </html>

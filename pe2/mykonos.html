@@ -1,766 +1,97 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Μύκονος · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
- <meta name="description" content="Πλήρες προφίλ τουριστικού προορισμού Μυκόνου: 8 ενότητες, διαδραστικά γραφήματα, στρατηγικά τεταρτημόρια, πίνακες, ποιοτικά αποσπάσματα και δευτερογενή δεδομένα">
-
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
-
- <script src="https://cdn.tailwindcss.com"></script>
- <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
- <link rel="stylesheet" href="assets/css/custom.css?v=17">
-
- <script>
- tailwind.config = { theme: { extend: {
- colors: {
- navy: { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
- accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
- ink: { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
- },
- fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
- } } }
- </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Υπό ενημέρωση · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-900:#0d2440; --navy-700:#1f4e79; --navy-500:#3a73a8; --navy-50:#eef2f8;
+      --accent-500:#e07b00; --accent-300:#ffa951;
+      --ink-700:#2d3441; --ink-500:#5b6473;
+      --rule:rgba(13,36,64,0.10);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Inter', system-ui, sans-serif;
+      color:var(--ink-700);
+      background:linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 55%, var(--navy-500) 100%);
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:24px;
+      position:relative; overflow:hidden;
+    }
+    /* subtle grid backdrop */
+    body::before {
+      content:''; position:absolute; inset:0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size:60px 60px;
+      pointer-events:none;
+    }
+    .card {
+      position:relative; z-index:1;
+      background:#fff;
+      max-width:560px; width:100%;
+      padding:56px 48px;
+      border-radius:4px;
+      box-shadow:0 30px 80px -20px rgba(0,0,0,0.45);
+      border-top:4px solid var(--accent-500);
+    }
+    .eyebrow {
+      font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--accent-500); font-weight:600;
+      display:flex; align-items:center; gap:10px; margin-bottom:22px;
+    }
+    .eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
+    h1 {
+      font-family:'Fraunces', Georgia, serif;
+      font-size:34px; line-height:1.18; color:var(--navy-700);
+      font-weight:600; margin-bottom:18px;
+    }
+    h1 em { color:var(--accent-500); font-style:italic; }
+    p { font-size:15.5px; line-height:1.65; color:var(--ink-700); margin-bottom:16px; }
+    p.muted { color:var(--ink-500); font-size:14px; }
+    .status {
+      display:inline-flex; align-items:center; gap:9px;
+      background:var(--navy-50); border:1px solid var(--rule);
+      padding:9px 16px; border-radius:3px; margin:8px 0 26px;
+      font-size:13.5px; font-weight:500; color:var(--navy-700);
+    }
+    .dot {
+      width:9px; height:9px; border-radius:50%;
+      background:var(--accent-500);
+      box-shadow:0 0 0 0 rgba(224,123,0,0.5);
+      animation:pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow:0 0 0 0 rgba(224,123,0,0.45); }
+      70%  { box-shadow:0 0 0 9px rgba(224,123,0,0); }
+      100% { box-shadow:0 0 0 0 rgba(224,123,0,0); }
+    }
+    .footer {
+      margin-top:30px; padding-top:22px; border-top:1px solid var(--rule);
+      font-size:12px; color:var(--ink-500); line-height:1.6;
+    }
+    .footer strong { color:var(--ink-700); font-weight:600; }
+  </style>
 </head>
 <body>
-
- <!-- Top utility bar -->
- <div class="bg-navy-900 text-white text-xs">
- <div class="container mx-auto px-6 py-2 flex justify-between items-center">
- <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
- <div class="flex items-center gap-4">
- <a href="methodology.html" class="text-white/70 hover:text-white">Μεθοδολογία</a>
- <a href="data_sources.html" class="text-white/70 hover:text-white">Πηγές</a>
- <a href="comparative.html" class="text-white/70 hover:text-white">Συγκριτικά</a>
- <a href="glossary.html" class="text-white/70 hover:text-white">Γλωσσάρι</a>
- <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
- </div>
- </div>
- </div>
-
- <!-- HERO — Μύκονος: ακραίος υπερκορεσμός TII 178,6, <span class="glossary" title="Butler TALC: κύκλος ζωής τουριστικού προορισμού σε 6 στάδια (Butler 1980): Εξερεύνηση → Εμπλοκή → Ανάπτυξη → Ενοποίηση → Στασιμότητα → Παρακμή/Αναζωογόνηση.">Butler</span> stasis, διπολική στάση -->
- <header class="relative h-[70vh] min-h-[520px] bg-navy-700 overflow-hidden flex items-end">
- <!-- Background photo: Χώρα Μυκόνου με ανεμόμυλους Κάτω Μύλοι -->
- <img src="assets/images/mykonos_hero.jpg" alt="Ανεμόμυλοι Κάτω Μύλοι Χώρας Μυκόνου με θέα Αιγαίο" class="absolute inset-0 w-full h-full object-cover">
- <!-- Gradient overlay for text legibility -->
- <div class="absolute inset-0 bg-gradient-to-b from-navy-900/30 via-navy-900/40 to-navy-900/95"></div>
- <!-- Subtle decorative grid -->
- <svg class="absolute inset-0 w-full h-full opacity-[0.06]" preserveAspectRatio="xMidYMid slice">
- <defs>
- <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
- <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
- </pattern>
- </defs>
- <rect width="100%" height="100%" fill="url(#grid)"/>
- </svg>
-
- <div class="container mx-auto px-6 pb-12 relative z-10 text-white">
- <p class="section-marker text-accent-300">Κεφάλαιο 6 · Ώριμος προορισμός · Νησιωτικός υπερκορεσμός</p>
- <h1 class="display text-7xl md:text-8xl mt-3 leading-none">Μύκονος</h1>
- <p class="text-xl mt-3 text-navy-50/85 max-w-2xl">Νότιο Αιγαίο · Κυκλάδες · ΠΕ Μυκόνου (NUTS3 EL422) · Δ. Μυκόνου · Πληθυσμός 10.704 (Απογραφή 2021)</p>
-
- <!-- Photo credit -->
- <p class="absolute bottom-2 right-4 text-[10px] text-white/40">Φωτογραφία: Ανεμόμυλοι Χώρας Μυκόνου</p>
-
- <!-- Quick stats — Μύκονος signature: ακραίος TII, Butler stasis, πολωμένη κοινωνία -->
- <div class="mt-10 flex flex-wrap gap-2">
- <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
- <span class="block text-[11px] uppercase tracking-wider text-accent-300">TII Δήμος · ακραίο</span>
- <span class="font-serif text-lg numeric">178,6</span>
- </span>
- <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
- <span class="block text-[11px] uppercase tracking-wider text-white/60">Κλίνες ανά κάτοικο</span>
- <span class="font-serif text-lg numeric">1,58</span>
- </span>
- <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
- <span class="block text-[11px] uppercase tracking-wider text-accent-300">Ανάκαμψη 2024/2019 · Butler stasis</span>
- <span class="font-serif text-lg numeric">0,878</span>
- </span>
- <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
- <span class="block text-[11px] uppercase tracking-wider text-white/60">LCA C1+C5 διπολική</span>
- <span class="font-serif text-lg numeric">21,2% + 27,8%</span>
- </span>
- </div>
- </div>
- </header>
-
- <!-- STICKY NAV -->
- <nav class="sticky top-0 bg-white/95 backdrop-blur border-b border-[var(--rule)] z-40 shadow-sm">
- <div class="container mx-auto px-6 overflow-x-auto">
- <ul class="flex gap-7 whitespace-nowrap">
- <li><a href="#overview" class="nav-tab" data-num="01">Επισκόπηση</a></li>
- <li><a href="#demand" class="nav-tab" data-num="02">Ζήτηση &amp; Προσφορά</a></li>
- <li><a href="#product" class="nav-tab" data-num="03">Τουριστικό προϊόν</a></li>
- <li><a href="#economy" class="nav-tab" data-num="04">Οικονομία</a></li>
- <li><a href="#society" class="nav-tab" data-num="05">Κοινωνία</a></li>
- <li><a href="#environment" class="nav-tab" data-num="06">Περιβάλλον</a></li>
- <li><a href="#strategy" class="nav-tab" data-num="07">Στρατηγική</a></li>
- <li><a href="#data" class="nav-tab" data-num="08">Δεδομένα</a></li>
- </ul>
- </div>
- </nav>
-
- <main class="container mx-auto px-6 py-12 max-w-7xl">
-
- <!-- Executive Summary -->
- <section class="bg-navy-50 border-l-4 border-accent-500 px-8 py-7 mb-12 mt-4 rounded-r-sm">
- <p class="section-marker">Επιτελική Σύνοψη</p>
- <p class="text-xl leading-relaxed text-ink-700 mt-3 font-serif">Η Μύκονος είναι ο μοναδικός προορισμός σε καθεστώς πραγματικού υπερκορεσμού: 1,58 κλίνες ανά κάτοικο — μία από τις υψηλότερες αναλογίες στην Ευρώπη — και <span class="glossary" title="TII (Tourist Intensity Index): διανυκτερεύσεις / πληθυσμό. Saveriades 2000: >15 = υπερκορεσμός.">Δείκτης Τουριστικής Έντασης</span> 178,6, υπερβαίνοντας 11,9 φορές το όριο επείγουσας παρέμβασης. Είναι ταυτόχρονα ο μοναδικός ώριμος που δεν έχει ξεπεράσει την προ-πανδημική ζήτηση (ανάκαμψη 0,878 — σήμα στασιμότητας κατά Butler) και η κοινωνία είναι έντονα πολωμένη (παράλληλα 21% Επιφυλακτικοί κάτοικοι + 28% Ένθερμοι Υποστηρικτές). Συνδυάζει εξαιρετικό ADR (>600€) με συσσωρευμένη κοινωνική αντίδραση. Στρατηγική προτεραιότητα: διαχείριση όγκου, visitor caps, «πράσινο τέλος», διαφοροποίηση κοινού.</p>
- </section>
-
-    <!-- Τι σημαίνει πρακτικά -->
-    <section class="bg-white border-l-4 border-navy-700 px-8 py-6 mb-12 rounded-r-sm shadow-sm">
-      <p class="section-marker text-navy-700">Τι σημαίνει πρακτικά</p>
-      <p class="text-lg leading-relaxed text-ink-700 mt-3">Η Μύκονος δεν είναι πρόβλημα τουριστικής ζήτησης — είναι πρόβλημα διαχείρισης όγκου, χρήσεων γης, κοινωνικής ανοχής και περιβαλλοντικής επιβάρυνσης. Δεν χρειάζεται άλλη αύξηση όγκου· χρειάζεται διαχείριση κορύφωσης, έλεγχος χρήσεων, όρια επισκεψιμότητας στις ώρες αιχμής, και ειδικό περιβαλλοντικό τέλος υπέρ δημοτικών υποδομών.</p>
-    </section>
-
- <!-- ============== 01 OVERVIEW ============== -->
- <section id="overview" class="py-12">
- <p class="section-marker">Ενότητα 01</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Επισκόπηση</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαέξι δείκτες-κλειδιά που τοποθετούν τη Μύκονο σε προχωρημένη φάση Butler TALC stagnation: ο μοναδικός ώριμος προορισμός με δείκτη ανάκαμψης 2024/2019 κάτω της μονάδας (0,878), ακραίο TII 178,6 σε Δήμο 10.704 κατοίκων, διπολική κοινωνική στάση 21,2% «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>) + 27,8% «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) — η Μύκονος ζει σε διεθνή κατηγορία μαζί με Βενετία, Ντουμπρόβνικ και Σαντορίνη.</p>
-
- <!-- 16 KPI cards — όλα Μύκονος βασικό -->
- <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Αφίξεις ξενοδοχείων 2024</div>
- <div class="kpi-value"><span data-num="557339">557.339</span></div>
- <div class="kpi-delta down">Ανάκαμψη 0,878 — Butler stasis</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Διανυκτερεύσεις 2024</div>
- <div class="kpi-value"><span data-num="1.91" data-decimals="2">1,91</span><span class="kpi-unit">εκ.</span></div>
- <div class="kpi-delta flat">ΠΕ Μυκόνου EL422</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Μερίδιο αλλοδαπών</div>
- <div class="kpi-value"><span data-num="90.2" data-decimals="1">90,2</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta up">υψηλότερο της δεκάδας</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">ALoS (διανυκτ./άφιξη)</div>
- <div class="kpi-value"><span data-num="3.43" data-decimals="2">3,43</span></div>
- <div class="kpi-delta flat">μικρότερο μεταξύ ώριμων νησιωτικών</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">CAGR αλλοδαπών 2015–2024</div>
- <div class="kpi-value"><span data-num="8.70" data-decimals="2">8,70</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta flat">μετα-COVID slowdown</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Ξενοδοχειακές κλίνες 2024</div>
- <div class="kpi-value"><span data-num="16921">16.921</span></div>
- <div class="kpi-delta up">1,58 κλίνες/κάτοικο — υψηλότερο</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label"><span data-term="TII">TII</span> Defert 2024 · Δήμος</div>
- <div class="kpi-value"><span data-num="178.6" data-decimals="1">178,6</span></div>
- <div class="kpi-delta up">ακραίο — διεθνής κατηγορία</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label"><span data-term="TFI">TFI</span> Defert 2024 · Δήμος</div>
- <div class="kpi-value"><span data-num="158.1" data-decimals="1">158,1</span></div>
- <div class="kpi-delta up">υψηλότερο της δεκάδας</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Συντελεστής Gini εποχικότητας</div>
- <div class="kpi-value"><span data-num="0.512" data-decimals="3">0,512</span></div>
- <div class="kpi-delta up">υψηλή εποχικότητα (Lundtorp)</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label"><span data-term="POI">POI</span> θ — Αντιληπτή Πίεση</div>
- <div class="kpi-value"><span data-num="0.48" data-decimals="2">0,48</span></div>
- <div class="kpi-delta up">3η θέση των 10 — προσαρμοσμένος</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">LCA C1 «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>)</div>
- <div class="kpi-value"><span data-num="21.2" data-decimals="1">21,2</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta flat">πολωμένη κοινωνία</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">LCA C5 «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>)</div>
- <div class="kpi-value"><span data-num="27.8" data-decimals="1">27,8</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta up">ταυτόχρονα με C1</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Μερίδιο <span data-term="STR">STR</span> διανυκτ.</div>
- <div class="kpi-value"><span data-num="23.5" data-decimals="1">23,5</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta up">3η θέση των 10</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Natura 2000 · Δήλος-Ρήνεια</div>
- <div class="kpi-value"><span data-num="185.16" data-decimals="2">185,16</span><span class="kpi-unit">km²</span></div>
- <div class="kpi-delta flat">1 site UNESCO</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Ποιότητα υδάτων κολύμβησης</div>
- <div class="kpi-value"><span data-num="100" data-decimals="0">100</span><span class="kpi-unit">%</span></div>
- <div class="kpi-delta up">εξαιρετική — 12/12 sites</div>
- </div>
- <div class="kpi-card" data-reveal>
- <div class="kpi-label">Γαλάζιες Σημαίες 2024</div>
- <div class="kpi-value"><span data-num="0">0</span></div>
- <div class="kpi-delta down">απουσία πιστοποίησης</div>
- </div>
- </div>
-
- <!-- Executive narrative -->
- <div class="mt-16 grid md:grid-cols-3 gap-12">
- <div class="md:col-span-2">
- <p class="section-marker">Στρατηγική σύνοψη</p>
- <h3 class="display text-3xl text-navy-700 mt-2 mb-4">Ώριμος νησιωτικός προορισμός σε καθεστώς υπερκορεσμού — απαιτείται διαχείριση όγκου, όχι ανάπτυξη.</h3>
- <p class="text-ink-700 leading-relaxed mb-4">Η Μύκονος είναι ο μοναδικός προορισμός της δεκάδας σε πραγματικό υπερκορεσμό: <strong>557.339 αφίξεις το 2024 (90,2% αλλοδαποί), TII Δήμου 178,6</strong> (11,9× πάνω από το όριο επείγουσας παρέμβασης Saveriades), και <strong>1,58 κλίνες ανά κάτοικο</strong> — η υψηλότερη αναλογία στην Ευρώπη. Σε όλη τη δεκαετία η αύξηση κλινών ξεπέρασε την αύξηση πληθυσμού 4,3× — μη-αναστρέψιμη διαρθρωτική αλλαγή. Παράλληλα, η ανάκαμψη αλλοδαπών αφίξεων 2024/2019 είναι 0,878, δηλαδή <strong>δεν έχει επανέλθει στα προ-πανδημικά επίπεδα</strong> — ένδειξη πιθανής στασιμότητας Butler.</p>
- <p class="text-ink-700 leading-relaxed mb-4">Η οικονομική επίδοση παραμένει ακραία: <strong>ADR &gt;600 €/βραδιά</strong> (η υψηλότερη της χώρας), 28:1 αναλογία STR listings προς ξενοδοχειακές μονάδες, εποχικότητα Gini 0,512 (57,4% διανυκτερεύσεων σε 3 θερινούς μήνες). Η Δήλος — UNESCO World Heritage Site από 1990, ο πιο σημαντικός ιερός πολιτισμικός χώρος της Μεσογείου — επισκέπτεται από λιγότερους από 22% των τουριστών της Μυκόνου. Σύστημα χωρικής διαχείρισης παραλιών, λιμενικής ροής κρουαζιερόπλοιων, και έλεγχος χρήσεων γης πρακτικά απουσιάζουν.</p>
- <p class="text-ink-700 leading-relaxed">Η κοινωνία της Μυκόνου είναι <strong>έντονα πολωμένη</strong>: 21,2% κατοίκων σε LCA «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>) — παράλληλα 27,8% σε «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>). Δύο ομάδες με ριζικά διαφορετική στάση συνυπάρχουν στον ίδιο μικρό Δήμο. Προτεραιότητες: διαχείριση όγκου επισκεπτών, όρια επισκεψιμότητας σε ζώνες και ώρες αιχμής, «πράσινο τέλος» υπέρ δημοτικών/περιβαλλοντικών υποδομών, διαφοροποίηση κοινού (μετάβαση από mass-luxury σε ποιοτικά segments), και ένταξη της Δήλου σε υποχρεωτικά πολιτισμικά πακέτα.</p>
- </div>
- <aside class="border-l-2 border-accent-500 pl-6">
- <p class="section-marker text-accent-500">Butler TALC</p>
- <p class="text-2xl font-serif text-navy-700 mt-2">Στάδιο 5 — Στασιμότητα</p>
- <p class="text-sm text-ink-500 mt-3">Recovery 2024/2019 = 0,878 (ο μόνος ώριμος προορισμός κάτω από 1,0). Σαφές σήμα Butler stasis: η ζήτηση δεν αυξάνει πλέον σε προ-πανδημικά επίπεδα παρά τη μέγιστη αξιοποίηση υποδομών.</p>
- <hr class="my-5 border-[var(--rule)]">
- <p class="section-marker text-accent-500">Doxey Irridex</p>
- <p class="text-2xl font-serif text-navy-700 mt-2">Διπλή πόλωση</p>
- <p class="text-sm text-ink-500 mt-3">21,2% κατοίκων σε στάδιο Αντιπαλότητας <em>παράλληλα</em> με 27,8% σε Καθαρή Ευφορία. Πολωμένη κοινωνία — δύο διακριτές ομάδες με αντίθετες στάσεις.</p>
- </aside>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 02 DEMAND & SUPPLY ============== -->
-
-    <!-- Χωρική Ανάλυση -->
-    <section id="spatial" class="py-12">
-      <p class="section-marker">Χωρική Ανάλυση</p>
-      <h2 class="display text-3xl text-navy-700 mt-2 mb-2">Χωρική απεικόνιση</h2>
-      <p class="text-lg text-ink-700 max-w-3xl mb-8">Πού βρίσκεται ο προορισμός στον εθνικό χάρτη πίεσης-ικανοποίησης, και πώς κατανέμεται η σχέση κατοίκου-τουρισμού εντός του.</p>
-      <div class="grid lg:grid-cols-2 gap-6">
-
-        <div class="chart-card">
-          <p class="chart-title">Σχήμα · Χωρική ανάλυση εντός προορισμού</p>
-          <h3 class="chart-headline">Δήμος Μυκόνου — POI χωρική πυκνότητα</h3>
-          <img src="assets/maps/within_mykonos.png" alt="Χωρική πυκνότητα POIs" style="width:100%; height:auto; border:1px solid var(--rule);">
-          <p class="chart-source">Χωρική πυκνότητα <span class="glossary" title="Σημεία τουριστικού ενδιαφέροντος (καταλύματα, εστίαση, αξιοθέατα, παραλίες, μουσεία, αναψυχή) από OpenStreetMap.">σημείων τουριστικού ενδιαφέροντος</span> (POIs OpenStreetMap) σε hex-grid εντός των ορίων του Δήμου. Πορτοκαλί ένταση δηλώνει υψηλότερη χωρική συγκέντρωση τουριστικής υποδομής.</p>
-        </div>
-
-        <div class="chart-card">
-          <p class="chart-title">Συγκριτικό · Αντικειμενική × Υποκειμενική πίεση</p>
-          <h3 class="chart-headline">Θέση στον bivariate χάρτη TFI × Ικανοποίηση κατοίκων</h3>
-          <img src="assets/maps/bivariate_tfi_q9sat.png" alt="Bivariate map TFI × Q9 satisfaction" style="width:100%; height:auto; border:1px solid var(--rule);">
-          <p class="chart-source">Συνδυασμός αντικειμενικού δείκτη φέρουσας ικανότητας (TFI Defert 2024) και υποκειμενικής ικανοποίησης κατοίκων (Q9_SAT) σε ένα δι-διαστάσιμο choropleth. Τέσσερις διακριτές καταστάσεις προορισμού.</p>
-        </div>
-      </div>
-    </section>
- <section id="demand" class="py-12">
- <p class="section-marker">Ενότητα 02</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Ζήτηση &amp; Προσφορά</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκατέσσερα έτη εξέλιξης ζήτησης (2010–2024), ξενοδοχειακό δυναμικό 16.921 κλινών, αγορά <span class="glossary" title="STR (Short-Term Rental): μισθώσεις τύπου Airbnb. Δείκτης πίεσης στη στεγαστική αγορά.">βραχυχρόνιας μίσθωσης</span> που έχει φτάσει ένα τέταρτο των διανυκτερεύσεων.</p>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <!-- Arrivals foreign vs domestic -->
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.1 · Αφίξεις 2010–2024</p>
- <h3 class="chart-headline">Διπολική δυναμική: εκρηκτική διεθνής επέκταση, στάσιμη εγχώρια κατανάλωση</h3>
- <div id="chart_arrivals" style="height:380px"></div>
- <p class="chart-source">Πηγή: ΕΛΣΤΑΤ STO12 T03 (αφίξεις σε ξενοδοχειακά καταλύματα). 90,2% αλλοδαποί επισκέπτες το 2024.</p>
- </div>
-
- <!-- Recovery index -->
- <div class="chart-card">
- <p class="chart-title">Σχήμα 6.2 · Δείκτης ανάκαμψης 2024/2019</p>
- <h3 class="chart-headline">Recovery 0,878 — μοναδικός ώριμος που δεν επανέφερε προ-πανδημικά επίπεδα (Butler stasis)</h3>
- <div id="chart_recovery" style="height:480px"></div>
- <p class="chart-source">Σύγκριση 10 προορισμών. Λόγος >1 σημαίνει ξεπέρασε την ανάκαμψη.</p>
- </div>
-
- <!-- Monthly arrivals -->
- <div class="chart-card">
- <p class="chart-title">Σχήμα 6.3 · Μηνιαία κατανομή 2024</p>
- <h3 class="chart-headline">Συγκέντρωση 4 μηνών αιχμής (Ιουν–Σεπ): 68,6% αφίξεων</h3>
- <div id="chart_monthly" style="height:380px"></div>
- <p class="chart-source">Πορτοκαλί = αιχμή · σκούρο μπλε = ώμος · ανοιχτό μπλε = χαμηλή. ΕΛΣΤΑΤ STO12 T13.</p>
- </div>
-
- <!-- Gini -->
- <div class="chart-card">
- <p class="chart-title">Σχήμα 6.4 · Εποχικότητα: Συντελεστής Gini</p>
- <h3 class="chart-headline">Σταθερή υψηλή εποχικότητα την τελευταία δεκαετία</h3>
- <div id="chart_gini" style="height:380px"></div>
- <p class="chart-source">Gini=0 τέλεια κατανομή · Gini=1 πλήρης συγκέντρωση. Τιμές 0,46–0,50 = υψηλή εποχικότητα.</p>
- </div>
-
- <!-- Capacity -->
- <div class="chart-card">
- <p class="chart-title">Σχήμα 6.6 · Ξενοδοχειακή δυναμικότητα 2015–2024</p>
- <h3 class="chart-headline">Κλίνες +18,8% σε δεκαετία — μονάδες +9%</h3>
- <div id="chart_capacity" style="height:380px"></div>
- <p class="chart-source">ΕΛΣΤΑΤ STO12 T01. Νέες κλίνες κυρίως σε υπάρχουσες μονάδες (επεκτάσεις).</p>
- </div>
-
- <!-- Rooms by stars -->
- <div class="chart-card">
- <p class="chart-title">Σχήμα 6.5 · Δωμάτια ανά κατηγορία αστεριών (2024)</p>
- <h3 class="chart-headline">Κυριαρχία 2* (31,2%) και 4* (24,5%)</h3>
- <div id="chart_donut" style="height:380px"></div>
- <p class="chart-source">5* μόλις 19,6% — premium positioning ακόμη υπό-αντιπροσωπευμένο.</p>
- </div>
-
- <!-- Occupancy -->
- <div class="chart-card">
- <p class="chart-title">Σχήμα 6.7 · Μηνιαίο ποσοστό πληρότητας 2024</p>
- <h3 class="chart-headline">Αιχμή Αυγούστου 86% — Φεβρουάριος μόλις 4%</h3>
- <div id="chart_occupancy" style="height:380px"></div>
- <p class="chart-source">Περιφέρεια Κρήτης (NUTS2). Ευρείες ζώνες αξιοποίησης σε Απρ–Μαϊ και Οκτ.</p>
- </div>
-
- <!-- ALoS -->
- <div class="chart-card">
- <p class="chart-title">Σχήμα 6.8 · Μέση διάρκεια παραμονής (<span data-term="ALoS">ALoS</span>)</p>
- <h3 class="chart-headline">Μείωση −1 ημέρα σε δεκαετία (από 6,4 σε 5,4)</h3>
- <div id="chart_alos" style="height:380px"></div>
- <p class="chart-source">Σταθερή πτωτική τάση — πιθανή σύνδεση με αύξηση short-haul / city-break τουρισμού.</p>
- </div>
-
- <!-- STR share -->
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.9 · Μερίδιο <span data-term="STR">STR</span> έναντι ξενοδοχείων (2020–2024)</p>
- <h3 class="chart-headline">Από 20% σε 28% αφίξεων μέσα σε 4 χρόνια — ταχύτατη μετατόπιση</h3>
- <div class="grid md:grid-cols-2 gap-8 mt-4">
- <div>
- <p class="text-sm text-ink-500 mb-2">Αφίξεις</p>
- <div id="chart_str_arrivals" style="height:340px"></div>
- </div>
- <div>
- <p class="text-sm text-ink-500 mb-2">Διανυκτερεύσεις</p>
- <div id="chart_str_overnights" style="height:340px"></div>
- </div>
- </div>
- <p class="chart-source">AirDNA / Inside Airbnb (booked listings). 24,8% μερίδιο διανυκτερεύσεων = υψηλότερο των 10 προορισμών.</p>
- </div>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 03 PRODUCT ============== -->
- <section id="product" class="py-12">
- <p class="section-marker">Ενότητα 03</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Τουριστικό προϊόν</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Από 1.941 σημεία τουριστικού ενδιαφέροντος μέχρι την αξιολόγηση 15 διακριτών υποδομών από τους κατοίκους — η αξιολόγηση «τι λειτουργεί καλά» στον προορισμό.</p>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.10 · Σημεία Τουριστικού Ενδιαφέροντος (POIs OSM)</p>
- <h3 class="chart-headline">1.941 POIs · κορυφαία πυκνότητα 22,7 POIs/km² των 10 προορισμών</h3>
- <div id="chart_pois" style="height:420px"></div>
- <p class="chart-source">OpenStreetMap Overpass API, εξαγωγή 2025. Κατηγορίες: παραλίες, μουσεία, εστίαση, καταλύματα, αξιοθέατα.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.11 · <span data-term="IPA">IPA</span> Quadrant — Σπουδαιότητα × Αξιολόγηση υποδομών</p>
- <h3 class="chart-headline">Δημ. Υγεία και Ύδρευση στο τεταρτημόριο «Συγκέντρωση εδώ»</h3>
-      <details class="mt-3 mb-4 bg-navy-50 border-l-4 border-navy-700 px-5 py-4 rounded-r-sm">
-  <summary class="cursor-pointer font-semibold text-navy-700 text-sm" style="list-style: revert;">Τι δείχνει αυτό το γράφημα; (πλήρης οδηγός)</summary>
-  <div class="mt-4 space-y-3 text-sm leading-relaxed text-ink-700">
-    <p>Το <strong>IPA Quadrant</strong> (Importance-Performance Analysis, Martilla &amp; James 1977) είναι στρατηγικό εργαλείο που μας λέει <em>τι να κάνουμε</em> για κάθε υποδομή. Είναι 2-διαστάσιμο: κάθε υποδομή τοποθετείται με βάση πόσο <strong>σημαντική</strong> είναι (οριζόντιος άξονας) και πόσο <strong>καλά λειτουργεί</strong> (κάθετος άξονας).</p>
-
-    <p><strong>Άξονας x — Σχετική Σπουδαιότητα (0-1):</strong> Δείχνει πόσο η αξιολόγηση μιας υποδομής <em>εξηγεί</em> τη συνολική ικανοποίηση των κατοίκων. Παράγεται από Random Forest μοντέλο. Τιμή 0,30 ≈ η υποδομή αυτή είναι ένας από τους κύριους «προσδιοριστές» της ικανοποίησης. Τιμή 0,10 ≈ μικρή στατιστική σύνδεση με τη συνολική ικανοποίηση.</p>
-
-    <p><strong>Άξονας y — Μέση Αξιολόγηση Κατοίκων (1-5):</strong> Πόσο καλά οι κάτοικοι αξιολογούν αυτή την υποδομή. 5 = εξαιρετική, 1 = πολύ ανεπαρκής, 3 = μέτρια.</p>
-
-    <p><strong>Δύο διακεκομμένες γραμμές</strong> διαχωρίζουν το γράφημα στα <strong>4 τεταρτημόρια</strong> πάνω στις διάμεσες τιμές. Κάθε τεταρτημόριο = διαφορετική στρατηγική προτεραιότητα:</p>
-
-    <ul class="ml-5 space-y-1.5 list-disc">
-      <li><strong style="color:#b8423a">Συγκέντρωση εδώ</strong> (κάτω-δεξιά): <em>υψηλή σπουδαιότητα + χαμηλή αξιολόγηση</em>. <strong>ΚΡΙΣΙΜΗ ΠΑΡΕΜΒΑΣΗ ΕΔΩ.</strong> Υποδομές που οι κάτοικοι κρίνουν σημαντικές αλλά λειτουργούν κακά.</li>
-      <li><strong style="color:#2d7a4d">Διατήρηση καλής επίδοσης</strong> (πάνω-δεξιά): υψηλή σπουδαιότητα + υψηλή αξιολόγηση. <em>Συνεχίστε όπως είναι — μην αλλάξετε αυτά που λειτουργούν.</em></li>
-      <li><strong style="color:#5b6473">Χαμηλή προτεραιότητα</strong> (κάτω-αριστερά): χαμηλή σπουδαιότητα + χαμηλή αξιολόγηση. Λειτουργούν μέτρια, αλλά δεν επηρεάζουν πολύ τη συνολική ικανοποίηση. <em>Δευτερεύουσα προτεραιότητα.</em></li>
-      <li><strong style="color:#7f9bbe">Πιθανή υπερβολή</strong> (πάνω-αριστερά): χαμηλή σπουδαιότητα + υψηλή αξιολόγηση. Λειτουργούν εξαιρετικά αλλά οι κάτοικοι δεν τις θεωρούν κρίσιμες. <em>Πιθανώς υπερ-επένδυση.</em></li>
-    </ul>
-
-    <div class="bg-white border border-navy-300 rounded-sm p-3 mt-3">
-      <p class="font-semibold text-navy-700 mb-1">Παράδειγμα: πώς να διαβάσετε ένα σημείο</p>
-      <p>Έστω ότι μια υποδομή Α έχει συντεταγμένες (0,28 · 2,5). Σημαίνει: η σπουδαιότητά της είναι 0,28 (πάνω από μέσο όρο των υπολοίπων), αλλά η αξιολόγησή της 2,5/5 (κάτω από μέσο όρο). Πέφτει στο τεταρτημόριο <strong style="color:#b8423a">«Συγκέντρωση εδώ»</strong> — δηλαδή είναι κρίσιμη ανάγκη παρέμβασης.</p>
+  <main class="card">
+    <p class="eyebrow">Παραδοτέο ΠΕ2 · Ψηφιακό συνοδευτικό</p>
+    <h1>Το ψηφιακό συνοδευτικό βρίσκεται <em>προσωρινά υπό ενημέρωση</em>.</h1>
+    <div class="status"><span class="dot"></span> Προσωρινά μη διαθέσιμο</div>
+    <p>Πραγματοποιούμε ενημέρωση του ψηφιακού συνοδευτικού της μελέτης. Η πρόσβαση θα αποκατασταθεί σύντομα.</p>
+    <p class="muted">Για επείγουσα ανάγκη ή πρόσβαση στο περιεχόμενο, παρακαλούμε επικοινωνήστε με την ομάδα έργου.</p>
+    <div class="footer">
+      <strong>Λευκή Βίβλος Τουριστικού Μετασχηματισμού &amp; Ανάπτυξης 2030–2035</strong><br>
+      Πακέτο Εργασίας 2 · Μελέτες δέκα τουριστικών προορισμών
     </div>
-
-    <div class="bg-orange-50 border border-orange-300 rounded-sm p-3 mt-3">
-      <p class="font-semibold text-orange-800 mb-1">⚠ Παράδοξο: «Σπουδαιότητα» ≠ διαισθητική σημασία</p>
-      <p>Η Σπουδαιότητα στο IPA δεν είναι αυτό που <em>πιστεύουν</em> οι κάτοικοι ότι είναι σημαντικό, αλλά αυτό που <em>στατιστικά εξηγεί</em> την ικανοποίησή τους. Παράδειγμα: αν η Στάθμευση είναι χρόνια κακή σε έναν προορισμό, οι κάτοικοι την έχουν «παραιτηθεί» — δεν τη συνδέουν με την ικανοποίησή τους πια. Έτσι το Random Forest της δίνει χαμηλό βάρος και φαίνεται «χαμηλή προτεραιότητα» — αν και διαισθητικά είναι κρίσιμη. Διαβάστε προσεκτικά.</p>
-    </div>
-  </div>
-</details>
-      <div id="chart_ipa" style="height:520px"></div>
- <div id="chart_ipa_legend" class="mt-2"></div>
-      <p class="chart-source"><em>Σπουδαιότητα</em> = εξαγόμενο βάρος Random Forest (πόσο η υποδομή εξηγεί τη γενική ικανοποίηση), όχι δηλωτική σημασία. <em>Αξιολόγηση</em> = μέση τιμή σε κλίμακα 1-5. Πορτοκαλί αριθμοί = Τουριστικές υποδομές · Σκούρο μπλε = Δημόσιες υποδομές. Ο πίνακας από κάτω ταξινομεί τις 15 υποδομές κατά Σπουδαιότητα.</p>
- </div>
- </div>
-
- <!-- Gap Analysis · native HTML expanded version -->
- <div class="chart-card mt-8">
-  <p class="chart-title">Σχήμα 6.10β · Gap Analysis Ζήτησης / Προσφοράς, ΠΕ Μυκόνου</p>
-  <h3 class="chart-headline">Τέσσερα κρίσιμα κενά τουριστικού μοντέλου</h3>
-  <p class="text-sm text-ink-700 mt-3 mb-6 leading-relaxed">Σύνθεση ποσοτικής έρευνας κατοίκων (n=300), ποιοτικής έρευνας στελεχών (n=5) και δευτερογενών δεδομένων. Κάθε κενό αξιολογείται από τη συνδυαστική σοβαρότητα (έκταση + αντίκτυπος) και αντιστοιχεί σε μία στρατηγική Πρόταση του master plan.</p>
-
-  <div class="grid md:grid-cols-2 gap-5 mt-4">
-
-   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
-    <div class="flex items-start justify-between mb-3">
-     <div>
-      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">1</span>
-      <span class="ml-2 section-marker text-accent-700">Χρονικό · Εποχικότητα Gini</span>
-     </div>
-     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
-    </div>
-    <h4 class="font-serif text-lg text-navy-700 mb-2">Συγκέντρωση 3 θερινών μηνών</h4>
-    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">0,512</p>
-    <p class="text-xs text-ink-500 mb-3"><em>συντελεστής Gini εποχικότητας — από τους υψηλότερους της δεκάδας</em></p>
-    <p class="text-sm text-ink-700 leading-relaxed">Ο συντελεστής Gini εποχικότητας 0,512 σημαίνει ότι το 57,4% των διανυκτερεύσεων συγκεντρώνεται στους 3 θερινούς μήνες (Ιούλιος-Σεπτέμβριος), ενώ μόλις το 2,7% πέφτει σε Δεκέμβριο-Φεβρουάριο. Με μέση τιμή δωματίου (ADR) 750€/βραδιά και αδρανείς υποδομές 7,5 μήνες/έτος, το lost revenue υπολογίζεται σε <strong>~130 εκ. € ετησίως</strong>. Η Μύκονος δεν έχει υιοθετήσει στρατηγικά χειμερινό positioning, παρά την υποδομή 5-στέρων που θα μπορούσε να υποστηρίξει wellness/conferences/exclusive events έξω από αιχμή.</p>
-    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> χειμερινό positioning σε exclusive segments (wellness retreat / private event venue) — προσθήκη 2 μηνών μπορεί να δικαιολογήσει 50-70 εκ. € πρόσθετα.</p>
-   </div>
-
-   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
-    <div class="flex items-start justify-between mb-3">
-     <div>
-      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">2</span>
-      <span class="ml-2 section-marker text-navy-700">Χωρικό · Συγκέντρωση ΝΔ ακτής</span>
-     </div>
-     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
-    </div>
-    <h4 class="font-serif text-lg text-navy-700 mb-2">Όλη η ζήτηση σε 8 παραλίες</h4>
-    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">80%</p>
-    <p class="text-xs text-ink-500 mb-3"><em>τουριστικής δραστηριότητας σε 8 παραλίες της Νοτιοδυτικής ακτής</em></p>
-    <p class="text-sm text-ink-700 leading-relaxed">Οι 8 διάσημες παραλίες της Νοτιοδυτικής ακτής (Παράγκα, Παράδεισος, Super Paradise, Ψαρού, Πλατύς Γιαλός, Ορνός, Αγρανί, Άγιος Ιωάννης) απορροφούν το 80% της τουριστικής δραστηριότητας. Η Άνω Μερά (μεσογειακό χωριό, παραγωγή τυριών/κρασιού) και η ανατολική ακτή (Καλάφατι, Φωκός, Άγιος Σώστης — αμμώδεις, ησυχότερες) λειτουργούν εκτός των κύριων ροών παρά τη φυσική ομορφιά. Στρατηγικό περιθώριο εσωτερικής επανακατανομής μέσω βελτιωμένης διασύνδεσης + storytelling.</p>
-    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> shuttle network 12-shuttle/ώρα Χώρα → Άνω Μερά + ανατολική ακτή + agritourism cluster ως «slow Mykonos» counter-program.</p>
-   </div>
-
-   <div class="border-2 border-red-300 bg-red-50/40 rounded p-5">
-    <div class="flex items-start justify-between mb-3">
-     <div>
-      <span class="inline-block w-7 h-7 rounded-full bg-red-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">3</span>
-      <span class="ml-2 section-marker text-red-700">Ποιοτικό · Υποαξιοποίηση Δήλου</span>
-     </div>
-     <span class="text-[10px] uppercase tracking-wider font-bold text-red-800 bg-red-200 px-2 py-1 rounded">Ακραία σοβαρότητα</span>
-    </div>
-    <h4 class="font-serif text-lg text-navy-700 mb-2">UNESCO Δήλος επισκέπτεται λιγότερο από 1/5</h4>
-    <p class="font-serif text-3xl font-bold text-red-700 mb-3 numeric"><22%</p>
-    <p class="text-xs text-ink-500 mb-3"><em>τουριστών επισκέπτονται UNESCO Δήλο — λιγότερο από 1 στους 5</em></p>
-    <p class="text-sm text-ink-700 leading-relaxed">Λιγότεροι από 22% των τουριστών της Μυκόνου επισκέπτονται τη Δήλο — UNESCO World Heritage Site από το 1990, ιερό νησί του Απόλλωνα, ένας από τους πιο πλούσιους αρχαιολογικούς χώρους της Μεσογείου. 80-120 χιλιάδες επισκέπτες ετησίως έναντι 557 χιλιάδων ξενοδοχειακών αφίξεων στη Μύκονο. <strong>Ένα μνημείο διεθνούς εμβέλειας λειτουργεί ως ad-hoc εκδρομή, όχι ως πυλώνας πολιτισμικής εμπειρίας.</strong> Η Δήλος μπορεί να υποδεχθεί ασφαλώς 200-250 χιλιάδες ετησίως, οπότε υπάρχει σημαντικό περιθώριο ανάπτυξης χωρίς κορεσμό.</p>
-    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-red-300"><strong>Πρακτικά:</strong> integrated «Mykonos-Delos» πακέτα + πολιτισμικό marketing στους ξενοδοχειακούς partners + νυκτερινές περιηγήσεις Δήλου (εκτός αιχμής).</p>
-   </div>
-
-   <div class="border-2 border-red-300 bg-red-50/40 rounded p-5">
-    <div class="flex items-start justify-between mb-3">
-     <div>
-      <span class="inline-block w-7 h-7 rounded-full bg-red-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">4</span>
-      <span class="ml-2 section-marker text-red-700">Ρυθμιστικό · STR + Κρουαζιέρα</span>
-     </div>
-     <span class="text-[10px] uppercase tracking-wider font-bold text-red-800 bg-red-200 px-2 py-1 rounded">Ακραία σοβαρότητα</span>
-    </div>
-    <h4 class="font-serif text-lg text-navy-700 mb-2">Διπλό ρυθμιστικό κενό</h4>
-    <p class="font-serif text-3xl font-bold text-red-700 mb-3 numeric">28 : 1</p>
-    <p class="text-xs text-ink-500 mb-3"><em>STR listings ανά ξενοδοχειακή μονάδα — εκτός ελέγχου · cap κρουαζιέρας μηδενικό</em></p>
-    <p class="text-sm text-ink-700 leading-relaxed">Η αναλογία STR listings προς ξενοδοχειακές μονάδες είναι <strong>28 προς 1</strong> — δηλαδή για κάθε ξενοδοχείο υπάρχουν 28 listings βραχυχρόνιας μίσθωσης. Δεν υπάρχει καμία οροθέτηση listings ανά Δημοτική Ενότητα, ούτε καπ ως ποσοστό μόνιμης κατοικίας. Παράλληλα, το λιμάνι της Μυκόνου δεν έχει στρατηγική διαχείριση κρουαζιερόπλοιων: συχνά 3-4 πλοία δένουν την ίδια ημέρα, ενώ η Χώρα δεν μπορεί να υποδεχθεί ταυτόχρονα 12.000+ επισκέπτες με ποιότητα εμπειρίας. <strong>Δύο ρυθμιστικά κενά στην ίδια χωρική κλίμακα.</strong></p>
-    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-red-300"><strong>Πρακτικά:</strong> συνδυασμός: STR cap ανά Δ.Ε. + κρουαζιέρα schedule slot reservation + green levy 5-10€/επισκέπτη υπέρ δημοτικών υποδομών.</p>
-   </div>
-
-  </div>
-
-  <p class="chart-source mt-6">Πηγές: Πρωτογενής ποσοτική έρευνα κατοίκων Δήμου Μυκόνου (n=300)· ΕΛΣΤΑΤ STO12· AirDNA. Η Μύκονος συνδυάζει ακραία αντικειμενική πίεση (TII 178,6 σε Δήμο = 11,9× το όριο υπερκορεσμού Saveriades) με Butler stasis (recovery 0,878) — μοναδική περίπτωση που απαιτεί όχι ανάπτυξη αλλά διαχείριση όγκου.</p>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 04 ECONOMY ============== -->
- <section id="economy" class="py-12">
- <p class="section-marker">Ενότητα 04</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Οικονομία</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">37% της Ακαθάριστης Προστιθέμενης Αξίας προέρχεται από τομείς G-I (Εμπόριο, Μεταφορές, Τουρισμός). Σχεδόν ένας στους δύο κατοίκους εμπλέκεται οικονομικά στον τουρισμό.</p>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <div class="chart-card">
- <p class="chart-title">Σχήμα 6.12 · Εκτιμώμενος τζίρος καταλυμάτων</p>
- <h3 class="chart-headline">Ξενοδοχεία 618 εκ. € · STR 265 εκ. € (2024)</h3>
- <div id="chart_turnover" style="height:380px"></div>
- <p class="chart-source">Εκτίμηση: hotel = διανυκτ. × €85 · STR = διανυκτ. × €110 (premium pricing).</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Σχήμα 6.13 · ΑΠΑ G-I έναντι σύνολο</p>
- <h3 class="chart-headline">Ανάκαμψη +37% post-COVID (2020 → 2023)</h3>
- <div id="chart_gva" style="height:380px"></div>
- <p class="chart-source">ΕΛΣΤΑΤ National Accounts. G-I = NACE κλάδοι Εμπόριο, Μεταφορές, Τουρισμός.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.13β · Στρατηγικό τεταρτημόριο: Οικονομική εξάρτηση × Ικανοποίηση</p>
- <h3 class="chart-headline">Μύκονος στη ζώνη «Έντονη οικονομική εξάρτηση + διπολική στάση» — υψηλή Q15 + πολωμένη Q9_SAT</h3>
- <div id="chart_q_employment" style="height:480px"></div>
- <p class="chart-source">Πρωτογενής έρευνα κατοίκων (n_total ~3.000), σταθμισμένα ποσοστά Q15 και μέση δήλωση γενικής ικανοποίησης.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.14 · Νέες οικοδομικές άδειες &amp; κατοικίες (2015–2025)</p>
- <h3 class="chart-headline">+224% σε δεκαετία — έκρηξη 2024 (515 άδειες)</h3>
- <div id="chart_permits" style="height:380px"></div>
- <p class="chart-source">ΕΛΣΤΑΤ SOP03. Γκρι 2025 = προσωρινά. Πρόκειται για το ισχυρότερο μέγεθος πίεσης πάνω στο φυσικό απόθεμα.</p>
- </div>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 05 SOCIETY ============== -->
- <section id="society" class="py-12">
- <p class="section-marker">Ενότητα 05</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Κοινωνία</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Φέρουσα ικανότητα, ποιότητα ζωής, στεγαστική κρίση από <span class="glossary" title="STR (Short-Term Rental): μισθώσεις τύπου Airbnb. Δείκτης πίεσης στη στεγαστική αγορά.">βραχυχρόνια μίσθωση</span>, κοινωνική στάση κατοίκων μέσω Doxey Irridex και Latent Class Analysis.</p>
-
- <!-- Methodological box: Defert -->
- <div class="method-box" data-reveal>
- <p class="method-box-title">Μεθοδολογικό κουτί 6.5.1.α — Γιατί χρησιμοποιούμε Defert <span data-term="TFI">TFI</span>/<span data-term="TII">TII</span></p>
- <p class="method-box-content">Ο γαλλικός γεωγράφος Pierre Defert εισήγαγε τον TFI το 1967 ως πρώτη συστηματική ποσοτικοποίηση τουριστικής λειτουργίας: TFI = κλίνες/πληθυσμός × 100. Ο TII είναι μεταγενέστερη επέκταση που μετρά διανυκτερεύσεις/πληθυσμό × 100. Τα απόλυτα νούμερα δεν λένε αν ένας προορισμός είναι «μικρός υπερβολικά τουριστικός» ή «μεγάλος ισορροπημένος» — οι Defert δείκτες αναγάγουν την κλίμακα. Διεθνή κατώφλια ζώνης (Saveriades 2000, Coccossis &amp; Mexa 2004): TII &lt; 5 χαμηλή πίεση, 5–10 μέτρια, 10–15 υψηλή, &gt;15 πολύ υψηλή. Η Μύκονος: TII 178,6 (Δήμος Μυκόνου) — 11,9× πάνω από κατώφλι Saveriades για υπερκορεσμό. Δομικά extreme.</p>
- </div>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.15 · Δείκτης Τουριστικής Έντασης (<span data-term="TII">TII</span>) Defert 2010–2024</p>
- <h3 class="chart-headline">Από 3,78 σε 8,67 — υπερδιπλασιασμός σε 14 έτη</h3>
- <div id="chart_tii" style="height:420px"></div>
- <p class="chart-source">Διανυκτερεύσεις / κάτοικο × 100. Όριο υπερκορεσμού (Defert) στη γραμμή TII = 10.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.15γ · Στρατηγικό τεταρτημόριο: Αντικειμενική × Υποκειμενική πίεση</p>
- <h3 class="chart-headline">Μύκονος στη ζώνη «Saturated & Aware» (TFI 158,1 · POI θ +0,48)</h3>
- <div id="chart_q_tfi_poi" style="height:480px"></div>
- <p class="chart-source">POI θ μέσω <span data-term="IRT">IRT</span>-<span data-term="GRM">GRM</span>. TFI σε log10 για visual ισοκατανομή.</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.16γ · Στρατηγικό τεταρτημόριο: Στεγαστική κρίση από <span data-term="STR">STR</span></p>
- <h3 class="chart-headline">57,0% αναγνωρίζει STR στεγαστική επίδραση — υψηλό, με 28:1 αναλογία STR:hotels</h3>
- <div id="chart_q_str_housing" style="height:480px"></div>
- <p class="chart-source">Πρωτογενής έρευνα Q3_7 (διαθεσιμότητα κατοικιών) × δήλωση «πρόβλημα στέγης» (πρόβλημα στέγης μόνιμων).</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.16 · Doxey Irridex Heatmap — 5 ώριμοι προορισμοί</p>
- <h3 class="chart-headline">Μύκονος: εκτεταμένη Στεγαστική επίδραση + ευρεία αναγνώριση κορεσμού σε σχέση με όλους τους ώριμους</h3>
- <div id="chart_doxey" style="height:380px"></div>
- <p class="chart-source">Πρωτογενής έρευνα Q1 — μέσες τιμές κλίμακας 1–5. Πράσινο = θετικό, κόκκινο = αρνητικό.</p>
- </div>
- </div>
-
- <!-- Methodological box: LCA -->
- <div class="method-box mt-8" data-reveal>
- <p class="method-box-title">Μεθοδολογικό κουτί 6.5.3.β — Γιατί χρησιμοποιούμε <span data-term="LCA">LCA</span></p>
- <p class="method-box-content">Η Latent Class Analysis (Lazarsfeld &amp; Henry, 1968 · Hagenaars &amp; McCutcheon, 2002) ομαδοποιεί στατιστικά τους ερωτηθέντες σε εμπειρικά εμφανιζόμενες τυπολογίες, αποκαλύπτοντας υπόρρητους «τύπους κατοίκων» που δεν θα ξεχώριζαν από απλή περιγραφική στατιστική. Σε αντίθεση με a-priori cluster analysis, η LCA εκτιμά πιθανότητες ανάθεσης κάθε ατόμου σε κάθε class με βάση το συνολικό προφίλ απαντήσεων στις 12 διαστάσεις Q1 (Doxey items). Επιλέγουμε 5 classes με βάση BIC + interpretability (LMR-LRT p &lt; 0,01 για k=4 vs k=5· stable improvement σταματά μετά k=5). Τα 5 classes ταιριάζουν με τη Doxey τυπολογία: Δυσαρεστημένοι ↔ Antagonism, Επιφυλακτικοί ↔ Annoyance, Πραγματιστές ↔ Apathy/transitional, Υποστηρικτές ↔ Mild euphoria, Ένθερμοι ↔ Pure euphoria.</p>
- </div>
-
- <div class="grid lg:grid-cols-2 gap-8 mt-8">
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.17 · Latent Class Analysis — 10 προορισμοί</p>
- <h3 class="chart-headline">Μύκονος: διπολική κατανομή με 27,8% C5 + 21,2% C1 — πολωμένη κοινωνία</h3>
- <div id="chart_lca" style="height:520px"></div>
- <p class="chart-source">Σταθμισμένο μερίδιο πληθυσμού ανά εμπειρική class. Ταξινόμηση κατά δήλωση γενικής ικανοποίησης ικανοποίηση (αύξουσα).</p>
- </div>
-
- <div class="chart-card lg:col-span-2">
- <p class="chart-title">Σχήμα 6.17β · Τεταρτημόριο πόλωσης: Class 1 × Class 5</p>
- <h3 class="chart-headline">Μύκονος στο τεταρτημόριο «Διπολική κοινωνία» (21,2% × 27,8%)</h3>
- <div id="chart_q_lca" style="height:480px"></div>
- <p class="chart-source">Υψηλό Class 1 + χαμηλό Class 5 = προειδοποιητικό σήμα κοινωνικής φθοράς.</p>
- </div>
- </div>
-
- <!-- Qualitative quotes carousel -->
- <div class="mt-16">
- <p class="section-marker">Ποιοτική έρευνα · 23 αυτούσια αποσπάσματα</p>
- <h3 class="display text-3xl text-navy-700 mt-2 mb-6">Φωνές των στελεχών</h3>
- <div class="quotes-deck" data-carousel>
- <div class="quotes-rail" id="quotes_rail"></div>
- <div class="flex gap-2 mt-4 justify-end">
- <button data-carousel-prev class="theme-toggle" aria-label="Προηγούμενο">
- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
- </button>
- <button data-carousel-next class="theme-toggle" aria-label="Επόμενο">
- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
- </button>
- </div>
- </div>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 06 ENVIRONMENT ============== -->
- <section id="environment" class="py-12">
- <p class="section-marker">Ενότητα 06</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Περιβάλλον</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">100% εξαιρετική ποιότητα υδάτων κολύμβησης. Δομικά ευάλωτο νησιωτικό οικοσύστημα: άνυδρο, με υψηλή πίεση υδροφόρου τη θερινή αιχμή. Δήλος-Ρήνεια Natura 2000 — Δήμος Μυκόνου χωρίς Γαλάζια Σημαία.</p>
-
- <div class="grid lg:grid-cols-2 gap-8">
- <div class="chart-card">
- <p class="chart-title">Δήμος Μυκόνου · Χωρικά χαρακτηριστικά</p>
- <h3 class="chart-headline">Δήμος 105,2 km² · 16.921 κλίνες σε 10.704 κατοίκους — 1,58 κλίνες/κάτοικο (υψηλότερη Ευρώπη)</h3>
- <p class="text-sm text-ink-700 leading-relaxed mt-3">Η Μύκονος είναι ένα από τα μικρότερα νησιά των Κυκλάδων σε έκταση (105,2 km²), αλλά συγκεντρώνει υπερβολική ανάπτυξη τουριστικών υποδομών για το μέγεθος της. Η αναλογία κλινών ανά μόνιμο κάτοικο (1,58:1) είναι από τις υψηλότερες στην Ευρώπη και αντανακλά τη δομική υπερβολή. Λείπουν Eurostat NUTS2 EL42 land cover data σε επίπεδο νησιού — Cyclades aggregate δεν αντανακλά Μύκονο.</p>
- <p class="chart-source">Census 2021 (πληθυσμός) · ΕΛΣΤΑΤ STO12 T01 (κλίνες) · Επιφάνεια Δήμου Μυκόνου: επίσημα κτηματολογικά στοιχεία.</p>
- </div>
-
- <div class="chart-card">
- <p class="chart-title">Eurostat sdg_06_60 · Greek <span data-term="WEI+">WEI+</span> 2003–2023</p>
- <h3 class="chart-headline">Ανοδική πορεία — από 11,5 σε 12,5 σε δεκαετία</h3>
- <div id="chart_wei" style="height:380px"></div>
- <p class="chart-source">4ετής μέσος όρος. Ζώνες: πράσινο &lt;10 χαμηλή · κίτρινο 10-20 μέτρια · κόκκινο &gt;20 έντονη.</p>
- </div>
- </div>
-
- <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
- <div class="kpi-card">
- <div class="kpi-label">Έκταση Δήμου Μυκόνου</div>
- <div class="kpi-value"><span data-num="105.2" data-decimals="1">105,2</span><span class="kpi-unit">km²</span></div>
- <div class="kpi-delta flat">μικρό νησί</div>
- </div>
- <div class="kpi-card">
- <div class="kpi-label">Κλίνες ανά κάτοικο</div>
- <div class="kpi-value"><span data-num="1.58" data-decimals="2">1,58</span></div>
- <div class="kpi-delta down">υψηλότερη Ευρώπης</div>
- </div>
- <div class="kpi-card">
- <div class="kpi-label">Natura 2000 περιοχές</div>
- <div class="kpi-value"><span data-num="1">1</span></div>
- <div class="kpi-delta flat">Δήλος-Ρήνεια</div>
- </div>
- <div class="kpi-card">
- <div class="kpi-label">Γαλάζιες Σημαίες 2024</div>
- <div class="kpi-value"><span data-num="0">0</span></div>
- <div class="kpi-delta down">καμία πιστοποίηση</div>
- </div>
- </div>
-
- <div class="chart-card lg:col-span-2 mt-8">
- <p class="chart-title">Σχήμα 6.18 · Αντίληψη αρνητικών επιπτώσεων (% συμφωνώ + απόλυτα)</p>
- <h3 class="chart-headline">Μύκονος: 57% αναγνωρίζει STR επίδραση · διπολική κοινωνία 21% C1 vs 28% C5</h3>
- <div id="chart_env_heat" style="height:420px"></div>
- <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 5 ώριμων προορισμών.</p>
- </div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 07 STRATEGY ============== -->
- <section id="strategy" class="py-12">
- <p class="section-marker">Ενότητα 07</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Στρατηγική</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">SWOT ανάλυση, πέντε στρατηγικοί άξονες παρεμβάσεων, και επτά στοχευμένες προτάσεις πολιτικής βασισμένες στην πρωτογενή έρευνα κατοίκων.</p>
-
- <h3 class="font-serif text-2xl text-navy-700 mb-4">SWOT Ανάλυση</h3>
- <div class="swot-grid mb-12" id="swot_grid"></div>
-
- <h3 class="font-serif text-2xl text-navy-700 mb-4">Πέντε Στρατηγικοί Άξονες</h3>
- <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12" id="axes_grid"></div>
-
- <h3 class="font-serif text-2xl text-navy-700 mb-4">Επτά Στοχευμένες Προτάσεις από την Πρωτογενή Έρευνα</h3>
- <div class="space-y-3" id="proposals_list"></div>
- </section>
-
- <hr class="editorial">
-
- <!-- ============== 08 DATA ANNEX ============== -->
- <section id="data" class="py-12">
- <p class="section-marker">Ενότητα 08</p>
- <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Δεδομένα &amp; Παράρτημα</h2>
- <p class="text-lg text-ink-700 max-w-3xl mb-10">Πλήρης πρόσβαση στα 64 items της πρωτογενούς έρευνας, στους 19 πίνακες του κεφαλαίου, και στις 6 πηγές δευτερογενών δεδομένων.</p>
-
- <h3 class="font-serif text-2xl text-navy-700 mb-4">Πρωτογενής έρευνα — Όλα τα 64 items</h3>
- <div class="overflow-x-auto">
- <table class="editorial-table" id="mrb_table">
- <thead>
- <tr><th>Item</th><th>Μέσος (1–5)</th><th>% Συμφωνώ</th><th>n valid</th></tr>
- </thead>
- <tbody></tbody>
- </table>
- </div>
-
- <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">4 Μεθοδολογικά Κουτιά</h3>
- <div class="space-y-4" id="method_boxes"></div>
-
- <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγές δεδομένων</h3>
- <ul class="text-sm text-ink-700 space-y-2 list-disc list-inside" id="sources_list"></ul>
-
- <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγαίες παρουσιάσεις πρωτογενούς έρευνας</h3>
- <p class="text-sm text-ink-700 mb-6 max-w-3xl">Οι αυτούσιες παρουσιάσεις του φορέα δημοσκοπικής έρευνας με τα πλήρη ευρήματα ποσοτικής και ποιοτικής έρευνας στους κατοίκους και στα στελέχη του προορισμού. Διαθέσιμες ως PDF για μεταφόρτωση.</p>
- <div class="grid md:grid-cols-2 gap-4">
- <a href="assets/downloads/mykonos_quantitative.pdf" target="_blank" rel="noopener"
- class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
- <div class="flex items-start gap-4">
- <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
- </div>
- <div class="flex-1">
- <p class="section-marker text-accent-500">PDF · Ποσοτική έρευνα</p>
- <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Πρωτογενούς Ποσοτικής Έρευνας</p>
- <p class="text-xs text-ink-500 mt-1">Δήμος Μυκόνου · Απρίλιος 2026</p>
- <p class="text-xs text-ink-500 mt-2 numeric">68 σελίδες · 1,7 MB</p>
- </div>
- </div>
- </a>
-
- <a href="assets/downloads/mykonos_qualitative.pdf" target="_blank" rel="noopener"
- class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
- <div class="flex items-start gap-4">
- <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
- </div>
- <div class="flex-1">
- <p class="section-marker text-accent-500">PDF · Ποιοτική έρευνα</p>
- <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Ποιοτικής Έρευνας σε Στελέχη</p>
- <p class="text-xs text-ink-500 mt-1">Συνεντεύξεις σε στελέχη του προορισμού · Μάιος 2026</p>
- <p class="text-xs text-ink-500 mt-2 numeric">62 σελίδες · 1,1 MB</p>
- </div>
- </div>
- </a>
- </div>
- </section>
-
- </main>
-
- <!-- Footer -->
- <footer class="bg-navy-900 text-white/80 py-12 mt-12">
- <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
- <div>
- <p class="section-marker text-accent-300">Επόμενος προορισμός</p>
- <p class="font-serif text-xl text-white mt-2">Κέρκυρα →</p>
- <p class="text-xs text-white/50 mt-1">Σύντομα διαθέσιμο</p>
- </div>
- <div>
- <p class="section-marker text-accent-300">Λήψεις</p>
- <ul class="space-y-1.5 mt-2">
- <li><a href="assets/downloads/mykonos_quantitative.pdf" target="_blank" class="hover:text-accent-300">Ποσοτική έρευνα PDF (1,7 MB)</a></li>
- <li><a href="assets/downloads/mykonos_qualitative.pdf" target="_blank" class="hover:text-accent-300">Ποιοτική έρευνα PDF (1,1 MB)</a></li>
- <li><a href="assets/data/mykonos.json" class="hover:text-accent-300">Δεδομένα JSON (84 KB)</a></li>
- </ul>
- </div>
- <div>
- <p class="section-marker text-accent-300">Πιστοποίηση πηγών</p>
- <p class="text-xs text-white/60 mt-2 leading-relaxed">Όλα τα στατιστικά δεδομένα από επίσημες πηγές (ΕΛΣΤΑΤ, Eurostat, ΤτΕ, INSETE). Πρωτογενής έρευνα κατοίκων από εξειδικευμένο φορέα δημοσκοπικής έρευνας.</p>
- </div>
- </div>
- <div class="container mx-auto px-6 mt-10 pt-6 border-t border-white/10 text-xs text-white/40 flex justify-between">
- <p>Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035 · ΠΕ2</p>
- <p class="numeric">v1.0 · 2026-05-15</p>
- </div>
- </footer>
-
- <script src="assets/js/app.js?v=17"></script>
- <script src="assets/js/charts.js?v=23"></script>
- <script src="assets/data/mykonos-data.js?v=18"></script>
- <script src="assets/js/mykonos-render.js?v=18"></script>
+  </main>
 </body>
 </html>
