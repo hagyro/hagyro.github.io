@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Εκκίνηση & Απολογισμός</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="wrap">
+ <div class="card" id="form">
+  <span class="tag" id="phaseTag">Εκκίνηση</span>
+  <h1>Εκκίνηση & Απολογισμός</h1>
+  <p class="sub">Δύο σύντομες ερωτήσεις.</p>
+
+  <div class="q">α) Πόσες ώρες/εβδομάδα σε εργασίες ρουτίνας;</div>
+  <div id="qa">
+   <button class="opt" data-q="a" data-v="0–2">0–2</button>
+   <button class="opt" data-q="a" data-v="3–5">3–5</button>
+   <button class="opt" data-q="a" data-v="6–10">6–10</button>
+   <button class="opt" data-q="a" data-v="10+">10+</button>
+  </div>
+
+  <div class="q">β) Έχετε χρησιμοποιήσει AI στη δουλειά σας;</div>
+  <div id="qb">
+   <button class="opt" data-q="b" data-v="Τακτικά">Τακτικά</button>
+   <button class="opt" data-q="b" data-v="Λίγες φορές">Λίγες φορές</button>
+   <button class="opt" data-q="b" data-v="Ποτέ">Ποτέ</button>
+  </div>
+
+  <button class="send" id="send" disabled>Υποβολή</button>
+  <div class="err" id="err"></div>
+ </div>
+
+ <div class="card done" id="thanks" style="display:none">
+  <div class="check">✓</div>
+  <h1>Ευχαριστούμε!</h1>
+  <p class="sub">Η απάντησή σας καταγράφηκε.</p>
+ </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+const phase = new URLSearchParams(location.search).get("phase") || "start";
+const SLOT = "qrPollStart_" + phase;
+document.getElementById("phaseTag").textContent =
+  phase === "end" ? "Απολογισμός (τέλος)" : "Εκκίνηση (αρχή)";
+
+const answers = {a:null, b:null};
+function wire(groupId){
+  document.querySelectorAll("#"+groupId+" .opt").forEach(btn=>{
+    btn.onclick=()=>{
+      document.querySelectorAll("#"+groupId+" .opt").forEach(b=>b.classList.remove("sel"));
+      btn.classList.add("sel");
+      answers[btn.dataset.q]=btn.dataset.v;
+      document.getElementById("send").disabled = !(answers.a && answers.b);
+    };
+  });
+}
+wire("qa"); wire("qb");
+
+if(alreadyVoted(SLOT)) showThanks();
+function showThanks(){
+  document.getElementById("form").style.display="none";
+  document.getElementById("thanks").style.display="block";
+}
+
+document.getElementById("send").onclick = async ()=>{
+  const btn=document.getElementById("send"); btn.disabled=true;
+  const {error} = await castVote(SLOT, {hours:answers.a, ai:answers.b, phase});
+  if(error){ document.getElementById("err").textContent="Σφάλμα — δοκιμάστε ξανά."; btn.disabled=false; return; }
+  markVoted(SLOT); showThanks();
+};
+</script>
+</body>
+</html>

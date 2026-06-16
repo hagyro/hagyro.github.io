@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Δ7 — Το χάρτινο αρχείο</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="wrap">
+ <div class="card" id="form">
+  <span class="tag">Δ7</span>
+  <h1>Το χάρτινο αρχείο</h1>
+  <div class="q">Πόσα λεπτά για να βρείτε ένα έγγραφο 2ετίας;</div>
+  <div id="q">
+   <button class="opt" data-v="<1">&lt;1</button>
+   <button class="opt" data-v="1–5">1–5</button>
+   <button class="opt" data-v="5–15">5–15</button>
+   <button class="opt" data-v="15+">15+</button>
+   <button class="opt" data-v="Δεν είμαι σίγουρος ότι θα το βρω">Δεν είμαι σίγουρος ότι θα το βρω</button>
+  </div>
+  <button class="send" id="send" disabled>Υποβολή</button>
+  <div class="err" id="err"></div>
+ </div>
+ <div class="card done" id="thanks" style="display:none">
+  <div class="check">✓</div><h1>Ευχαριστούμε!</h1>
+  <p class="sub">Η απάντησή σας καταγράφηκε.</p>
+ </div>
+</div>
+<script src="config.js"></script>
+<script>
+const SLOT="qrPollL7"; let choice=null;
+document.querySelectorAll("#q .opt").forEach(b=>{
+  b.onclick=()=>{ document.querySelectorAll("#q .opt").forEach(x=>x.classList.remove("sel"));
+    b.classList.add("sel"); choice=b.dataset.v; document.getElementById("send").disabled=false; };
+});
+if(alreadyVoted(SLOT)) showThanks();
+function showThanks(){ document.getElementById("form").style.display="none";
+  document.getElementById("thanks").style.display="block"; }
+document.getElementById("send").onclick=async()=>{
+  const btn=document.getElementById("send"); btn.disabled=true;
+  const {error}=await castVote(SLOT,{minutes:choice});
+  if(error){ document.getElementById("err").textContent="Σφάλμα — δοκιμάστε ξανά."; btn.disabled=false; return; }
+  markVoted(SLOT); showThanks();
+};
+</script>
+</body>
+</html>

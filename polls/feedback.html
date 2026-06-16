@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Αξιολόγηση Διάλεξης</title>
+<link rel="stylesheet" href="style.css">
+<style>
+select{width:100%;background:#222634;color:#f2f3f7;border:1px solid #2a2e3a;
+  border-radius:12px;padding:15px 16px;font-size:16px;font-family:inherit}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="wrap">
+ <div class="card" id="form">
+  <span class="tag">Αξιολόγηση</span>
+  <h1>Πώς πήγε σήμερα;</h1>
+  <p class="sub">30 δευτερόλεπτα — μας βοηθάει να βελτιώνουμε κάθε επόμενη διάλεξη.</p>
+
+  <div class="q">Ποια διάλεξη;</div>
+  <select id="lec">
+   <option value="">— επιλέξτε —</option>
+   <option value="1">Διάλεξη 1 — Καλωσόρισμα στο Μέλλον</option>
+   <option value="2">Διάλεξη 2 — Πώς Μιλάμε στο AI</option>
+   <option value="3">Διάλεξη 3 — Το Οπλοστάσιο</option>
+   <option value="4">Διάλεξη 4 — Δασμολογική Κατάταξη</option>
+   <option value="5">Διάλεξη 5 — Πρότυπα & Compliance</option>
+   <option value="6">Διάλεξη 6 — e-Customs</option>
+   <option value="7">Διάλεξη 7 — Από το Χαρτί στο Cloud</option>
+   <option value="8">Διάλεξη 8 — Αυτοματισμοί Γραφείου</option>
+   <option value="9">Διάλεξη 9 — Η Εργαλειοθήκη</option>
+   <option value="10">Διάλεξη 10 — Grand Finale</option>
+  </select>
+
+  <div class="q">Πόσο χρήσιμη ήταν για τη δουλειά σας;</div>
+  <div id="qu">
+   <button class="opt" data-v="Πολύ">Πολύ</button>
+   <button class="opt" data-v="Αρκετά">Αρκετά</button>
+   <button class="opt" data-v="Λίγο">Λίγο</button>
+  </div>
+
+  <div class="q">Τι θα θέλατε περισσότερο; <span class="hint">(προαιρετικό)</span></div>
+  <textarea id="wish" placeholder="π.χ. περισσότερα παραδείγματα κατάταξης, πιο αργό ρυθμό στο hands-on…"></textarea>
+
+  <button class="send" id="send" disabled>Υποβολή</button>
+  <div class="err" id="err"></div>
+ </div>
+
+ <div class="card done" id="thanks" style="display:none">
+  <div class="check">✓</div>
+  <h1>Ευχαριστούμε!</h1>
+  <p class="sub">Η αξιολόγησή σας καταγράφηκε.</p>
+ </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+const SLOT = "qrFeedback";
+let useful = null;
+const lecSel = document.getElementById("lec");
+const send = document.getElementById("send");
+
+// Αν έρθει με ?l=4 από το QR της διάλεξης, προεπιλέγεται η διάλεξη.
+const pre = new URLSearchParams(location.search).get("l");
+if (pre) lecSel.value = pre;
+
+function refresh(){ send.disabled = !(lecSel.value && useful); }
+lecSel.onchange = refresh;
+
+document.querySelectorAll("#qu .opt").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll("#qu .opt").forEach(x=>x.classList.remove("sel"));
+    b.classList.add("sel"); useful=b.dataset.v; refresh();
+  };
+});
+
+function showThanks(){
+  document.getElementById("form").style.display="none";
+  document.getElementById("thanks").style.display="block";
+}
+
+send.onclick = async ()=>{
+  const lecture = lecSel.value;
+  const guard = "voted_qrFeedback_" + lecture;
+  if (localStorage.getItem(guard) === "1"){
+    document.getElementById("err").textContent="Έχετε ήδη στείλει αξιολόγηση γι' αυτή τη διάλεξη.";
+    return;
+  }
+  send.disabled = true;
+  const wish = document.getElementById("wish").value.trim();
+  const {error} = await castVote(SLOT, {lecture: Number(lecture), useful, wish});
+  if (error){ document.getElementById("err").textContent="Σφάλμα — δοκιμάστε ξανά."; send.disabled=false; return; }
+  localStorage.setItem(guard, "1");
+  showThanks();
+};
+</script>
+</body>
+</html>

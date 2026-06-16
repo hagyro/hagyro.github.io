@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Δ9 — Από Δευτέρα</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="wrap">
+ <div class="card" id="form">
+  <span class="tag">Δ9</span>
+  <h1>Από Δευτέρα</h1>
+  <div class="q">Ποιο εργαλείο του Toolkit θα χρησιμοποιήσετε πρώτο;</div>
+  <div id="q">
+   <button class="opt" data-v="Βοηθός Εκτελωνιστή">Βοηθός Εκτελωνιστή</button>
+   <button class="opt" data-v="Prompt Library">Prompt Library</button>
+   <button class="opt" data-v="TARIC workflow">TARIC workflow</button>
+   <button class="opt" data-v="OCR & cloud">OCR &amp; cloud</button>
+   <button class="opt" data-v="Email templates">Email templates</button>
+  </div>
+  <button class="send" id="send" disabled>Υποβολή</button>
+  <div class="err" id="err"></div>
+ </div>
+ <div class="card done" id="thanks" style="display:none">
+  <div class="check">✓</div><h1>Ευχαριστούμε!</h1>
+  <p class="sub">Η απάντησή σας καταγράφηκε.</p>
+ </div>
+</div>
+<script src="config.js"></script>
+<script>
+const SLOT="qrPollL9"; let choice=null;
+document.querySelectorAll("#q .opt").forEach(b=>{
+  b.onclick=()=>{ document.querySelectorAll("#q .opt").forEach(x=>x.classList.remove("sel"));
+    b.classList.add("sel"); choice=b.dataset.v; document.getElementById("send").disabled=false; };
+});
+if(alreadyVoted(SLOT)) showThanks();
+function showThanks(){ document.getElementById("form").style.display="none";
+  document.getElementById("thanks").style.display="block"; }
+document.getElementById("send").onclick=async()=>{
+  const btn=document.getElementById("send"); btn.disabled=true;
+  const {error}=await castVote(SLOT,{tool:choice});
+  if(error){ document.getElementById("err").textContent="Σφάλμα — δοκιμάστε ξανά."; btn.disabled=false; return; }
+  markVoted(SLOT); showThanks();
+};
+</script>
+</body>
+</html>

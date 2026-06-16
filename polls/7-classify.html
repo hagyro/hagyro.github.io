@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Δ4 — Κατατάξτε</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="wrap">
+ <div class="card" id="form">
+  <span class="tag">Δ4</span>
+  <h1>Κατατάξτε</h1>
+  <p class="sub">Επιλέξτε τον σωστό δασμολογικό κωδικό για κάθε προϊόν.</p>
+
+  <div class="q">α) Smartwatch</div>
+  <div class="pair" id="qa">
+   <button class="opt" data-q="a" data-v="κεφ. 85">κεφ. 85</button>
+   <button class="opt" data-q="a" data-v="κεφ. 91">κεφ. 91</button>
+  </div>
+
+  <div class="q">β) Drone με κάμερα</div>
+  <div class="pair" id="qb">
+   <button class="opt" data-q="b" data-v="8525">8525</button>
+   <button class="opt" data-q="b" data-v="8806">8806</button>
+  </div>
+
+  <div class="q">γ) Παιχνίδι-laptop</div>
+  <div class="pair" id="qc">
+   <button class="opt" data-q="c" data-v="8471">8471</button>
+   <button class="opt" data-q="c" data-v="9503">9503</button>
+  </div>
+
+  <button class="send" id="send" disabled>Υποβολή</button>
+  <div class="err" id="err"></div>
+ </div>
+ <div class="card done" id="thanks" style="display:none">
+  <div class="check">✓</div><h1>Ευχαριστούμε!</h1>
+  <p class="sub">Η απάντησή σας καταγράφηκε.</p>
+ </div>
+</div>
+<script src="config.js"></script>
+<script>
+const SLOT="qrPollL4"; const ans={a:null,b:null,c:null};
+["qa","qb","qc"].forEach(g=>{
+  document.querySelectorAll("#"+g+" .opt").forEach(btn=>{
+    btn.onclick=()=>{ document.querySelectorAll("#"+g+" .opt").forEach(x=>x.classList.remove("sel"));
+      btn.classList.add("sel"); ans[btn.dataset.q]=btn.dataset.v;
+      document.getElementById("send").disabled=!(ans.a&&ans.b&&ans.c); };
+  });
+});
+if(alreadyVoted(SLOT)) showThanks();
+function showThanks(){ document.getElementById("form").style.display="none";
+  document.getElementById("thanks").style.display="block"; }
+document.getElementById("send").onclick=async()=>{
+  const btn=document.getElementById("send"); btn.disabled=true;
+  const {error}=await castVote(SLOT,{smartwatch:ans.a, drone:ans.b, toy_laptop:ans.c});
+  if(error){ document.getElementById("err").textContent="Σφάλμα — δοκιμάστε ξανά."; btn.disabled=false; return; }
+  markVoted(SLOT); showThanks();
+};
+</script>
+</body>
+</html>
