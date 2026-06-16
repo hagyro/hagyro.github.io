@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customs Broker AI Toolkit — Εκτελωνιστής</title>
+<style>
+:root{--bg:#0f1117;--card:#1a1d27;--ink:#f2f3f7;--muted:#9aa0ad;--navy:#2C5F8A;
+  --demo:#C2620A;--hands:#2E7D4F;--safety:#B3362B;--gold:#B8860B;--line:#2a2e3a;--code:#11141c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:20px;line-height:1.5}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:25px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:18px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px;margin-bottom:16px}
+.sec h2{font-size:19px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+.sec .desc{color:var(--muted);font-size:14px;margin-bottom:12px}
+.bar{height:4px;border-radius:4px;margin:-2px 0 12px}
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:13px 14px;margin:0;
+  white-space:pre-wrap;word-break:break-word;font-family:Menlo,Consolas,monospace;font-size:13px;color:#dfe3ea}
+.copy{margin-top:10px;background:var(--navy);color:#fff;border:0;border-radius:9px;padding:10px 16px;
+  font-size:14px;font-weight:600;cursor:pointer}
+.copy.done{background:var(--hands)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+a.tile{display:block;text-decoration:none;color:var(--ink);background:#222634;border:1px solid var(--line);
+  border-radius:11px;padding:12px 14px;font-size:14.5px;transition:.15s}
+a.tile:hover{border-color:var(--navy);background:#262b3a}
+a.tile .k{font-size:11px;color:var(--muted);display:block}
+a.big{display:inline-block;background:var(--hands);color:#fff;text-decoration:none;border-radius:10px;
+  padding:12px 20px;font-weight:600;font-size:15px}
+ol,ul{margin:6px 0;padding-left:20px}
+li{margin:3px 0}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.steps{grid-template-columns:1fr}}
+.warn{background:var(--safety);color:#fff;border-radius:10px;padding:11px 14px;font-size:13.5px;margin-top:10px}
+.tip{background:rgba(46,125,79,.14);border:1px solid var(--hands);border-radius:10px;padding:11px 14px;font-size:13.5px;margin-top:10px}
+footer{color:var(--muted);font-size:13px;margin-top:24px;border-top:1px solid var(--line);padding-top:14px}
+code{background:#222634;padding:1px 5px;border-radius:5px;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🧰 Customs Broker AI Toolkit</h1>
+<div class="sub">Η εργαλειοθήκη του σύγχρονου εκτελωνιστή. Όλα ψηφιακά, για πάντα δικά σου.</div>
+
+<!-- ΒΟΗΘΟΣ -->
+<div class="sec">
+  <div class="bar" style="background:var(--navy)"></div>
+  <h2>🤖 Ο «Βοηθός Εκτελωνιστή»</h2>
+  <div class="desc">Ένας προ-ρυθμισμένος AI βοηθός που ξέρει την ελληνική &amp; ενωσιακή νομοθεσία και τους κανόνες ασφαλούς χρήσης. Ρυθμίζεται <b>μία φορά</b> — δουλεύει για πάντα.</div>
+
+  <b>1) Αντίγραψε τις οδηγίες (system prompt):</b>
+  <pre id="sysp">Είσαι εξειδικευμένος βοηθός εκτελωνιστή στην Ελλάδα. Γνωρίζεις:
+- τον Ενωσιακό Τελωνειακό Κώδικα (Καν. 952/2013),
+- τον Εθνικό Τελωνειακό Κώδικα (Ν. 5222/2025),
+- το Κοινό Δασμολόγιο και τη χρήση του TARIC.
+
+Κανόνες συμπεριφοράς:
+1. Απαντάς πάντα στα ελληνικά, με επαγγελματική ορολογία.
+2. Αν δεν είσαι βέβαιος, γράφεις «ΧΡΕΙΑΖΕΤΑΙ ΕΠΑΛΗΘΕΥΣΗ» και λες πού θα
+   γίνει ο έλεγχος (TARIC, Access2Markets, ΑΑΔΕ).
+3. Δεν επινοείς ποτέ αριθμούς κανονισμών ή άρθρα νόμων.
+4. Σε κατατάξεις: δίνεις πάντα και εναλλακτικούς κωδικούς με σκεπτικό.
+5. Υπενθυμίζεις ότι η τελική ευθύνη ανήκει στον εκτελωνιστή.
+6. Απαντάς συνοπτικά: πρώτα το συμπέρασμα σε 2-3 προτάσεις, μετά οι
+   λεπτομέρειες σε bullets. Όχι περιττές εισαγωγές και ευγένειες.</pre>
+  <button class="copy" id="cpsys">📋 Αντιγραφή system prompt</button>
+
+  <div class="steps" style="margin-top:14px">
+    <div>
+      <b>2) Φτιάξε τον βοηθό</b>
+      <div style="color:var(--muted);font-size:13px;margin:4px 0">Claude (Projects):</div>
+      <ol><li><code>claude.ai</code> → Projects → New Project</li>
+        <li>Όνομα: «Βοηθός Εκτελωνιστή»</li>
+        <li>Επικόλλησε τις οδηγίες στο «Project instructions»</li></ol>
+      <div style="color:var(--muted);font-size:13px;margin:4px 0">ChatGPT (Custom GPT):</div>
+      <ol><li><code>chatgpt.com</code> → GPTs → Create</li>
+        <li>Επικόλλησε τις οδηγίες στο «Instructions»</li></ol>
+    </div>
+    <div>
+      <b>3) Ανέβασε τη «βιβλιοθήκη» (knowledge)</b>
+      <ul><li>Ν. 5222/2025 — Εθνικός Τελωνειακός Κώδικας</li>
+        <li>Βασικά άρθρα Καν. 952/2013</li>
+        <li>Δικά σου: checklists, πρότυπα email, συχνές διαδικασίες</li></ul>
+      <b>4) Τέσταρε με 3 ερωτήσεις</b>
+      <ul><li>«Τι έγγραφα χρειάζομαι για εισαγωγή από τρίτη χώρα;»</li>
+        <li>«Κατάταξε: ηλεκτρική σκούπα-ρομπότ από Κίνα»</li>
+        <li>«Ποιο άρθρο του Ν. 5222/2025 αφορά κυρώσεις;»</li></ul>
+    </div>
+  </div>
+  <div class="warn">⚠️ ΠΟΤΕ μην ανεβάσεις φακέλους πελατών / διασαφήσεις / στοιχεία (ΑΦΜ, ονόματα). Η βιβλιοθήκη είναι για <b>γνώση</b>, όχι για <b>δεδομένα πελατών</b>.</div>
+  <div class="tip">💡 Ο βοηθός βελτιώνεται όσο τον δουλεύεις. Δεν σου αρέσει κάτι; Πρόσθεσε κανόνα στις οδηγίες.</div>
+</div>
+
+<!-- PROMPT LIBRARY -->
+<div class="sec">
+  <div class="bar" style="background:var(--demo)"></div>
+  <h2>📚 Prompt Library</h2>
+  <div class="desc">50+ δοκιμασμένα prompts σε 5 κατηγορίες, με αναζήτηση &amp; κουμπιά αντιγραφής.</div>
+  <a class="big" href="../prompts/">Άνοιξε το Prompt Library →</a>
+</div>
+
+<!-- CHEAT SHEETS -->
+<div class="sec">
+  <div class="bar" style="background:var(--gold)"></div>
+  <h2>📄 Cheat Sheets</h2>
+  <div class="desc">Οδηγοί μίας σελίδας ανά εργαλείο — για γρήγορη ματιά ή εκτύπωση.</div>
+  <div class="grid">
+    <a class="tile" href="cs1_rctfc.pdf"><span class="k">Διάλεξη 2</span>R-C-T-F-C (Prompts)</a>
+    <a class="tile" href="cs2_classification.pdf"><span class="k">Διάλεξη 4</span>Δασμολογική Κατάταξη</a>
+    <a class="tile" href="cs3_taric.pdf"><span class="k">Διάλεξη 4</span>TARIC Consultation</a>
+    <a class="tile" href="cs4_access2markets.pdf"><span class="k">Διάλεξη 5</span>Access2Markets &amp; CBAM</a>
+    <a class="tile" href="cs5_ocr.pdf"><span class="k">Διάλεξη 7</span>OCR &amp; AI Vision</a>
+    <a class="tile" href="cs6_cloud.pdf"><span class="k">Διάλεξη 7</span>Cloud &amp; Ονοματολογία</a>
+    <a class="tile" href="cs7_security.pdf"><span class="k">Διάλεξη 8</span>Κυβερνοασφάλεια</a>
+    <a class="tile" href="cs8_signature.pdf"><span class="k">Διάλεξη 8</span>Ψηφιακή Υπογραφή</a>
+  </div>
+</div>
+
+<!-- CHECKLISTS -->
+<div class="sec">
+  <div class="bar" style="background:var(--hands)"></div>
+  <h2>✅ Workflow Checklists</h2>
+  <div class="desc">Λίστες ελέγχου ανά διαδικασία — κανένα «ξέχασα».</div>
+  <div class="grid">
+    <a class="tile" href="chk1_newcase.pdf"><span class="k">Intake</span>Νέα Υπόθεση</a>
+    <a class="tile" href="chk2_import.pdf"><span class="k">End-to-End</span>Εισαγωγή</a>
+    <a class="tile" href="chk3_export.pdf"><span class="k">End-to-End</span>Εξαγωγή</a>
+    <a class="tile" href="chk4_transit.pdf"><span class="k">NCTS</span>Διαμετακόμιση T1/T2</a>
+    <a class="tile" href="chk5_cbam.pdf"><span class="k">2026</span>CBAM</a>
+  </div>
+</div>
+
+<!-- ΕΠΙΣΗΜΑ ΕΡΓΑΛΕΙΑ -->
+<div class="sec">
+  <div class="bar" style="background:var(--safety)"></div>
+  <h2>🔗 Επίσημες Πηγές (πάντα ο τελευταίος λόγος)</h2>
+  <div class="grid">
+    <a class="tile" href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel="noopener"><span class="k">EU</span>TARIC Consultation</a>
+    <a class="tile" href="https://trade.ec.europa.eu/access-to-markets/el/home" target="_blank" rel="noopener"><span class="k">EU</span>Access2Markets</a>
+    <a class="tile" href="https://www.aade.gr/teloneia/ilektronikes-synallages-e-customs" target="_blank" rel="noopener"><span class="k">ΑΑΔΕ</span>e-Customs</a>
+    <a class="tile" href="https://www.gov.gr/" target="_blank" rel="noopener"><span class="k">gov.gr</span>Ψηφιακή Υπογραφή</a>
+  </div>
+</div>
+
+<footer>
+  Customs Broker AI Toolkit · Δρ. Χαράλαμπος Αγκυρόπουλος · v1 · 2026<br>
+  Νέες Τεχνολογίες &amp; AI για τον Εκτελωνιστή του Αύριο — Σώμα Εκτελωνιστών Ελλάδος
+</footer>
+</div>
+
+<script>
+function copyBtn(btnId, preId){
+  const btn=document.getElementById(btnId), pre=document.getElementById(preId);
+  btn.onclick=async()=>{
+    try{await navigator.clipboard.writeText(pre.textContent);}
+    catch(e){const r=document.createRange();r.selectNode(pre);getSelection().removeAllRanges();getSelection().addRange(r);document.execCommand("copy");getSelection().removeAllRanges();}
+    btn.textContent="✓ Αντιγράφηκε"; btn.classList.add("done");
+    setTimeout(()=>{btn.textContent="📋 Αντιγραφή system prompt";btn.classList.remove("done");},1600);
+  };
+}
+copyBtn("cpsys","sysp");
+</script>
+</body>
+</html>
