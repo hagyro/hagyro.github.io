@@ -1,97 +1,769 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Υπό ενημέρωση · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
-  <meta name="robots" content="noindex">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy-900:#0d2440; --navy-700:#1f4e79; --navy-500:#3a73a8; --navy-50:#eef2f8;
-      --accent-500:#e07b00; --accent-300:#ffa951;
-      --ink-700:#2d3441; --ink-500:#5b6473;
-      --rule:rgba(13,36,64,0.10);
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family:'Inter', system-ui, sans-serif;
-      color:var(--ink-700);
-      background:linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 55%, var(--navy-500) 100%);
-      min-height:100vh;
-      display:flex; align-items:center; justify-content:center;
-      padding:24px;
-      position:relative; overflow:hidden;
-    }
-    /* subtle grid backdrop */
-    body::before {
-      content:''; position:absolute; inset:0;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size:60px 60px;
-      pointer-events:none;
-    }
-    .card {
-      position:relative; z-index:1;
-      background:#fff;
-      max-width:560px; width:100%;
-      padding:56px 48px;
-      border-radius:4px;
-      box-shadow:0 30px 80px -20px rgba(0,0,0,0.45);
-      border-top:4px solid var(--accent-500);
-    }
-    .eyebrow {
-      font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
-      color:var(--accent-500); font-weight:600;
-      display:flex; align-items:center; gap:10px; margin-bottom:22px;
-    }
-    .eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
-    h1 {
-      font-family:'Fraunces', Georgia, serif;
-      font-size:34px; line-height:1.18; color:var(--navy-700);
-      font-weight:600; margin-bottom:18px;
-    }
-    h1 em { color:var(--accent-500); font-style:italic; }
-    p { font-size:15.5px; line-height:1.65; color:var(--ink-700); margin-bottom:16px; }
-    p.muted { color:var(--ink-500); font-size:14px; }
-    .status {
-      display:inline-flex; align-items:center; gap:9px;
-      background:var(--navy-50); border:1px solid var(--rule);
-      padding:9px 16px; border-radius:3px; margin:8px 0 26px;
-      font-size:13.5px; font-weight:500; color:var(--navy-700);
-    }
-    .dot {
-      width:9px; height:9px; border-radius:50%;
-      background:var(--accent-500);
-      box-shadow:0 0 0 0 rgba(224,123,0,0.5);
-      animation:pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%   { box-shadow:0 0 0 0 rgba(224,123,0,0.45); }
-      70%  { box-shadow:0 0 0 9px rgba(224,123,0,0); }
-      100% { box-shadow:0 0 0 0 rgba(224,123,0,0); }
-    }
-    .footer {
-      margin-top:30px; padding-top:22px; border-top:1px solid var(--rule);
-      font-size:12px; color:var(--ink-500); line-height:1.6;
-    }
-    .footer strong { color:var(--ink-700); font-weight:600; }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Ναυπακτία · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+ <meta name="description" content="Πλήρες προφίλ τουριστικού προορισμού Ναυπακτίας: αναπτυσσόμενος Δυτικοελλαδικός προορισμός με ιστορικό αφήγημα «Λεπάντο» (Ναυμαχία 1571) και μοναδικό STEWARD Κριτική Εκ των Έσω direction (δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» +15,1 ποσοστιαίες μονάδες) — πρωτότυπη θεωρητική συνεισφορά της Λευκής Βίβλου.">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+ <link rel="stylesheet" href="assets/css/custom.css?v=14">
+
+ <script>
+ tailwind.config = { theme: { extend: {
+ colors: {
+ navy: { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
+ accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
+ ink: { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
+ },
+ fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
+ } } }
+ </script>
 </head>
 <body>
-  <main class="card">
-    <p class="eyebrow">Παραδοτέο ΠΕ2 · Ψηφιακό συνοδευτικό</p>
-    <h1>Το ψηφιακό συνοδευτικό βρίσκεται <em>προσωρινά υπό ενημέρωση</em>.</h1>
-    <div class="status"><span class="dot"></span> Προσωρινά μη διαθέσιμο</div>
-    <p>Πραγματοποιούμε ενημέρωση του ψηφιακού συνοδευτικού της μελέτης. Η πρόσβαση θα αποκατασταθεί σύντομα.</p>
-    <p class="muted">Για επείγουσα ανάγκη ή πρόσβαση στο περιεχόμενο, παρακαλούμε επικοινωνήστε με την ομάδα έργου.</p>
-    <div class="footer">
-      <strong>Λευκή Βίβλος Τουριστικού Μετασχηματισμού &amp; Ανάπτυξης 2030–2035</strong><br>
-      Πακέτο Εργασίας 2 · Μελέτες δέκα τουριστικών προορισμών
+
+ <!-- Top utility bar -->
+ <div class="bg-navy-900 text-white text-xs">
+ <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+ <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
+ <div class="flex items-center gap-4">
+ <a href="methodology.html" class="text-white/70 hover:text-white">Μεθοδολογία</a>
+ <a href="data_sources.html" class="text-white/70 hover:text-white">Πηγές</a>
+ <a href="comparative.html" class="text-white/70 hover:text-white">Συγκριτικά</a>
+ <a href="glossary.html" class="text-white/70 hover:text-white">Γλωσσάρι</a>
+ <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
+ </div>
+ </div>
+ </div>
+
+ <!-- HERO — Ναυπακτία: μοναδικό STEWARD Κριτική Εκ των Έσω direction, Λεπάντο narrative -->
+ <header class="relative h-[70vh] min-h-[520px] bg-navy-700 overflow-hidden flex items-end">
+ <!-- Background photo: Ενετικό Λιμάνι Ναυπάκτου - σκηνικό Ναυμαχίας 1571 -->
+ <img src="assets/images/nafpaktia_hero.jpg" alt="Ενετικό λιμάνι Ναυπάκτου — σκηνικό της Ναυμαχίας του Λεπάντο 1571" class="absolute inset-0 w-full h-full object-cover">
+ <div class="absolute inset-0 bg-gradient-to-b from-navy-900/30 via-navy-900/40 to-navy-900/95"></div>
+ <svg class="absolute inset-0 w-full h-full opacity-[0.06]" preserveAspectRatio="xMidYMid slice">
+ <defs>
+ <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+ <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
+ </pattern>
+ </defs>
+ <rect width="100%" height="100%" fill="url(#grid)"/>
+ </svg>
+
+ <div class="container mx-auto px-6 pb-12 relative z-10 text-white">
+ <p class="section-marker text-accent-300">Κεφάλαιο 13 · Προορισμός με περιθώριο ανάπτυξης · «Λεπάντο»</p>
+ <h1 class="display text-7xl md:text-8xl mt-3 leading-none">Ναυπακτία</h1>
+ <p class="text-xl mt-3 text-navy-50/85 max-w-2xl">Δυτική Ελλάδα · ΠΕ Αιτωλοακαρνανίας (NUTS3 EL631) · Δ. Ναυπακτίας · Πληθυσμός Δήμου 25.065 (Απογραφή 2021) · ΠΕ Αιτωλοακαρνανίας 192.345</p>
+
+ <p class="absolute bottom-2 right-4 text-[10px] text-white/40">Φωτογραφία: Λιμάνι Ναυπάκτου με Βενετσιάνικα Τείχη</p>
+
+ <!-- Quick stats — Ναυπακτία signature: STEWARD Κριτική Εκ των Έσω direction (μοναδικό POST-D13) + Recovery 2η υψηλότερη + 13 Natura -->
+ <div class="mt-10 flex flex-wrap gap-2">
+ <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
+ <span class="block text-[11px] uppercase tracking-wider text-accent-300">Κριτική Εκ των Έσω · STEWARD μοναδικός</span>
+ <span class="font-serif text-lg numeric">δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» +15,1 ποσοστιαίες μονάδες</span>
+ </span>
+ <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
+ <span class="block text-[11px] uppercase tracking-wider text-accent-300">Ανάκαμψη 2024/2019 · 2η υψηλότερη</span>
+ <span class="font-serif text-lg numeric">1,618</span>
+ </span>
+ <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
+ <span class="block text-[11px] uppercase tracking-wider text-white/60">Natura 2000 · sites ΠΕ</span>
+ <span class="font-serif text-lg numeric">13</span>
+ </span>
+ <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
+ <span class="block text-[11px] uppercase tracking-wider text-white/60">LCA C5 «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>)</span>
+ <span class="font-serif text-lg numeric">39,6%</span>
+ </span>
+ </div>
+ </div>
+ </header>
+
+ <!-- STICKY NAV -->
+ <nav class="sticky top-0 bg-white/95 backdrop-blur border-b border-[var(--rule)] z-40 shadow-sm">
+ <div class="container mx-auto px-6 overflow-x-auto">
+ <ul class="flex gap-7 whitespace-nowrap">
+ <li><a href="#overview" class="nav-tab" data-num="01">Επισκόπηση</a></li>
+ <li><a href="#demand" class="nav-tab" data-num="02">Ζήτηση &amp; Προσφορά</a></li>
+ <li><a href="#product" class="nav-tab" data-num="03">Τουριστικό προϊόν</a></li>
+ <li><a href="#economy" class="nav-tab" data-num="04">Οικονομία</a></li>
+ <li><a href="#society" class="nav-tab" data-num="05">Κοινωνία</a></li>
+ <li><a href="#environment" class="nav-tab" data-num="06">Περιβάλλον</a></li>
+ <li><a href="#strategy" class="nav-tab" data-num="07">Στρατηγική</a></li>
+ <li><a href="#data" class="nav-tab" data-num="08">Δεδομένα</a></li>
+ </ul>
+ </div>
+ </nav>
+
+ <main class="container mx-auto px-6 py-12 max-w-7xl">
+
+ <!-- Executive Summary -->
+ <section class="bg-navy-50 border-l-4 border-accent-500 px-8 py-7 mb-12 mt-4 rounded-r-sm">
+ <p class="section-marker">Επιτελική Σύνοψη</p>
+ <p class="text-xl leading-relaxed text-ink-700 mt-3 font-serif">Η Ναυπακτία είναι αναπτυσσόμενος ηπειρωτικός προορισμός με μοναδική θεωρητική σημασία στη διεθνή βιβλιογραφία: οι τουριστικά απασχολούμενοι κάτοικοι ζητούν ενεργά ρυθμιστική παρέμβαση παρά την οικονομική τους εμπλοκή στον κλάδο (+15,1 ποσοστιαίες μονάδες — μοναδικό μοτίβο <span class="glossary" title="κατεύθυνση Θεματοφύλακα: τουριστικά απασχολούμενοι κάτοικοι υποστηρίζουν ρύθμιση παρά την οικονομική τους εμπλοκή. Πρωτότυπη συνεισφορά της Λευκής Βίβλου — μοναδικά Ναυπακτία.">«Θεματοφύλακα»</span> στους 10 προορισμούς). Έντονη μετα-πανδημική ανάκαμψη (1,618 — δεύτερη υψηλότερη) και αυξημένη υγιής κοινωνική νομιμοποίηση (39,6% Ένθερμοι Υποστηρικτές). 13 περιοχές Natura 2000 και ιστορικό υπόβαθρο «Λεπάντο» 1571. Στρατηγική προτεραιότητα: εκμετάλλευση του «Θεματοφύλακα» μοντέλου ως δοκιμασμένης σύζευξης ανάπτυξης + προληπτικής διαχείρισης, αναγνωρισιμότητα ως «μοντέλο ισόρροπης τοπικής τουριστικής διακυβέρνησης».</p>
+ </section>
+
+    <!-- Τι σημαίνει πρακτικά -->
+    <section class="bg-white border-l-4 border-navy-700 px-8 py-6 mb-12 rounded-r-sm shadow-sm">
+      <p class="section-marker text-navy-700">Τι σημαίνει πρακτικά</p>
+      <p class="text-lg leading-relaxed text-ink-700 mt-3">Η Ναυπακτία πρέπει να αξιοποιήσει το διεθνές ιστορικό αφήγημα του Λεπάντο (1571) — αλλά με κανόνες ποιότητας και προστασίας πριν εμφανιστούν συμπτώματα κορεσμού. Η μοναδική περίπτωση «Θεματοφύλακα» στη μελέτη δείχνει ότι οι ίδιοι οι επαγγελματίες του τουρισμού ζητούν προληπτική ρύθμιση — και αυτό αποτελεί προσφερόμενη βάση για ένα πρωτότυπο μοντέλο τοπικής διακυβέρνησης.</p>
+    </section>
+
+ <!-- ============== 01 OVERVIEW ============== -->
+ <section id="overview" class="py-12">
+ <p class="section-marker">Ενότητα 01</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Επισκόπηση</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαέξι δείκτες-κλειδιά που τοποθετούν τη Ναυπακτία ως τον <strong>βασικό reference για STEWARD Κριτική Εκ των Έσω direction</strong> — πρωτότυπη θεωρητική συνεισφορά της Λευκής Βίβλου. Η Ναυπακτία συνδυάζει το μοναδικό ιστορικό αφήγημα «Λεπάντο» (1571), τη 2η υψηλότερη ανάκαμψη της δεκάδας (1,618), και την υψηλότερη συγκέντρωση Natura 2000 sites (13 περιοχές · 1.474,45 km²).</p>
+
+ <!-- 16 KPI cards — όλα Ναυπακτία-specific -->
+ <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Αφίξεις 2024 (ΠΕ)</div>
+ <div class="kpi-value"><span data-num="149621">149.621</span></div>
+ <div class="kpi-delta up">33.873 αλλ. + 115.748 ημ.</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Διανυκτερεύσεις 2024</div>
+ <div class="kpi-value"><span data-num="0.39" data-decimals="2">0,39</span><span class="kpi-unit">εκ.</span></div>
+ <div class="kpi-delta up">+66,3% vs 2019</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Μερίδιο αλλοδαπών 2024</div>
+ <div class="kpi-value"><span data-num="22.6" data-decimals="1">22,6</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta up">CAGR αλλοδαπών +6,17%</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label"><span data-term="ALoS">ALoS</span> 2024</div>
+ <div class="kpi-value"><span data-num="2.62" data-decimals="2">2,62</span></div>
+ <div class="kpi-delta flat">σύντομη διαμονή</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Recovery 2024/2019</div>
+ <div class="kpi-value"><span data-num="1.618" data-decimals="3">1,618</span></div>
+ <div class="kpi-delta up">2η υψηλότερη της δεκάδας</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label"><span data-term="TFI">TFI</span> Defert βασικό Δήμος</div>
+ <div class="kpi-value"><span data-num="16.45" data-decimals="2">16,45</span></div>
+ <div class="kpi-delta down">υψηλή ζώνη Saveriades</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label"><span data-term="TII">TII</span> βασικό Δήμος 2024</div>
+ <div class="kpi-value"><span data-num="15.65" data-decimals="2">15,65</span></div>
+ <div class="kpi-delta down">&gt; Saveriades 15</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Συνολικές κλίνες 2024</div>
+ <div class="kpi-value"><span data-num="2415">2.415</span></div>
+ <div class="kpi-delta flat">54 ξεν. μονάδες</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Gini εποχικότητας 2024</div>
+ <div class="kpi-value"><span data-num="0.203" data-decimals="3">0,203</span></div>
+ <div class="kpi-delta up">3η χαμηλότερη της δεκάδας</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">HHI εποχικότητας 2024</div>
+ <div class="kpi-value"><span data-num="941">941</span></div>
+ <div class="kpi-delta flat">κατανεμημένη ζήτηση</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label"><span data-term="POI">POI</span> θ̂ (αντίληψη)</div>
+ <div class="kpi-value">−<span data-num="0.252" data-decimals="3">0,252</span></div>
+ <div class="kpi-delta up">μέτρια αρνητική Ζώνη Γ</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label"><span data-term="LCA">LCA</span> C5 «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>)</div>
+ <div class="kpi-value"><span data-num="39.6" data-decimals="1">39,6</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta up">3η υψηλότερη της δεκάδας</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">LCA C1 «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>)</div>
+ <div class="kpi-value"><span data-num="7.7" data-decimals="1">7,7</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta up">χαμηλή</div>
+ </div>
+ <div class="kpi-card border-accent-500" data-reveal>
+ <div class="kpi-label text-accent-700">Insider δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» STEWARD Δpp</div>
+ <div class="kpi-value text-accent-700">+<span data-num="15.1" data-decimals="1">15,1</span><span class="kpi-unit">pp</span></div>
+ <div class="kpi-delta down">μοναδικό POST-D13</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Natura 2000 ΠΕ Αιτ./νίας</div>
+ <div class="kpi-value"><span data-num="13">13</span><span class="kpi-unit">τόποι</span></div>
+ <div class="kpi-delta up">1.474,45 km² (max 10)</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">TripAdvisor avg (hotels/rest.)</div>
+ <div class="kpi-value"><span data-num="4.40" data-decimals="2">4,40</span><span class="kpi-unit">/4,27</span></div>
+ <div class="kpi-delta up">υψηλή ποιότητα</div>
+ </div>
+ </div>
+
+ <!-- Executive narrative -->
+ <div class="mt-16 grid md:grid-cols-3 gap-12">
+ <div class="md:col-span-2">
+ <p class="section-marker">Στρατηγική σύνοψη</p>
+ <h3 class="display text-3xl text-navy-700 mt-2 mb-4">«Λεπάντο» Heritage Activation + Κοινωνική εντολή προληπτικής προστασίας προορισμού</h3>
+ <p class="text-ink-700 leading-relaxed mb-4">Η Ναυπακτία αποτελεί ένα μοναδικό case στη Λευκή Βίβλο: συνδυάζει το διεθνώς αναγνωρίσιμο ιστορικό αφήγημα του <strong>Λεπάντο (1571)</strong> — καμπή ευρωπαϊκής ιστορίας — με τη 2η υψηλότερη ανάκαμψη της δεκάδας (Recovery Index 1,618), την υψηλότερη συγκέντρωση Natura 2000 sites μεταξύ των 10 προορισμών (13 περιοχές · 1.474,45 km²), και τη χαμηλότερη εποχικότητα (Gini 0,203 — 3η χαμηλότερη της δεκάδας).</p>
+ <p class="text-ink-700 leading-relaxed mb-4">Η πρωτότυπη συμβολή της Λευκής Βίβλου είναι η ταυτοποίηση του <strong>STEWARD Κριτική Εκ των Έσω direction</strong>: οι τουριστικά απασχολούμενοι κάτοικοι αναγνωρίζουν εντονότερα την ανάγκη ρυθμιστικών μέτρων («Θα υποστήριζα μέτρα που περιορίζουν τον αριθμό των τουριστών»: +15,1 ποσοστιαίες μονάδες σε σχέση με τους λοιπούς κατοίκους). Αυτή η <em>προστατευτικά διαφοροποιημένη στάση</em> δεν εμφανίζεται σε κανέναν άλλο προορισμό της δεκάδας και αποτελεί μια ΤΡΙΤΗ ΚΑΤΕΥΘΥΝΣΗ στην Κριτική Εκ των Έσω Taxonomy πέραν CLASSIC (Doxey orthodoxy) και REVERSE (βασικό Βόλος-Πήλιο).</p>
+ <p class="text-ink-700 leading-relaxed">Η στρατηγική θέση είναι <strong>«Development-Stage με Heritage Activation και Κοινωνική εντολή προληπτικής προστασίας προορισμού»</strong>: αξιοποίηση «Λεπάντο 450» branding ορίζοντα 2030, σύσταση Tripartite DMMO ΠΕ Αιτωλοακαρνανίας, ενεργοποίηση Heritage Corridor Ναυπακτία-Μεσολόγγι-Αντίρριο-Βόνιτσα, eco-tourism activation σε 13 Natura 2000 sites με Λιμνοθάλασσα Μεσολογγίου ως key cluster, και θεσμοθέτηση Pre-Saturation STEWARD-Informed Carrying-Capacity Framework — πρωτότυπο εγχείρημα διεθνώς που μετατρέπει την κατεύθυνση Θεματοφύλακα σε επιχειρησιακό policy mandate.</p>
+ </div>
+ <aside class="border-l-2 border-accent-500 pl-6">
+ <p class="section-marker text-accent-500">Κριτική Εκ των Έσω</p>
+ <p class="text-2xl font-serif text-accent-700 mt-2">κατεύθυνση Θεματοφύλακα</p>
+ <p class="text-sm text-ink-500 mt-3">Μοναδικός — οι τουριστικά εργαζόμενοι ΥΠΟΣΤΗΡΙΖΟΥΝ ενεργά ρυθμιστικά μέτρα (δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» +15,1 ποσοστιαίες μονάδες (στατ. σημαντικό)). Canonical reference για 3η κατεύθυνση Κριτική Εκ των Έσω Taxonomy.</p>
+ <hr class="my-5 border-[var(--rule)]">
+ <p class="section-marker text-accent-500"><span class="glossary" title="Butler TALC: κύκλος ζωής τουριστικού προορισμού σε 6 στάδια (Butler 1980): Εξερεύνηση → Εμπλοκή → Ανάπτυξη → Ενοποίηση → Στασιμότητα → Παρακμή/Αναζωογόνηση.">Butler</span> TALC</p>
+ <p class="text-2xl font-serif text-navy-700 mt-2">Development Stage με Heritage anchor</p>
+ <p class="text-sm text-ink-500 mt-3">Recovery 1,618 (2η υψηλότερη) + TII Δήμου 15,65 (υψηλή ζώνη) + δήλωση γενικής ικανοποίησης dissatisfaction 5,0% (χαμηλότερη 10) = ώριμη κοινωνική αποδοχή με ισχυρό δυναμική.</p>
+ <hr class="my-5 border-[var(--rule)]">
+ <p class="section-marker text-accent-500">Doxey Irridex</p>
+ <p class="text-2xl font-serif text-navy-700 mt-2">Στάδιο 1→2 (Ευφορία/πρώιμη Απάθεια)</p>
+ <p class="text-sm text-ink-500 mt-3">LCA C5+C2 = 59,3% θετικές κλάσεις, C1 7,7% «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>). STEWARD Insider Δpp +15,1 ως policy mandate κοινωνικής νομιμοποίησης ρυθμιστικής πολιτικής.</p>
+ </aside>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 02 DEMAND & SUPPLY ============== -->
+
+    <!-- Χωρική Ανάλυση -->
+    <section id="spatial" class="py-12">
+      <p class="section-marker">Χωρική Ανάλυση</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-2">Χωρική απεικόνιση</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-8">Πού βρίσκεται ο προορισμός στον εθνικό χάρτη πίεσης-ικανοποίησης, και πώς κατανέμεται η σχέση κατοίκου-τουρισμού εντός του.</p>
+      <div class="grid lg:grid-cols-2 gap-6">
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα · Χωρική ανάλυση εντός προορισμού</p>
+          <h3 class="chart-headline">Δήμος Ναυπακτίας — POI χωρική πυκνότητα</h3>
+          <img src="assets/maps/within_nafpaktia.png" alt="Χωρική πυκνότητα POIs" style="width:100%; height:auto; border:1px solid var(--rule);">
+          <p class="chart-source">Χωρική πυκνότητα <span class="glossary" title="Σημεία τουριστικού ενδιαφέροντος (καταλύματα, εστίαση, αξιοθέατα, παραλίες, μουσεία, αναψυχή) από OpenStreetMap.">σημείων τουριστικού ενδιαφέροντος</span> (POIs OpenStreetMap) σε hex-grid εντός των ορίων του Δήμου. Πορτοκαλί ένταση δηλώνει υψηλότερη χωρική συγκέντρωση τουριστικής υποδομής.</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Συγκριτικό · Αντικειμενική × Υποκειμενική πίεση</p>
+          <h3 class="chart-headline">Θέση στον bivariate χάρτη TFI × Ικανοποίηση κατοίκων</h3>
+          <img src="assets/maps/bivariate_tfi_q9sat.png" alt="Bivariate map TFI × Q9 satisfaction" style="width:100%; height:auto; border:1px solid var(--rule);">
+          <p class="chart-source">Συνδυασμός αντικειμενικού δείκτη φέρουσας ικανότητας (TFI Defert 2024) και υποκειμενικής ικανοποίησης κατοίκων (Q9_SAT) σε ένα δι-διαστάσιμο choropleth. Τέσσερις διακριτές καταστάσεις προορισμού.</p>
+        </div>
+      </div>
+    </section>
+ <section id="demand" class="py-12">
+ <p class="section-marker">Ενότητα 02</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Ζήτηση &amp; Προσφορά</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαπέντε έτη εξέλιξης ζήτησης (2010–2024) με τη 2η υψηλότερη ανάκαμψη της δεκάδας (1,618), ξενοδοχειακό δυναμικό 2.415 κλινών σε 54 μονάδες με <strong>πλήρη απουσία 5★</strong>, και αγορά STR στο 14,8% των διανυκτερεύσεων με αρχόμενα σήματα στεγαστικής πίεσης.</p>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.1 · Αφίξεις 2010–2024 (ΠΕ Αιτωλοακαρνανίας)</p>
+ <h3 class="chart-headline">Από 88.542 σε 149.621 αφίξεις — μετα-πανδημική εκρηκτική ανάκαμψη με Recovery 1,618 (2η υψηλότερη)</h3>
+ <div id="chart_arrivals" style="height:380px"></div>
+ <p class="chart-source">ΕΛΣΤΑΤ STO12 T03 + INSETE Intelligence. CAGR αλλοδαπών 2015-2024 = +6,17%· μερίδιο αλλοδαπών 22,6% (από 14,5% το 2015) — βαθμιαία διεθνοποίηση μέσω «Λεπάντο» branding awakening.</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 13.2 · Δείκτης ανάκαμψης 2024/2019</p>
+ <h3 class="chart-headline">Recovery 1,618 — 2η υψηλότερη μετά Αλεξανδρούπολη-Σαμοθράκη (1,649)</h3>
+ <div id="chart_recovery" style="height:480px"></div>
+ <p class="chart-source">Σύγκριση 10 προορισμών. Λόγος &gt;1 σημαίνει ξεπέρασε την ανάκαμψη. Η Ναυπακτία απορρόφησε ταχύτατα το rebound της εγχώριας οδικής αγοράς + νέους διεθνείς επισκέπτες από αφύπνιση του ιστορικού αφηγήματος της Ναυμαχίας.</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 13.3 · Μηνιαία κατανομή 2024</p>
+ <h3 class="chart-headline">Peak Αυγούστου 13,9% — η 3η πιο κατανεμημένη της δεκάδας</h3>
+ <div id="chart_monthly" style="height:380px"></div>
+ <p class="chart-source">Πορτοκαλί = αιχμή · σκούρο μπλε = ώμος · ανοιχτό μπλε = χαμηλή. Η Ναυπακτία λειτουργεί ως year-round destination (παραλίες καλοκαίρι + ορεινή Ναυπακτία χειμώνας + cultural-religious tourism Άνοιξη-Φθινόπωρο + Λεπάντο Festival Οκτώβριο).</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 13.4 · Εποχικότητα: Συντελεστής Gini</p>
+ <h3 class="chart-headline">Gini 0,203 (2024) — η 3η χαμηλότερη της δεκάδας</h3>
+ <div id="chart_gini" style="height:380px"></div>
+ <p class="chart-source">Gini=0 τέλεια κατανομή · Gini=1 πλήρης συγκέντρωση. HHI 941 = κατανεμημένη ζήτηση. Έντονο πλεονέκτημα έναντι Μυκόνου (Gini 0,512) και Χανίων (0,478).</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 13.6 · Ξενοδοχειακή δυναμικότητα 2015–2024</p>
+ <h3 class="chart-headline">Κλίνες +32,7% σε δεκαετία — μονάδες +28,6% (σταδιακή επέκταση)</h3>
+ <div id="chart_capacity" style="height:380px"></div>
+ <p class="chart-source">ΕΛΣΤΑΤ STO12 T01 ΠΕ Αιτωλοακαρνανίας. Από 1.820 κλίνες (2015) σε 2.415 (2024). Μέσο μέγεθος μονάδας: 43,3 κλίνες (2015) → 44,7 (2024) — σταθερό μικρό μέγεθος, εξατομικευμένη φιλοξενία.</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 13.5 · Δωμάτια ανά κατηγορία αστεριών (2024)</p>
+ <h3 class="chart-headline">3★ κυριαρχεί (45,0% κλινών) · <strong>0 κλίνες 5★</strong> — απών mature luxury cluster</h3>
+ <div id="chart_donut" style="height:380px"></div>
+ <p class="chart-source">Επικέντρωση σε mid-tier (3★) με αναδυόμενο 4★ (8,7% κλινών). Πλήρης απουσία 5★ ορίζει το ποιοτική αναβάθμιση φιλοξενίας runway για το ορίζοντα 2030 (Πρόταση 6).</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 13.7 · Μηνιαίο ποσοστό πληρότητας 2024</p>
+ <h3 class="chart-headline">Αιχμή Αυγούστου 63,8% — υγιής διασκορπισμός Ιουν-Σεπ</h3>
+ <div id="chart_occupancy" style="height:380px"></div>
+ <p class="chart-source">Περιφέρεια Δυτ. Ελλάδας (NUTS2 EL63). Η μέτρια αιχμή σε συνδυασμό με χαμηλή Gini αποδεικνύει year-round χαρακτήρα — εκπληκτικό για μη-νησιωτικό προορισμό.</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 13.8 · Μέση διάρκεια παραμονής (<span data-term="ALoS">ALoS</span>)</p>
+ <h3 class="chart-headline">ALoS 2,62 νύχτες — short-stay πρότυπο, ALoS lift runway έως 3,80 (2030)</h3>
+ <div id="chart_alos" style="height:380px"></div>
+ <p class="chart-source">Κοντινός προορισμός Αθήνα (240 χλμ) - Πάτρα (60 χλμ) με Γέφυρα Ρίου-Αντιρρίου — weekend escape pattern. Πρόταση 1 (Λεπάντο 450) στοχεύει ALoS 3,80 ορίζοντα 2030 μέσω cultural-historical packaging.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.9 · Μερίδιο <span data-term="STR">STR</span> έναντι ξενοδοχείων (2020–2024)</p>
+ <h3 class="chart-headline">STR στο 14,8% διανυκτερεύσεων — αναδυόμενη πίεση «80% νέων κατασκευών τουριστικές»</h3>
+ <div class="grid md:grid-cols-2 gap-8 mt-4">
+ <div>
+ <p class="text-sm text-ink-500 mb-2">Αφίξεις</p>
+ <div id="chart_str_arrivals" style="height:340px"></div>
+ </div>
+ <div>
+ <p class="text-sm text-ink-500 mb-2">Διανυκτερεύσεις</p>
+ <div id="chart_str_overnights" style="height:340px"></div>
+ </div>
+ </div>
+ <p class="chart-source">INSETE Intelligence + AirDNA. Από ποιοτική έρευνα: «η πλειοψηφία των κατασκευών, το 80%, αφορούν παραθεριστικά ή βίλες για ενοικίαση». Πρόταση 6 (STR cap 12% ιστορικού πυρήνα + 8% παραλίας) προληπτική ρύθμιση πριν aggregate κρίση.</p>
+ </div>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 03 PRODUCT ============== -->
+ <section id="product" class="py-12">
+ <p class="section-marker">Ενότητα 03</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Τουριστικό προϊόν</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">458 σημεία τουριστικού ενδιαφέροντος ΠΕ Αιτωλοακαρνανίας, τέσσερα cluster προϊόντος (Λεπάντο 1571 + Heritage Corridor Μεσολόγγι/Αντίρριο/Βόνιτσα + 13 Natura 2000 sites με Λιμνοθάλασσα Μεσολογγίου ως key cluster + ορεινή Ναυπακτία/Βαρνάκοβα), και αξιολόγηση 15 διακριτών υποδομών από κατοίκους — με κρίσιμο gap σε στάθμευση/κυκλοφοριακό.</p>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.10 · Σημεία Τουριστικού Ενδιαφέροντος (POIs OSM)</p>
+ <h3 class="chart-headline">458 POIs ΠΕ Αιτωλοακαρνανίας — μεσαία ζώνη της δεκάδας</h3>
+ <div id="chart_pois" style="height:420px"></div>
+ <p class="chart-source">OpenStreetMap Overpass API, εξαγωγή 2025. Κατηγορίες: φρούρια (Ναυπάκτου, Αντιρρίου, Βόνιτσας), μοναστήρια (Βαρνάκοβας), Natura 2000 sites, παραλίες, ορεινά μονοπάτια Μόρνου-Εύηνου, λίμνη Τριχωνίδα. Η μέτρια POI πυκνότητα αντιστοιχεί στον ενιαίο tourism cluster Ναυπάκτου εντός εκτεταμένης ΠΕ.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.11 · <span data-term="IPA">IPA</span> Quadrant — Σπουδαιότητα × Αξιολόγηση υποδομών</p>
+ <h3 class="chart-headline">Στάθμευση δήλωση «ανεπάρκεια στάθμευσης» (2,48/5) στο τεταρτημόριο «Συγκέντρωση εδώ» — κρίσιμη υστέρηση</h3>
+ <div id="chart_ipa" style="height:520px"></div>
+ <p class="chart-source">Random Forest importance × μέση αξιολόγηση κλίμακας 1–5. Πορτοκαλί = τουριστικές υποδομές, μπλε = δημόσιες. Από ποιοτική έρευνα: «Κυκλοφοριακό και θέσεις πάρκινγκ εκεί πάσχουμε πιο πολύ.» Insider −13,0 ποσοστιαίες μονάδες (στατιστικά σημαντικό) REVERSE στο δήλωση «ανεπάρκεια στάθμευσης».</p>
+ </div>
+ </div>
+
+ <!-- Gap Analysis · native HTML expanded version -->
+ <div class="chart-card mt-8">
+  <p class="chart-title">Σχήμα 13.10β · Gap Analysis Ζήτησης / Προσφοράς, Δ. Ναυπακτίας</p>
+  <h3 class="chart-headline">Τέσσερα κρίσιμα κενά τουριστικού μοντέλου</h3>
+  <p class="text-sm text-ink-700 mt-3 mb-6 leading-relaxed">Σύνθεση ποσοτικής έρευνας κατοίκων (n=300), ποιοτικής έρευνας στελεχών (n=5) και δευτερογενών δεδομένων. Κάθε κενό αξιολογείται από τη συνδυαστική σοβαρότητα (έκταση + αντίκτυπος) και αντιστοιχεί σε μία στρατηγική Πρόταση του master plan.</p>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-4">
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">1</span>
+      <span class="ml-2 section-marker text-accent-700">Ορατότητα · Λεπάντο διεθνώς υπο-αξιοποιημένο</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
     </div>
-  </main>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">450ή επέτειος Λεπάντο · 2026 παράθυρο</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">18 – 26</p>
+    <p class="text-xs text-ink-500 mb-3"><em>Google Trends "Nafpaktos" — υπο-εκπροσώπηση παρά την ιστορική φόρτιση</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Παρά την κορυφαία ιστορική φόρτιση του <strong>Λεπάντο (1571)</strong> — μία από τις πιο σημαντικές ναυμαχίες της παγκόσμιας ιστορίας — ο δείκτης δημοτικότητας αναζητήσεων Google για «Nafpaktos» κυμαίνεται 18-26 (κλίμακα 0-100), πολύ χαμηλότερα από κορφαία ευρωπαϊκά heritage sites. Ιταλοί, Ισπανοί, Κροάτες, Μαλτέζοι αναγνωρίζουν τη ναυμαχία σε ιστορικά πλαίσια — αλλά δεν συνδέουν τον τόπο με τον προορισμό. <strong>Η 450ή επέτειος το 2026</strong> αποτελεί κρίσιμο παράθυρο ευκαιρίας για διεθνή προβολή.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> «Λεπάντο 450» integrated heritage campaign 2026 + UNESCO tentative push + συνεργασίες με Italy/Spain heritage networks + 4-εθνικός κοινός cultural route.</p>
+   </div>
+
+   <div class="border-2 border-red-300 bg-red-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-red-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">2</span>
+      <span class="ml-2 section-marker text-red-700">Λειτουργικό (NEW) · Smart Parking κενό</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-red-800 bg-red-200 px-2 py-1 rounded">Ακραία σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Πρωτογενές εμπόδιο ποιότητας — άμεσα διορθώσιμο</h4>
+    <p class="font-serif text-3xl font-bold text-red-700 mb-3 numeric">59,6%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>κορυφαίο εμπόδιο Ομάδας Γ — Αντίστροφη Διαφοροποίηση Τουριστικά Απασχολούμενων −13,0pp</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το 59,6% των κατοίκων αναγνωρίζει την έλλειψη smart parking ως κορυφαίο εμπόδιο — υψηλότερα από όλα τα άλλα κενά της Ομάδας Γ. Οι στενοί μεσαιωνικοί δρόμοι, η παράκτια προμενάδα Ναυπάκτου, η Γρίμπώου ΠΕΚ συμπληρώνουν συμφόρηση. <strong>Αντίστροφη Διαφοροποίηση Τουριστικά Απασχολούμενων −13,0 ποσοστιαίες μονάδες</strong> — οι εργαζόμενοι στον τουρισμό αναγνωρίζουν το πρόβλημα 13,0 μονάδες ΛΙΓΟΤΕΡΟ έντονα από τους υπόλοιπους κατοίκους, που σημαίνει ότι είναι το «θύμα» που νιώθουν περισσότερο οι κάτοικοι παρά οι επαγγελματίες. Άμεσο εμπόδιο ποιότητας προορισμού.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-red-300"><strong>Πρακτικά:</strong> Smart Parking system + delegated street parking + city-fringe parking lots με shuttle. RRF/ΕΣΠΑ διαθέσιμα — Πρότ. 4 master plan.</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">3</span>
+      <span class="ml-2 section-marker text-accent-700">Προσβασιμότητα · Ορεινή Ναυπακτία</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Λειτουργικά απομονωμένα ορεινά διαμερίσματα</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">25,8%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>T2B οδικού — 34,3 ποσοστιαίες μονάδες κάτω από διάμεσο</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Μόλις 25,8% των κατοίκων δηλώνει ικανοποιημένο από οδικό δίκτυο — 34,3 μονάδες κάτω από τον μέσο όρο της μελέτης. Η <strong>Άνω Χώρα, Κρυονέρι, Πλάτανος</strong> και άλλα ορεινά διαμερίσματα Ναυπακτίας λειτουργούν πρακτικά απομονωμένα από τον παράκτιο πυρήνα Ναυπάκτου. ΜΜΜ T2B 35,4% — η πρόσβαση γίνεται αποκλιστικά διεθνικά ΙΧ. Αυτό εμποδίζει: (i) ολόχρονη λειτουργία ορεινού τουρισμού, (ii) διεθνείς επισκέπτες χωρίς αυτοκίνητο, (iii) διασύνδεση με Δελφούς/Αμφισσα ως πολυάμερο προορισμό.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> rural connectivity program: shuttle service Ναύπακτος → Άνω Χώρα/Πλάτανος + smart road maintenance + e-mobility hub.</p>
+   </div>
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">4</span>
+      <span class="ml-2 section-marker text-navy-700">Στρατηγική · Διασύνδεση Λεπάντο-Delphi</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Πελοπόννησος-Στερεά heritage corridor</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">2h / 85km</p>
+    <p class="text-xs text-ink-500 mb-3"><em>Ναύπακτος → Δελφούς · υπολειτουργούμενος άξονας</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">85 χλμ. και 2 ώρες οδικά χωρίζουν τη Ναύπακτο από τους Δελφούς — μία απόσταση που στην Ιταλία ή τη Γαλλία θα ήταν must-visit twin destination. <strong>Παρά τον Κορινθιακό άξονα Πάτρα → Αντίρριο → Ναύπακτος → Ίτεα → Δελφοί</strong>, η συνεργία είναι ανεκμετάλλευτη: ο επισκέπτης που έρχεται στους Δελφούς για 1 ημέρα μπορεί να ενσωματώσει τη Ναυπακτία σε 3ήμερο πακέτο. Σύγχρονος αυτοκινητόδρομος Πάτρα-Κόρινθος + Γέφυρα Ρίου-Αντιρρίου το επιτρέπουν, αλλά δεν υπάρχει ενιαία στρατηγική.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> «Λεπάντο-Delphi Heritage Corridor» integrated marketing με Δήμο Δελφών + Πάτρας + κοινός γαστρονομικός χάρτης + multi-day packages.</p>
+   </div>
+
+  </div>
+
+  <p class="chart-source mt-6">Πηγές: Πρωτογενής ποσοτική έρευνα κατοίκων Δήμου Ναυπακτίας (n=300)· ΕΛΣΤΑΤ STO12· INSETE Intelligence· Google Trends. Η Ναυπακτία είναι ο μοναδικός προορισμός της μελέτης με μοτίβο «Θεματοφύλακα» (STEWARD) — οι τουριστικά απασχολούμενοι ζητούν ενεργά ρύθμιση. Πρωτότυπη συνεισφορά της Λευκής Βίβλου στη διεθνή βιβλιογραφία.</p>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 04 ECONOMY ============== -->
+ <section id="economy" class="py-12">
+ <p class="section-marker">Ενότητα 04</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Οικονομία</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Διαφοροποιημένη Δυτικοελλαδική οικονομική βάση: 23,36% οικιακή τουριστική εξάρτηση (τουριστική απασχόληση κατοίκου — 2η χαμηλότερη μετά Καστοριά), 256,9 εκ. € ΑΠΑ G-I 2023 (NUTS2 EL63), και 80% πρόσφατων κατασκευών τουριστικής χρήσης (ποιοτική έρευνα) — αναδυόμενη επενδυτική δυναμική με κίνδυνο στεγαστικής πίεσης.</p>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 13.13 · Εκτιμώμενος τζίρος καταλυμάτων</p>
+ <h3 class="chart-headline">Ξενοδοχεία 33,3 εκ. € · STR 7,5 εκ. € (2024)</h3>
+ <div id="chart_turnover" style="height:380px"></div>
+ <p class="chart-source">Εκτίμηση: hotel = διανυκτ. × €85 · STR = διανυκτ. × €110. ΤτΕ Έρευνα Συνόρων NUTS2 EL63 περιφερειακές εισπράξεις.</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 13.15 · ΑΠΑ G-I έναντι σύνολο (NUTS2 EL63)</p>
+ <h3 class="chart-headline">Ανθεκτική πορεία — από 185,3 εκ. € (2016) σε 256,9 εκ. € (2023)</h3>
+ <div id="chart_gva" style="height:380px"></div>
+ <p class="chart-source">Eurostat nama_10r_3gva NUTS2 EL63 Δυτ. Ελλάδα (ΑΠΑ G-I εμπόριο, μεταφορές, τουρισμός). Συνεισφορά ΠΕ Αιτωλοακαρνανίας ≈ 45-55% μέσω SBR01 αναγωγής.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.23 · Στρατηγικό τεταρτημόριο: Οικονομική εξάρτηση × Ικανοποίηση</p>
+ <h3 class="chart-headline">«Διαφοροποιημένη / ικανοποιημένη» (23,36% × 3,84) — δήλωση γενικής ικανοποίησης dissatisfaction χαμηλότερη 10</h3>
+ <div id="chart_q_employment" style="height:480px"></div>
+ <p class="chart-source">Πρωτογενής έρευνα κατοίκων Δ. Ναυπακτίας (n=300, σταθμισμένο), Q15 οικιακή τουριστική εξάρτηση × δήλωση γενικής ικανοποίησης μέση ικανοποίηση. Η Ναυπακτία στη βέλτιστη ζώνη: χαμηλή εξάρτηση + υψηλή ικανοποίηση = ιδανική για heritage activation χωρίς resident saturation risk.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.16 · Νέες οικοδομικές άδειες &amp; κατοικίες (2015–2025)</p>
+ <h3 class="chart-headline">+300% σε δεκαετία — από ποιοτική: «80% τουριστική χρήση» αναδυόμενη πίεση</h3>
+ <div id="chart_permits" style="height:380px"></div>
+ <p class="chart-source">ΕΛΣΤΑΤ SOP03 ΠΕ Αιτωλοακαρνανίας. Γκρι 2025 = προσωρινά. Έντονη ανοδική πορεία post-2019 με συντριπτική κυριαρχία τουριστικών χρήσεων — Πρόταση 6 (STR cap + quality-first permitting) προληπτική.</p>
+ </div>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 05 SOCIETY ============== -->
+ <section id="society" class="py-12">
+ <p class="section-marker">Ενότητα 05</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Κοινωνία</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Φέρουσα ικανότητα Δήμου στην υψηλή ζώνη Saveriades (TII βασικό 15,65), POI θ̂ −0,252 (Ζώνη Γ μέτρια αρνητική), LCA C5 39,6% (3η υψηλότερη της δεκάδας), και — μοναδικό στη μελέτη — <strong>STEWARD Κριτική Εκ των Έσω direction</strong> με δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» +15,1 ποσοστιαίες μονάδες ποσοστιαίες μονάδες (βασικό reference POST-D13).</p>
+
+ <!-- Methodological box: Defert (διπλή χωρική βάση) -->
+ <div class="method-box" data-reveal>
+ <p class="method-box-title">Μεθοδολογικό κουτί 13.5.1.α — Defert <span data-term="TFI">TFI</span>/<span data-term="TII">TII</span> με Διπλή Χωρική Βάση Αναφοράς</p>
+ <p class="method-box-content">Ο γαλλικός γεωγράφος Pierre Defert (1967) εισήγαγε τον TFI: TFI = κλίνες × 100 / πληθυσμός. Ο TII μετρά διανυκτερεύσεις / πληθυσμό × 100. Διεθνή κατώφλια Saveriades (2000) και Coccossis &amp; Mexa (2004): TII &lt; 5 χαμηλή, 5-10 μέτρια, 10-15 υψηλή, &gt;15 πολύ υψηλή. <strong>Η Ναυπακτία απαιτεί διπλή χωρική βάση αναφοράς</strong>: τα ΕΛΣΤΑΤ δεδομένα είναι NUTS3 ΠΕ Αιτωλοακαρνανίας (192.345 κάτοικους — υπερεκτιμά Ναυπακτία), ενώ η πρωτογενής έρευνα Δήμος-bound (25.065). Canonical anchor: TII Δήμου = 15,65 (υψηλή ζώνη Saveriades), TFI Δήμου = 16,45. Σε NUTS3: TII 2,04 (χαμηλή ζώνη — απατηλή). Σε Δ.Ε. Ναυπάκτου (17.154): TII 22,87 — πολύ υψηλή πίεση χωρικής συγκέντρωσης.</p>
+ </div>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.17 · <span class="glossary" title="TII (Tourist Intensity Index): διανυκτερεύσεις / πληθυσμό. Saveriades 2000: >15 = υπερκορεσμός.">Δείκτης Τουριστικής Έντασης</span> (<span data-term="TII">TII</span>) Defert 2010–2024 (NUTS3)</p>
+ <h3 class="chart-headline">TII NUTS3 από 1,27 σε 2,04 — χαμηλή ζώνη αλλά Δήμος-anchor υψηλή 15,65</h3>
+ <div id="chart_tii" style="height:420px"></div>
+ <p class="chart-source">Διανυκτερεύσεις / κάτοικο × 100. Γραμμή σε TII = 5 (κατώφλι ωριμότητας). NUTS3 χαμηλή ζώνη, αλλά Δήμος-anchor TII 15,65 σε πολύ υψηλή ζώνη Saveriades.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.19 · Στρατηγικό τεταρτημόριο: Αντικειμενική × Υποκειμενική πίεση</p>
+ <h3 class="chart-headline">Ναυπακτία Ζώνη Γ μέτρια αρνητική (TFI Δήμου 16,45 · POI θ̂ −0,252)</h3>
+ <div id="chart_q_tfi_poi" style="height:480px"></div>
+ <p class="chart-source">POI θ̂ μέσω <span data-term="IRT">IRT</span>-<span data-term="GRM">GRM</span>. TFI σε log10 για visual ισοκατανομή. Ναυπακτία στη Ζώνη Γ (POI −0,2 έως −0,3) μαζί με Βόλος-Πήλιο — υποκειμενικά μη-κορεσμένη, αλλά objective TII Δήμου σημαντική πίεση.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.21 · Στρατηγικό τεταρτημόριο: Στεγαστική πίεση Δ. Ναυπακτίας</p>
+ <h3 class="chart-headline">δήλωση «πρόβλημα στέγης» 37,1% aggregate κρύβει Insider −10,0 ποσοστιαίες μονάδες (στατιστικά σημαντικό) REVERSE — STEWARD signal</h3>
+ <div id="chart_q_str_housing" style="height:480px"></div>
+ <p class="chart-source">Πρωτογενής έρευνα Q3_7 × δήλωση «πρόβλημα στέγης». Insiders λιγότερο προβληματισμένοι από κατοίκους (REVERSE), συν-εμφάνιση με δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» STEWARD support — προστατευτικά διαφοροποιημένη στάση: αποδέχονται οικονομικό κόστος ρύθμισης ως αντάλλαγμα προστασίας.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.18 · Doxey Irridex Heatmap — σύγκριση 6 προορισμών</p>
+ <h3 class="chart-headline">Ναυπακτία υψηλή ασφάλεια/φιλικότητα (Q1_2=4,56, Q1_3=4,18) — Στάδιο 1→2 Doxey</h3>
+ <div id="chart_doxey" style="height:380px"></div>
+ <p class="chart-source">Πρωτογενής έρευνα Q1 — μέσες τιμές κλίμακας 1–5. Πράσινο = θετικό, κόκκινο = αρνητικό. Doxey 1975 · Allen et al. 1988. Ναυπακτία διατηρεί υψηλά θετικά scores με πρώιμα σήματα μετάβασης σε Στάδιο 2 σε υπο-ομάδες.</p>
+ </div>
+ </div>
+
+ <!-- Methodological box: Κριτική Εκ των Έσω 5-Zone × 3-Direction Taxonomy (signature box) -->
+ <div class="method-box mt-8 border-accent-500" data-reveal>
+ <p class="method-box-title text-accent-700">Μεθοδολογικό κουτί 13.6.1 — Κριτική Εκ των Έσω 5-Zone × 3-Direction Taxonomy (Ναυπακτία βασικό STEWARD reference POST-D13)</p>
+ <p class="method-box-content">Η Λευκή Βίβλος επεκτείνει τη θεωρητική διάρθρωση Doxey (1975) με μια <strong>5-Zone × 3-Direction Κριτική Εκ των Έσω Taxonomy</strong> — πρωτότυπη συμβολή της μελέτης. Οι 10 προορισμοί ταξινομούνται σε 5 ζώνες έντασης και 3 κατευθύνσεις insider response: <strong>CLASSIC</strong> (insiders λιγότερο κριτικοί από κατοίκους — Doxey orthodoxy, Faulkner &amp; Tideswell 1997), <strong>REVERSE</strong> (insiders ΠΙΟ κριτικοί — late-stage signals, βασικό D8 Βόλος-Πήλιο έντονο αντίστροφο μοτίβο +9,60 ποσοστιαίες μονάδες), και <strong>STEWARD</strong> (insiders ΥΠΟΣΤΗΡΙΖΟΥΝ ΕΝΕΡΓΑ ρυθμιστικά μέτρα ταυτόχρονα με αρνητική στάση κορεσμού — προστατευτικά διαφοροποιημένη στάση). <strong>Η Ναυπακτία είναι το βασικό reference case για κατεύθυνση Θεματοφύλακα</strong> (finding): «Θα υποστήριζα μέτρα που περιορίζουν τον αριθμό των τουριστών» ΕΡΓ 31,2% vs ΔΕΡ 16,1% = +15,1 ποσοστιαίες μονάδες (στατ. σημαντικό). Παρόλο που δήλωση «πρόβλημα στέγης» (στεγαστική πίεση) δείχνει −10,0 ποσοστιαίες μονάδες REVERSE, η συν-εμφάνιση καταδεικνύει τη STEWARD λογική: insiders αποδέχονται το οικονομικό trade-off της ρύθμισης ως αντάλλαγμα για destination protection. <strong>Μοναδικό case μεταξύ των 10 destinations</strong> — δομικό policy mandate που ενσωματώνεται στην Πρόταση 5 (Pre-Saturation STEWARD-Informed Carrying Capacity Framework).</p>
+ </div>
+
+ <!-- Κριτική Εκ των Έσω 8-metric table — Ναυπακτία signature feature -->
+ <div class="chart-card mt-8 border-l-4 border-accent-500">
+ <p class="chart-title text-accent-700">Πίνακας 13.16β · Κριτική Εκ των Έσω 8-metric — κατεύθυνση Θεματοφύλακα (βασικό POST-D13)</p>
+ <h3 class="chart-headline">δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» +15,1 ποσοστιαίες μονάδες UNIQUE STEWARD signature — οι εργαζόμενοι ΣΤΗΡΙΖΟΥΝ ρυθμιστικά μέτρα</h3>
+ <div class="overflow-x-auto mt-4">
+ <table class="editorial-table w-full">
+ <thead>
+ <tr>
+ <th>Κωδ.</th>
+ <th>Μετρική</th>
+ <th>ΕΡΓ %</th>
+ <th>ΔΕΡ %</th>
+ <th>Δpp ΕΡΓ−ΔΕΡ</th>
+ <th>Σήμα</th>
+ </tr>
+ </thead>
+ <tbody id="insider_critique_table"></tbody>
+ </table>
+ </div>
+ <p class="chart-source">Πρωτογενής ποσοτική έρευνα Απριλίου 2026 (N=300, n εργαζόμενοι τουρισμού=70, n μη-εργαζόμενοι=230, σταθμισμένο δείγμα (trimmed weights)). τουριστικά απασχολούμενοι κάτοικοι: 23,36% (2η χαμηλότερη μετά Καστοριά). Κατώφλι |Δpp|≥10 για SIG-flag υπό συντηρητικό DEFF≈2,0. δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» +15,1 ποσοστιαίες μονάδες = ισχυρότερη ένδειξη κατεύθυνση Θεματοφύλακα.</p>
+ </div>
+
+ <!-- Methodological box: LCA -->
+ <div class="method-box mt-8" data-reveal>
+ <p class="method-box-title">Μεθοδολογικό κουτί 13.6.3 — <span data-term="LCA">LCA</span> (Ναυπακτία C5 39,6% — 3η υψηλότερη)</p>
+ <p class="method-box-content">Η Latent Class Analysis (Lazarsfeld &amp; Henry 1968 · Hagenaars &amp; McCutcheon 2002) είναι model-based clustering που εντοπίζει υπόρρητες ομάδες σε κατηγορικά δεδομένα. Σε αντίθεση με τη Doxey που υποθέτει 4 στάδια εκ των προτέρων, η LCA επιτρέπει στα δεδομένα να αποκαλύψουν εμπειρικά distinct profiles. Εφαρμογή: poLCA της R με ML estimation, επιλογή 5 κλάσεων με BIC/AIC. Στη Ναυπακτία: <strong>C5 «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) 39,6%</strong> (3η υψηλότερη μετά Τροιζηνία 48,5% και Ναύπλιο 42,4%), C2 «Ενεργοί Υποστηρικτές» (<em>Ενεργή Ευφορία</em>) 19,7%, C3 Πραγματιστές 18,6%, C4 Υποστηρικτές 14,4%, C1 «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>) μόλις 7,7%. Συνδυασμένη θετική στάση (C2+C5) = 59,3% — healthy-maturity δομή. Σε συνδυασμό με STEWARD Insider direction, η Ναυπακτία αποτελεί μοναδικό case «ώριμης κοινωνικής αποδοχής + ενεργής στήριξης ρυθμιστικής πολιτικής».</p>
+ </div>
+
+ <div class="grid lg:grid-cols-2 gap-8 mt-8">
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.18 · Latent Class Analysis — 10 προορισμοί</p>
+ <h3 class="chart-headline">Ναυπακτία C5 39,6% — 3η υψηλότερη «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) της δεκάδας</h3>
+ <div id="chart_lca" style="height:520px"></div>
+ <p class="chart-source">Σταθμισμένο μερίδιο πληθυσμού ανά εμπειρική class. Ταξινόμηση κατά δήλωση γενικής ικανοποίησης ικανοποίηση (αύξουσα). Ναυπακτία: C5 39,6% + C2 19,7% = 59,3% θετικές, C1+C4 22,1% αρνητικές — υγιής αναπτυσσόμενος προορισμός με ισχυρή κοινωνική νομιμοποίηση.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 13.22 · Τεταρτημόριο πόλωσης: Class 1 × Class 5</p>
+ <h3 class="chart-headline">Ναυπακτία στη ζώνη «Υγιής συναίνεση» (7,7% × 39,6%) — STEWARD-ready</h3>
+ <div id="chart_q_lca" style="height:480px"></div>
+ <p class="chart-source">Χαμηλό C1 + υψηλό C5 = υγιής δομή. Ναυπακτία και Τροιζηνία-Μέθανα δύο από τις πιο υγιείς θέσεις μεταξύ 10 — σε συνδυασμό με STEWARD Insider direction Ναυπακτίας, μοναδικό case readiness για ενεργή ρυθμιστική πολιτική.</p>
+ </div>
+ </div>
+
+ <!-- Qualitative quotes carousel -->
+ <div class="mt-16">
+ <p class="section-marker">Ποιοτική έρευνα · 12 αυτούσια αποσπάσματα στελεχών Ναυπακτίας</p>
+ <h3 class="display text-3xl text-navy-700 mt-2 mb-6">Φωνές των στελεχών</h3>
+ <div class="quotes-deck" data-carousel>
+ <div class="quotes-rail" id="quotes_rail"></div>
+ <div class="flex gap-2 mt-4 justify-end">
+ <button data-carousel-prev class="theme-toggle" aria-label="Προηγούμενο">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+ </button>
+ <button data-carousel-next class="theme-toggle" aria-label="Επόμενο">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+ </button>
+ </div>
+ </div>
+ </div>
+
+ <!-- Reference: Κριτική Εκ των Έσω Taxonomy FINAL COMPLETION -->
+ <div class="mt-12 p-6 bg-accent-300/10 border-l-4 border-accent-500">
+ <p class="section-marker text-accent-700">Συγκριτική ανάγνωση · 5-Zone × 3-Direction Matrix Completion</p>
+ <h3 class="font-serif text-2xl text-accent-700 mt-2 mb-3">Ναυπακτία: 3η Κατεύθυνση STEWARD ως Συμβολή</h3>
+ <p class="text-ink-700 leading-relaxed mb-3">Η Ναυπακτία ολοκληρώνει το 5-Zone × 3-Direction matrix της Λευκής Βίβλου ως βασικό reference case για την κατεύθυνση Θεματοφύλακα. Συγκριτική τοποθέτηση των 10 προορισμών στις 3 κατευθύνσεις Κριτική Εκ των Έσω:</p>
+ <ul class="text-sm text-ink-700 leading-relaxed space-y-1 list-disc list-inside">
+ <li><strong>CLASSIC</strong> (insiders λιγότερο κριτικοί): Ιωάννινα βασικό D7 (Ζώνη Α)</li>
+ <li><strong>REVERSE</strong> (insiders ΠΙΟ κριτικοί): Βόλος-Πήλιο D8 έντονο αντίστροφο μοτίβο +9,60 ποσοστιαίες μονάδες (Ζώνη Δ Συστηματική)</li>
+ <li><strong>STEWARD</strong> (insiders ΥΠΟΣΤΗΡΙΖΟΥΝ ρύθμιση): <strong>Ναυπακτία D11 βασικό reference +15,1 ποσοστιαίες μονάδες δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» SIG (Ζώνη Γ Έντονη)</strong></li>
+ </ul>
+ <p class="text-ink-700 leading-relaxed mt-3">Cross-destination σύνθεση: Κεφ. 13 § 13.6.1. Η ταξινόμηση μπορεί να εφαρμοστεί ως ερευνητικό εργαλείο σε άλλους ευρωπαϊκούς προορισμούς για early-warning monitoring.</p>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 06 ENVIRONMENT ============== -->
+ <section id="environment" class="py-12">
+ <p class="section-marker">Ενότητα 06</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Περιβάλλον</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">13 Natura 2000 τόποι σε 1.474,45 km² ΠΕ Αιτωλοακαρνανίας — <strong>η υψηλότερη συγκέντρωση μεταξύ των 10 προορισμών της Λευκής Βίβλου</strong>. Λιμνοθάλασσα Μεσολογγίου, λίμνη Τριχωνίδα (μεγαλύτερη φυσική της Ελλάδας), φαράγγια Μόρνου-Εύηνου, ορεινός Πίνδος. 87,1% σημείων κολύμβησης σε «Εξαιρετική Ποιότητα», 2 Blue Flag παραλίες.</p>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <div class="chart-card">
+ <p class="chart-title">Eurostat lan_lcv_ovw · Χρήση γης Δυτ. Ελλάδας 2022 (NUTS2 EL63)</p>
+ <h3 class="chart-headline">Δάση + Θαμνώδης 58,96% — ορεινός χαρακτήρας</h3>
+ <div id="chart_landcover" style="height:380px"></div>
+ <p class="chart-source">Land Use/Cover Area frame Survey (LUCAS), NUTS2 EL63 Δυτ. Ελλάδας. Τεχνητή γη μόλις 1,61% — μία από τις πιο φυσικές Περιφέρειες της δεκάδας. 3,39% νερό (Τριχωνίδα + λιμνοθάλασσα).</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Eurostat sdg_06_60 · Greek <span data-term="WEI+">WEI+</span> 2003–2023</p>
+ <h3 class="chart-headline">Ανοδική πορεία — από 11,5 σε 12,5 σε δεκαετία</h3>
+ <div id="chart_wei" style="height:380px"></div>
+ <p class="chart-source">4ετής μέσος όρος. Ζώνες: πράσινο &lt;10 χαμηλή · κίτρινο 10-20 μέτρια · κόκκινο &gt;20 έντονη. Στη Ναυπακτία, Λιμνοθάλασσα Μεσολογγίου ως κρίσιμος υγρότοπος Natura 2000 διαθέτει διακριτή ευαλωτότητα.</p>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+ <div class="kpi-card">
+ <div class="kpi-label">Τεχνητή γη Δυτ. Ελλάδας 2022</div>
+ <div class="kpi-value"><span data-num="1.61" data-decimals="2">1,61</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta up">χαμηλή πίεση</div>
+ </div>
+ <div class="kpi-card">
+ <div class="kpi-label">Bathing «Excellent» 2024</div>
+ <div class="kpi-value"><span data-num="87.1" data-decimals="1">87,1</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta up">EEA Bathing Water</div>
+ </div>
+ <div class="kpi-card">
+ <div class="kpi-label">Blue Flag 2025</div>
+ <div class="kpi-value"><span data-num="2">2</span><span class="kpi-unit">ακτές</span></div>
+ <div class="kpi-delta flat">Παγκόσμια διάκριση</div>
+ </div>
+ <div class="kpi-card">
+ <div class="kpi-label">Natura 2000 ΠΕ Αιτ./νίας</div>
+ <div class="kpi-value"><span data-num="13">13</span><span class="kpi-unit">τόποι</span></div>
+ <div class="kpi-delta up">1.474,45 km² (MAX 10)</div>
+ </div>
+ </div>
+
+ <div class="chart-card lg:col-span-2 mt-8">
+ <p class="chart-title">Σχήμα 13.19 · Αντίληψη αρνητικών επιπτώσεων (% συμφωνώ + απόλυτα)</p>
+ <h3 class="chart-headline">STR/Airbnb επίδραση 60,6% · Στεγαστική κρίση 47,6% — χαμηλότερα νησιωτικών ώριμων</h3>
+ <div id="chart_env_heat" style="height:420px"></div>
+ <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 6 προορισμών. Ναυπακτία διατηρεί διαχειρίσιμα επίπεδα με αρχόμενα STR-driven σήματα στεγαστικής πίεσης — Πρόταση 6 (STR cap) προληπτική.</p>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 07 STRATEGY ============== -->
+ <section id="strategy" class="py-12">
+ <p class="section-marker">Ενότητα 07</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Στρατηγική</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">SWOT 10×4 ανάλυση, πέντε Άξονες Πολιτικής (Λεπάντο Heritage Activation logic), και επτά Επιχειρησιακές Προτάσεις. <strong>Πρόταση 1 («Λεπάντο 450» Heritage Activation Initiative)</strong> + <strong>Πρόταση 5 (Pre-Saturation STEWARD-Informed Carrying-Capacity Framework)</strong> αποτελούν τις πρωτότυπες μεθοδολογικές συμβολές της Ναυπακτίας στη Λευκή Βίβλο.</p>
+
+ <h3 class="font-serif text-2xl text-navy-700 mb-4">SWOT Ανάλυση</h3>
+ <div class="swot-grid mb-12" id="swot_grid"></div>
+
+ <h3 class="font-serif text-2xl text-navy-700 mb-4">Πέντε Άξονες Πολιτικής</h3>
+ <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12" id="axes_grid"></div>
+
+ <h3 class="font-serif text-2xl text-navy-700 mb-4">Επτά Επιχειρησιακές Προτάσεις</h3>
+ <div class="space-y-3" id="proposals_list"></div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 08 DATA ANNEX ============== -->
+ <section id="data" class="py-12">
+ <p class="section-marker">Ενότητα 08</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Δεδομένα &amp; Παράρτημα</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Πλήρης πρόσβαση στα 64 items της πρωτογενούς έρευνας στον Δήμο Ναυπακτίας (n=300, σταθμισμένο, Απρίλιος 2026, single-Δήμος βασικό), στους 21 πίνακες του κεφαλαίου, και στις 11 πηγές δευτερογενών δεδομένων.</p>
+
+ <h3 class="font-serif text-2xl text-navy-700 mb-4">Πρωτογενής έρευνα — Όλα τα 64 items (Δ. Ναυπακτίας)</h3>
+ <div class="overflow-x-auto">
+ <table class="editorial-table" id="mrb_table">
+ <thead>
+ <tr><th>Item</th><th>Μέσος (1–5)</th><th>% Συμφωνώ</th><th>n valid</th></tr>
+ </thead>
+ <tbody></tbody>
+ </table>
+ </div>
+
+ <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Μεθοδολογικά Κουτιά</h3>
+ <div class="space-y-4" id="method_boxes"></div>
+
+ <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγές δεδομένων</h3>
+ <ul class="text-sm text-ink-700 space-y-2 list-disc list-inside" id="sources_list"></ul>
+
+ <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγαίες παρουσιάσεις πρωτογενούς έρευνας</h3>
+ <p class="text-sm text-ink-700 mb-6 max-w-3xl">Αυτούσιες παρουσιάσεις του φορέα δημοσκοπικής έρευνας με τα πλήρη ευρήματα ποσοτικής και ποιοτικής έρευνας στους κατοίκους και στα στελέχη του προορισμού. Διαθέσιμες ως PDF για μεταφόρτωση.</p>
+ <div class="grid md:grid-cols-2 gap-4">
+ <a href="assets/downloads/nafpaktia_quantitative.pdf" target="_blank" rel="noopener"
+ class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
+ <div class="flex items-start gap-4">
+ <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+ </div>
+ <div class="flex-1">
+ <p class="section-marker text-accent-500">PDF · Ποσοτική έρευνα</p>
+ <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Πρωτογενούς Ποσοτικής Έρευνας</p>
+ <p class="text-xs text-ink-500 mt-1">Δ. Ναυπακτίας · Απρίλιος 2026</p>
+ <p class="text-xs text-ink-500 mt-2 numeric">~70 σελίδες · 1,7 MB</p>
+ </div>
+ </div>
+ </a>
+
+ <a href="assets/downloads/nafpaktia_qualitative.pdf" target="_blank" rel="noopener"
+ class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
+ <div class="flex items-start gap-4">
+ <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+ </div>
+ <div class="flex-1">
+ <p class="section-marker text-accent-500">PDF · Ποιοτική έρευνα</p>
+ <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Ποιοτικής Έρευνας σε Στελέχη</p>
+ <p class="text-xs text-ink-500 mt-1">12 συνεντεύξεις σε στελέχη Ναυπακτίας-Αιτωλοακαρνανίας · Απρίλιος 2026</p>
+ <p class="text-xs text-ink-500 mt-2 numeric">~60 σελίδες · 1,1 MB</p>
+ </div>
+ </div>
+ </a>
+ </div>
+ </section>
+
+ </main>
+
+ <!-- Footer -->
+ <footer class="bg-navy-900 text-white/80 py-12 mt-12">
+ <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+ <div>
+ <p class="section-marker text-accent-300">Δέκα προορισμοί · Συμπλήρωση</p>
+ <p class="font-serif text-xl text-white mt-2">↻ Επιστροφή στους 10 προορισμούς</p>
+ <p class="text-xs text-white/50 mt-1">Η Ναυπακτία ολοκληρώνει τη μελέτη ως STEWARD βασικό reference. <a href="index.html" class="text-accent-300 hover:underline">Συγκριτική Ανάλυση</a> · <a href="comparative.html" class="text-accent-300 hover:underline">Cross-Destination Synthesis</a>.</p>
+ </div>
+ <div>
+ <p class="section-marker text-accent-300">Λήψεις</p>
+ <ul class="space-y-1.5 mt-2">
+ <li><a href="assets/downloads/nafpaktia_quantitative.pdf" target="_blank" class="hover:text-accent-300">Ποσοτική έρευνα PDF (1,7 MB)</a></li>
+ <li><a href="assets/downloads/nafpaktia_qualitative.pdf" target="_blank" class="hover:text-accent-300">Ποιοτική έρευνα PDF (1,1 MB)</a></li>
+ <li><a href="assets/data/nafpaktia-data.js" class="hover:text-accent-300">Δεδομένα JS (επί τόπου)</a></li>
+ </ul>
+ </div>
+ <div>
+ <p class="section-marker text-accent-300">Πιστοποίηση πηγών</p>
+ <p class="text-xs text-white/60 mt-2 leading-relaxed">Όλα τα στατιστικά δεδομένα από επίσημες πηγές (ΕΛΣΤΑΤ, Eurostat, ΤτΕ, INSETE). Πρωτογενής έρευνα κατοίκων από εξειδικευμένο φορέα δημοσκοπικής έρευνας. STEWARD Κριτική Εκ των Έσω methodology cross-validated με βασικό D7 Ιωαννίνων (CLASSIC) και D8 Βόλος-Πήλιο (REVERSE).</p>
+ </div>
+ </div>
+ <div class="container mx-auto px-6 mt-10 pt-6 border-t border-white/10 text-xs text-white/40 flex justify-between">
+ <p>Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035 · ΠΕ2 · Κεφάλαιο 13 Ναυπακτία</p>
+ <p class="numeric">v1.0 · 2026-05-15</p>
+ </div>
+ </footer>
+
+ <script src="assets/js/app.js?v=14"></script>
+ <script src="assets/js/charts.js?v=23"></script>
+ <script src="assets/data/nafpaktia-data.js?v=15"></script>
+ <script src="assets/js/nafpaktia-render.js?v=14"></script>
 </body>
 </html>

@@ -3,95 +3,355 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Υπό ενημέρωση · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
-  <meta name="robots" content="noindex">
+  <title>Πηγές Δεδομένων · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+  <meta name="description" content="17 πηγές δευτερογενών δεδομένων + πρωτογενής έρευνα κατοίκων + ολοκληρωμένη βιβλιογραφία 33 ακαδημαϊκών αναφορών για το ΠΕ2 της Λευκής Βίβλου.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy-900:#0d2440; --navy-700:#1f4e79; --navy-500:#3a73a8; --navy-50:#eef2f8;
-      --accent-500:#e07b00; --accent-300:#ffa951;
-      --ink-700:#2d3441; --ink-500:#5b6473;
-      --rule:rgba(13,36,64,0.10);
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family:'Inter', system-ui, sans-serif;
-      color:var(--ink-700);
-      background:linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 55%, var(--navy-500) 100%);
-      min-height:100vh;
-      display:flex; align-items:center; justify-content:center;
-      padding:24px;
-      position:relative; overflow:hidden;
-    }
-    /* subtle grid backdrop */
-    body::before {
-      content:''; position:absolute; inset:0;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size:60px 60px;
-      pointer-events:none;
-    }
-    .card {
-      position:relative; z-index:1;
-      background:#fff;
-      max-width:560px; width:100%;
-      padding:56px 48px;
-      border-radius:4px;
-      box-shadow:0 30px 80px -20px rgba(0,0,0,0.45);
-      border-top:4px solid var(--accent-500);
-    }
-    .eyebrow {
-      font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
-      color:var(--accent-500); font-weight:600;
-      display:flex; align-items:center; gap:10px; margin-bottom:22px;
-    }
-    .eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
-    h1 {
-      font-family:'Fraunces', Georgia, serif;
-      font-size:34px; line-height:1.18; color:var(--navy-700);
-      font-weight:600; margin-bottom:18px;
-    }
-    h1 em { color:var(--accent-500); font-style:italic; }
-    p { font-size:15.5px; line-height:1.65; color:var(--ink-700); margin-bottom:16px; }
-    p.muted { color:var(--ink-500); font-size:14px; }
-    .status {
-      display:inline-flex; align-items:center; gap:9px;
-      background:var(--navy-50); border:1px solid var(--rule);
-      padding:9px 16px; border-radius:3px; margin:8px 0 26px;
-      font-size:13.5px; font-weight:500; color:var(--navy-700);
-    }
-    .dot {
-      width:9px; height:9px; border-radius:50%;
-      background:var(--accent-500);
-      box-shadow:0 0 0 0 rgba(224,123,0,0.5);
-      animation:pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%   { box-shadow:0 0 0 0 rgba(224,123,0,0.45); }
-      70%  { box-shadow:0 0 0 9px rgba(224,123,0,0); }
-      100% { box-shadow:0 0 0 0 rgba(224,123,0,0); }
-    }
-    .footer {
-      margin-top:30px; padding-top:22px; border-top:1px solid var(--rule);
-      font-size:12px; color:var(--ink-500); line-height:1.6;
-    }
-    .footer strong { color:var(--ink-700); font-weight:600; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/custom.css?v=17">
+
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: {
+        navy:   { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
+        accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
+        ink:    { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
+      },
+      fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
+    } } }
+  </script>
 </head>
 <body>
-  <main class="card">
-    <p class="eyebrow">Παραδοτέο ΠΕ2 · Ψηφιακό συνοδευτικό</p>
-    <h1>Το ψηφιακό συνοδευτικό βρίσκεται <em>προσωρινά υπό ενημέρωση</em>.</h1>
-    <div class="status"><span class="dot"></span> Προσωρινά μη διαθέσιμο</div>
-    <p>Πραγματοποιούμε ενημέρωση του ψηφιακού συνοδευτικού της μελέτης. Η πρόσβαση θα αποκατασταθεί σύντομα.</p>
-    <p class="muted">Για επείγουσα ανάγκη ή πρόσβαση στο περιεχόμενο, παρακαλούμε επικοινωνήστε με την ομάδα έργου.</p>
-    <div class="footer">
-      <strong>Λευκή Βίβλος Τουριστικού Μετασχηματισμού &amp; Ανάπτυξης 2030–2035</strong><br>
-      Πακέτο Εργασίας 2 · Μελέτες δέκα τουριστικών προορισμών
+
+  <!-- Top utility bar -->
+  <div class="bg-navy-900 text-white text-xs">
+    <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+      <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
+      <div class="flex items-center gap-4">
+        <a href="methodology.html" class="text-white/70 hover:text-white">Μεθοδολογία</a>
+        <a href="data_sources.html" class="text-white font-medium">Πηγές</a>
+        <a href="comparative.html" class="text-white/70 hover:text-white">Συγκριτικά</a>
+        <a href="glossary.html" class="text-white/70 hover:text-white">Γλωσσάρι</a>
+        <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
+      </div>
     </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="relative bg-navy-700 overflow-hidden py-24">
+    <div class="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-700 to-navy-500"></div>
+    <svg class="absolute inset-0 w-full h-full opacity-[0.08]" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+    <div class="container mx-auto px-6 relative z-10 text-white max-w-4xl">
+      <p class="section-marker text-accent-300">Τεκμηρίωση πηγών</p>
+      <h1 class="display text-5xl md:text-6xl mt-3 leading-tight">Πηγές Δεδομένων</h1>
+      <p class="text-xl mt-4 text-navy-50/85 max-w-3xl">17 πηγές δευτερογενών δεδομένων με 54.000+ εγγραφές, πρωτογενής έρευνα 3.000 ερωτηματολογίων + 50 συνεντεύξεων, και 33 ακαδημαϊκές αναφορές που θεμελιώνουν τη μεθοδολογία.</p>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm">
+        <span class="px-3 py-1.5 bg-white/10 border border-white/15 rounded-sm">17 δευτερογενείς πηγές</span>
+        <span class="px-3 py-1.5 bg-white/10 border border-white/15 rounded-sm">54.000+ εγγραφές</span>
+        <span class="px-3 py-1.5 bg-white/10 border border-white/15 rounded-sm">3.000 ερωτηματολόγια</span>
+        <span class="px-3 py-1.5 bg-white/10 border border-white/15 rounded-sm">33 ακαδημαϊκές αναφορές</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6 py-16 max-w-5xl">
+
+    <!-- §1 Δευτερογενείς πηγές -->
+    <section class="mb-16">
+      <p class="section-marker">§ 1</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Δευτερογενείς πηγές δεδομένων</h2>
+      <p class="text-lg text-ink-700 leading-relaxed mb-6">17 πηγές διοικητικών και ερευνητικών δεδομένων, επιλεγμένες με τρία κριτήρια: αξιοπιστία/επίσημος χαρακτήρας, χωρική ανάλυση σε επίπεδο NUTS3 ή λεπτότερο, διαχρονική κάλυψη πενταετίας τουλάχιστον.</p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse bg-white">
+          <thead class="bg-navy-700 text-white">
+            <tr>
+              <th class="border border-navy-700 p-3 text-left">Α/Α</th>
+              <th class="border border-navy-700 p-3 text-left">Πηγή</th>
+              <th class="border border-navy-700 p-3 text-left">Σύνολα δεδομένων</th>
+              <th class="border border-navy-700 p-3 text-left">Γεωγραφικό επίπεδο</th>
+              <th class="border border-navy-700 p-3 text-left">Περίοδος</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-700">
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">1</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ STO12</strong></td>
+              <td class="border border-[var(--rule)] p-3">T03/T04: αφίξεις &amp; διανυκτερεύσεις ξενοδοχείων</td>
+              <td class="border border-[var(--rule)] p-3">ΠΕ (NUTS3)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2015–2024</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">2</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ STO12</strong></td>
+              <td class="border border-[var(--rule)] p-3">T10/T12/T15: αφίξεις ανά Δήμο</td>
+              <td class="border border-[var(--rule)] p-3">Δήμος (LAU)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2015–2024</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">3</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ STO12</strong></td>
+              <td class="border border-[var(--rule)] p-3">T13: μηνιαίες αφίξεις</td>
+              <td class="border border-[var(--rule)] p-3">Περιφέρεια (NUTS2)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2016–2024</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">4</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ STO12</strong></td>
+              <td class="border border-[var(--rule)] p-3">T01/T02: ξενοδοχειακό δυναμικό ανά αστέρι</td>
+              <td class="border border-[var(--rule)] p-3">ΠΕ (NUTS3)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2015–2024</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">5</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ STO12</strong></td>
+              <td class="border border-[var(--rule)] p-3">T14: μηνιαία πληρότητα κλινών</td>
+              <td class="border border-[var(--rule)] p-3">Περιφέρεια (NUTS2)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2015–2024</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">6</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ SBR01</strong></td>
+              <td class="border border-[var(--rule)] p-3">T10: Επιχειρηματικό Μητρώο, NACE 3ψήφιος × ΠΕ</td>
+              <td class="border border-[var(--rule)] p-3">ΠΕ (NUTS3)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2016–2023</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">7</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ SEL45</strong></td>
+              <td class="border border-[var(--rule)] p-3">Περιφερειακοί Λογαριασμοί: ΑΠΑ ανά 10 NACE τομείς (A10 aggregation: Α=Γεωργία, Β-Ε=Βιομηχανία, F=Κατασκευές, G-I=Εμπόριο/Μεταφορές/Καταλύματα, κλπ.)</td>
+              <td class="border border-[var(--rule)] p-3">ΠΕ (NUTS3)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2000–2023</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">8</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ SCI21</strong></td>
+              <td class="border border-[var(--rule)] p-3">Μουσεία &amp; αρχαιολογικοί χώροι</td>
+              <td class="border border-[var(--rule)] p-3">ΠΕ</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2010–2025</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">9</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ SOP03</strong></td>
+              <td class="border border-[var(--rule)] p-3">Οικοδομική δραστηριότητα</td>
+              <td class="border border-[var(--rule)] p-3">ΠΕ (NUTS3)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2015–2025</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">10</td>
+              <td class="border border-[var(--rule)] p-3"><strong>ΕΛΣΤΑΤ Απογραφή 2021</strong></td>
+              <td class="border border-[var(--rule)] p-3">Μόνιμος πληθυσμός</td>
+              <td class="border border-[var(--rule)] p-3">Δήμος / ΔΕ</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2021</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">11</td>
+              <td class="border border-[var(--rule)] p-3"><strong>Τράπεζα της Ελλάδος</strong></td>
+              <td class="border border-[var(--rule)] p-3">Ισοζύγιο Ταξιδιωτικών Υπηρεσιών</td>
+              <td class="border border-[var(--rule)] p-3">Περιφέρεια (NUTS2)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2016–2024</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">12</td>
+              <td class="border border-[var(--rule)] p-3"><strong>Eurostat</strong></td>
+              <td class="border border-[var(--rule)] p-3">tour_occ_arn2/nin2/nin2m, tour_cap_nuts2, nama_10r_3gva, env_*</td>
+              <td class="border border-[var(--rule)] p-3">NUTS2 / NUTS3</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2015–2024</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">13</td>
+              <td class="border border-[var(--rule)] p-3"><strong>INSETE Intelligence</strong></td>
+              <td class="border border-[var(--rule)] p-3">Βασικά τουριστικά μεγέθη ανά Περιφέρεια</td>
+              <td class="border border-[var(--rule)] p-3">ΠΕ</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2010–2024</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">14</td>
+              <td class="border border-[var(--rule)] p-3"><strong>AirDNA</strong></td>
+              <td class="border border-[var(--rule)] p-3">Αγορά βραχυχρόνιας μίσθωσης (STR)</td>
+              <td class="border border-[var(--rule)] p-3">ΠΕ</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2023–2026 (μηνιαία)</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">15</td>
+              <td class="border border-[var(--rule)] p-3"><strong>EEA</strong></td>
+              <td class="border border-[var(--rule)] p-3">Natura 2000 + Bathing Water Quality</td>
+              <td class="border border-[var(--rule)] p-3">Τοπικό</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2024</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">16</td>
+              <td class="border border-[var(--rule)] p-3"><strong>OSM &amp; TripAdvisor</strong></td>
+              <td class="border border-[var(--rule)] p-3">POIs: καταλύματα, εστίαση, αξιοθέατα</td>
+              <td class="border border-[var(--rule)] p-3">Σημειακό</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2025</td>
+            </tr>
+            <tr class="hover:bg-navy-50">
+              <td class="border border-[var(--rule)] p-3 text-center font-mono">17</td>
+              <td class="border border-[var(--rule)] p-3"><strong>Google Trends</strong></td>
+              <td class="border border-[var(--rule)] p-3">Δημοτικότητα αναζητήσεων</td>
+              <td class="border border-[var(--rule)] p-3">Εθνικό/Διεθνές</td>
+              <td class="border border-[var(--rule)] p-3 numeric">2019–2025 (μηνιαία)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-sm text-ink-500 italic mt-4">Συνολικό dataset: <strong>54.105 εγγραφές</strong> σε 47 αρχεία CSV. Βασική περίοδος ανάλυσης: 2015-2024 με τρεις υποπεριόδους (προ-πανδημίας, πανδημικό σοκ, ανάκαμψη).</p>
+
+      <div class="mt-6 p-4 bg-accent-50 border-l-4 border-accent-500 text-sm">
+        <p class="font-semibold text-navy-700">Σημείωση — Κενό 2020-2021 σε ΕΛΣΤΑΤ STO12 T03/T04</p>
+        <p class="text-ink-700 mt-2">Τα συγκεκριμένα αρχεία δεν ήταν αναγνώσιμα λόγω τεχνικών προβλημάτων· για τα έτη αυτά χρησιμοποιήθηκαν εναλλακτικά τα δεδομένα INSETE Intelligence Reports (επίπεδο ΠΕ) και Eurostat (NUTS2).</p>
+      </div>
+    </section>
+
+    <!-- §2 Πρωτογενής έρευνα -->
+    <section class="mb-16">
+      <p class="section-marker">§ 2</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Πρωτογενής έρευνα</h2>
+      <p class="text-ink-700 leading-relaxed mb-6">Διενεργήθηκε από τον <strong>υπεύθυνο ανάδοχο για την πρωτογενή έρευνα</strong> (μέλος ΣΕΔΕΑ και ESOMAR) εντός Απριλίου 2026.</p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse bg-white">
+          <thead class="bg-navy-700 text-white">
+            <tr>
+              <th class="border border-navy-700 p-3 text-left">Σκέλος</th>
+              <th class="border border-navy-700 p-3 text-left">Μέθοδος</th>
+              <th class="border border-navy-700 p-3 text-left">Δείγμα</th>
+              <th class="border border-navy-700 p-3 text-left">Στρωμάτωση</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink-700">
+            <tr>
+              <td class="border border-[var(--rule)] p-3"><strong>Ποσοτικό</strong></td>
+              <td class="border border-[var(--rule)] p-3">CATI σταθερό + κινητό + CAWI online</td>
+              <td class="border border-[var(--rule)] p-3 numeric">300/προορισμό × 10 = <strong>3.000</strong></td>
+              <td class="border border-[var(--rule)] p-3">Δήμος (Καλλικράτης) × Ηλικία × Φύλο</td>
+            </tr>
+            <tr>
+              <td class="border border-[var(--rule)] p-3"><strong>Ποιοτικό</strong></td>
+              <td class="border border-[var(--rule)] p-3">Ημι-δομημένες σε βάθος συνεντεύξεις (45-90 λεπτά)</td>
+              <td class="border border-[var(--rule)] p-3 numeric">5/προορισμό × 10 = <strong>50</strong></td>
+              <td class="border border-[var(--rule)] p-3">Σκοπούμενη + θεωρητική</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-sm text-ink-500 italic mt-4">Πλήρης τεκμηρίωση: <strong>Παράρτημα Γ — Πρωτογενής Έρευνα</strong> (352 γραμμές, αναλυτική δομή ερωτηματολογίου + Doxey Irridex 12 items).</p>
+    </section>
+
+    <!-- §3 Βιβλιογραφία -->
+    <section class="mb-16">
+      <p class="section-marker">§ 3</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-6">Ακαδημαϊκή βιβλιογραφία (33 references)</h2>
+
+      <div class="grid md:grid-cols-2 gap-6 text-sm">
+        <div>
+          <h3 class="font-serif text-lg text-navy-700 mb-3">Φέρουσα ικανότητα</h3>
+          <ul class="space-y-2 text-ink-700">
+            <li>Defert, P. (1967). Le taux de fonction touristique. <em>Cahiers du Tourisme</em>, Série C, No. 5.</li>
+            <li>Lapage, W. F. (1963). Some sociological aspects of forest recreation. <em>Journal of Forestry</em>, 61(1), 32–36.</li>
+            <li>Cifuentes, M. (1992). <em>Determinación de Capacidad de Carga Turística en Áreas Protegidas</em>. CATIE Technical Series No. 194.</li>
+            <li>Saveriades, A. (2000). Establishing the social tourism carrying capacity. <em>Tourism Management</em>, 21(2), 147–156.</li>
+            <li>Coccossis, H. &amp; Mexa, A. (2004). <em>The Challenge of Tourism Carrying Capacity Assessment</em>. Ashgate.</li>
+          </ul>
+
+          <h3 class="font-serif text-lg text-navy-700 mt-6 mb-3">Κοινωνική αποδοχή τουρισμού</h3>
+          <ul class="space-y-2 text-ink-700">
+            <li>Doxey, G. V. (1975). A causation theory of visitor-resident irritants. <em>TTRA 6th Annual Conference</em>, San Diego, 195–198.</li>
+            <li>Allen, L. R., Long, P. T., Perdue, R. R., &amp; Kieselbach, S. (1988). The impact of tourism development on residents' perceptions of community life. <em>Journal of Travel Research</em>, 27(1), 16–21.</li>
+            <li>Madrigal, R. (1995). Residents' perceptions and the role of government. <em>Annals of Tourism Research</em>, 22(1), 86–102.</li>
+            <li>Wu, M.-Y. &amp; Chen, X. (2018). Resident perceptions of tourism development: a re-examination of Doxey's Irritation Index. <em>Tourism Management Perspectives</em>, 26, 1–9.</li>
+          </ul>
+
+          <h3 class="font-serif text-lg text-navy-700 mt-6 mb-3">Στάδια τουριστικής ανάπτυξης</h3>
+          <ul class="space-y-2 text-ink-700">
+            <li>Butler, R. W. (1980). The concept of a tourist area cycle of evolution. <em>Canadian Geographer</em>, 24(1), 5–12.</li>
+            <li>Butler, R. W. (2006). <em>The Tourism Area Life Cycle, Vol. 1</em>. Channel View Publications.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-serif text-lg text-navy-700 mb-3">Στατιστικές μέθοδοι</h3>
+          <ul class="space-y-2 text-ink-700">
+            <li>Samejima, F. (1969). <em>Estimation of Latent Ability Using a Response Pattern of Graded Scores</em>. Psychometrika Monograph No. 17.</li>
+            <li>Lazarsfeld, P. F. &amp; Henry, N. W. (1968). <em>Latent Structure Analysis</em>. Houghton Mifflin.</li>
+            <li>Hagenaars, J. A. &amp; McCutcheon, A. L. (eds.) (2002). <em>Applied Latent Class Analysis</em>. Cambridge University Press.</li>
+            <li>Johnson, J. W. (2000). A heuristic method for estimating the relative weight of predictor variables. <em>Multivariate Behavioral Research</em>, 35(1), 1–19.</li>
+            <li>Kish, L. (1965). <em>Survey Sampling</em>. Wiley.</li>
+          </ul>
+
+          <h3 class="font-serif text-lg text-navy-700 mt-6 mb-3">Περιφερειακή ανάλυση</h3>
+          <ul class="space-y-2 text-ink-700">
+            <li>Dunn, E. (1960). A statistical and analytical technique for regional analysis. <em>Papers of the Regional Science Association</em>, 6(1), 97–112.</li>
+            <li>Esteban-Marquillas, J. M. (1972). A reinterpretation of shift-share analysis. <em>Regional and Urban Economics</em>, 2(3), 249–255.</li>
+            <li>Isserman, A. M. (1977). The location quotient approach. <em>Journal of the American Institute of Planners</em>, 43(1), 33–41.</li>
+            <li>Frenken, K., Van Oort, F., &amp; Verburg, T. (2007). Related variety, unrelated variety and regional economic growth. <em>Regional Studies</em>, 41(5), 685–697.</li>
+          </ul>
+
+          <h3 class="font-serif text-lg text-navy-700 mt-6 mb-3">Εποχικότητα τουρισμού</h3>
+          <ul class="space-y-2 text-ink-700">
+            <li>BarOn, R. (1975). <em>Seasonality in Tourism</em>. Economist Intelligence Unit.</li>
+            <li>Lundtorp, S. (1999). The Gini index as a measure of seasonality. <em>Tourism Economics</em>, 5(2), 121–135.</li>
+            <li>Koenig-Lewis, N. &amp; Bischoff, E. (2005). Seasonality research: the state of the art. <em>International Journal of Tourism Research</em>, 7(4-5), 201–219.</li>
+            <li>Cuccia, T. &amp; Rizzo, I. (2011). Tourism seasonality in cultural destinations. <em>Annals of Tourism Research</em>, 38(2), 562–580.</li>
+            <li>Ferrante, M., Ferrante, G. &amp; Ferrante, C. (2024). Measuring tourism seasonality: a comprehensive review. <em>Tourism Management Perspectives</em>, 50, 101223.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="text-sm text-ink-500 italic mt-6">Πλήρης κατάλογος (33 references) + θεσμικά κείμενα + εμπορικές πηγές δεδομένων + νομοθετικό πλαίσιο: <strong>Παράρτημα Δ — Βιβλιογραφία &amp; Πηγές</strong>.</p>
+    </section>
+
+    <!-- Cross-references -->
+    <section class="mb-12 p-6 bg-navy-50 border-l-4 border-accent-500">
+      <p class="section-marker text-accent-500">Πλήρης τεκμηρίωση πηγών</p>
+      <h3 class="font-serif text-xl text-navy-700 mt-2 mb-4">Στο παραδοτέο docx</h3>
+      <ul class="space-y-2 text-ink-700">
+        <li>📘 <strong>Κεφάλαιο 2 § 2.2</strong> — Δευτερογενείς πηγές (τεχνικές λεπτομέρειες)</li>
+        <li>📗 <strong>Παράρτημα Β § Β.2.1</strong> — API/μέθοδος λήψης, εγγραφές</li>
+        <li>📕 <strong>Παράρτημα Γ</strong> — Πλήρης πρωτογενής έρευνα (ερωτηματολόγιο + στάθμιση)</li>
+        <li>📒 <strong>Παράρτημα Δ</strong> — Πλήρης ακαδημαϊκή βιβλιογραφία (33 references) + θεσμικά κείμενα</li>
+      </ul>
+    </section>
+
   </main>
+
+  <!-- Footer -->
+  <footer class="bg-navy-900 text-white py-12 mt-0">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <p class="section-marker text-accent-300">Δείτε επίσης</p>
+        <ul class="space-y-1.5 mt-2">
+          <li><a href="methodology.html" class="hover:text-accent-300">Μεθοδολογικό πλαίσιο →</a></li>
+          <li><a href="comparative.html" class="hover:text-accent-300">Συγκριτική ανάλυση 10 προορισμών →</a></li>
+          <li><a href="index.html" class="hover:text-accent-300">Όλοι οι 10 προορισμοί →</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Παραδοτέο</p>
+        <p class="font-serif text-lg mt-1">Λευκή Βίβλος ΠΕ2</p>
+        <p class="text-xs text-white/60 mt-2">Χρηματοδότηση μέσω Ταμείου Ανάκαμψης &amp; Ανθεκτικότητας / NextGenerationEU</p>
+      </div>
+      <div>
+        <p class="section-marker text-accent-300">Έκδοση</p>
+        <p class="text-sm mt-1">v1.0 · 2026-05-15</p>
+        <p class="text-xs text-white/60 mt-2">Πιλοτικό τεύχος για ανατροφοδότηση συνεργατών.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js?v=17"></script>
 </body>
 </html>

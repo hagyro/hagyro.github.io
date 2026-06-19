@@ -1,97 +1,303 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Υπό ενημέρωση · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
-  <meta name="robots" content="noindex">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy-900:#0d2440; --navy-700:#1f4e79; --navy-500:#3a73a8; --navy-50:#eef2f8;
-      --accent-500:#e07b00; --accent-300:#ffa951;
-      --ink-700:#2d3441; --ink-500:#5b6473;
-      --rule:rgba(13,36,64,0.10);
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family:'Inter', system-ui, sans-serif;
-      color:var(--ink-700);
-      background:linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 55%, var(--navy-500) 100%);
-      min-height:100vh;
-      display:flex; align-items:center; justify-content:center;
-      padding:24px;
-      position:relative; overflow:hidden;
-    }
-    /* subtle grid backdrop */
-    body::before {
-      content:''; position:absolute; inset:0;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size:60px 60px;
-      pointer-events:none;
-    }
-    .card {
-      position:relative; z-index:1;
-      background:#fff;
-      max-width:560px; width:100%;
-      padding:56px 48px;
-      border-radius:4px;
-      box-shadow:0 30px 80px -20px rgba(0,0,0,0.45);
-      border-top:4px solid var(--accent-500);
-    }
-    .eyebrow {
-      font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
-      color:var(--accent-500); font-weight:600;
-      display:flex; align-items:center; gap:10px; margin-bottom:22px;
-    }
-    .eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
-    h1 {
-      font-family:'Fraunces', Georgia, serif;
-      font-size:34px; line-height:1.18; color:var(--navy-700);
-      font-weight:600; margin-bottom:18px;
-    }
-    h1 em { color:var(--accent-500); font-style:italic; }
-    p { font-size:15.5px; line-height:1.65; color:var(--ink-700); margin-bottom:16px; }
-    p.muted { color:var(--ink-500); font-size:14px; }
-    .status {
-      display:inline-flex; align-items:center; gap:9px;
-      background:var(--navy-50); border:1px solid var(--rule);
-      padding:9px 16px; border-radius:3px; margin:8px 0 26px;
-      font-size:13.5px; font-weight:500; color:var(--navy-700);
-    }
-    .dot {
-      width:9px; height:9px; border-radius:50%;
-      background:var(--accent-500);
-      box-shadow:0 0 0 0 rgba(224,123,0,0.5);
-      animation:pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%   { box-shadow:0 0 0 0 rgba(224,123,0,0.45); }
-      70%  { box-shadow:0 0 0 9px rgba(224,123,0,0); }
-      100% { box-shadow:0 0 0 0 rgba(224,123,0,0); }
-    }
-    .footer {
-      margin-top:30px; padding-top:22px; border-top:1px solid var(--rule);
-      font-size:12px; color:var(--ink-500); line-height:1.6;
-    }
-    .footer strong { color:var(--ink-700); font-weight:600; }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035 · ΠΕ2 Διαδραστική Παρουσίαση</title>
+ <meta name="description" content="Διαδραστική παρουσίαση 10 ελληνικών τουριστικών προορισμών — ποσοτικά, ποιοτικά και δευτερογενή δεδομένα. Πιλοτικό τεύχος v1.">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+ <link rel="stylesheet" href="assets/css/custom.css?v=14">
+
+ <script>
+ tailwind.config = { theme: { extend: {
+ colors: {
+ navy: { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
+ accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
+ ink: { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
+ },
+ fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
+ } } }
+ </script>
 </head>
+
 <body>
-  <main class="card">
-    <p class="eyebrow">Παραδοτέο ΠΕ2 · Ψηφιακό συνοδευτικό</p>
-    <h1>Το ψηφιακό συνοδευτικό βρίσκεται <em>προσωρινά υπό ενημέρωση</em>.</h1>
-    <div class="status"><span class="dot"></span> Προσωρινά μη διαθέσιμο</div>
-    <p>Πραγματοποιούμε ενημέρωση του ψηφιακού συνοδευτικού της μελέτης. Η πρόσβαση θα αποκατασταθεί σύντομα.</p>
-    <p class="muted">Για επείγουσα ανάγκη ή πρόσβαση στο περιεχόμενο, παρακαλούμε επικοινωνήστε με την ομάδα έργου.</p>
-    <div class="footer">
-      <strong>Λευκή Βίβλος Τουριστικού Μετασχηματισμού &amp; Ανάπτυξης 2030–2035</strong><br>
-      Πακέτο Εργασίας 2 · Μελέτες δέκα τουριστικών προορισμών
-    </div>
-  </main>
+
+ <!-- Header / Masthead -->
+ <header class="border-b border-[var(--rule)] bg-white">
+ <div class="container mx-auto px-6 py-5 flex items-center justify-between">
+ <div>
+ <p class="section-marker">Παραδοτέο ΠΕ2 · Πιλοτικό τεύχος</p>
+ <h1 class="font-serif text-2xl text-navy-700 mt-1">Λευκή Βίβλος Τουριστικού Μετασχηματισμού<span class="text-ink-500 font-sans font-normal text-base"> · 2030–2035</span></h1>
+ </div>
+ <div class="flex items-center gap-3">
+ <a href="methodology.html" class="text-sm text-ink-500 hover:text-navy-700">Μεθοδολογία</a>
+ <a href="data_sources.html" class="text-sm text-ink-500 hover:text-navy-700">Πηγές</a>
+ <a href="comparative.html" class="text-sm text-ink-500 hover:text-navy-700">Συγκριτικά</a>
+ <a href="glossary.html" class="text-sm text-ink-500 hover:text-navy-700">Γλωσσάρι</a>
+ <button data-theme-toggle class="theme-toggle" aria-label="Εναλλαγή θέματος"></button>
+ </div>
+ </div>
+ </header>
+
+ <!-- Hero with destination mosaic backdrop -->
+ <section class="relative overflow-hidden text-white isolate">
+ <!-- 5-photo mosaic backdrop -->
+ <div class="absolute inset-0 grid grid-cols-5" aria-hidden="true">
+ <div class="bg-cover bg-center" style="background-image:url('assets/images/chania_hero.jpg')"></div>
+ <div class="bg-cover bg-center" style="background-image:url('assets/images/mykonos_hero.jpg')"></div>
+ <div class="bg-cover bg-center" style="background-image:url('assets/images/nauplio_hero.jpg')"></div>
+ <div class="bg-cover bg-center" style="background-image:url('assets/images/ioannina_hero.jpg')"></div>
+ <div class="bg-cover bg-center" style="background-image:url('assets/images/alexandroupoli_samothraki_hero.jpg')"></div>
+ </div>
+ <!-- Dark navy gradient overlay for legibility -->
+ <div class="absolute inset-0 bg-gradient-to-br from-navy-900/95 via-navy-700/85 to-navy-500/70" aria-hidden="true"></div>
+ <!-- Subtle grid -->
+ <svg class="absolute inset-0 w-full h-full opacity-[0.06]" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+ <defs>
+ <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+ <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
+ </pattern>
+ </defs>
+ <rect width="100%" height="100%" fill="url(#hero-grid)"/>
+ </svg>
+
+ <div class="container mx-auto px-6 py-28 md:py-36 relative z-10 max-w-4xl">
+ <p class="section-marker text-accent-300">Δέκα προορισμοί · Μία αναλυτική ματιά</p>
+ <h2 class="font-serif text-5xl md:text-6xl leading-tight mt-4">Από τη μαζική συγκέντρωση<br><em class="text-accent-300">στη βιώσιμη χωρική διάχυση.</em></h2>
+ <p class="mt-8 text-lg leading-relaxed text-navy-50/90 max-w-2xl">
+ Πέντε ώριμοι προορισμοί με διαφορετικούς βαθμούς πίεσης στη <span class="glossary" title="Φέρουσα ικανότητα: μέγιστη τουριστική φιλοξενία χωρίς αλλοίωση τοπικών πόρων ή κοινωνικής συνοχής.">φέρουσα ικανότητα</span>. Πέντε προορισμοί με αναξιοποίητο δυναμικό. Δέκα διαφορετικές αναλυτικές αφηγήσεις, πάνω σε κοινή μεθοδολογική βάση πρωτογενούς έρευνας κατοίκων (n≈3.000), δευτερογενών στατιστικών (ΕΛΣΤΑΤ, Eurostat, Τράπεζα της Ελλάδος, INSETE) και χωρικής ανάλυσης (OpenStreetMap POIs, NUTS3 / LAU disaggregation).
+ </p>
+ <div class="mt-10 flex flex-wrap gap-3 text-sm">
+ <span class="px-3 py-1.5 bg-white/10 border border-white/20 rounded-sm backdrop-blur-sm">10 προορισμοί</span>
+ <span class="px-3 py-1.5 bg-white/10 border border-white/20 rounded-sm backdrop-blur-sm">10 εργαλεία σε 8 οικογένειες</span>
+ <span class="px-3 py-1.5 bg-white/10 border border-white/20 rounded-sm backdrop-blur-sm">~3.000 κάτοικοι ερωτώμενοι</span>
+ <span class="px-3 py-1.5 bg-white/10 border border-white/20 rounded-sm backdrop-blur-sm">2010–2024 χρονικό βάθος</span>
+ </div>
+ </div>
+ </section>
+
+ <!-- Destinations grid -->
+ <section class="container mx-auto px-6 py-20">
+ <div class="rule-eyebrow mb-12"><span class="section-marker">01 — Δέκα προορισμοί</span></div>
+
+ <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+ <div class="lg:col-span-1">
+ <h3 class="font-serif text-3xl text-navy-700 leading-tight">Επιλέξτε προορισμό<br>για αναλυτική παρουσίαση</h3>
+ <p class="mt-4 text-ink-700">Κάθε προορισμός παρουσιάζεται με 8 ενότητες δεδομένων: επισκόπηση, ζήτηση/προσφορά, τουριστικό προϊόν, οικονομία, κοινωνία, περιβάλλον, στρατηγική, παράρτημα. Όλα τα στοιχεία είναι διαδραστικά — μεγέθυνση, φιλτράρισμα και σύγκριση.</p>
+ <div class="mt-8 space-y-2 text-sm">
+ <p class="flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-full bg-accent-500"></span> Ώριμοι τουριστικοί προορισμοί</p>
+ <p class="flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-full bg-navy-700"></span> Προορισμοί με περιθώριο ανάπτυξης</p>
+ </div>
+ </div>
+
+ <div class="lg:col-span-2 grid grid-cols-2 gap-4">
+
+ <!-- 01. Χανιά — Ώριμος νησιωτικός κορεσμένος -->
+ <a href="chania.html" class="block p-6 border border-[var(--rule)] hover:border-accent-500 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker text-accent-500">01 · ΩΡΙΜΟΣ · νησιωτικός κορεσμένος</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Χανιά</h4>
+ <p class="text-sm text-ink-500 mt-1">Κρήτη · ΠΕ Χανίων (EL434)</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 4 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>1,36 εκ. αφίξεις (2024)</p>
+ <p>STR διανυκτ. 24,9% · POI θ +0,54</p>
+ <p>43 Γαλάζιες Σημαίες · ηγέτης</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-accent-500 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ <!-- 02. Κέρκυρα — Ώριμος νησιωτικός κορεσμένος (ο πιο επείγον) -->
+ <a href="kerkyra.html" class="block p-6 border border-[var(--rule)] hover:border-accent-500 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker text-accent-500">02 · ΩΡΙΜΟΣ · νησιωτικός κορεσμένος</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Κέρκυρα</h4>
+ <p class="text-sm text-ink-500 mt-1">Ιόνια Νησιά · ΠΕ Κέρκυρας (EL621)</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 5 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>2,67 εκ. αφίξεις (2024)</p>
+ <p>POI θ +0,70 · υψηλότερο της δεκάδας</p>
+ <p>LCA «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>) 30,0% · μοναδική κυρίαρχη</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-accent-500 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ <!-- 03. Μύκονος — Ώριμος νησιωτικός υπερκορεσμός (sui generis) -->
+ <a href="mykonos.html" class="block p-6 border border-[var(--rule)] hover:border-accent-500 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker text-accent-500">03 · ΩΡΙΜΟΣ · νησιωτικός υπερκορεσμός</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Μύκονος</h4>
+ <p class="text-sm text-ink-500 mt-1">Νότιο Αιγαίο · ΠΕ Μυκόνου (EL422)</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 6 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>TII 178,6 (Δήμος) · ακραίο</p>
+ <p>1,58 κλίνες/κάτοικο · υψηλότερο</p>
+ <p>Ανάκαμψη 0,878 · <span class="glossary" title="Butler TALC: κύκλος ζωής τουριστικού προορισμού σε 6 στάδια (Butler 1980): Εξερεύνηση → Εμπλοκή → Ανάπτυξη → Ενοποίηση → Στασιμότητα → Παρακμή/Αναζωογόνηση.">Butler</span> stasis</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-accent-500 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ <!-- 04. Ναύπλιο — Ώριμος ηπειρωτικός μικτός -->
+ <a href="nauplio.html" class="block p-6 border border-[var(--rule)] hover:border-accent-500 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker text-accent-500">04 · ΩΡΙΜΟΣ · ηπειρωτικός μικτός</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Ναύπλιο</h4>
+ <p class="text-sm text-ink-500 mt-1">Πελοπόννησος · ΠΕ Αργολίδας (EL651)</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 7 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>441 χιλ. αφίξεις (2024)</p>
+ <p>LCA «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) 42,4% · υψηλή</p>
+ <p>Επίδαυρος + Μυκήνες · UNESCO</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-accent-500 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ <!-- 05. Βόλος-Πήλιο — Ώριμος ηπειρωτικός μικτός με έντονο αντίστροφο μοτίβο -->
+ <a href="volos_pelio.html" class="block p-6 border border-[var(--rule)] hover:border-accent-500 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker text-accent-500">05 · ΩΡΙΜΟΣ · ηπειρωτικός μικτός</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Βόλος-Πήλιο</h4>
+ <p class="text-sm text-ink-500 mt-1">Θεσσαλία · ΠΕ Μαγνησίας (EL613)</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 8 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>331 χιλ. αφίξεις (2024)</p>
+ <p>Κριτική Εκ των Έσω έντονο αντίστροφο μοτίβο +9,60 ποσοστιαίες μονάδες</p>
+ <p>Natura 2000 · 3.941 km²</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-accent-500 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ <!-- 06. Ιωάννινα — Αναπτυσσόμενος ηπειρωτικός αστικός -->
+ <a href="ioannina.html" class="block p-6 border border-[var(--rule)] hover:border-navy-700 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker">06 · ΑΝΑΠΤΥΣΣΟΜΕΝΟΣ · ηπειρωτικός αστικός</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Ιωάννινα</h4>
+ <p class="text-sm text-ink-500 mt-1">Ήπειρος · ΠΕ Ιωαννίνων ⚠ EL541</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 9 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>CAGR αλλοδαπών +10,85% · υψηλότερο</p>
+ <p>LCA «Ενεργοί Υποστηρικτές» (<em>Ενεργή Ευφορία</em>) 42,3% · υψηλότερη</p>
+ <p>Ζαγόρι UNESCO Geopark (2023)</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-navy-700 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ <!-- 07. Καστοριά — Αναπτυσσόμενος μοναδικός χειμερινός -->
+ <a href="kastoria.html" class="block p-6 border border-[var(--rule)] hover:border-navy-700 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker">07 · ΑΝΑΠΤΥΣΣΟΜΕΝΟΣ · χειμερινός</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Καστοριά</h4>
+ <p class="text-sm text-ink-500 mt-1">Δυτική Μακεδονία · ΠΕ Καστοριάς ⚠ EL531</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 10 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>Gini 0,151 · χαμηλότερο</p>
+ <p>Μήνας αιχμής Οκτώβριος · μοναδικός</p>
+ <p>Ανάκαμψη 0,691 + JTF διαθέσιμο</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-navy-700 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ <!-- 08. Αλεξανδρούπολη-Σαμοθράκη — Αναπτυσσόμενος διττός -->
+ <a href="alexandroupoli_samothraki.html" class="block p-6 border border-[var(--rule)] hover:border-navy-700 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker">08 · ΑΝΑΠΤΥΣΣΟΜΕΝΟΣ · διττός</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Αλεξ/πολη-Σαμοθράκη</h4>
+ <p class="text-sm text-ink-500 mt-1">ΑΜΘ · ΠΕ Έβρου (EL511)</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 11 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>Ανάκαμψη 1,649 · υψηλότερη</p>
+ <p>LCA «Αμφιταλαντευόμενοι» (<em>Συγκρ. Ενόχληση</em>) 28,8% · μοναδική</p>
+ <p>Δέλτα Έβρου + Σαμοθράκη (2.596)</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-navy-700 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ <!-- 09. Τροιζηνία-Μέθανα-Γαλατάς — Αναπτυσσόμενος πιλοτικός -->
+ <a href="troizinia_methana_galatas.html" class="block p-6 border border-[var(--rule)] hover:border-navy-700 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker">09 · ΑΝΑΠΤΥΣΣΟΜΕΝΟΣ · πιλοτικός</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Τροιζηνία-Μέθανα-Γαλατάς</h4>
+ <p class="text-sm text-ink-500 mt-1">Αττική · ΠΕ Νήσων (EL307)</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 12 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>LCA «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) 48,5% · υψηλότερη</p>
+ <p>POI θ −0,68 · χαμηλότερο</p>
+ <p>Πιο αναξιοποίητος προορισμός</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-navy-700 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ <!-- 10. Ναυπακτία — Αναπτυσσόμενος Λεπάντο -->
+ <a href="nafpaktia.html" class="block p-6 border border-[var(--rule)] hover:border-navy-700 transition-all hover:-translate-y-1 group bg-white relative">
+ <p class="section-marker">10 · ΑΝΑΠΤΥΣΣΟΜΕΝΟΣ · «Λεπάντο»</p>
+ <h4 class="font-serif text-2xl mt-2 text-navy-700">Ναυπακτία</h4>
+ <p class="text-sm text-ink-500 mt-1">Δυτική Ελλάδα · ΠΕ Αιτωλοακαρνανίας (EL631)</p>
+ <p class="text-xs text-ink-300 mb-4">Κεφάλαιο 13 · Λευκή Βίβλος</p>
+ <div class="text-sm space-y-1 numeric text-ink-700">
+ <p>Κριτική Εκ των Έσω STEWARD · μοναδικός</p>
+ <p>δήλωση «ανάγκη μέτρων περιορισμού τουρισμού» +15,1 ποσοστιαίες μονάδες · πρωτότυπη συνεισφορά</p>
+ <p>13 Natura sites · ανάκαμψη 1,618</p>
+ </div>
+ <span class="absolute top-6 right-6 w-2 h-2 rounded-full bg-navy-700 group-hover:scale-150 transition-transform"></span>
+ </a>
+
+ </div>
+ </div>
+ </section>
+
+ <!-- Methodology overview strip -->
+ <section class="bg-navy-50 py-20">
+ <div class="container mx-auto px-6">
+ <div class="rule-eyebrow mb-12"><span class="section-marker">02 — Μέθοδοι</span></div>
+ <div class="grid md:grid-cols-4 gap-8">
+ <div>
+ <p class="font-serif text-4xl text-navy-700">10</p>
+ <p class="text-sm text-ink-500 mt-1">Εργαλεία ανάλυσης (σε 8 οικογένειες)</p>
+ <p class="text-xs mt-3 leading-relaxed">Defert TFI/TII, IRT-GRM, Latent Class Analysis, Random Forest IPA, Doxey Irridex, Bayesian Multilevel, IPW+CEM Causal, Shift-Share, Location Quotient, Κριτική Εκ των Έσω Taxonomy.</p>
+ </div>
+ <div>
+ <p class="font-serif text-4xl text-navy-700">~3.000</p>
+ <p class="text-sm text-ink-500 mt-1">Κάτοικοι σε πρωτογενή έρευνα</p>
+ <p class="text-xs mt-3 leading-relaxed">Σταθμισμένα δείγματα ανά προορισμό (n=300 ώριμοι, n=300 ανάπτυξης), εσωτερική στρωμάτωση σε επίπεδο Καλλικρατικού Δήμου με rake/IPF.</p>
+ </div>
+ <div>
+ <p class="font-serif text-4xl text-navy-700">14</p>
+ <p class="text-sm text-ink-500 mt-1">Έτη χρονικό βάθος</p>
+ <p class="text-xs mt-3 leading-relaxed">Ζήτηση 2010–2024, οικοδομική δραστηριότητα 2015–2025, Eurostat env 2009–2023, MRB 2026.</p>
+ </div>
+ <div>
+ <p class="font-serif text-4xl text-navy-700">9</p>
+ <p class="text-sm text-ink-500 mt-1">Επίσημες πηγές δεδομένων</p>
+ <p class="text-xs mt-3 leading-relaxed">ΕΛΣΤΑΤ (STO12, SBR01, SOP03, Census), Eurostat (lan_lcv, env_*, tour_*), Τράπεζα της Ελλάδος, INSETE, OpenStreetMap, ΥΠΟΑΝ, Περιφέρειες, Δήμοι.</p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- Footer -->
+ <footer class="bg-white border-t border-[var(--rule)] py-12 mt-0">
+ <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8">
+ <div>
+ <p class="section-marker">Παραδοτέο</p>
+ <p class="font-serif text-lg mt-1">Λευκή Βίβλος ΠΕ2</p>
+ <p class="text-xs text-ink-500 mt-2">Χρηματοδότηση μέσω Ταμείου Ανάκαμψης &amp; Ανθεκτικότητας / NextGenerationEU.</p>
+ </div>
+ <div>
+ <p class="section-marker">Έκδοση</p>
+ <p class="text-sm mt-1">Πιλοτικό τεύχος v1.0</p>
+ <p class="text-xs text-ink-500 mt-2">Παρουσιάζεται για ανατροφοδότηση συνεργατών. Επόμενη επικαιροποίηση μετά την ενσωμάτωση σχολίων.</p>
+ </div>
+ <div>
+ <p class="section-marker">Επικοινωνία</p>
+ <p class="text-sm mt-1">Χαράλαμπος Αγυρόπουλος</p>
+ <p class="text-xs text-ink-500 mt-2">Επιστημονικός υπεύθυνος ΠΕ2</p>
+ </div>
+ </div>
+ <div class="container mx-auto px-6 mt-10 pt-6 border-t border-[var(--rule)] flex flex-wrap justify-between items-center text-xs text-ink-500">
+ <p>© 2026 Λευκή Βίβλος Τουριστικού Μετασχηματισμού</p>
+ <p class="numeric">Έκδοση 1.0 · 2026-05-09</p>
+ </div>
+ </footer>
+
+ <script src="assets/js/app.js?v=14"></script>
 </body>
 </html>

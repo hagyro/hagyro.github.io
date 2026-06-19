@@ -1,97 +1,843 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Υπό ενημέρωση · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
-  <meta name="robots" content="noindex">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy-900:#0d2440; --navy-700:#1f4e79; --navy-500:#3a73a8; --navy-50:#eef2f8;
-      --accent-500:#e07b00; --accent-300:#ffa951;
-      --ink-700:#2d3441; --ink-500:#5b6473;
-      --rule:rgba(13,36,64,0.10);
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family:'Inter', system-ui, sans-serif;
-      color:var(--ink-700);
-      background:linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 55%, var(--navy-500) 100%);
-      min-height:100vh;
-      display:flex; align-items:center; justify-content:center;
-      padding:24px;
-      position:relative; overflow:hidden;
-    }
-    /* subtle grid backdrop */
-    body::before {
-      content:''; position:absolute; inset:0;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size:60px 60px;
-      pointer-events:none;
-    }
-    .card {
-      position:relative; z-index:1;
-      background:#fff;
-      max-width:560px; width:100%;
-      padding:56px 48px;
-      border-radius:4px;
-      box-shadow:0 30px 80px -20px rgba(0,0,0,0.45);
-      border-top:4px solid var(--accent-500);
-    }
-    .eyebrow {
-      font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
-      color:var(--accent-500); font-weight:600;
-      display:flex; align-items:center; gap:10px; margin-bottom:22px;
-    }
-    .eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
-    h1 {
-      font-family:'Fraunces', Georgia, serif;
-      font-size:34px; line-height:1.18; color:var(--navy-700);
-      font-weight:600; margin-bottom:18px;
-    }
-    h1 em { color:var(--accent-500); font-style:italic; }
-    p { font-size:15.5px; line-height:1.65; color:var(--ink-700); margin-bottom:16px; }
-    p.muted { color:var(--ink-500); font-size:14px; }
-    .status {
-      display:inline-flex; align-items:center; gap:9px;
-      background:var(--navy-50); border:1px solid var(--rule);
-      padding:9px 16px; border-radius:3px; margin:8px 0 26px;
-      font-size:13.5px; font-weight:500; color:var(--navy-700);
-    }
-    .dot {
-      width:9px; height:9px; border-radius:50%;
-      background:var(--accent-500);
-      box-shadow:0 0 0 0 rgba(224,123,0,0.5);
-      animation:pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%   { box-shadow:0 0 0 0 rgba(224,123,0,0.45); }
-      70%  { box-shadow:0 0 0 9px rgba(224,123,0,0); }
-      100% { box-shadow:0 0 0 0 rgba(224,123,0,0); }
-    }
-    .footer {
-      margin-top:30px; padding-top:22px; border-top:1px solid var(--rule);
-      font-size:12px; color:var(--ink-500); line-height:1.6;
-    }
-    .footer strong { color:var(--ink-700); font-weight:600; }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Βόλος-Πήλιο · Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035</title>
+ <meta name="description" content="Πλήρες προφίλ τουριστικού προορισμού Βόλου-Πηλίου: ώριμος ηπειρωτικός μικτός προορισμός με αναπτυξιακό περιθώριο και μοναδικό Κριτική Εκ των Έσω έντονο αντίστροφο μοτίβο pattern (+9,60 ποσοστιαίες μονάδες). 8 ενότητες, 18 γραφήματα και πίνακες, 21 πίνακες, ποιοτικά αποσπάσματα και δευτερογενή δεδομένα.">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@500;600;700&display=swap" rel="stylesheet">
+
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+ <link rel="stylesheet" href="assets/css/custom.css?v=17">
+
+ <script>
+ tailwind.config = { theme: { extend: {
+ colors: {
+ navy: { 50:'#eef2f8', 300:'#7f9bbe', 500:'#3a73a8', 700:'#1f4e79', 900:'#0d2440' },
+ accent: { 300:'#ffa951', 500:'#e07b00', 700:'#b56400' },
+ ink: { 300:'#aab2bf', 500:'#5b6473', 700:'#2d3441', 900:'#0a0e14' }
+ },
+ fontFamily: { sans: ['Inter','system-ui','sans-serif'], serif: ['Fraunces','Playfair Display','Georgia','serif'] }
+ } } }
+ </script>
 </head>
 <body>
-  <main class="card">
-    <p class="eyebrow">Παραδοτέο ΠΕ2 · Ψηφιακό συνοδευτικό</p>
-    <h1>Το ψηφιακό συνοδευτικό βρίσκεται <em>προσωρινά υπό ενημέρωση</em>.</h1>
-    <div class="status"><span class="dot"></span> Προσωρινά μη διαθέσιμο</div>
-    <p>Πραγματοποιούμε ενημέρωση του ψηφιακού συνοδευτικού της μελέτης. Η πρόσβαση θα αποκατασταθεί σύντομα.</p>
-    <p class="muted">Για επείγουσα ανάγκη ή πρόσβαση στο περιεχόμενο, παρακαλούμε επικοινωνήστε με την ομάδα έργου.</p>
-    <div class="footer">
-      <strong>Λευκή Βίβλος Τουριστικού Μετασχηματισμού &amp; Ανάπτυξης 2030–2035</strong><br>
-      Πακέτο Εργασίας 2 · Μελέτες δέκα τουριστικών προορισμών
+
+ <!-- Top utility bar -->
+ <div class="bg-navy-900 text-white text-xs">
+ <div class="container mx-auto px-6 py-2 flex justify-between items-center">
+ <a href="index.html" class="hover:text-accent-300 transition-colors">← Επιστροφή στους 10 προορισμούς</a>
+ <div class="flex items-center gap-4">
+ <a href="methodology.html" class="text-white/70 hover:text-white">Μεθοδολογία</a>
+ <a href="data_sources.html" class="text-white/70 hover:text-white">Πηγές</a>
+ <a href="comparative.html" class="text-white/70 hover:text-white">Συγκριτικά</a>
+ <a href="glossary.html" class="text-white/70 hover:text-white">Γλωσσάρι</a>
+ <button data-theme-toggle class="theme-toggle bg-transparent border-white/20 text-white hover:border-white" aria-label="Θέμα"></button>
+ </div>
+ </div>
+ </div>
+
+ <!-- HERO -->
+ <header class="relative h-[70vh] min-h-[520px] bg-navy-700 overflow-hidden flex items-end">
+ <!-- Hero photo: Βόλος-Πήλιο -->
+ <img src="assets/images/volos_pelio_hero.jpg" alt="Άποψη Βόλου από το Πήλιο με Παγασητικό κόλπο" class="absolute inset-0 w-full h-full object-cover">
+ <!-- Gradient overlay for text legibility -->
+ <div class="absolute inset-0 bg-gradient-to-b from-navy-900/30 via-navy-900/40 to-navy-900/95"></div>
+ <!-- Subtle decorative grid -->
+ <svg class="absolute inset-0 w-full h-full opacity-[0.06]" preserveAspectRatio="xMidYMid slice">
+ <defs>
+ <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+ <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5"/>
+ </pattern>
+ </defs>
+ <rect width="100%" height="100%" fill="url(#grid)"/>
+ </svg>
+
+ <div class="container mx-auto px-6 pb-12 relative z-10 text-white">
+ <p class="section-marker text-accent-300">Κεφάλαιο 8 · Ώριμος προορισμός · Ηπειρωτικός μικτός</p>
+ <h1 class="display text-7xl md:text-8xl mt-3 leading-none">Βόλος-Πήλιο</h1>
+ <p class="text-xl mt-3 text-navy-50/85 max-w-2xl">Θεσσαλία · ΠΕ Μαγνησίας (NUTS3 EL613) · Δ. Βόλου + Ζαγοράς-Μουρεσίου + Ν. Πηλίου · Πληθυσμός 152.506 (Απογραφή 2021 · 3 Δήμοι canonical)</p>
+
+ <!-- Photo credit -->
+ <p class="absolute bottom-2 right-4 text-[10px] text-white/40">Φωτογραφία: Άποψη Βόλου από το Πήλιο με Παγασητικό κόλπο</p>
+
+ <!-- Quick stats — signature feature: έντονο αντίστροφο μοτίβο Κριτική Εκ των Έσω -->
+ <div class="mt-10 flex flex-wrap gap-2">
+ <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
+ <span class="block text-[11px] uppercase tracking-wider text-white/60">Αφίξεις 2024</span>
+ <span class="font-serif text-lg numeric">331.331</span>
+ </span>
+ <span class="px-3 py-2 bg-white/10 border border-white/15 backdrop-blur-sm">
+ <span class="block text-[11px] uppercase tracking-wider text-white/60">Μερίδιο STR διανυκτ.</span>
+ <span class="font-serif text-lg numeric">27,8%</span>
+ </span>
+ <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
+ <span class="block text-[11px] uppercase tracking-wider text-accent-300">Κριτική Εκ των Έσω · έντονο αντίστροφο μοτίβο</span>
+ <span class="font-serif text-lg numeric">+9,60 ποσοστιαίες μονάδες</span>
+ </span>
+ <span class="px-3 py-2 bg-accent-500/30 border border-accent-300/40 backdrop-blur-sm">
+ <span class="block text-[11px] uppercase tracking-wider text-accent-300">Natura 2000 · έκταση</span>
+ <span class="font-serif text-lg numeric">3.941 km²</span>
+ </span>
+ </div>
+ </div>
+ </header>
+
+ <!-- STICKY NAV -->
+ <nav class="sticky top-0 bg-white/95 backdrop-blur border-b border-[var(--rule)] z-40 shadow-sm">
+ <div class="container mx-auto px-6 overflow-x-auto">
+ <ul class="flex gap-7 whitespace-nowrap">
+ <li><a href="#overview" class="nav-tab" data-num="01">Επισκόπηση</a></li>
+ <li><a href="#demand" class="nav-tab" data-num="02">Ζήτηση &amp; Προσφορά</a></li>
+ <li><a href="#product" class="nav-tab" data-num="03">Τουριστικό προϊόν</a></li>
+ <li><a href="#economy" class="nav-tab" data-num="04">Οικονομία</a></li>
+ <li><a href="#society" class="nav-tab" data-num="05">Κοινωνία</a></li>
+ <li><a href="#environment" class="nav-tab" data-num="06">Περιβάλλον</a></li>
+ <li><a href="#strategy" class="nav-tab" data-num="07">Στρατηγική</a></li>
+ <li><a href="#data" class="nav-tab" data-num="08">Δεδομένα</a></li>
+ </ul>
+ </div>
+ </nav>
+
+ <main class="container mx-auto px-6 py-12 max-w-7xl">
+
+ <!-- Executive Summary -->
+ <section class="bg-navy-50 border-l-4 border-accent-500 px-8 py-7 mb-12 mt-4 rounded-r-sm">
+ <p class="section-marker">Επιτελική Σύνοψη</p>
+ <p class="text-xl leading-relaxed text-ink-700 mt-3 font-serif">Ο Βόλος-Πήλιο είναι ώριμος ηπειρωτικός προορισμός με ξεχωριστό χαρακτηριστικό: οι τουριστικά απασχολούμενοι κάτοικοι αναγνωρίζουν <strong>περισσότερα προβλήματα</strong> από τους υπόλοιπους — αντιδιαισθητικά REVERSE πρότυπο +9,60 ποσοστιαίες μονάδες, αποτέλεσμα της εμπειρίας μετά το πέρασμα της κακοκαιρίας Daniel. Διαθέτει 3.941 km² σε προστατευόμενες περιοχές Natura 2000 — από τις μεγαλύτερες εκτάσεις της δεκάδας — και ισχυρή κοινωνική νομιμοποίηση (+26 σημεία ισορροπία κοινωνικής στάσης). Με 331.331 αφίξεις το 2024 (μόλις 20,6% αλλοδαποί), ο προορισμός έχει σημαντικό περιθώριο διεθνοποίησης. Στρατηγική προτεραιότητα: διεθνοποίηση, εμπλουτισμός φυσιολατρικού-γαστρονομικού προϊόντος Πηλίου, αύξηση αλλοδαπών αφίξεων.</p>
+ </section>
+
+    <!-- Τι σημαίνει πρακτικά -->
+    <section class="bg-white border-l-4 border-navy-700 px-8 py-6 mb-12 rounded-r-sm shadow-sm">
+      <p class="section-marker text-navy-700">Τι σημαίνει πρακτικά</p>
+      <p class="text-lg leading-relaxed text-ink-700 mt-3">Ο Βόλος-Πήλιο είναι ώριμος αλλά όχι κορεσμένος — έχει πραγματικό περιθώριο ποιοτικής ανάπτυξης. Δεν χρειάζεται περιορισμό· χρειάζεται προληπτική διαχείριση: διεθνοποίηση (μόλις 20,6% αλλοδαποί), αξιοποίηση της εμπειρίας μετά την κακοκαιρία Daniel, εμπλουτισμός φυσιολατρικού-γαστρονομικού προϊόντος Πηλίου, και ανάπτυξη με προληπτικές δικλείδες προστασίας πριν εμφανιστούν συμπτώματα κορεσμού.</p>
+    </section>
+
+ <!-- ============== 01 OVERVIEW ============== -->
+ <section id="overview" class="py-12">
+ <p class="section-marker">Ενότητα 01</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Επισκόπηση</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαέξι δείκτες-κλειδιά που τοποθετούν τον Βόλο-Πήλιο σε διακριτή στρατηγική θέση «Ώριμος προορισμός με πραγματικό περιθώριο ποιοτικής ανάπτυξης»: ώριμος προορισμός με γνήσιο αναπτυξιακό περιθώριο, χαμηλή αντικειμενική τουριστική ένταση και μοναδικό έντονο αντίστροφο μοτίβο Κριτική Εκ των Έσω pattern.</p>
+
+ <!-- 16 KPI cards -->
+ <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Αφίξεις ξενοδοχείων 2024</div>
+ <div class="kpi-value"><span data-num="331331">331.331</span></div>
+ <div class="kpi-delta up">CAGR +6,53%</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Διανυκτερεύσεις 2024</div>
+ <div class="kpi-value"><span data-num="0.80" data-decimals="2">0,80</span><span class="kpi-unit">εκ.</span></div>
+ <div class="kpi-delta flat">ΠΕ EL613</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Μερίδιο αλλοδαπών</div>
+ <div class="kpi-value"><span data-num="20.6" data-decimals="1">20,6</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta flat">2024</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">ALoS (διανυκτ./άφιξη)</div>
+ <div class="kpi-value"><span data-num="2.43" data-decimals="2">2,43</span></div>
+ <div class="kpi-delta down">χαμηλότερη μεταξύ ώριμων</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Recovery 2024 / 2019</div>
+ <div class="kpi-value"><span data-num="0.99" data-decimals="2">0,99</span></div>
+ <div class="kpi-delta flat">Storm Daniel resilience</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Ξενοδοχειακές μονάδες</div>
+ <div class="kpi-value"><span data-num="242">242</span></div>
+ <div class="kpi-delta down">−9,4% από 2015</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Συνολικές κλίνες</div>
+ <div class="kpi-value"><span data-num="9074">9.074</span></div>
+ <div class="kpi-delta flat">2024</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label"><span data-term="TFI">TFI</span> Defert 2024</div>
+ <div class="kpi-value"><span data-num="5.95" data-decimals="2">5,95</span></div>
+ <div class="kpi-delta flat">3-Δ βασικό</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label"><span data-term="TII">TII</span> 2024 (3-Δ)</div>
+ <div class="kpi-value"><span data-num="3.96" data-decimals="2">3,96</span></div>
+ <div class="kpi-delta up">κάτω Saveriades 5</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Gini εποχικότητας 2024</div>
+ <div class="kpi-value"><span data-num="0.296" data-decimals="3">0,296</span></div>
+ <div class="kpi-delta flat">μέτρια</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Peak month (Αύγουστος)</div>
+ <div class="kpi-value"><span data-num="55.7" data-decimals="1">55,7</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta down">μερίδιο peak ratio</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label"><span data-term="POI">POI</span> θ (αντίληψη)</div>
+ <div class="kpi-value"><span data-num="-0.24" data-decimals="2">-0,24</span></div>
+ <div class="kpi-delta up">χαμηλότερη μεταξύ ώριμων</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">LCA C5 «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>)</div>
+ <div class="kpi-value"><span data-num="32.5" data-decimals="1">32,5</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta up">healthy-maturity</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">LCA C1 «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>)</div>
+ <div class="kpi-value"><span data-num="6.2" data-decimals="1">6,2</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta up">πολύ χαμηλή</div>
+ </div>
+ <div class="kpi-card border-accent-500" data-reveal>
+ <div class="kpi-label text-accent-700">Κριτική Εκ των Έσω mean Δpp</div>
+ <div class="kpi-value text-accent-700"><span data-num="9.60" data-decimals="2">9,60</span><span class="kpi-unit">pp</span></div>
+ <div class="kpi-delta down">έντονο αντίστροφο μοτίβο</div>
+ </div>
+ <div class="kpi-card" data-reveal>
+ <div class="kpi-label">Natura 2000 (ΠΕ Μαγνησίας)</div>
+ <div class="kpi-value"><span data-num="3941" >3.941</span><span class="kpi-unit">km²</span></div>
+ <div class="kpi-delta up">9 περιοχές</div>
+ </div>
+ </div>
+
+ <!-- Executive narrative -->
+ <div class="mt-16 grid md:grid-cols-3 gap-12">
+ <div class="md:col-span-2">
+ <p class="section-marker">Στρατηγική σύνοψη</p>
+ <h3 class="display text-3xl text-navy-700 mt-2 mb-4">Ώριμος προορισμός με γνήσιο αναπτυξιακό περιθώριο.</h3>
+ <p class="text-ink-700 leading-relaxed mb-4">Ο Βόλος-Πήλιο αποτυπώνεται ως το πιο διακριτό παράδειγμα ηπειρωτικού μικτού προορισμού στο παραδοτέο: αστικό κέντρο 139.670 κατοίκων δίπλα σε ορεινή ζώνη Πηλίου με μέγιστο υψόμετρο 1.624 m. Συνδυάζει τέσσερις διακριτές τουριστικές περιόδους (χειμερινό σκι Αγριολευκών, ανοιξιάτικη πεζοπορία, καλοκαιρινός παράκτιος, φθινοπωρινός γαστρονομικός), εξαιρετική γαστρονομική ταυτότητα και αρχιτεκτονική κληρονομιά 24 πηλιορίτικων οικισμών Π.Δ.</p>
+ <p class="text-ink-700 leading-relaxed mb-4">Η αντικειμενική τουριστική ένταση TII = 3,96 (κλίμακα 3-Δήμων δειγματοληψίας, 152.506 κάτοικοι) τοποθετείται κάτω από το κατώφλι Saveriades 5, η χαμηλότερη μεταξύ ώριμων (Ναύπλιο 21,7· Χανιά 8,7· Κέρκυρα 26,3· Μύκονος 178,6 (Δήμος)). Η υποκειμενική πίεση POI θ̂ = −0,24 είναι επίσης η χαμηλότερη μεταξύ ώριμων, ενώ η κοινωνική αποδοχή με LCA C5+C2 = 61,9% συγκεντρώνει healthy-maturity δομή και μόνο 6,2% «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>). Το 49,9% των κατοίκων προτιμά επιμήκυνση της τουριστικής περιόδου, έναντι μόλις 4,3% που ζητά μείωση.</p>
+ <p class="text-ink-700 leading-relaxed">Η Λευκή Βίβλος εντόπισε στον Βόλο-Πήλιο το ισχυρότερο εμπειρικό παράδειγμα Κριτική Εκ των Έσω pattern σε ολόκληρη τη μελέτη: οι τουριστικά εργαζόμενοι κάτοικοι αναγνωρίζουν περισσότερα προβλήματα από τους μη-εργαζόμενους σε 4 SIG REVERSE μετρικές με μέσο Δpp +9,60 ποσοστιαίες μονάδες — ισχυρότερο και από το βασικό D7 Ιωαννίνων. Αυτή η εργαλειακή στρώση αποτελεί early-warning signal που η ανεξάρτητη aggregate POI θ̂ κρύβει. Η στρατηγική κατεύθυνση είναι «ανάπτυξη με προληπτικές δικλείδες προστασίας».</p>
+ </div>
+ <aside class="border-l-2 border-accent-500 pl-6">
+ <p class="section-marker text-accent-500"><span class="glossary" title="Butler TALC: κύκλος ζωής τουριστικού προορισμού σε 6 στάδια (Butler 1980): Εξερεύνηση → Εμπλοκή → Ανάπτυξη → Ενοποίηση → Στασιμότητα → Παρακμή/Αναζωογόνηση.">Butler</span> TALC</p>
+ <p class="text-2xl font-serif text-navy-700 mt-2">Ώριμος προορισμός με πραγματικό περιθώριο ποιοτικής ανάπτυξης</p>
+ <p class="text-sm text-ink-500 mt-3">Φάση Ωρίμανσης με γνήσιο αναπτυξιακό περιθώριο. Αντικειμενική ένταση κάτω από κάθε κατώφλι Saveriades (TII 3,96) και ισχυρή κοινωνική προτίμηση επέκτασης (49,9%) — ποιοτικά διαφορετική θέση από τις 4 άλλες ώριμες περιπτώσεις.</p>
+ <hr class="my-5 border-[var(--rule)]">
+ <p class="section-marker text-accent-500">Doxey Irridex</p>
+ <p class="text-2xl font-serif text-navy-700 mt-2">Πλήρης Ευφορία</p>
+ <p class="text-sm text-ink-500 mt-3">61,9% του πληθυσμού σε θετικές LCA κλάσεις (C5 32,5% + C2 29,5%) — healthy-maturity δομή με μόνο 6,2% «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>), η χαμηλότερη μεταξύ ώριμων.</p>
+ <hr class="my-5 border-[var(--rule)]">
+ <p class="section-marker text-accent-500">Κριτική Εκ των Έσω</p>
+ <p class="text-2xl font-serif text-accent-700 mt-2">έντονο αντίστροφο μοτίβο</p>
+ <p class="text-sm text-ink-500 mt-3">Mean Δpp = +9,60 (ισχυρότερο της μελέτης). 4 SIG REVERSE σε 8 κανονικές μετρικές. Νωρίς early-warning στρώση πριν aggregate κρίση.</p>
+ </aside>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 02 DEMAND & SUPPLY ============== -->
+
+    <!-- Χωρική Ανάλυση -->
+    <section id="spatial" class="py-12">
+      <p class="section-marker">Χωρική Ανάλυση</p>
+      <h2 class="display text-3xl text-navy-700 mt-2 mb-2">Χωρική απεικόνιση</h2>
+      <p class="text-lg text-ink-700 max-w-3xl mb-8">Πού βρίσκεται ο προορισμός στον εθνικό χάρτη πίεσης-ικανοποίησης, και πώς κατανέμεται η σχέση κατοίκου-τουρισμού εντός του.</p>
+      <div class="grid lg:grid-cols-2 gap-6">
+
+        <div class="chart-card">
+          <p class="chart-title">Σχήμα · Χωρική ανάλυση εντός προορισμού</p>
+          <h3 class="chart-headline">Σταθμισμένη ικανοποίηση κατοίκων ανά Δήμο — Βόλος–Πήλιο–Ζαγορά</h3>
+          <img src="assets/maps/within_volos_pelio.png" alt="LAU choropleth ικανοποίησης" style="width:100%; height:auto; border:1px solid var(--rule);">
+          <p class="chart-source">Σταθμισμένο % κατοίκων «Πολύ/Αρκετά Ικανοποιημένος» (Q9_SAT) ανά Δήμο Καλλικράτη, από την πρωτογενή έρευνα κατοίκων. Hatched Δήμοι έχουν δείγμα n&lt;30 (ασταθής εκτίμηση).</p>
+        </div>
+
+        <div class="chart-card">
+          <p class="chart-title">Συγκριτικό · Αντικειμενική × Υποκειμενική πίεση</p>
+          <h3 class="chart-headline">Θέση στον bivariate χάρτη TFI × Ικανοποίηση κατοίκων</h3>
+          <img src="assets/maps/bivariate_tfi_q9sat.png" alt="Bivariate map TFI × Q9 satisfaction" style="width:100%; height:auto; border:1px solid var(--rule);">
+          <p class="chart-source">Συνδυασμός αντικειμενικού δείκτη φέρουσας ικανότητας (TFI Defert 2024) και υποκειμενικής ικανοποίησης κατοίκων (Q9_SAT) σε ένα δι-διαστάσιμο choropleth. Τέσσερις διακριτές καταστάσεις προορισμού.</p>
+        </div>
+      </div>
+    </section>
+ <section id="demand" class="py-12">
+ <p class="section-marker">Ενότητα 02</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Ζήτηση &amp; Προσφορά</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Δεκαπέντε έτη εξέλιξης ζήτησης (2010–2024), ξενοδοχειακό δυναμικό 9.074 κλινών σε ΠΕ Μαγνησίας, ταχέως ωριμάζουσα αγορά <span class="glossary" title="STR (Short-Term Rental): μισθώσεις τύπου Airbnb. Δείκτης πίεσης στη στεγαστική αγορά.">βραχυχρόνιας μίσθωσης</span> στο 27,8% των διανυκτερεύσεων.</p>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <!-- Arrivals foreign vs domestic -->
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.1 · Αφίξεις 2010–2024</p>
+ <h3 class="chart-headline">Εγχώρια κυριαρχία 79,4%, διεθνής επέκταση 2017-2024</h3>
+ <div id="chart_arrivals" style="height:380px"></div>
+ <p class="chart-source">Πηγή: ΕΛΣΤΑΤ STO12 T03 (αφίξεις σε ξενοδοχειακά καταλύματα). Μερίδιο αλλοδαπών 20,6% το 2024.</p>
+ </div>
+
+ <!-- Recovery index -->
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 8.2 · Δείκτης ανάκαμψης 2024/2019</p>
+ <h3 class="chart-headline">Ανάκαμψη 1,02 — Storm Daniel resilience, μέση θέση μεταξύ 10</h3>
+ <div id="chart_recovery" style="height:480px"></div>
+ <p class="chart-source">Σύγκριση 10 προορισμών. Λόγος ≥1 σημαίνει πλήρης ή ισχυρότερη ανάκαμψη.</p>
+ </div>
+
+ <!-- Monthly arrivals -->
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 8.3 · Μηνιαία κατανομή 2024 (NUTS2 EL61)</p>
+ <h3 class="chart-headline">Συγκέντρωση 4 μηνών αιχμής (Ιουν–Σεπ): 60,8% αφίξεων</h3>
+ <div id="chart_monthly" style="height:380px"></div>
+ <p class="chart-source">Πορτοκαλί = αιχμή · σκούρο μπλε = ώμος · ανοιχτό μπλε = χαμηλή. ΕΛΣΤΑΤ STO12 T13 NUTS2 Θεσσαλίας.</p>
+ </div>
+
+ <!-- Gini -->
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 8.4 · Εποχικότητα: Συντελεστής Gini</p>
+ <h3 class="chart-headline">Από 0,19 (2015-2019) σε 0,30 (2024) — post-COVID εντατικοποίηση</h3>
+ <div id="chart_gini" style="height:380px"></div>
+ <p class="chart-source">Gini=0 τέλεια κατανομή · Gini=1 πλήρης συγκέντρωση. Τιμές 0,20–0,30 = μέτρια εποχικότητα.</p>
+ </div>
+
+ <!-- Capacity -->
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 8.6 · Ξενοδοχειακή δυναμικότητα 2015–2024</p>
+ <h3 class="chart-headline">Κλίνες σταθερές ~9.000 — μονάδες −9% σε δεκαετία</h3>
+ <div id="chart_capacity" style="height:380px"></div>
+ <p class="chart-source">ΕΛΣΤΑΤ STO12 T01 ΠΕ Μαγνησίας. Συγκράτηση δυναμικότητας — χωρίς εκρηκτική ανάπτυξη.</p>
+ </div>
+
+ <!-- Rooms by stars -->
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 8.5 · Δωμάτια ανά κατηγορία αστεριών (2024)</p>
+ <h3 class="chart-headline">Mid-tier δομή — 5★ μόλις 4,9% (χαμηλότερο μεταξύ ώριμων)</h3>
+ <div id="chart_donut" style="height:380px"></div>
+ <p class="chart-source">Premium positioning σαφώς υπό-αντιπροσωπευμένο — Πρότ. 2 Premium Repositioning.</p>
+ </div>
+
+ <!-- Occupancy -->
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 8.7 · Μηνιαίο ποσοστό πληρότητας 2024</p>
+ <h3 class="chart-headline">Αιχμή Αυγούστου 64% — Φεβρουάριος 16%, Δεκέμβριος 37% (χιονοδρομικό)</h3>
+ <div id="chart_occupancy" style="height:380px"></div>
+ <p class="chart-source">Περιφέρεια Θεσσαλίας (NUTS2). Αυξημένος Δεκέμβριος αντανακλά εορταστικό-χιονοδρομικό μοτίβο Πηλίου-Αγριολευκών.</p>
+ </div>
+
+ <!-- ALoS -->
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 8.8 · Μέση διάρκεια παραμονής (<span data-term="ALoS">ALoS</span>)</p>
+ <h3 class="chart-headline">2,43 διανυκτερεύσεις — η χαμηλότερη μεταξύ ώριμων (Κέρκυρα 4,89, Χανιά 4,12)</h3>
+ <div id="chart_alos" style="height:380px"></div>
+ <p class="chart-source">Σταθερή ανοδική τάση από 2,17 (2017-2019) σε 2,43 (2024). Πρότ. 2: στόχος 4,00 (2030).</p>
+ </div>
+
+ <!-- STR share -->
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.9 · Μερίδιο <span data-term="STR">STR</span> έναντι ξενοδοχείων (2020–2024)</p>
+ <h3 class="chart-headline">Από 34,6% σε 18,5% διανυκτερεύσεις — εξορθολογισμός μετά την STR-αιχμή</h3>
+ <div class="grid md:grid-cols-2 gap-8 mt-4">
+ <div>
+ <p class="text-sm text-ink-500 mb-2">Αφίξεις</p>
+ <div id="chart_str_arrivals" style="height:340px"></div>
+ </div>
+ <div>
+ <p class="text-sm text-ink-500 mb-2">Διανυκτερεύσεις</p>
+ <div id="chart_str_overnights" style="height:340px"></div>
+ </div>
+ </div>
+ <p class="chart-source">AirDNA / Inside Airbnb (booked listings). Εκκίνηση επανεξορθολογισμού 2024 — Insider δήλωση «πρόβλημα στέγης» +16,94 ποσοστιαίες μονάδες early warning για στεγαστική πίεση.</p>
+ </div>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 03 PRODUCT ============== -->
+ <section id="product" class="py-12">
+ <p class="section-marker">Ενότητα 03</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Τουριστικό προϊόν</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">1.194 σημεία τουριστικού ενδιαφέροντος (438 εστίαση, 201 κατάλυμα, 148 φυσικά τοπία, 87 ιστορικά), αξιολόγηση 15 διακριτών υποδομών από κατοίκους — αξιοπρεπής βάση με 2 κρίσιμα κενά (τοπικό οδικό Πηλίου, τηλεπικοινωνίες).</p>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.10 · Σημεία Τουριστικού Ενδιαφέροντος (POIs OSM)</p>
+ <h3 class="chart-headline">1.194 POIs ΠΕ Μαγνησίας — 4η θέση των 10 προορισμών</h3>
+ <div id="chart_pois" style="height:420px"></div>
+ <p class="chart-source">OpenStreetMap Overpass API, εξαγωγή 2025. Κατηγορίες: 438 εστίαση, 201 κατάλυμα, 201 αναψυχή, 148 φυσικά τοπία, 117 αξιοθέατα, 87 ιστορικά μνημεία.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.11 · <span data-term="IPA">IPA</span> Quadrant — Σπουδαιότητα × Αξιολόγηση υποδομών</p>
+ <h3 class="chart-headline">Ακτοπλοΐα/Αερ. και Ύδρευση στο τεταρτημόριο «Συγκέντρωση εδώ»</h3>
+      <details class="mt-3 mb-4 bg-navy-50 border-l-4 border-navy-700 px-5 py-4 rounded-r-sm">
+  <summary class="cursor-pointer font-semibold text-navy-700 text-sm" style="list-style: revert;">Τι δείχνει αυτό το γράφημα; (πλήρης οδηγός)</summary>
+  <div class="mt-4 space-y-3 text-sm leading-relaxed text-ink-700">
+    <p>Το <strong>IPA Quadrant</strong> (Importance-Performance Analysis, Martilla &amp; James 1977) είναι στρατηγικό εργαλείο που μας λέει <em>τι να κάνουμε</em> για κάθε υποδομή. Είναι 2-διαστάσιμο: κάθε υποδομή τοποθετείται με βάση πόσο <strong>σημαντική</strong> είναι (οριζόντιος άξονας) και πόσο <strong>καλά λειτουργεί</strong> (κάθετος άξονας).</p>
+
+    <p><strong>Άξονας x — Σχετική Σπουδαιότητα (0-1):</strong> Δείχνει πόσο η αξιολόγηση μιας υποδομής <em>εξηγεί</em> τη συνολική ικανοποίηση των κατοίκων. Παράγεται από Random Forest μοντέλο. Τιμή 0,30 ≈ η υποδομή αυτή είναι ένας από τους κύριους «προσδιοριστές» της ικανοποίησης. Τιμή 0,10 ≈ μικρή στατιστική σύνδεση με τη συνολική ικανοποίηση.</p>
+
+    <p><strong>Άξονας y — Μέση Αξιολόγηση Κατοίκων (1-5):</strong> Πόσο καλά οι κάτοικοι αξιολογούν αυτή την υποδομή. 5 = εξαιρετική, 1 = πολύ ανεπαρκής, 3 = μέτρια.</p>
+
+    <p><strong>Δύο διακεκομμένες γραμμές</strong> διαχωρίζουν το γράφημα στα <strong>4 τεταρτημόρια</strong> πάνω στις διάμεσες τιμές. Κάθε τεταρτημόριο = διαφορετική στρατηγική προτεραιότητα:</p>
+
+    <ul class="ml-5 space-y-1.5 list-disc">
+      <li><strong style="color:#b8423a">Συγκέντρωση εδώ</strong> (κάτω-δεξιά): <em>υψηλή σπουδαιότητα + χαμηλή αξιολόγηση</em>. <strong>ΚΡΙΣΙΜΗ ΠΑΡΕΜΒΑΣΗ ΕΔΩ.</strong> Υποδομές που οι κάτοικοι κρίνουν σημαντικές αλλά λειτουργούν κακά.</li>
+      <li><strong style="color:#2d7a4d">Διατήρηση καλής επίδοσης</strong> (πάνω-δεξιά): υψηλή σπουδαιότητα + υψηλή αξιολόγηση. <em>Συνεχίστε όπως είναι — μην αλλάξετε αυτά που λειτουργούν.</em></li>
+      <li><strong style="color:#5b6473">Χαμηλή προτεραιότητα</strong> (κάτω-αριστερά): χαμηλή σπουδαιότητα + χαμηλή αξιολόγηση. Λειτουργούν μέτρια, αλλά δεν επηρεάζουν πολύ τη συνολική ικανοποίηση. <em>Δευτερεύουσα προτεραιότητα.</em></li>
+      <li><strong style="color:#7f9bbe">Πιθανή υπερβολή</strong> (πάνω-αριστερά): χαμηλή σπουδαιότητα + υψηλή αξιολόγηση. Λειτουργούν εξαιρετικά αλλά οι κάτοικοι δεν τις θεωρούν κρίσιμες. <em>Πιθανώς υπερ-επένδυση.</em></li>
+    </ul>
+
+    <div class="bg-white border border-navy-300 rounded-sm p-3 mt-3">
+      <p class="font-semibold text-navy-700 mb-1">Παράδειγμα: πώς να διαβάσετε ένα σημείο</p>
+      <p>Έστω ότι μια υποδομή Α έχει συντεταγμένες (0,28 · 2,5). Σημαίνει: η σπουδαιότητά της είναι 0,28 (πάνω από μέσο όρο των υπολοίπων), αλλά η αξιολόγησή της 2,5/5 (κάτω από μέσο όρο). Πέφτει στο τεταρτημόριο <strong style="color:#b8423a">«Συγκέντρωση εδώ»</strong> — δηλαδή είναι κρίσιμη ανάγκη παρέμβασης.</p>
     </div>
-  </main>
+
+    <div class="bg-orange-50 border border-orange-300 rounded-sm p-3 mt-3">
+      <p class="font-semibold text-orange-800 mb-1">⚠ Παράδοξο: «Σπουδαιότητα» ≠ διαισθητική σημασία</p>
+      <p>Η Σπουδαιότητα στο IPA δεν είναι αυτό που <em>πιστεύουν</em> οι κάτοικοι ότι είναι σημαντικό, αλλά αυτό που <em>στατιστικά εξηγεί</em> την ικανοποίησή τους. Παράδειγμα: αν η Στάθμευση είναι χρόνια κακή σε έναν προορισμό, οι κάτοικοι την έχουν «παραιτηθεί» — δεν τη συνδέουν με την ικανοποίησή τους πια. Έτσι το Random Forest της δίνει χαμηλό βάρος και φαίνεται «χαμηλή προτεραιότητα» — αν και διαισθητικά είναι κρίσιμη. Διαβάστε προσεκτικά.</p>
+    </div>
+  </div>
+</details>
+      <div id="chart_ipa" style="height:520px"></div>
+ <div id="chart_ipa_legend" class="mt-2"></div>
+      <p class="chart-source"><em>Σπουδαιότητα</em> = εξαγόμενο βάρος Random Forest (πόσο η υποδομή εξηγεί τη γενική ικανοποίηση), όχι δηλωτική σημασία. <em>Αξιολόγηση</em> = μέση τιμή σε κλίμακα 1-5. Πορτοκαλί αριθμοί = Τουριστικές υποδομές · Σκούρο μπλε = Δημόσιες υποδομές. Ο πίνακας από κάτω ταξινομεί τις 15 υποδομές κατά Σπουδαιότητα. Πρωτογενής έρευνα Q5.</p>
+ </div>
+ </div>
+
+ <!-- Gap Analysis · native HTML expanded version -->
+ <div class="chart-card mt-8">
+  <p class="chart-title">Σχήμα 8.10β · Gap Analysis Ζήτησης / Προσφοράς, ΠΕ Μαγνησίας</p>
+  <h3 class="chart-headline">Τέσσερα κρίσιμα κενά τουριστικού μοντέλου</h3>
+  <p class="text-sm text-ink-700 mt-3 mb-6 leading-relaxed">Σύνθεση ποσοτικής έρευνας κατοίκων (n=300), ποιοτικής έρευνας στελεχών (n=5) και δευτερογενών δεδομένων. Κάθε κενό αξιολογείται από τη συνδυαστική σοβαρότητα (έκταση + αντίκτυπος) και αντιστοιχεί σε μία στρατηγική Πρόταση του master plan.</p>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-4">
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">1</span>
+      <span class="ml-2 section-marker text-navy-700">Χρονικό · Υπο-αξιοποίηση 12μηνου</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Δομικά 12μηνος, λειτουργικά εποχικός</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">0,296</p>
+    <p class="text-xs text-ink-500 mb-3"><em>συντελεστής Gini εποχικότητας — δομικά η χαμηλότερη της μελέτης</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το Πήλιο διαθέτει το χαμηλότερο Gini εποχικότητας μετά την Καστοριά (0,296) — δομικά είναι ένας 12μηνος προορισμός: το αστικό Βόλου + ορεινό Αγριολευκή + παράκτιο Πήλιο καλύπτουν χειμερινό, ανοιξιάτικο, καλοκαιρινό, φθινοπωρινό προϊόν αντίστοιχα. <strong>Αλλά μόλις το 38,8% των κατοίκων αναγνωρίζει χειμερινή σεζόν</strong> — δηλαδή η αγορά δεν λειτουργεί σε αυτή τη βάση. Η πληρότητα δεν ακολουθεί τη χωρητικότητα: η χειμερινή Αγριολευκή είναι 60% παρά τη σχετική ζήτηση· το αστικό Βόλος συντηρείται από επαγγελματικό-εκπαιδευτικό κοινό.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> integrated 4-season marketing + Πανεπιστήμιο Θεσσαλίας ως conferences anchor + Αγριολευκή ski rebranding.</p>
+   </div>
+
+   <div class="border-2 border-navy-300 bg-navy-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-navy-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">2</span>
+      <span class="ml-2 section-marker text-navy-700">Χωρικό · Αν. Πήλιο bottlenecks</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-navy-900 bg-navy-50 px-2 py-1 rounded">Μέτρια σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Top 4 οικισμοί συγκεντρωτικά</h4>
+    <p class="font-serif text-3xl font-bold text-navy-700 mb-3 numeric">Top 4</p>
+    <p class="text-xs text-ink-500 mb-3"><em>οικισμοί συγκεντρώνουν διανυκτερεύσεις: Τσαγκαράδα, Άγ. Ιωάννης, Νταμούχαρη, Παπά Νερό</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Στο Ανατολικό Πήλιο, τέσσερις προορισμοί απορροφούν τις περισσότερες διανυκτερεύσεις: Τσαγκαράδα, Άγιος Ιωάννης, Νταμούχαρη, Παπά Νερό. Αυτά λειτουργούν σε περιορισμούς Π.Δ. (Παραδοσιακοί Οικισμοί προστατευόμενου χαρακτήρα) που περιορίζουν νέα ανάπτυξη — σωστή προστασία αλλά δημιουργεί τοπικό κορεσμό αγοράς. Το Δυτικό Πήλιο (Μηλιές, Βυζίτσα, Πινακάτες — όλα στο UNESCO tentative list) και η αστική περιοχή Βόλου παραμένουν υπο-αξιοποιημένα παρά την προσβασιμότητα.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-navy-300"><strong>Πρακτικά:</strong> στρατηγική χωρικής διάχυσης: Δυτικό Πήλιο ως «slow village circuit» + Βόλος αστικό cluster (γαστρονομία/Αργοναυτικά).</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">3</span>
+      <span class="ml-2 section-marker text-accent-700">Ποιοτικό · Mosaic-to-narrative</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Πλούσιο μωσαϊκό, χωρίς ενιαίο αφήγημα</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">0</p>
+    <p class="text-xs text-ink-500 mb-3"><em>UNESCO World Heritage Sites εντός Δήμων προορισμού</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το Πήλιο διαθέτει εξαιρετικά πλούσιο πολιτιστικό κεφάλαιο — αρχαία Δημητριάδα, 24 παραδοσιακούς οικισμούς ΠΔ (Παραδοσιακά Δικτυωτά), Σχολειονδρόμος Μηλιών, Κένταυροι/Αργοναύτες μυθολογία — αλλά κανένα UNESCO WHS εντός των ορίων του προορισμού. Η αξιοποίηση είναι κατακερματισμένη: κάθε χωριό διηγείται τη δική του ιστορία, χωρίς ενιαία αφηγηματική γραμμή «Αργοναυτική Δυτική Θεσσαλία». Ο επισκέπτης που έρχεται από Αθήνα ή Θεσσαλονίκη γνωρίζει το «παραδοσιακό Πήλιο» σαν αόριστη ιδέα, χωρίς συγκεκριμένο cultural product.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> «Αργοναυτική Διαδρομή» integrated brand + UNESCO tentative push για Δυτικό Πήλιο σύνολο + ψηφιακή πλατφόρμα.</p>
+   </div>
+
+   <div class="border-2 border-orange-300 bg-orange-50/40 rounded p-5">
+    <div class="flex items-start justify-between mb-3">
+     <div>
+      <span class="inline-block w-7 h-7 rounded-full bg-accent-700 text-white font-serif text-base font-bold flex items-center justify-center" style="display:inline-flex">4</span>
+      <span class="ml-2 section-marker text-accent-700">Ρυθμιστικό · STR + Κλιματική ανθεκτικότητα</span>
+     </div>
+     <span class="text-[10px] uppercase tracking-wider font-bold text-orange-800 bg-orange-200 px-2 py-1 rounded">Υψηλή σοβαρότητα</span>
+    </div>
+    <h4 class="font-serif text-lg text-navy-700 mb-2">Νέο πεδίο: μετά την κακοκαιρία Daniel</h4>
+    <p class="font-serif text-3xl font-bold text-accent-700 mb-3 numeric">57,2%</p>
+    <p class="text-xs text-ink-500 mb-3"><em>αναγνώριση STR στεγαστικής πίεσης — αυξανόμενη</em></p>
+    <p class="text-sm text-ink-700 leading-relaxed">Το 57,2% των κατοίκων αναγνωρίζει στεγαστική πίεση από STR — μέτρια συγκριτικά με Χανιά/Κέρκυρα. Αλλά η Μαγνησία αντιμετωπίζει ένα δεύτερο διπλό κενό: <strong>κλιματική ανθεκτικότητα</strong>. Μετά την κακοκαιρία Daniel (Σεπτέμβριος 2023), οι παράκτιες/πεδινές υποδομές παρουσίασαν δομικές αδυναμίες. Παράλληλα, μη-καταγεγραμμένες ανακαινίσεις παράκτιων ακινήτων μεταφέρονται σε αγορά βραχυχρόνιας μίσθωσης (Airbnb), μειώνοντας περαιτέρω το μακροχρόνιο στεγαστικό απόθεμα. Διπλή πρόκληση: STR ρύθμιση + αντιπλημμυρικά infrastructure investment.</p>
+    <p class="text-xs text-navy-700 mt-3 pt-3 border-t border-orange-300"><strong>Πρακτικά:</strong> συνδυασμένο STR + climate resilience program: STR cap σε high-risk ζώνες + flood-resilient infrastructure + insurance reform.</p>
+   </div>
+
+  </div>
+
+  <p class="chart-source mt-6">Πηγές: Πρωτογενής ποσοτική έρευνα κατοίκων 3 Δήμων Βόλου-Ζαγοράς-Νότιου Πηλίου (n=300)· ΕΛΣΤΑΤ STO12· OSM POIs· INSETE. Ο Βόλος-Πήλιο είναι ο μόνος ώριμος προορισμός με αντίστροφο κριτική εκ των έσω pattern (REVERSE) μετά την εμπειρία Daniel — οι τουριστικά απασχολούμενοι αντιλαμβάνονται την πίεση χαμηλότερη.</p>
+ </div>
+
+ <!-- 4-quadrant breakdown grid (πρόσθετο, δεν αντικαθιστά το infographic) -->
+ <div class="chart-card mt-4">
+ <h3 class="chart-headline">Τρία αναπτυξιακά κενά + δύο προληπτικά (αναλυτική ταξινόμηση)</h3>
+ <div class="grid md:grid-cols-2 gap-6 mt-4">
+ <div class="border-l-2 border-accent-500 pl-4">
+ <p class="section-marker text-accent-500">Κενό 01 · ALoS</p>
+ <p class="text-lg font-serif text-navy-700 mt-1">2,43 → 4,00 (+64,6%)</p>
+ <p class="text-xs text-ink-500 mt-2">Χαμηλότερη ALoS μεταξύ ώριμων — multi-day cultural packaging Argonautic Heritage Corridor.</p>
+ </div>
+ <div class="border-l-2 border-accent-500 pl-4">
+ <p class="section-marker text-accent-500">Κενό 02 · 5★ Μερίδιο</p>
+ <p class="text-lg font-serif text-navy-700 mt-1">4,9% → 12% (2030)</p>
+ <p class="text-xs text-ink-500 mt-2">Ποιοτική αναβάθμιση φιλοξενίας — χωρίς ποσοτική επέκταση.</p>
+ </div>
+ <div class="border-l-2 border-accent-500 pl-4">
+ <p class="section-marker text-accent-500">Κενό 03 · Διεθνής Πύλη</p>
+ <p class="text-lg font-serif text-navy-700 mt-1">VOL Charter → Scheduled</p>
+ <p class="text-xs text-ink-500 mt-2">Νέα Αγχίαλος bottleneck — 79,4% αφίξεων από οδική Αττική-Θεσσαλονίκη.</p>
+ </div>
+ <div class="border-l-2 border-accent-500 pl-4">
+ <p class="section-marker text-accent-500">Κενό 04 · Τοπικό Οδικό Πηλίου</p>
+ <p class="text-lg font-serif text-navy-700 mt-1">38,3% → 55% (2030)</p>
+ <p class="text-xs text-ink-500 mt-2">Post-Daniel ζημιές ορεινών οδών — climate-resilient infrastructure sprint.</p>
+ </div>
+ <div class="border-l-2 border-accent-500 pl-4">
+ <p class="section-marker text-accent-500">Κενό 05 · Τηλεπικοινωνίες</p>
+ <p class="text-lg font-serif text-navy-700 mt-1">64,2% → 75% (2030)</p>
+ <p class="text-xs text-ink-500 mt-2">Υστέρηση −10,1 μονάδες — υποστήριξη ψηφιακής φιλοξενίας, remote-work αγορών.</p>
+ </div>
+ <div class="border-l-2 border-accent-500 pl-4">
+ <p class="section-marker text-accent-500">Κενό 06 · Στάθμευση POI</p>
+ <p class="text-lg font-serif text-navy-700 mt-1">33,0% → 50% (2030)</p>
+ <p class="text-xs text-ink-500 mt-2">Δύο στους τρεις κατοίκους χαρακτηρίζουν ανεπαρκή — περιφερειακοί χώροι + shuttle bus.</p>
+ </div>
+ </div>
+ <p class="chart-source">Σύνθεση δεικτών ΕΛΣΤΑΤ STO12, πρωτογενούς έρευνας κατοίκων, και POI overlay (OSM 2025).</p>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 04 ECONOMY ============== -->
+ <section id="economy" class="py-12">
+ <p class="section-marker">Ενότητα 04</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Οικονομία</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Κύκλος εργασιών NACE I 1.098 ευρώ/κάτοικο — η χαμηλότερη απορρόφηση μεταξύ ώριμων (Ναύπλιο 1.694, Κέρκυρα 8.500, Μύκονος &gt;30.000). Διαφοροποιημένη βάση με Πανεπιστήμιο Θεσσαλίας, ΟΛΒ ΑΕ, Α'+Β' ΒΙ.ΠΕ. Βόλου, αγροδιατροφή Πηλίου.</p>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 8.12 · Εκτιμώμενος τζίρος καταλυμάτων</p>
+ <h3 class="chart-headline">Ξενοδοχεία 68,4 εκ. € · STR 20,2 εκ. € (2024)</h3>
+ <div id="chart_turnover" style="height:380px"></div>
+ <p class="chart-source">Εκτίμηση: hotel = διανυκτ. × €85 · STR = διανυκτ. × €110. Σύνολο 88,6 εκ. € κύκλος εργασιών καταλυμάτων.</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Σχήμα 8.13 · ΑΠΑ G-I (Θεσσαλία NUTS2)</p>
+ <h3 class="chart-headline">Ανάκαμψη +22% post-COVID (2020 → 2023)</h3>
+ <div id="chart_gva" style="height:380px"></div>
+ <p class="chart-source">ΕΛΣΤΑΤ National Accounts NUTS2 EL61. G-I = NACE κλάδοι Εμπόριο, Μεταφορές, Τουρισμός. Pro-rata Μαγνησίας ~31%.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.13β · Στρατηγικό τεταρτημόριο: Οικονομική εξάρτηση × Ικανοποίηση</p>
+ <h3 class="chart-headline">«Διαφοροποιημένη / ικανοποιημένη» (31,4% × 3,58) — διακριτή από Κέρκυρα και Μύκονο</h3>
+ <div id="chart_q_employment" style="height:480px"></div>
+ <p class="chart-source">Πρωτογενής έρευνα κατοίκων (n_total ~3.000), σταθμισμένα ποσοστά Q15 και μέση δήλωση γενικής ικανοποίησης. Μετρίως διπλωμένη εξάρτηση σε υβριδική οικονομική βάση.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.14 · Νέες οικοδομικές άδειες &amp; κατοικίες (2015–2025)</p>
+ <h3 class="chart-headline">+82,4% σε 5 έτη — 279 άδειες 2024 (μέγιστο δεκαετίας)</h3>
+ <div id="chart_permits" style="height:380px"></div>
+ <p class="chart-source">ΕΛΣΤΑΤ SOP03 ΠΕ Μαγνησίας. Γκρι 2025 = προσωρινά. Quality-first permitting (Πρότ. 1) για ποιοτικό φιλτράρισμα.</p>
+ </div>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 05 SOCIETY ============== -->
+ <section id="society" class="py-12">
+ <p class="section-marker">Ενότητα 05</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Κοινωνία</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Φέρουσα ικανότητα κάτω από κατώφλι Saveriades 5, healthy-maturity LCA δομή με μόλις 6,2% «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>), και — μοναδική στη μελέτη — έντονο αντίστροφο μοτίβο Κριτική Εκ των Έσω pattern με mean Δpp +9,60 ποσοστιαίες μονάδες.</p>
+
+ <!-- Methodological box: Defert -->
+ <div class="method-box" data-reveal>
+ <p class="method-box-title">Μεθοδολογικό κουτί 8.5.1.α — Γιατί χρησιμοποιούμε Defert <span data-term="TFI">TFI</span>/<span data-term="TII">TII</span></p>
+ <p class="method-box-content">Ο γαλλικός γεωγράφος Pierre Defert (1967) εισήγαγε τον TFI ως πρώτη συστηματική ποσοτικοποίηση τουριστικής λειτουργίας: TFI = κλίνες/πληθυσμός × 100. Ο TII είναι μεταγενέστερη επέκταση: διανυκτερεύσεις/πληθυσμό × 100. Διεθνή κατώφλια ζώνης (Saveriades 2000, Coccossis &amp; Mexa 2004): TII &lt; 5 χαμηλή πίεση, 5–10 μέτρια, 10–15 υψηλή, &gt;15 πολύ υψηλή. Ο Βόλος-Πήλιο: TII 3,96 (2024, 3-Δ βασικό) — κάτω από κάθε κατώφλι Saveriades. Συμβατή με στρατηγική developing-stage maturity με σημαντικό περιθώριο ανάπτυξης.</p>
+ </div>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.15 · <span class="glossary" title="TII (Tourist Intensity Index): διανυκτερεύσεις / πληθυσμό. Saveriades 2000: >15 = υπερκορεσμός.">Δείκτης Τουριστικής Έντασης</span> (<span data-term="TII">TII</span>) Defert 2010–2024</p>
+ <h3 class="chart-headline">Από 2,15 σε 3,96 — η χαμηλότερη πορεία μεταξύ ώριμων (3-Δήμοι canonical)</h3>
+ <div id="chart_tii" style="height:420px"></div>
+ <p class="chart-source">Διανυκτερεύσεις / κάτοικο × 100. Όριο μέτριας πίεσης (Defert) στη γραμμή TII = 5. NUTS3 EL613 raw — 3-Δ βασικό = 3,96 (75% pro-rata).</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.15γ · Στρατηγικό τεταρτημόριο: Αντικειμενική × Υποκειμενική πίεση</p>
+ <h3 class="chart-headline">Βόλος-Πήλιο στο τεταρτημόριο «Λανθάνον δυναμικό» (TFI 5,95 · POI θ −0,24)</h3>
+ <div id="chart_q_tfi_poi" style="height:480px"></div>
+ <p class="chart-source">POI θ μέσω <span data-term="IRT">IRT</span>-<span data-term="GRM">GRM</span>. TFI σε log10 για visual ισοκατανομή.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.16γ · Στρατηγικό τεταρτημόριο: Στεγαστική πίεση από <span data-term="STR">STR</span></p>
+ <h3 class="chart-headline">Aggregate 24,4% κρύβει Insider δήλωση «πρόβλημα στέγης» ΕΡΓ 35,9% — early warning</h3>
+ <div id="chart_q_str_housing" style="height:480px"></div>
+ <p class="chart-source">Πρωτογενής έρευνα Q3_7 × δήλωση «πρόβλημα στέγης». Βόλος-Πήλιο στη ζώνη «Καμία πίεση» aggregate, αλλά Insider gap +16,94 ποσοστιαίες μονάδες (στατ. σημαντικό) REVERSE σημαίνει στεγαστική πίεση εκκίνησης.</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.16 · Doxey Irridex Heatmap — Σύγκριση 10 προορισμών</p>
+ <h3 class="chart-headline">Βόλος-Πήλιο με χαμηλότερη στεγαστική επίδραση, ανταγωνισμό, ευθύνη υποβάθμισης</h3>
+ <div id="chart_doxey" style="height:380px"></div>
+ <p class="chart-source">Πρωτογενής έρευνα Q1 — μέσες τιμές κλίμακας 1–5. Πράσινο = θετικό, κόκκινο = αρνητικό. Doxey 1975 · Allen et al. 1988.</p>
+ </div>
+ </div>
+
+ <!-- Methodological box: Κριτική Εκ των Έσω (signature box) -->
+ <div class="method-box mt-8 border-accent-500" data-reveal>
+ <p class="method-box-title text-accent-700">Μεθοδολογικό κουτί 8.6.3.α — μοτίβο κριτικής εκ των έσω (Doxey-Butler αντίστροφος σηματοδότης)</p>
+ <p class="method-box-content">Η θεωρητική διάρθρωση Doxey (1975) προβλέπει ότι οι εργαζόμενοι στον τουριστικό κλάδο (insiders) παραμένουν θετικότεροι από τους μη-τουριστικά εξαρτώμενους κατοίκους (outsiders) διότι αντλούν άμεσο οικονομικό όφελος. Οι Faulkner &amp; Tideswell (1997) και Sharpley (2014) επιβεβαίωσαν το CLASSIC pattern. Η σύγχρονη βιβλιογραφία (Andereck et al. 2005· Almeida-García et al. 2016) έχει αποτυπώσει σε «late-stage» ή «overheated» προορισμούς αντίστροφο πρότυπο (REVERSE) — μοτίβο κριτικής εκ των έσω. Στην παρούσα μεθοδολογία: ταξινόμηση με κατώφλι |Δpp| ≥ 10 σε σταθμισμένη υποομαδική σύγκριση ΕΡΓ (τουριστική απασχόληση κατοίκου=True, n=112, σταθμισμένο 31,4%) vs ΔΕΡ (n=188, σταθμισμένο 68,6%), Wald-F έλεγχος με DEFF≈2,0, σε 8 κανονικές μετρικές. <strong>Ο Βόλος-Πήλιο εμφανίζει το ισχυρότερο εμπειρικό παράδειγμα της μελέτης: mean Δpp = +9,60, n_sig REVERSE = 4, έντονο αντίστροφο μοτίβο — ισχυρότερο και από το βασικό D7 Ιωαννίνων.</strong> Policy-actionable: ετήσια επανάληψη με κρίσιμο όριο επιφυλακής mean Δpp &gt; +12pp ή n_sig REVERSE ≥ 5.</p>
+ </div>
+
+ <!-- Κριτική Εκ των Έσω 8-metric table -->
+ <div class="chart-card mt-8 border-l-4 border-accent-500">
+ <p class="chart-title text-accent-700">Πίνακας 8.16β · Κριτική Εκ των Έσω 8-metric — έντονο αντίστροφο μοτίβο pattern</p>
+ <h3 class="chart-headline">Mean Δpp +9,60 · 4 SIG REVERSE — ισχυρότερο εμπειρικό παράδειγμα της μελέτης</h3>
+ <div class="overflow-x-auto mt-4">
+ <table class="editorial-table w-full">
+ <thead>
+ <tr>
+ <th>Κωδ.</th>
+ <th>Μετρική</th>
+ <th>ΕΡΓ %</th>
+ <th>ΔΕΡ %</th>
+ <th>Δpp ΕΡΓ−ΔΕΡ</th>
+ <th>Σήμα</th>
+ </tr>
+ </thead>
+ <tbody id="insider_critique_table"></tbody>
+ </table>
+ </div>
+ <p class="chart-source">Πρωτογενής ποσοτική έρευνα Απριλίου 2026 (N=300, n εργαζόμενοι τουρισμού=112, n μη-εργαζόμενοι=188, σταθμισμένο δείγμα (trimmed weights)). Κατώφλι |Δpp|≥10 για SIG-flag υπό συντηρητικό DEFF≈2,0.</p>
+ </div>
+
+ <!-- Methodological box: LCA -->
+ <div class="method-box mt-8" data-reveal>
+ <p class="method-box-title">Μεθοδολογικό κουτί 8.6.1.β — Γιατί χρησιμοποιούμε <span data-term="LCA">LCA</span></p>
+ <p class="method-box-content">Η Latent Class Analysis (Lazarsfeld &amp; Henry, 1968 · Hagenaars &amp; McCutcheon, 2002) είναι model-based clustering που εντοπίζει υπόρρητες ομάδες σε κατηγορικά δεδομένα. Σε αντίθεση με τη Doxey που υποθέτει 4 στάδια εκ των προτέρων, η LCA επιτρέπει στα δεδομένα να αποκαλύψουν εμπειρικά distinct profiles. Εφαρμογή: poLCA της R με ML estimation, επιλογή 5 κλάσεων με BIC/AIC + interpretability. Στον Βόλο-Πήλιο: C5 «Ένθερμοι Υποστηρικτές» (<em>Καθαρή Ευφορία</em>) 32,5%, C2 «Ενεργοί Υποστηρικτές» (<em>Ενεργή Ευφορία</em>) 29,5%, C3 «Αδιάφοροι» (<em>Ήπια Απάθεια</em>) 18,9%, C4 «Αμφιταλαντευόμενοι» (<em>Συγκρουσιακή Ενόχληση</em>) 13,0%, C1 «Επιφυλακτικοί κάτοικοι» (<em>Αντιπαλότητα</em>) μόλις 6,2%. Συνδυασμένη θετική στάση (C2+C5) = 61,9% — healthy-maturity δομή, ισχυρότερη από Μύκονο και Κέρκυρα.</p>
+ </div>
+
+ <div class="grid lg:grid-cols-2 gap-8 mt-8">
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.17 · Latent Class Analysis — 10 προορισμοί</p>
+ <h3 class="chart-headline">Βόλος-Πήλιο healthy-maturity: C2+C5 = 61,9% (3η θέση μεταξύ 10)</h3>
+ <div id="chart_lca" style="height:520px"></div>
+ <p class="chart-source">Σταθμισμένο μερίδιο πληθυσμού ανά εμπειρική class. Ταξινόμηση κατά δήλωση γενικής ικανοποίησης ικανοποίηση (αύξουσα).</p>
+ </div>
+
+ <div class="chart-card lg:col-span-2">
+ <p class="chart-title">Σχήμα 8.17β · Τεταρτημόριο πόλωσης: Class 1 × Class 5</p>
+ <h3 class="chart-headline">Βόλος-Πήλιο στο τεταρτημόριο «Υγιής συναίνεση» (6,2% × 32,5%)</h3>
+ <div id="chart_q_lca" style="height:480px"></div>
+ <p class="chart-source">Χαμηλό C1 + υψηλό C5 = υγιής δομή. Βόλος-Πήλιο και Τροιζηνία-Μέθανα οι 2 πιο υγιείς θέσεις μεταξύ 10.</p>
+ </div>
+ </div>
+
+ <!-- Qualitative quotes carousel -->
+ <div class="mt-16">
+ <p class="section-marker">Ποιοτική έρευνα · 12 αυτούσια αποσπάσματα</p>
+ <h3 class="display text-3xl text-navy-700 mt-2 mb-6">Φωνές των στελεχών</h3>
+ <div class="quotes-deck" data-carousel>
+ <div class="quotes-rail" id="quotes_rail"></div>
+ <div class="flex gap-2 mt-4 justify-end">
+ <button data-carousel-prev class="theme-toggle" aria-label="Προηγούμενο">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+ </button>
+ <button data-carousel-next class="theme-toggle" aria-label="Επόμενο">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+ </button>
+ </div>
+ </div>
+ </div>
+
+ <!-- Reference: Κριτική Εκ των Έσω Taxonomy -->
+ <div class="mt-12 p-6 bg-navy-50 border-l-4 border-navy-700">
+ <p class="section-marker">Συγκριτική ανάγνωση</p>
+ <h3 class="font-serif text-2xl text-navy-700 mt-2 mb-3">Κριτική Εκ των Έσω 5-Zone × 3-Direction Taxonomy</h3>
+ <p class="text-ink-700 leading-relaxed">Η συστηματική τοποθέτηση του Βόλου-Πηλίου σε σχέση με τους υπόλοιπους 9 προορισμούς εκτίθεται στο Κεφάλαιο 13 § 13.4 της Λευκής Βίβλου. Ο Βόλος-Πήλιο τοποθετείται στη Ζώνη Δ Συστηματική (4 SIG REVERSE σε 8 μετρικές, mean Δpp +9,60) ως ισχυρότερο εμπειρικό παράδειγμα της μελέτης. Διαφοροποιείται από το βασικό D7 Ιωαννίνων (Ζώνη Γ, mean Δpp +5 έως +8) και αποτελεί ποιοτικά διακριτή στρατηγική θέση από τις υπόλοιπες 8 περιπτώσεις. Cross-destination dashboard: Παρ. Α § Α.9.</p>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 06 ENVIRONMENT ============== -->
+ <section id="environment" class="py-12">
+ <p class="section-marker">Ενότητα 06</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Περιβάλλον</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Natura 2000 ΠΕ Μαγνησίας 3.941 km² (9 περιοχές — η μεγαλύτερη έκταση των 10 προορισμών), δασικό μέτωπο Πηλίου με κίνδυνο πυρκαϊάς, post-Daniel κλιματική ευαλωτότητα. Climate-Resilient Sustainability ως Άξονας 4.</p>
+
+ <div class="grid lg:grid-cols-2 gap-8">
+ <div class="chart-card">
+ <p class="chart-title">Eurostat lan_lcv_ovw · Χρήση γης Θεσσαλίας 2022</p>
+ <h3 class="chart-headline">388 km² τεχνητή γη — 2,76% του συνόλου 14.037 km²</h3>
+ <div id="chart_landcover" style="height:380px"></div>
+ <p class="chart-source">Land Use/Cover Area frame Survey (LUCAS), NUTS2 EL61. Δάση + θαμνώδης = 57% — υψηλό φυσικό κεφάλαιο.</p>
+ </div>
+
+ <div class="chart-card">
+ <p class="chart-title">Eurostat sdg_06_60 · Greek <span data-term="WEI+">WEI+</span> 2003–2023</p>
+ <h3 class="chart-headline">12,51 (2023) — μέτρια πίεση, σταθερή πορεία 11-13</h3>
+ <div id="chart_wei" style="height:380px"></div>
+ <p class="chart-source">4ετής μέσος όρος. Ζώνες: πράσινο &lt;10 χαμηλή · κίτρινο 10-20 μέτρια · κόκκινο &gt;20 έντονη. Storm Daniel πιθανώς αλλάζει water balance equation.</p>
+ </div>
+ </div>
+
+ <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+ <div class="kpi-card">
+ <div class="kpi-label">Τεχνητή γη Θεσσαλίας 2022</div>
+ <div class="kpi-value"><span data-num="2.76" data-decimals="2">2,76</span><span class="kpi-unit">%</span></div>
+ <div class="kpi-delta flat">χαμηλότερη ώριμων</div>
+ </div>
+ <div class="kpi-card">
+ <div class="kpi-label">Greek WEI+ 2023</div>
+ <div class="kpi-value"><span data-num="12.51" data-decimals="2">12,51</span></div>
+ <div class="kpi-delta flat">μέτρια πίεση</div>
+ </div>
+ <div class="kpi-card">
+ <div class="kpi-label">Natura 2000 (ΠΕ Μαγνησίας)</div>
+ <div class="kpi-value"><span data-num="9">9</span></div>
+ <div class="kpi-delta up">9 περιοχές · 3.941 km²</div>
+ </div>
+ <div class="kpi-card">
+ <div class="kpi-label">Blue Flag ΠΕ Μαγνησίας 2024</div>
+ <div class="kpi-value"><span data-num="35">35</span></div>
+ <div class="kpi-delta flat">23% Greek total</div>
+ </div>
+ </div>
+
+ <div class="chart-card lg:col-span-2 mt-8">
+ <p class="chart-title">Σχήμα 8.18 · Αντίληψη αρνητικών επιπτώσεων (% συμφωνώ + απόλυτα)</p>
+ <h3 class="chart-headline">Χαμηλότερες αντιλήψεις περιβαλλοντικής πίεσης μεταξύ 5 ώριμων</h3>
+ <div id="chart_env_heat" style="height:420px"></div>
+ <p class="chart-source">Πρωτογενής έρευνα Q3+Q7. Σύγκριση 5 ώριμων προορισμών. Aggregate χαμηλό — Insider δήλωση «απορρίμματα και λύματα» ΕΡΓ 56,03% έναντι ΔΕΡ 27,00% (+29,02 ποσοστιαίες μονάδες (στατ. σημαντικό) REVERSE ισχυρότερο).</p>
+ </div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 07 STRATEGY ============== -->
+ <section id="strategy" class="py-12">
+ <p class="section-marker">Ενότητα 07</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Στρατηγική</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">SWOT ανάλυση 40 εγγραφών (10 ανά τετάρτο), πέντε στρατηγικοί άξονες παρεμβάσεων ανάπτυξη με προληπτικές δικλείδες προστασίας, και οκτώ επιχειρησιακές προτάσεις πολιτικής βασισμένες στην πρωτογενή έρευνα κατοίκων.</p>
+
+ <h3 class="font-serif text-2xl text-navy-700 mb-4">SWOT Ανάλυση</h3>
+ <div class="swot-grid mb-12" id="swot_grid"></div>
+
+ <h3 class="font-serif text-2xl text-navy-700 mb-4">Πέντε Στρατηγικοί Άξονες</h3>
+ <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12" id="axes_grid"></div>
+
+ <h3 class="font-serif text-2xl text-navy-700 mb-4">Οκτώ Επιχειρησιακές Προτάσεις από την Πρωτογενή Έρευνα</h3>
+ <div class="space-y-3" id="proposals_list"></div>
+ </section>
+
+ <hr class="editorial">
+
+ <!-- ============== 08 DATA ANNEX ============== -->
+ <section id="data" class="py-12">
+ <p class="section-marker">Ενότητα 08</p>
+ <h2 class="display text-4xl md:text-5xl text-navy-700 mt-2 mb-2">Δεδομένα &amp; Παράρτημα</h2>
+ <p class="text-lg text-ink-700 max-w-3xl mb-10">Πλήρης πρόσβαση στα 65 items της πρωτογενούς έρευνας, στους 21 πίνακες του κεφαλαίου, και στις 6 πηγές δευτερογενών δεδομένων.</p>
+
+ <h3 class="font-serif text-2xl text-navy-700 mb-4">Πρωτογενής έρευνα — Όλα τα 65 items</h3>
+ <div class="overflow-x-auto">
+ <table class="editorial-table" id="mrb_table">
+ <thead>
+ <tr><th>Item</th><th>Μέσος (1–5)</th><th>% Συμφωνώ</th><th>n valid</th></tr>
+ </thead>
+ <tbody></tbody>
+ </table>
+ </div>
+
+ <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">4 Μεθοδολογικά Κουτιά</h3>
+ <div class="space-y-4" id="method_boxes"></div>
+
+ <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγές δεδομένων</h3>
+ <ul class="text-sm text-ink-700 space-y-2 list-disc list-inside" id="sources_list"></ul>
+
+ <h3 class="font-serif text-2xl text-navy-700 mt-12 mb-4">Πηγαίες παρουσιάσεις πρωτογενούς έρευνας</h3>
+ <p class="text-sm text-ink-700 mb-6 max-w-3xl">Οι αυτούσιες παρουσιάσεις του φορέα δημοσκοπικής έρευνας με τα πλήρη ευρήματα ποσοτικής και ποιοτικής έρευνας στους κατοίκους και στα στελέχη του προορισμού. Διαθέσιμες ως PDF για μεταφόρτωση.</p>
+ <div class="grid md:grid-cols-2 gap-4">
+ <a href="assets/downloads/volos_pelio_quantitative.pdf" target="_blank" rel="noopener"
+ class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
+ <div class="flex items-start gap-4">
+ <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+ </div>
+ <div class="flex-1">
+ <p class="section-marker text-accent-500">PDF · Ποσοτική έρευνα</p>
+ <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Πρωτογενούς Ποσοτικής Έρευνας</p>
+ <p class="text-xs text-ink-500 mt-1">Δ. Βόλου · Δ. Ζαγοράς-Μουρεσίου · Δ. Νοτίου Πηλίου · Απρίλιος 2026</p>
+ <p class="text-xs text-ink-500 mt-2 numeric">n=300 · Σταθμισμένο</p>
+ </div>
+ </div>
+ </a>
+
+ <a href="assets/downloads/volos_pelio_qualitative.pdf" target="_blank" rel="noopener"
+ class="block p-5 border border-[var(--rule)] bg-white hover:border-accent-500 transition-all hover:-translate-y-0.5 group">
+ <div class="flex items-start gap-4">
+ <div class="flex-shrink-0 w-12 h-12 bg-navy-50 flex items-center justify-center text-navy-700">
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+ </div>
+ <div class="flex-1">
+ <p class="section-marker text-accent-500">PDF · Ποιοτική έρευνα</p>
+ <p class="font-serif text-lg text-navy-700 mt-1 group-hover:text-accent-700 transition-colors">Έκθεση Αποτελεσμάτων Ποιοτικής Έρευνας σε Στελέχη</p>
+ <p class="text-xs text-ink-500 mt-1">Συνεντεύξεις σε στελέχη του προορισμού · Απρίλιος 2026</p>
+ <p class="text-xs text-ink-500 mt-2 numeric">Slides 87 (MUST HAVE) και 82 (Πήλιο maturity)</p>
+ </div>
+ </div>
+ </a>
+ </div>
+ </section>
+
+ </main>
+
+ <!-- Footer -->
+ <footer class="bg-navy-900 text-white/80 py-12 mt-12">
+ <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+ <div>
+ <p class="section-marker text-accent-300">Επόμενος προορισμός</p>
+ <p class="font-serif text-xl text-white mt-2">Ναύπλιο →</p>
+ <p class="text-xs text-white/50 mt-1"><a href="nauplio.html" class="hover:text-accent-300">Δείτε προφίλ Ναυπλίου</a></p>
+ </div>
+ <div>
+ <p class="section-marker text-accent-300">Λήψεις</p>
+ <ul class="space-y-1.5 mt-2">
+ <li><a href="assets/downloads/volos_pelio_quantitative.pdf" target="_blank" class="hover:text-accent-300">Ποσοτική έρευνα PDF</a></li>
+ <li><a href="assets/downloads/volos_pelio_qualitative.pdf" target="_blank" class="hover:text-accent-300">Ποιοτική έρευνα PDF</a></li>
+ <li><a href="assets/data/volos_pelio-data.js" class="hover:text-accent-300">Δεδομένα JS</a></li>
+ </ul>
+ </div>
+ <div>
+ <p class="section-marker text-accent-300">Πιστοποίηση πηγών</p>
+ <p class="text-xs text-white/60 mt-2 leading-relaxed">Όλα τα στατιστικά δεδομένα από επίσημες πηγές (ΕΛΣΤΑΤ, Eurostat, ΤτΕ, INSETE). Πρωτογενής έρευνα κατοίκων από εξειδικευμένο φορέα δημοσκοπικής έρευνας. Κριτική Εκ των Έσω methodology cross-validated με βασικό D7 Ιωαννίνων.</p>
+ </div>
+ </div>
+ <div class="container mx-auto px-6 mt-10 pt-6 border-t border-white/10 text-xs text-white/40 flex justify-between">
+ <p>Λευκή Βίβλος Τουριστικού Μετασχηματισμού 2030–2035 · ΠΕ2 · Χρηματοδότηση ΤΑΑ / NextGenerationEU</p>
+ <p class="numeric">v1.0 · 2026-05-15</p>
+ </div>
+ </footer>
+
+ <script src="assets/js/app.js?v=17"></script>
+ <script src="assets/js/charts.js?v=23"></script>
+ <script src="assets/data/volos_pelio-data.js?v=17"></script>
+ <script src="assets/js/volos_pelio-render.js?v=17"></script>
 </body>
 </html>
