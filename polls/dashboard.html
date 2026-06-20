@@ -37,6 +37,7 @@ h2{font-size:18px;margin:0 0 4px}
  <div class="controls">
   <select id="slotSel"></select>
   <button id="refresh">↻ Ανανέωση</button>
+  <button id="export">⬇ Export CSV</button>
   <span class="total" id="total"></span>
  </div>
 </div>
@@ -73,13 +74,14 @@ async function load(){
   const slot=sel.value, cfg=SLOTS[slot], view=document.getElementById("view");
   let q;
   if(cfg.type==="startend"){
-    const {data}=await sb.from("votes").select("slot,data").in("slot",["qrPollStart_start","qrPollStart_end"]);
+    const {data}=await sb.from("votes").select("slot,data,created_at").in("slot",["qrPollStart_start","qrPollStart_end"]);
+    lastRows=data||[]; lastSlot=slot;
     render_startend(data||[]);
     document.getElementById("total").textContent=(data?.length||0)+" απαντήσεις";
     return;
   }
-  const {data}=await sb.from("votes").select("data").eq("slot",slot);
-  const rows=data||[];
+  const {data}=await sb.from("votes").select("data,created_at").eq("slot",slot);
+  const rows=data||[]; lastRows=rows; lastSlot=slot;
   document.getElementById("total").textContent=rows.length+" απαντήσεις";
 
   if(cfg.type==="single"){
@@ -133,6 +135,23 @@ function render_startend(rows){
     ${pairBlock("Ώρες/εβδομάδα σε ρουτίνα","hours")}
     ${pairBlock("Χρήση AI στη δουλειά","ai")}</div>`;
 }
+
+// ----- Export CSV (ό,τι slot είναι επιλεγμένο) -----
+let lastRows=[], lastSlot="";
+function exportCSV(){
+  if(!lastRows.length){alert("Καμία απάντηση για εξαγωγή ακόμη.");return;}
+  const keys=[...new Set(lastRows.flatMap(r=>Object.keys(r.data||{})))];
+  const cols=["created_at", ...(lastSlot==="qrPollStart"?["slot"]:[]), ...keys];
+  const q=v=>{v=v==null?"":String(v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  const lines=[cols.join(",")];
+  lastRows.forEach(r=>lines.push(cols.map(c=>
+    c==="created_at"?q(r.created_at):c==="slot"?q(r.slot):q(r.data?.[c])).join(",")));
+  const blob=new Blob([String.fromCharCode(0xFEFF)+lines.join("\r\n")],{type:"text/csv;charset=utf-8"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download=lastSlot+".csv"; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+document.getElementById("export").onclick=exportCSV;
 
 sel.onchange=load;
 document.getElementById("refresh").onclick=load;
