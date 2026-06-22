@@ -45,14 +45,14 @@
   nav .logo {
     font-family: 'Playfair Display', serif;
     color: #fff; font-size: 1.1rem; font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.5px; white-space: nowrap;
   }
   nav .logo span { color: var(--gold); }
-  nav ul { list-style: none; display: flex; gap: 1.8rem; }
+  nav ul { list-style: none; display: flex; flex-wrap: nowrap; gap: 1.4rem; white-space: nowrap; }
   nav ul li { position: relative; }
   nav ul li a {
     color: rgba(255,255,255,0.8); text-decoration: none;
-    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.4px;
     text-transform: uppercase; transition: color 0.3s;
     display: inline-block;
   }
@@ -393,7 +393,7 @@
     <li><a href="#publications">Publications</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#teaching">Teaching</a></li>
-    <li><a href="#professional-training">Professional Training</a></li>
+    <li><a href="#professional-training">Training</a></li>
     <li class="has-dropdown">
       <a href="#" onclick="return false;">Studies</a>
       <ul class="dropdown-menu">
