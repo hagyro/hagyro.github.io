@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email Templates — Εκτελωνιστής AI Toolkit</title>
+<style>
+:root{--bg:#0f1117;--card:#1a1d27;--ink:#f2f3f7;--muted:#9aa0ad;
+  --navy:#2C5F8A;--demo:#C2620A;--hands:#2E7D4F;--safety:#B3362B;--gold:#B8860B;--line:#2a2e3a;--code:#11141c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:20px;line-height:1.5}
+.wrap{max-width:880px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:14px}
+#q{width:100%;background:var(--card);color:var(--ink);border:1px solid var(--line);
+  border-radius:10px;padding:12px 14px;font-size:16px;margin-bottom:14px}
+.legal{background:var(--navy);color:#fff;border-radius:10px;padding:11px 14px;font-size:13.5px;margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
+.card .title{font-weight:700;font-size:16px}
+.tag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;background:#222634;color:var(--muted)}
+.subj{font-size:13.5px;color:var(--gold);margin:2px 0 8px;font-weight:600}
+.when{color:var(--muted);font-size:13px;margin-bottom:8px}
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0;
+  white-space:pre-wrap;word-break:break-word;font-family:Menlo,Consolas,monospace;font-size:13px;color:#dfe3ea}
+.copy{margin-top:10px;background:var(--navy);color:#fff;border:0;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer}
+.copy.done{background:var(--hands)}
+.meta{border:1px solid var(--demo)}
+.meta .title{color:var(--demo)}
+.meta .copy{background:var(--demo)}
+.tip{color:var(--muted);font-size:13px;margin-top:8px;font-style:italic}
+footer{color:var(--muted);font-size:13px;margin-top:26px;border-top:1px solid var(--line);padding-top:14px}
+.empty{color:var(--muted);text-align:center;padding:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>✉️ Email Templates Εκτελωνιστή</h1>
+<div class="sub">10 έτοιμα templates. Πάτα «Αντιγραφή», επικόλλησε στο email, συμπλήρωσε τα <code>[κενά]</code>.</div>
+
+<div class="legal">Υπογραφή (βάλ' τη στο τέλος): <code>Με εκτίμηση, [Όνομα] — [Εκτελωνιστικό Γραφείο] · Τηλ: [τηλέφωνο] · [email]</code><br>
+⚠️ Ποτέ πραγματικά στοιχεία πελάτη στο AI — κράτα τα ως <code>[κενά]</code>.</div>
+
+<input id="q" placeholder="🔍 Αναζήτηση (π.χ. τελωνείο, κόστος, προμηθευτή)…">
+<div id="list"></div>
+
+<footer>
+  Customs Broker AI Toolkit · Δρ. Χαράλαμπος Αγκυρόπουλος · v1 · 2026<br>
+  Νέες Τεχνολογίες &amp; AI για τον Εκτελωνιστή του Αύριο — Σώμα Εκτελωνιστών Ελλάδος
+</footer>
+</div>
+
+<script>
+const T=[
+{n:1,title:"Επιβεβαίωση νέας εντολής",when:"Μόλις αναλάβεις υπόθεση.",subj:"Επιβεβαίωση ανάληψης εκτελωνισμού — [εμπόρευμα]",body:`Αγαπητέ/ή [όνομα πελάτη],
+
+σας επιβεβαιώνω ότι αναλαμβάνουμε τον εκτελωνισμό για [εμπόρευμα], [εισαγωγή/εξαγωγή] από/προς [χώρα], αναμενόμενη άφιξη [ημερομηνία].
+Αριθμός υπόθεσης: [ΕΤΟΣ-ΝΝΝ] (αναφέρετέ τον σε κάθε επικοινωνία).
+
+Σε χωριστό email θα σας στείλω τη λίστα εγγράφων που χρειαζόμαστε. Είμαστε στη διάθεσή σας για οποιαδήποτε διευκρίνιση.`},
+{n:2,title:"Αίτηση εγγράφων από πελάτη",when:"Στην αρχή της υπόθεσης.",subj:"Απαιτούμενα έγγραφα — υπόθεση [ΕΤΟΣ-ΝΝΝ]",body:`Αγαπητέ/ή [όνομα],
+
+για να προχωρήσουμε τον εκτελωνισμό της υπόθεσης [ΕΤΟΣ-ΝΝΝ], παρακαλώ στείλτε μας τα εξής:
+
+  • Εμπορικό τιμολόγιο (commercial invoice)
+  • Packing list
+  • Φορτωτική (B/L ή AWB ή CMR)
+  • Πιστοποιητικό καταγωγής [εφόσον προτιμησιακό: EUR.1 / A.TR]
+  • [Πιστοποιητικά συμμόρφωσης: CE / υγειονομικά / άλλο]
+  • Εξουσιοδότηση εκπροσώπησης (συνημμένο πρότυπο)
+
+Ιδανικά έως [ημερομηνία], για να προλάβουμε την άφιξη. Αν λείπει κάποιο, ενημερώστε με να δούμε εναλλακτικές.`},
+{n:3,title:"Ενημέρωση πορείας (status)",when:"Σε εξέλιξη ή καθυστέρηση.",subj:"Ενημέρωση πορείας — υπόθεση [ΕΤΟΣ-ΝΝΝ]",body:`Αγαπητέ/ή [όνομα],
+
+σύντομη ενημέρωση για την υπόθεση [ΕΤΟΣ-ΝΝΝ] ([εμπόρευμα]):
+
+  • Κατάσταση: [π.χ. υποβλήθηκε η διασάφηση / σε έλεγχο εγγράφων]
+  • Εκκρεμεί: [π.χ. έλεγχος από το τελωνείο]
+  • Εκτίμηση: [π.χ. αποδέσμευση σε 2-3 εργάσιμες]
+
+Θα σας ενημερώσω μόλις υπάρξει εξέλιξη. Δεν δεσμεύομαι σε ακριβή ημερομηνία, εξαρτάται από τον έλεγχο.`},
+{n:4,title:"Ειδοποίηση άφιξης",when:"Όταν φτάνει το φορτίο.",subj:"Άφιξη εμπορεύματος — υπόθεση [ΕΤΟΣ-ΝΝΝ]",body:`Αγαπητέ/ή [όνομα],
+
+το εμπόρευμα της υπόθεσης [ΕΤΟΣ-ΝΝΝ] έφτασε στ[ο/ον] [λιμάνι/τελωνείο] στις [ημερομηνία]. Προχωρούμε άμεσα με [επόμενο βήμα].
+
+Για να ολοκληρωθεί η αποδέσμευση χρειάζομαι ακόμη: [τυχόν εκκρεμότητα]. Παρακαλώ επιβεβαιώστε [στοιχείο/οδηγία παράδοσης].`},
+{n:5,title:"Διευκρινίσεις σε προμηθευτή (αγγλικά)",when:"Ασυμφωνία/έλλειψη σε έγγραφα.",subj:"Clarification needed — Invoice [αρ.]",body:`Dear [supplier],
+
+we are handling the customs clearance for our client [client] for shipment [ref]. Before submission we need to clarify the following:
+
+  • [e.g. Invoice shows 5,000 pcs but packing list shows 4,800 — please confirm the correct quantity]
+  • [Missing CE Declaration of Conformity for model [X] — kindly send it]
+
+Please reply by [date] so we avoid delays at the port of Piraeus. Thank you for your cooperation.`},
+{n:6,title:"Υποβολή/απάντηση προς τελωνείο",when:"Επίσημη αλληλογραφία με την αρχή.",subj:"[Διασάφηση/Υπόθεση] [αριθμός] — [αίτημα]",body:`Προς: Τελωνείο [πόλη]
+Θέμα: [π.χ. Προσκόμιση συμπληρωματικών εγγράφων] — διασάφηση [αριθμός]
+
+Αξιότιμοι κύριοι,
+
+σε συνέχεια της υπ' αριθ. [αριθμός] διασάφησης ([ημερομηνία]), σας υποβάλλουμε [έγγραφα/στοιχεία] όπως ζητήθηκαν, και παρακαλούμε για [αίτημα: π.χ. την αποδέσμευση του εμπορεύματος].
+
+Παραμένουμε στη διάθεσή σας για κάθε διευκρίνιση.`},
+{n:7,title:"Ενημέρωση για επιπλέον κόστη",when:"Προκύπτει απρόβλεπτη επιβάρυνση.",subj:"Επιπλέον επιβάρυνση — υπόθεση [ΕΤΟΣ-ΝΝΝ]",body:`Αγαπητέ/ή [όνομα],
+
+θέλω να σας ενημερώσω εγκαίρως για επιπλέον κόστος στην υπόθεση [ΕΤΟΣ-ΝΝΝ], λόγω [αιτία: π.χ. δασμός anti-dumping / φυσικός έλεγχος / αποθηκευτικά].
+
+  • Εκτιμώμενο επιπλέον ποσό: [ποσό]
+  • Λόγος: [σύντομη εξήγηση]
+  • Επιλογές: [π.χ. προχωράμε / αναμονή / εναλλακτική]
+
+Πείτε μου πώς θέλετε να προχωρήσουμε.`},
+{n:8,title:"Τελικός φάκελος & χρέωση",when:"Ολοκλήρωση υπόθεσης.",subj:"Ολοκλήρωση εκτελωνισμού & χρέωση — [ΕΤΟΣ-ΝΝΝ]",body:`Αγαπητέ/ή [όνομα],
+
+ο εκτελωνισμός της υπόθεσης [ΕΤΟΣ-ΝΝΝ] ολοκληρώθηκε. Συνημμένα:
+
+  • Τελωνειακή διασάφηση & αποδεικτικά
+  • [Λοιπά έγγραφα φακέλου]
+  • Τιμολόγιο αμοιβής μας / ανάλυση δασμών-ΦΠΑ
+
+Φυλάξτε τον φάκελο στο αρχείο σας [διάρκεια διατήρησης]. Ευχαριστούμε για τη συνεργασία — είμαστε στη διάθεσή σας για την επόμενη εισαγωγή.`},
+{n:9,title:"Υπενθύμιση εκκρεμότητας",when:"Καθυστερεί έγγραφο/ενέργεια.",subj:"Υπενθύμιση — εκκρεμεί [τι] / υπόθεση [ΕΤΟΣ-ΝΝΝ]",body:`Αγαπητέ/ή [όνομα],
+
+ευγενική υπενθύμιση: για να προχωρήσουμε την υπόθεση [ΕΤΟΣ-ΝΝΝ] εκκρεμεί ακόμη [έγγραφο/ενέργεια], το οποίο ζητήσαμε στις [ημερομηνία].
+
+Χωρίς αυτό, υπάρχει κίνδυνος [συνέπεια: π.χ. αποθηκευτικά / καθυστέρηση αποδέσμευσης]. Μπορείτε να το στείλετε έως [ημερομηνία];`},
+{n:10,title:"Ενημερωτικό αλλαγής νομοθεσίας",when:"Προληπτική ενημέρωση πελατών.",subj:"Σημαντική αλλαγή — [θέμα]",body:`Αγαπητοί συνεργάτες,
+
+σας ενημερώνουμε για μια αλλαγή που ενδέχεται να σας αφορά:
+
+[π.χ. Από 1/7/2026 καταργείται η ατέλεια για δέματα έως €150 — οι εισαγωγές μέσω e-commerce αποκτούν δασμό.]
+
+Τι σημαίνει για εσάς: [σύντομα, 2-3 σημεία].
+Τι προτείνουμε: [ενέργεια / ραντεβού ανάλυσης της περίπτωσής σας].
+
+Είμαστε εδώ για να σας βοηθήσουμε να προσαρμοστείτε έγκαιρα.`},
+];
+
+const META=`Είσαι έμπειρος εκτελωνιστής στην Ελλάδα. Φτιάξε μου [αριθμός] επαναχρησιμοποιήσιμα email templates για [περίσταση/-εις].
+
+Για κάθε template δώσε:
+- σύντομο τίτλο + «πότε χρησιμοποιείται»,
+- γραμμή Θέματος (Subject),
+- σώμα με placeholders σε [αγκύλες] για ό,τι αλλάζει ανά περίπτωση,
+- επαγγελματικό, ευγενικό, σύντομο ύφος (ελληνικά),
+- χώρο για τυποποιημένη υπογραφή.
+
+Κανόνες: μην βάζεις πραγματικά στοιχεία· κράτα τα ως [κενά]. Όπου χρειάζεται προσοχή (π.χ. να μην υποσχεθώ ημερομηνία), σημείωσέ το.`;
+
+const list=document.getElementById("list");
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function copyBtn(btn,text){
+  btn.onclick=async()=>{
+    try{await navigator.clipboard.writeText(text);}
+    catch(e){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();}
+    btn.textContent="✓ Αντιγράφηκε";btn.classList.add("done");
+    setTimeout(()=>{btn.textContent=btn.dataset.lbl;btn.classList.remove("done");},1500);
+  };
+}
+function render(){
+  const q=document.getElementById("q").value.trim().toLowerCase();
+  const items=T.filter(t=>!q||(t.title+" "+t.subj+" "+t.body).toLowerCase().includes(q));
+  list.innerHTML="";
+  if(!items.length){list.innerHTML='<div class="empty">Κανένα template — δοκίμασε άλλον όρο.</div>';}
+  items.forEach(t=>{
+    const c=document.createElement("div");c.className="card";
+    c.innerHTML=`<div class="top"><div class="title">${t.n}. ${esc(t.title)}</div><span class="tag">${esc(t.when)}</span></div>
+      <div class="subj">Θέμα: ${esc(t.subj)}</div>
+      <pre>${esc(t.body)}</pre>
+      <button class="copy" data-lbl="📋 Αντιγραφή (Θέμα + κείμενο)">📋 Αντιγραφή (Θέμα + κείμενο)</button>`;
+    copyBtn(c.querySelector(".copy"),`Θέμα: ${t.subj}\n\n${t.body}`);
+    list.appendChild(c);
+  });
+  // meta-prompt πάντα στο τέλος (αν δεν υπάρχει query ή ταιριάζει)
+  if(!q || "prompt φτιάξε templates ai".includes(q) || q.includes("prompt")){
+    const m=document.createElement("div");m.className="card meta";
+    m.innerHTML=`<div class="top"><div class="title">🔧 Prompt: φτιάξε κι άλλα με AI</div><span class="tag">meta</span></div>
+      <pre>${esc(META)}</pre>
+      <button class="copy" data-lbl="📋 Αντιγραφή prompt">📋 Αντιγραφή prompt</button>
+      <div class="tip">Μετά: «κάνε το #3 πιο αυστηρό» ή «πρόσθεσε αγγλική εκδοχή του #5» — προσαρμόζονται σε δευτερόλεπτα.</div>`;
+    copyBtn(m.querySelector(".copy"),META);
+    list.appendChild(m);
+  }
+}
+document.getElementById("q").addEventListener("input",render);
+render();
+</script>
+</body>
+</html>
