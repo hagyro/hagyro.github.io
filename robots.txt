@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /polls/
+Sitemap: https://hagyro.github.io/sitemap.xml

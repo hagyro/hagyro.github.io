@@ -1,0 +1,37 @@
+name: publications
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "publications.json"
+      - "scripts/build_publications.py"
+      - "index.html"
+  schedule:
+    # Monthly staleness lint: an "(in press)" or "(under review)" claim past its
+    # window fails this job and emails the owner — claims can't rot silently.
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild publications section from publications.json (runs lint)
+        run: python3 scripts/build_publications.py
+      - name: Commit regenerated index.html if it changed
+        run: |
+          if ! git diff --quiet index.html; then
+            git config user.name "publications-bot"
+            git config user.email "actions@github.com"
+            git add index.html
+            git commit -m "chore: regenerate publications section from publications.json"
+            git push
+          fi

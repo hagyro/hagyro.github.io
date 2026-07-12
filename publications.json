@@ -1,0 +1,231 @@
+{
+  "_readme": "Single source of truth for the Publications section AND the hero article counter. Edit THIS file, never the generated HTML. Rebuild: python3 scripts/build_publications.py (also runs in CI on push). status: published | in_press (requires accepted_date) | under_review (requires since). The build lints stale statuses.",
+  "metrics": {
+    "citations": 118,
+    "h_index": 7,
+    "i10_index": 4,
+    "source": "Google Scholar",
+    "checked": "2026-07-12"
+  },
+  "articles": [
+    {
+      "authors": "Agiropoulos, C., Vlachou, M., Drivas, K. & Michaelides, P.G.",
+      "year": 2026,
+      "title": "Regional and country home bias in knowledge flows",
+      "venue": "Journal of Economic Studies",
+      "detail": "1–24",
+      "status": "published"
+    },
+    {
+      "authors": "Vlachou, M., Drivas, K., Agiropoulos, C. & Michaelides, P.G.",
+      "year": 2026,
+      "title": "Science and Technology Relatedness: Evidence from US Regions",
+      "venue": "Technology in Society",
+      "detail": "103310",
+      "status": "published"
+    },
+    {
+      "authors": "Galanos, G., Agiropoulos, C., Kyrlis, I. & Zlatini, K.",
+      "year": 2026,
+      "title": "From coal to green: skills pathways for key emerging sectors in just transition regions",
+      "venue": "World Review of Entrepreneurship, Management and Sustainable Development",
+      "detail": "22",
+      "links": [
+        {
+          "label": "Inderscience",
+          "url": "https://www.inderscience.com/info/inarticle.php?artid=153350"
+        }
+      ],
+      "status": "published"
+    },
+    {
+      "authors": "Letsou, E.Z., Agiropoulos, C.L., Efthimiou, S.G., & Pantelidis, P.I.",
+      "year": 2025,
+      "title": "Macroeconomic determinants of European outward foreign direct investment",
+      "venue": "Risk Governance and Control",
+      "detail": "15(1), 8–15",
+      "status": "published"
+    },
+    {
+      "authors": "Agiropoulos, C.",
+      "year": 2024,
+      "title": "A Quantitative Analysis of the Impact of European Promotion Banks on the Competition of EU Countries Through Linear Conventional and Machine Learning Methods",
+      "venue": "SPOUDAI Journal of Economics and Business",
+      "detail": "",
+      "status": "published"
+    },
+    {
+      "authors": "Agiropoulos, C., Chen, J.M., Galanos, G. & Poufinas, T.",
+      "year": 2024,
+      "title": "Exploring Regional Determinants of Tourism Success in the Eurozone: An Unsupervised Machine Learning Approach",
+      "venue": "Engineering Proceedings",
+      "detail": "68(1), 53",
+      "status": "published"
+    },
+    {
+      "authors": "Agiropoulos, C., Chen, J.M., Poufinas, T. & Galanos, G.",
+      "year": 2024,
+      "title": "Shadows of Resilience: Exploring the Impact of the Shadow Economy on Economic Stability",
+      "venue": "Engineering Proceedings",
+      "detail": "68(1), 44",
+      "status": "published"
+    },
+    {
+      "authors": "Siopi, E., Poufinas, T., Chen, J.M., & Agiropoulos, C.",
+      "year": 2023,
+      "title": "Can Regulation Affect the Solvency of Insurers? New Evidence from European Insurers",
+      "venue": "International Advances in Economic Research",
+      "detail": "29, 15–30",
+      "status": "published"
+    },
+    {
+      "authors": "Poufinas, T., Laskareli, A. & Agiropoulos, C.",
+      "year": 2023,
+      "title": "Decreasing Corruption and Increasing Competitiveness through E-Government",
+      "venue": "Theoretical Economics Letters",
+      "detail": "13, 310–331",
+      "status": "published"
+    },
+    {
+      "authors": "Chen, J.M. & Agiropoulos, C.",
+      "year": 2023,
+      "title": "Hints of Earlier and Other Creation: Unsupervised Machine Learning in Financial Time-Series Analysis",
+      "venue": "Engineering Proceedings",
+      "detail": "39, 42",
+      "status": "published"
+    },
+    {
+      "authors": "Agiropoulos, C., Polemis, M., Siopsis, M. & Karkalakos, S.",
+      "year": 2022,
+      "title": "Revisiting the finance-growth nexus: A socioeconomic approach",
+      "venue": "International Journal of Finance and Economics",
+      "detail": "27(3), 2762–2783",
+      "status": "published"
+    },
+    {
+      "authors": "Agiakloglou, C. & Agiropoulos, C.",
+      "year": 2022,
+      "title": "Dealing with serially correlated errors in the context of spurious regression",
+      "venue": "Applied Economics Letters",
+      "detail": "29(7), 619–625",
+      "status": "published"
+    },
+    {
+      "authors": "Poufinas, T., Galanos, G. & Agiropoulos, C.",
+      "year": 2021,
+      "title": "The Impact of Competitiveness on the Shadow Economy",
+      "venue": "International Advances in Economic Research",
+      "detail": "27, 29–46",
+      "status": "published"
+    },
+    {
+      "authors": "Agiropoulos, C., Galanos, G. & Poufinas, T.",
+      "year": 2021,
+      "title": "Entrepreneurship, income inequality and public spending: A panel data spatial analysis",
+      "venue": "International Advances in Economic Research",
+      "detail": "27(3), 197–218",
+      "status": "published"
+    },
+    {
+      "authors": "Galanos, G., Papadimitriou, P., Poufinas, T. & Agiropoulos, C.",
+      "year": 2021,
+      "title": "Investigating if the Financial Markets Performance affects the Shadow Economy",
+      "venue": "International Journal of Financial Research",
+      "detail": "12(5)",
+      "status": "published"
+    },
+    {
+      "authors": "Galanos, G., Poufinas, T. & Agiropoulos, C.",
+      "year": 2021,
+      "title": "Investigating the Relationship between Country Competitiveness and Financial Market Development in Times of Crisis",
+      "venue": "Research in World Economy",
+      "detail": "12(4)",
+      "status": "published"
+    },
+    {
+      "authors": "Chen, J., Poufinas, T., Agiropoulos, C. & Galanos, G.",
+      "year": 2020,
+      "title": "Principles of Political Economy and the Taxation of Nations: Econometric and Machine-Learning Evaluation of Tariffs",
+      "venue": "Michigan State Law Review",
+      "detail": "2020, 1361",
+      "status": "published"
+    },
+    {
+      "authors": "Makridakis, T., Agiropoulos, C. & Karkalakos, S.",
+      "year": 2018,
+      "title": "Growth, Electric Power Consumption Externalities and Patterns of Localization of Emissions",
+      "venue": "Journal of Economics, Management and Trade",
+      "detail": "21(12), 1–15",
+      "status": "published"
+    },
+    {
+      "authors": "Agiakloglou, C. & Agiropoulos, C.",
+      "year": 2016,
+      "title": "The balance between size and power in testing for linear association for two stationary AR(1) processes",
+      "venue": "Applied Economics Letters",
+      "detail": "23(4), 230–234",
+      "status": "published"
+    },
+    {
+      "authors": "Agiakloglou, C. & Agiropoulos, C.",
+      "year": 2011,
+      "title": "The sensitivity of Value-at-Risk estimates using Monte Carlo approach",
+      "venue": "SPOUDAI Journal of Economics and Business",
+      "detail": "61(1–2), 7–12",
+      "status": "published"
+    }
+  ],
+  "working_papers": [
+    {
+      "authors": "Agiropoulos, C., Poufinas, T., Chen, J. & Galanos, G.",
+      "year": 2022,
+      "title": "No country for old men (or women): The impact of migration on pension funding adequacy and sustainability",
+      "venue": "SSRN Working Paper",
+      "detail": "No. 4185168",
+      "links": [
+        {
+          "label": "SSRN 4185168",
+          "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4185168"
+        }
+      ],
+      "status": "working_paper"
+    }
+  ],
+  "book_chapters": [
+    {
+      "authors": "Vafopoulos, M., Agiropoulos, C., Gourgioti, A. & Klonaras, M.",
+      "year": 2023,
+      "title": "Connected Corporate Networks I",
+      "venue": "Interconnections in the Greek Economy, Springer",
+      "detail": "pp. 151–169",
+      "status": "published"
+    },
+    {
+      "authors": "Agiropoulos, C., Vafopoulos, M., Gourgioti, A. & Galanos, G.",
+      "year": 2023,
+      "title": "Connected Corporate Networks II: A Novel Approach to the Competition Measure",
+      "venue": "Interconnections in the Greek Economy, Springer",
+      "detail": "pp. 171–198",
+      "status": "published"
+    },
+    {
+      "authors": "Agiropoulos, C. et al.",
+      "year": 2021,
+      "title": "Five chapters: Tariffs & Debt; Demographics & Tariffs; Demographics & Social Security; Sovereign Debt & Social Security; Debt vs. NPLs in the Eurozone",
+      "venue": "Poufinas, T. (Ed.), Debt in Times of Crisis, Palgrave Macmillan",
+      "detail": "",
+      "count": 5,
+      "status": "published"
+    }
+  ],
+  "monographs": [
+    {
+      "authors": "Agiropoulos, C.",
+      "year": 2022,
+      "title": "Quantitative Methods in Economic Theory through Innovative Machine Learning Techniques",
+      "venue": "University of Piraeus",
+      "detail": "",
+      "status": "published"
+    }
+  ]
+}

@@ -70,17 +70,19 @@ function bars(map,endClass){
 }
 function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 
+const DASH_KEY = new URLSearchParams(location.search).get("key") || prompt("Dashboard key:");
+
 async function load(){
   const slot=sel.value, cfg=SLOTS[slot], view=document.getElementById("view");
   let q;
   if(cfg.type==="startend"){
-    const {data}=await sb.from("votes").select("slot,data,created_at").in("slot",["qrPollStart_start","qrPollStart_end"]);
+    const {data,error}=await sb.rpc("get_votes",{slots:["qrPollStart_start","qrPollStart_end"],k:DASH_KEY}); if(error){alert("Λάθος dashboard key ή σφάλμα: "+error.message);return;}
     lastRows=data||[]; lastSlot=slot;
     render_startend(data||[]);
     document.getElementById("total").textContent=(data?.length||0)+" απαντήσεις";
     return;
   }
-  const {data}=await sb.from("votes").select("data,created_at").eq("slot",slot);
+  const {data,error}=await sb.rpc("get_votes",{slots:[slot],k:DASH_KEY}); if(error){alert("Λάθος dashboard key ή σφάλμα: "+error.message);return;}
   const rows=data||[]; lastRows=rows; lastSlot=slot;
   document.getElementById("total").textContent=rows.length+" απαντήσεις";
 
