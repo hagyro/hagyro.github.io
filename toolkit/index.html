@@ -3,191 +3,81 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Customs Broker AI Toolkit — Εκτελωνιστής</title>
+<meta name="robots" content="noindex, nofollow">
+<title>AI Toolkit — Εκτελωνιστής του Αύριο — Προστατευμένη πρόσβαση</title>
 <style>
-:root{--bg:#0f1117;--card:#1a1d27;--ink:#f2f3f7;--muted:#9aa0ad;--navy:#2C5F8A;
-  --demo:#C2620A;--hands:#2E7D4F;--safety:#B3362B;--gold:#B8860B;--line:#2a2e3a;--code:#11141c}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:20px;line-height:1.5}
-.wrap{max-width:920px;margin:0 auto}
-h1{font-size:25px;margin:0 0 4px}
-.sub{color:var(--muted);font-size:15px;margin-bottom:18px}
-.sec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px;margin-bottom:16px}
-.sec h2{font-size:19px;margin:0 0 4px;display:flex;align-items:center;gap:9px}
-.sec .desc{color:var(--muted);font-size:14px;margin-bottom:12px}
-.bar{height:4px;border-radius:4px;margin:-2px 0 12px}
-pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:13px 14px;margin:0;
-  white-space:pre-wrap;word-break:break-word;font-family:Menlo,Consolas,monospace;font-size:13px;color:#dfe3ea}
-.copy{margin-top:10px;background:var(--navy);color:#fff;border:0;border-radius:9px;padding:10px 16px;
-  font-size:14px;font-weight:600;cursor:pointer}
-.copy.done{background:var(--hands)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-a.tile{display:block;text-decoration:none;color:var(--ink);background:#222634;border:1px solid var(--line);
-  border-radius:11px;padding:12px 14px;font-size:14.5px;transition:.15s}
-a.tile:hover{border-color:var(--navy);background:#262b3a}
-a.tile .k{font-size:11px;color:var(--muted);display:block}
-a.big{display:inline-block;background:var(--hands);color:#fff;text-decoration:none;border-radius:10px;
-  padding:12px 20px;font-weight:600;font-size:15px}
-ol,ul{margin:6px 0;padding-left:20px}
-li{margin:3px 0}
-.steps{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:640px){.steps{grid-template-columns:1fr}}
-.warn{background:var(--safety);color:#fff;border-radius:10px;padding:11px 14px;font-size:13.5px;margin-top:10px}
-.tip{background:rgba(46,125,79,.14);border:1px solid var(--hands);border-radius:10px;padding:11px 14px;font-size:13.5px;margin-top:10px}
-footer{color:var(--muted);font-size:13px;margin-top:24px;border-top:1px solid var(--line);padding-top:14px}
-code{background:#222634;padding:1px 5px;border-radius:5px;font-size:12.5px}
+  :root { --navy:#10131a; --accent:#2e86c1; --paper:#f7f5f0; --muted:#6b7280; --ochre:#c89b3c; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter', -apple-system, 'Helvetica Neue', sans-serif; background:
+    radial-gradient(1200px 600px at 70% -10%, #efe9dd 0%, var(--paper) 55%);
+    min-height:100vh; display:flex; align-items:center; justify-content:center; color:var(--navy); }
+  .gate { width:min(92vw, 420px); text-align:center; padding:2rem 0 3rem; }
+  .mono { width:56px; height:56px; margin:0 auto 1.1rem; border:1px solid var(--ochre);
+    display:flex; align-items:center; justify-content:center; font-family:Georgia, 'Times New Roman', serif;
+    font-size:1.35rem; letter-spacing:.05em; background:#fff; }
+  .kicker { color:var(--ochre); font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; margin-bottom:.55rem; }
+  h1 { font-family:Georgia, 'Playfair Display', serif; font-weight:600; font-size:1.6rem; margin-bottom:.5rem; }
+  p.sub { color:var(--muted); font-size:.95rem; line-height:1.5; margin-bottom:1.6rem; }
+  input { width:100%; padding:.85rem 1rem; font-size:1rem; border:1.5px solid var(--accent);
+    border-radius:8px; background:#fffdfa; outline:none; }
+  input:focus { box-shadow:0 0 0 3px rgba(46,134,193,.18); }
+  button { width:100%; margin-top:.7rem; padding:.85rem 1rem; font-size:1rem; font-weight:600;
+    color:#fff; background:var(--navy); border:none; border-radius:8px; cursor:pointer; }
+  button:hover { background:#1d2634; }
+  button:disabled { opacity:.6; cursor:wait; }
+  .err { color:#b3261e; font-size:.88rem; min-height:1.3em; margin-top:.7rem; }
+  .foot { margin-top:2rem; padding-top:1.1rem; border-top:1px solid #e5e0d5; color:var(--muted);
+    font-size:.78rem; letter-spacing:.14em; }
+  .foot a { color:var(--muted); }
 </style>
 </head>
 <body>
-<div class="wrap">
-<h1>🧰 Customs Broker AI Toolkit</h1>
-<div class="sub">Η εργαλειοθήκη του σύγχρονου εκτελωνιστή. Όλα ψηφιακά, για πάντα δικά σου.</div>
-
-<!-- ΒΟΗΘΟΣ -->
-<div class="sec">
-  <div class="bar" style="background:var(--navy)"></div>
-  <h2>🤖 Ο «Βοηθός Εκτελωνιστή»</h2>
-  <div class="desc">Ένας προ-ρυθμισμένος AI βοηθός που ξέρει την ελληνική &amp; ενωσιακή νομοθεσία και τους κανόνες ασφαλούς χρήσης. Ρυθμίζεται <b>μία φορά</b> — δουλεύει για πάντα.</div>
-
-  <b>1) Αντίγραψε τις οδηγίες (system prompt):</b>
-  <pre id="sysp">Είσαι εξειδικευμένος βοηθός εκτελωνιστή στην Ελλάδα. Γνωρίζεις:
-- τον Ενωσιακό Τελωνειακό Κώδικα (Καν. 952/2013),
-- τον Εθνικό Τελωνειακό Κώδικα (Ν. 5222/2025),
-- το Κοινό Δασμολόγιο και τη χρήση του TARIC.
-
-Κανόνες συμπεριφοράς:
-1. Απαντάς πάντα στα ελληνικά, με επαγγελματική ορολογία.
-2. Αν δεν είσαι βέβαιος, γράφεις «ΧΡΕΙΑΖΕΤΑΙ ΕΠΑΛΗΘΕΥΣΗ» και λες πού θα
-   γίνει ο έλεγχος (TARIC, Access2Markets, ΑΑΔΕ).
-3. Δεν επινοείς ποτέ αριθμούς κανονισμών ή άρθρα νόμων.
-4. Σε κατατάξεις: δίνεις πάντα και εναλλακτικούς κωδικούς με σκεπτικό.
-5. Υπενθυμίζεις ότι η τελική ευθύνη ανήκει στον εκτελωνιστή.
-6. Απαντάς συνοπτικά: πρώτα το συμπέρασμα σε 2-3 προτάσεις, μετά οι
-   λεπτομέρειες σε bullets. Όχι περιττές εισαγωγές και ευγένειες.</pre>
-  <button class="copy" id="cpsys">📋 Αντιγραφή system prompt</button>
-
-  <div class="steps" style="margin-top:14px">
-    <div>
-      <b>2) Φτιάξε τον βοηθό</b>
-      <div style="color:var(--muted);font-size:13px;margin:4px 0">Claude (Projects):</div>
-      <ol><li><code>claude.ai</code> → Projects → New Project</li>
-        <li>Όνομα: «Βοηθός Εκτελωνιστή»</li>
-        <li>Επικόλλησε τις οδηγίες στο «Project instructions»</li></ol>
-      <div style="color:var(--muted);font-size:13px;margin:4px 0">ChatGPT (Custom GPT):</div>
-      <ol><li><code>chatgpt.com</code> → GPTs → Create</li>
-        <li>Επικόλλησε τις οδηγίες στο «Instructions»</li></ol>
-    </div>
-    <div>
-      <b>3) Ανέβασε τη «βιβλιοθήκη» (knowledge)</b>
-      <ul><li>Ν. 5222/2025 — Εθνικός Τελωνειακός Κώδικας</li>
-        <li>Βασικά άρθρα Καν. 952/2013</li>
-        <li>Δικά σου: checklists, πρότυπα email, συχνές διαδικασίες</li></ul>
-      <b>4) Τέσταρε με 3 ερωτήσεις</b>
-      <ul><li>«Τι έγγραφα χρειάζομαι για εισαγωγή από τρίτη χώρα;»</li>
-        <li>«Κατάταξε: ηλεκτρική σκούπα-ρομπότ από Κίνα»</li>
-        <li>«Ποιο άρθρο του Ν. 5222/2025 αφορά κυρώσεις;»</li></ul>
-    </div>
-  </div>
-  <div class="warn">⚠️ ΠΟΤΕ μην ανεβάσεις φακέλους πελατών / διασαφήσεις / στοιχεία (ΑΦΜ, ονόματα). Η βιβλιοθήκη είναι για <b>γνώση</b>, όχι για <b>δεδομένα πελατών</b>.</div>
-  <div class="tip">💡 Ο βοηθός βελτιώνεται όσο τον δουλεύεις. Δεν σου αρέσει κάτι; Πρόσθεσε κανόνα στις οδηγίες.</div>
+<div class="gate">
+  <div class="mono">ΧΑ</div>
+  <div class="kicker">Applied AI & Executive Work</div>
+  <h1>AI Toolkit — Εκτελωνιστής του Αύριο</h1>
+  <p class="sub">Προστατευμένο περιεχόμενο — απαιτείται κωδικός πρόσβασης.</p>
+  <form id="f">
+    <input id="pw" type="password" placeholder="Κωδικός πρόσβασης" autocomplete="current-password" autofocus>
+    <button id="btn" type="submit">Άνοιγμα</button>
+    <div class="err" id="err"></div>
+  </form>
+  <div class="foot"><a href="/">← hagyro.github.io</a></div>
 </div>
-
-<!-- PROMPT LIBRARY -->
-<div class="sec">
-  <div class="bar" style="background:var(--demo)"></div>
-  <h2>📚 Prompt Library</h2>
-  <div class="desc">50+ δοκιμασμένα prompts σε 5 κατηγορίες, με αναζήτηση &amp; κουμπιά αντιγραφής.</div>
-  <a class="big" href="../prompts/">Άνοιξε το Prompt Library →</a>
-</div>
-
-<!-- EMAIL TEMPLATES -->
-<div class="sec">
-  <div class="bar" style="background:#17a2a2"></div>
-  <h2>✉️ Email Templates</h2>
-  <div class="desc">10 έτοιμα email του γραφείου (copy-paste) + prompt που φτιάχνει κι άλλα με AI.</div>
-  <a class="big" href="../templates/" style="background:#17a2a2">Άνοιξε τα Email Templates →</a>
-</div>
-
-<!-- CHEAT SHEETS -->
-<div class="sec">
-  <div class="bar" style="background:var(--gold)"></div>
-  <h2>📄 Cheat Sheets</h2>
-  <div class="desc">Οδηγοί μίας σελίδας ανά εργαλείο — για γρήγορη ματιά ή εκτύπωση.</div>
-  <div class="grid">
-    <a class="tile" href="cs1_rctfc.pdf"><span class="k">Διάλεξη 2</span>R-C-T-F-C (Prompts)</a>
-    <a class="tile" href="cs2_classification.pdf"><span class="k">Διάλεξη 4</span>Δασμολογική Κατάταξη</a>
-    <a class="tile" href="cs3_taric.pdf"><span class="k">Διάλεξη 4</span>TARIC Consultation</a>
-    <a class="tile" href="cs4_access2markets.pdf"><span class="k">Διάλεξη 5</span>Access2Markets &amp; CBAM</a>
-    <a class="tile" href="cs5_ocr.pdf"><span class="k">Διάλεξη 7</span>OCR &amp; AI Vision</a>
-    <a class="tile" href="cs6_cloud.pdf"><span class="k">Διάλεξη 7</span>Cloud &amp; Ονοματολογία</a>
-    <a class="tile" href="cs7_security.pdf"><span class="k">Διάλεξη 8</span>Κυβερνοασφάλεια</a>
-    <a class="tile" href="cs8_signature.pdf"><span class="k">Διάλεξη 8</span>Ψηφιακή Υπογραφή</a>
-  </div>
-</div>
-
-<!-- CHECKLISTS -->
-<div class="sec">
-  <div class="bar" style="background:var(--hands)"></div>
-  <h2>✅ Workflow Checklists</h2>
-  <div class="desc">Λίστες ελέγχου ανά διαδικασία — κανένα «ξέχασα».</div>
-  <div class="grid">
-    <a class="tile" href="chk1_newcase.pdf"><span class="k">Intake</span>Νέα Υπόθεση</a>
-    <a class="tile" href="chk2_import.pdf"><span class="k">End-to-End</span>Εισαγωγή</a>
-    <a class="tile" href="chk3_export.pdf"><span class="k">End-to-End</span>Εξαγωγή</a>
-    <a class="tile" href="chk4_transit.pdf"><span class="k">NCTS</span>Διαμετακόμιση T1/T2</a>
-    <a class="tile" href="chk5_cbam.pdf"><span class="k">2026</span>CBAM</a>
-  </div>
-</div>
-
-<!-- ΔΙΑΦΑΝΕΙΕΣ -->
-<div class="sec">
-  <div class="bar" style="background:var(--navy)"></div>
-  <h2>📊 Διαφάνειες (ανά διάλεξη)</h2>
-  <div class="desc">Οι παρουσιάσεις σε PDF — διαθέσιμες μετά από κάθε διάλεξη.</div>
-  <div class="grid">
-    <a class="tile" href="slides/lecture01.pdf"><span class="k">Διάλεξη 1</span>Καλωσόρισμα στο Μέλλον</a>
-    <a class="tile" href="slides/lecture02.pdf"><span class="k">Διάλεξη 2</span>Πώς Μιλάμε στο AI</a>
-    <a class="tile" href="slides/lecture03.pdf"><span class="k">Διάλεξη 3</span>Το Οπλοστάσιο</a>
-    <a class="tile" href="slides/lecture04.pdf"><span class="k">Διάλεξη 4</span>Δασμολογική Κατάταξη</a>
-    <a class="tile" href="slides/lecture05.pdf"><span class="k">Διάλεξη 5</span>Πρότυπα &amp; Compliance</a>
-    <a class="tile" href="slides/lecture06.pdf"><span class="k">Διάλεξη 6</span>e-Customs</a>
-    <a class="tile" href="slides/lecture07.pdf"><span class="k">Διάλεξη 7</span>Από το Χαρτί στο Cloud</a>
-    <a class="tile" href="slides/lecture08.pdf"><span class="k">Διάλεξη 8</span>Αυτοματισμοί Γραφείου</a>
-    <a class="tile" href="slides/lecture09.pdf"><span class="k">Διάλεξη 9</span>Η Εργαλειοθήκη</a>
-    <a class="tile" href="slides/lecture10.pdf"><span class="k">Διάλεξη 10</span>Grand Finale</a>
-  </div>
-</div>
-
-<!-- ΕΠΙΣΗΜΑ ΕΡΓΑΛΕΙΑ -->
-<div class="sec">
-  <div class="bar" style="background:var(--safety)"></div>
-  <h2>🔗 Επίσημες Πηγές (πάντα ο τελευταίος λόγος)</h2>
-  <div class="grid">
-    <a class="tile" href="https://ec.europa.eu/taxation_customs/dds2/taric/taric_consultation.jsp" target="_blank" rel="noopener"><span class="k">EU</span>TARIC Consultation</a>
-    <a class="tile" href="https://trade.ec.europa.eu/access-to-markets/el/home" target="_blank" rel="noopener"><span class="k">EU</span>Access2Markets</a>
-    <a class="tile" href="https://www.aade.gr/teloneia/ilektronikes-synallages-e-customs" target="_blank" rel="noopener"><span class="k">ΑΑΔΕ</span>e-Customs</a>
-    <a class="tile" href="https://www.gov.gr/" target="_blank" rel="noopener"><span class="k">gov.gr</span>Ψηφιακή Υπογραφή</a>
-  </div>
-</div>
-
-<footer>
-  Customs Broker AI Toolkit · Δρ. Χαράλαμπος Αγκυρόπουλος · v1 · 2026<br>
-  Νέες Τεχνολογίες &amp; AI για τον Εκτελωνιστή του Αύριο — Σώμα Εκτελωνιστών Ελλάδος
-</footer>
-</div>
-
 <script>
-function copyBtn(btnId, preId){
-  const btn=document.getElementById(btnId), pre=document.getElementById(preId);
-  btn.onclick=async()=>{
-    try{await navigator.clipboard.writeText(pre.textContent);}
-    catch(e){const r=document.createRange();r.selectNode(pre);getSelection().removeAllRanges();getSelection().addRange(r);document.execCommand("copy");getSelection().removeAllRanges();}
-    btn.textContent="✓ Αντιγράφηκε"; btn.classList.add("done");
-    setTimeout(()=>{btn.textContent="📋 Αντιγραφή system prompt";btn.classList.remove("done");},1600);
-  };
+const PAYLOAD = {"salt": "PKVBwW4fZGNudvvFhc+aUQ==", "iv": "qF6/RIqwJniWqdTi", "ct": "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", "iter": 600000};
+const SS_KEY = "gate_pw_toolkit";
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function unlock(pw) {
+  const salt = b64(PAYLOAD.salt), iv = b64(PAYLOAD.iv), ct = b64(PAYLOAD.ct);
+  const km = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey(
+    { name:"PBKDF2", salt, iterations:PAYLOAD.iter, hash:"SHA-256" },
+    km, { name:"AES-GCM", length:256 }, false, ["decrypt"]);
+  const pt = await crypto.subtle.decrypt({ name:"AES-GCM", iv }, key, ct);
+  return new TextDecoder().decode(pt);
 }
-copyBtn("cpsys","sysp");
+async function attempt(pw, silent) {
+  const btn = document.getElementById("btn"), err = document.getElementById("err");
+  btn.disabled = true; err.textContent = "";
+  try {
+    const html = await unlock(pw);
+    try { sessionStorage.setItem(SS_KEY, pw); } catch(e) {}
+    document.open(); document.write(html); document.close();
+  } catch(e) {
+    btn.disabled = false;
+    if (!silent) err.textContent = "Λάθος κωδικός. Δοκιμάστε ξανά.";
+  }
+}
+document.getElementById("f").addEventListener("submit", ev => {
+  ev.preventDefault();
+  const pw = document.getElementById("pw").value;
+  if (pw) attempt(pw, false);
+});
+try {
+  const saved = sessionStorage.getItem(SS_KEY);
+  if (saved) attempt(saved, true);
+} catch(e) {}
 </script>
 </body>
 </html>
