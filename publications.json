@@ -1,13 +1,27 @@
 {
   "_readme": "Single source of truth for the Publications section AND the hero article counter. Edit THIS file, never the generated HTML. Rebuild: python3 scripts/build_publications.py (also runs in CI on push). status: published | in_press (requires accepted_date) | under_review (requires since). The build lints stale statuses.",
   "metrics": {
-    "citations": 118,
+    "citations": 120,
     "h_index": 7,
     "i10_index": 4,
     "source": "Google Scholar",
-    "checked": "2026-07-12"
+    "checked": "2026-07-24"
   },
   "articles": [
+    {
+      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Measuring the Digital Economy for Policy Modeling: Evidence from Sectoral Value Added in OECD Economies",
+      "venue": "Journal of Policy Modeling",
+      "detail": "107070",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1016/j.jpolmod.2026.107070"
+        }
+      ],
+      "status": "published"
+    },
     {
       "authors": "Agiropoulos, C., Vlachou, M., Drivas, K. & Michaelides, P.G.",
       "year": 2026,
