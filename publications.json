@@ -1,13 +1,27 @@
 {
   "_readme": "Single source of truth for the Publications section AND the hero article counter. Edit THIS file, never the generated HTML. Rebuild: python3 scripts/build_publications.py (also runs in CI on push). status: published | in_press (requires accepted_date) | under_review (requires since). The build lints stale statuses.",
   "metrics": {
-    "citations": 120,
-    "h_index": 7,
+    "citations": 116,
+    "h_index": 6,
     "i10_index": 4,
     "source": "Google Scholar",
-    "checked": "2026-07-24"
+    "checked": "2026-08-09"
   },
   "articles": [
+    {
+      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Financial Technology, Artificial Intelligence and Machine Learning: Is the Digital Economy the New Economy?",
+      "venue": "Economies",
+      "detail": "14(8), 296",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.3390/economies14080296"
+        }
+      ],
+      "status": "published"
+    },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,

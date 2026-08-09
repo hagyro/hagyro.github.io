@@ -58,10 +58,13 @@ def render_entry(num: str, e: dict) -> str:
         f' <a href="{html.escape(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])}</a>.'
         for l in e.get("links", [])
     )
+    # titles that already end in terminal punctuation (e.g. a question) take no extra period
+    title = esc(e["title"])
+    title_end = "" if title.endswith(("?", "!", ".")) else "."
     return (
         f'      <div class="pub-item">\n'
         f'        <div class="pub-num">{num}</div>\n'
-        f'        <div class="pub-text">{authors} ({e["year"]}). {esc(e["title"])}. '
+        f'        <div class="pub-text">{authors} ({e["year"]}). {title}{title_end} '
         f'<em>{esc(e["venue"])}</em>{detail}.{badge}{links}</div>\n'
         f"      </div>"
     )
