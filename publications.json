@@ -1,13 +1,27 @@
 {
   "_readme": "Single source of truth for the Publications section AND the hero article counter. Edit THIS file, never the generated HTML. Rebuild: python3 scripts/build_publications.py (also runs in CI on push). status: published | in_press (requires accepted_date) | under_review (requires since). The build lints stale statuses.",
   "metrics": {
-    "citations": 116,
-    "h_index": 6,
+    "citations": 121,
+    "h_index": 7,
     "i10_index": 4,
     "source": "Google Scholar",
-    "checked": "2026-08-09"
+    "checked": "2026-10-04"
   },
   "articles": [
+    {
+      "authors": "Agiropoulos, C., Drivas, K., Galanos, G. & Agiakloglou, N.",
+      "year": 2026,
+      "title": "How cannibalization effects shape trademark renewal decisions at the firm level",
+      "venue": "Journal of Industrial and Business Economics",
+      "detail": "online first",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1007/s40812-026-00427-x"
+        }
+      ],
+      "status": "published"
+    },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
@@ -42,26 +56,42 @@
       "title": "Regional and country home bias in knowledge flows",
       "venue": "Journal of Economic Studies",
       "detail": "1–24",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1108/jes-10-2025-0822"
+        }
+      ]
     },
     {
-      "authors": "Vlachou, M., Drivas, K., Agiropoulos, C. & Michaelides, P.G.",
+      "authors": "Vlachou, M., Agiropoulos, C., Drivas, K. & Michaelides, P.G.",
       "year": 2026,
       "title": "Science and Technology Relatedness: Evidence from US Regions",
       "venue": "Technology in Society",
-      "detail": "103310",
-      "status": "published"
+      "detail": "86, 103310",
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1016/j.techsoc.2026.103310"
+        }
+      ]
     },
     {
       "authors": "Galanos, G., Agiropoulos, C., Kyrlis, I. & Zlatini, K.",
       "year": 2026,
       "title": "From coal to green: skills pathways for key emerging sectors in just transition regions",
       "venue": "World Review of Entrepreneurship, Management and Sustainable Development",
-      "detail": "22",
+      "detail": "22(2), 1–37",
       "links": [
         {
           "label": "Inderscience",
           "url": "https://www.inderscience.com/info/inarticle.php?artid=153350"
+        },
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1504/wremsd.2026.153350"
         }
       ],
       "status": "published"
@@ -72,6 +102,26 @@
       "title": "Macroeconomic determinants of European outward foreign direct investment",
       "venue": "Risk Governance and Control",
       "detail": "15(1), 8–15",
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.22495/rgcv15i1p1"
+        }
+      ]
+    },
+    {
+      "authors": "Poufinas, T., Chen, J.M., Agiropoulos, C. & Galanos, G.",
+      "year": 2024,
+      "title": "No Country for Old Men (or Women): The Impact of Migration on Pension Funding Adequacy and Sustainability",
+      "venue": "Theoretical Economics Letters",
+      "detail": "14(3), 1373–1404",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.4236/tel.2024.143067"
+        }
+      ],
       "status": "published"
     },
     {
@@ -88,7 +138,13 @@
       "title": "Exploring Regional Determinants of Tourism Success in the Eurozone: An Unsupervised Machine Learning Approach",
       "venue": "Engineering Proceedings",
       "detail": "68(1), 53",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.3390/engproc2024068053"
+        }
+      ]
     },
     {
       "authors": "Agiropoulos, C., Chen, J.M., Poufinas, T. & Galanos, G.",
@@ -96,23 +152,41 @@
       "title": "Shadows of Resilience: Exploring the Impact of the Shadow Economy on Economic Stability",
       "venue": "Engineering Proceedings",
       "detail": "68(1), 44",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.3390/engproc2024068044"
+        }
+      ]
     },
     {
       "authors": "Siopi, E., Poufinas, T., Chen, J.M., & Agiropoulos, C.",
       "year": 2023,
       "title": "Can Regulation Affect the Solvency of Insurers? New Evidence from European Insurers",
       "venue": "International Advances in Economic Research",
-      "detail": "29, 15–30",
-      "status": "published"
+      "detail": "29(1–2), 15–30",
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1007/s11294-023-09867-w"
+        }
+      ]
     },
     {
       "authors": "Poufinas, T., Laskareli, A. & Agiropoulos, C.",
       "year": 2023,
       "title": "Decreasing Corruption and Increasing Competitiveness through E-Government",
       "venue": "Theoretical Economics Letters",
-      "detail": "13, 310–331",
-      "status": "published"
+      "detail": "13(2), 310–331",
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.4236/tel.2023.132020"
+        }
+      ]
     },
     {
       "authors": "Chen, J.M. & Agiropoulos, C.",
@@ -120,7 +194,13 @@
       "title": "Hints of Earlier and Other Creation: Unsupervised Machine Learning in Financial Time-Series Analysis",
       "venue": "Engineering Proceedings",
       "detail": "39, 42",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.3390/engproc2023039042"
+        }
+      ]
     },
     {
       "authors": "Agiropoulos, C., Polemis, M., Siopsis, M. & Karkalakos, S.",
@@ -128,38 +208,68 @@
       "title": "Revisiting the finance-growth nexus: A socioeconomic approach",
       "venue": "International Journal of Finance and Economics",
       "detail": "27(3), 2762–2783",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1002/ijfe.2297"
+        }
+      ]
     },
     {
       "authors": "Agiakloglou, C. & Agiropoulos, C.",
       "year": 2022,
-      "title": "Dealing with serially correlated errors in the context of spurious regression",
+      "title": "Dealing with serially correlated errors in the context of spurious regression for two independent stationary AR(1) processes",
       "venue": "Applied Economics Letters",
       "detail": "29(7), 619–625",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1080/13504851.2021.1881427"
+        }
+      ]
     },
     {
       "authors": "Poufinas, T., Galanos, G. & Agiropoulos, C.",
       "year": 2021,
       "title": "The Impact of Competitiveness on the Shadow Economy",
       "venue": "International Advances in Economic Research",
-      "detail": "27, 29–46",
+      "detail": "27(1), 29–46",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1007/s11294-021-09820-9"
+        }
+      ],
       "status": "published"
     },
     {
       "authors": "Agiropoulos, C., Galanos, G. & Poufinas, T.",
       "year": 2021,
-      "title": "Entrepreneurship, income inequality and public spending: A panel data spatial analysis",
+      "title": "Entrepreneurship, Income Inequality and Public Spending: A Spatial Analysis into Regional Determinants of Growing Firms in Greece",
       "venue": "International Advances in Economic Research",
       "detail": "27(3), 197–218",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1007/s11294-021-09832-5"
+        }
+      ],
       "status": "published"
     },
     {
-      "authors": "Galanos, G., Papadimitriou, P., Poufinas, T. & Agiropoulos, C.",
+      "authors": "Papadimitriou, P., Poufinas, T., Galanos, G. & Agiropoulos, C.",
       "year": 2021,
-      "title": "Investigating if the Financial Markets Performance affects the Shadow Economy",
+      "title": "Investigating if the Financial Markets Performance Affects the Shadow Economy: Additional Evidence From EU Countries",
       "venue": "International Journal of Financial Research",
-      "detail": "12(5)",
+      "detail": "12(5), 130",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.5430/ijfr.v12n5p130"
+        }
+      ],
       "status": "published"
     },
     {
@@ -168,7 +278,13 @@
       "title": "Investigating the Relationship between Country Competitiveness and Financial Market Development in Times of Crisis",
       "venue": "Research in World Economy",
       "detail": "12(4)",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.5430/rwe.v12n4p38"
+        }
+      ]
     },
     {
       "authors": "Chen, J., Poufinas, T., Agiropoulos, C. & Galanos, G.",
@@ -184,7 +300,13 @@
       "title": "Growth, Electric Power Consumption Externalities and Patterns of Localization of Emissions",
       "venue": "Journal of Economics, Management and Trade",
       "detail": "21(12), 1–15",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.9734/jemt/2018/44455"
+        }
+      ]
     },
     {
       "authors": "Agiakloglou, C. & Agiropoulos, C.",
@@ -192,7 +314,13 @@
       "title": "The balance between size and power in testing for linear association for two stationary AR(1) processes",
       "venue": "Applied Economics Letters",
       "detail": "23(4), 230–234",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1080/13504851.2015.1066486"
+        }
+      ]
     },
     {
       "authors": "Agiakloglou, C. & Agiropoulos, C.",
@@ -205,15 +333,15 @@
   ],
   "working_papers": [
     {
-      "authors": "Agiropoulos, C., Poufinas, T., Chen, J. & Galanos, G.",
-      "year": 2022,
-      "title": "No country for old men (or women): The impact of migration on pension funding adequacy and sustainability",
-      "venue": "SSRN Working Paper",
-      "detail": "No. 4185168",
+      "authors": "Agiakloglou, C. & Agiropoulos, C.",
+      "year": 2017,
+      "title": "Is Spurious Regression an Issue for two independent stationary AR(1) processes?",
+      "venue": "Research seminar, Universidad Complutense de Madrid",
+      "detail": "15 November 2017",
       "links": [
         {
-          "label": "SSRN 4185168",
-          "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4185168"
+          "label": "Slides",
+          "url": "https://ucm.es/data/cont/media/www/pag-37515/Agiakloglou_Nov17_pp.pdf"
         }
       ],
       "status": "working_paper"
@@ -223,17 +351,29 @@
     {
       "authors": "Vafopoulos, M., Agiropoulos, C., Gourgioti, A. & Klonaras, M.",
       "year": 2023,
-      "title": "Connected Corporate Networks I",
-      "venue": "Interconnections in the Greek Economy, Springer",
+      "title": "Connected Corporate Networks I: Definitions, Metrics and Empirical Results from the Greek Telecommunications Sector",
+      "venue": "The Political Economy of Greek Growth up to 2030 (Interconnections in the Greek Economy), Springer",
       "detail": "pp. 151–169",
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1007/978-3-031-31335-6_5"
+        }
+      ]
     },
     {
       "authors": "Agiropoulos, C., Vafopoulos, M., Gourgioti, A. & Galanos, G.",
       "year": 2023,
       "title": "Connected Corporate Networks II: A Novel Approach to the Competition Measure",
-      "venue": "Interconnections in the Greek Economy, Springer",
+      "venue": "The Political Economy of Greek Growth up to 2030 (Interconnections in the Greek Economy), Springer",
       "detail": "pp. 171–198",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1007/978-3-031-31335-6_6"
+        }
+      ],
       "status": "published"
     },
     {
@@ -243,7 +383,13 @@
       "venue": "Poufinas, T. (Ed.), Debt in Times of Crisis, Palgrave Macmillan",
       "detail": "",
       "count": 5,
-      "status": "published"
+      "status": "published",
+      "links": [
+        {
+          "label": "Book DOI",
+          "url": "https://doi.org/10.1007/978-3-030-74162-4"
+        }
+      ]
     }
   ],
   "monographs": [
