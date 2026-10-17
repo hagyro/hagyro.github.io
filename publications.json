@@ -1,5 +1,5 @@
 {
-  "_readme": "Single source of truth for the Publications section AND the hero article counter. Edit THIS file, never the generated HTML. Rebuild: python3 scripts/build_publications.py (also runs in CI on push). status: published | in_press (requires accepted_date) | under_review (requires since). The build lints stale statuses.",
+  "_readme": "Single source of truth for the Publications section AND the hero article counter. Edit THIS file, never the generated HTML. Rebuild: python3 scripts/build_publications.py (also runs in CI on push). status: published | in_press (requires accepted_date) | under_review (requires since = submission date; journal NOT listed publicly) | revise_resubmit (requires journal + since = decision date). Working papers are auto-ordered R&R -> under review -> other, newest first. The build lints stale statuses.",
   "metrics": {
     "citations": 121,
     "h_index": 7,
@@ -333,6 +333,50 @@
   ],
   "working_papers": [
     {
+      "authors": "Gkouskos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Geopolitical risk beyond the VIX: out-of-sample evidence from safe-haven returns and volatility",
+      "venue": "Working paper",
+      "status": "revise_resubmit",
+      "journal": "Bulletin of Economic Research",
+      "since": "2026-10-12"
+    },
+    {
+      "authors": "Gkouskos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Investment property under two European regimes: IAS 40 measurement and Solvency II valuation in insurance groups",
+      "venue": "Working paper",
+      "status": "under_review",
+      "since": "2026-07-21"
+    },
+    {
+      "authors": "Gkouskos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Regulatory measurement distortion in Solvency II: long-term-guarantee and transitional measures in Greek insurance, 2016–2025",
+      "venue": "Working paper",
+      "status": "revise_resubmit",
+      "journal": "Journal of Financial Regulation and Compliance",
+      "since": "2026-10-13"
+    },
+    {
+      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Recovering spectrum rent from published national accounts: Evidence from Europe",
+      "venue": "Working paper",
+      "status": "revise_resubmit",
+      "journal": "Review of Income and Wealth",
+      "since": "2026-09-20"
+    },
+    {
+      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Marine Bioinvasion as Coastal Economic Risk: Silver-Cheeked Toadfish Exposure in Mediterranean Tourism Regions",
+      "venue": "Working paper",
+      "status": "revise_resubmit",
+      "journal": "Current Issues in Tourism",
+      "since": "2026-08-30"
+    },
+    {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
       "year": 2026,
       "title": "Beyond average hours: Employee representation, the long hours tail and work family strain in Europe",
@@ -345,8 +389,9 @@
       "year": 2026,
       "title": "Markets at the regulatory perimeter: the economic content of the legal classification of event contracts",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-10-12"
+      "status": "revise_resubmit",
+      "since": "2026-10-12",
+      "journal": "The Journal of Futures Markets"
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -407,10 +452,10 @@
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Tsioutsios, A.",
       "year": 2026,
-      "title": "The Vanishing Wallet: Adoption Frictions in Blockchain Gaming",
+      "title": "The Vanishing Wallet: Crypto-Asset Requirements and Platform-Mandated Disclosure in Blockchain Games",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-22"
+      "since": "2026-09-24"
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -473,8 +518,9 @@
       "year": 2026,
       "title": "Visitor demand and destination cash infrastructure: evidence from euro-area banknote flows",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-08-31"
+      "status": "revise_resubmit",
+      "since": "2026-09-28",
+      "journal": "Tourism Economics"
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -497,16 +543,18 @@
       "year": 2026,
       "title": "Battery-electric penetration and the European car-repair aftermarket: measurement, identification and timing",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-08-23"
+      "status": "revise_resubmit",
+      "since": "2026-09-29",
+      "journal": "Research in Transportation Economics"
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
       "title": "Sovereign early repayment and financial stability: creditor seniority, liquidity buffers and the price of sovereign risk",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-08-19"
+      "status": "revise_resubmit",
+      "since": "2026-10-08",
+      "journal": "Journal of Financial Stability"
     },
     {
       "authors": "Gkouskos, G. & Agiropoulos, C.",
@@ -529,8 +577,9 @@
       "year": 2026,
       "title": "Equity-Market Closures and Cryptocurrency Volatility",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-08-04"
+      "status": "revise_resubmit",
+      "since": "2026-10-06",
+      "journal": "International Review of Economics and Finance"
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -586,7 +635,7 @@
       "title": "Measurement Degrees of Freedom in Composite Economic Indices: Evidence from a Misinformation Tax Index",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-07-08"
+      "since": "2026-06-24"
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -601,8 +650,9 @@
       "year": 2026,
       "title": "The Private Economic Value of Industrial Designs: Evidence from EU Community Design Renewals",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-06-11"
+      "status": "revise_resubmit",
+      "since": "2026-09-17",
+      "journal": "World Patent Information"
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -623,10 +673,11 @@
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
-      "title": "Measuring the Digital Economy: An Empirical Assessment of Digital Economy Measurement Frameworks on Sectoral Gross Value Added",
+      "title": "Digital Knowledge Processes and Value Creation in Knowledge-Intensive Sectors",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-03-27"
+      "status": "revise_resubmit",
+      "since": "2026-08-29",
+      "journal": "Journal of the Knowledge Economy"
     },
     {
       "authors": "Agiakloglou, C. & Agiropoulos, C.",

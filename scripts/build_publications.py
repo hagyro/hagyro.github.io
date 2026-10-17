@@ -6,7 +6,11 @@ between the PUBLICATIONS:START/END markers and the hero article counter
 between HERO-ARTICLES:START/END, then lints stale claims:
   - in_press older than 12 months since accepted_date -> BUILD FAILS
   - under_review older than 18 months since `since`    -> BUILD FAILS
+  - revise_resubmit without `journal` or `since`       -> BUILD FAILS
 So an "(in press)" can never silently rot on the site again.
+
+Working papers are ordered revise_resubmit -> under_review -> other, newest
+`since` first; the journal is shown only for revise_resubmit entries.
 
 Usage: python3 scripts/build_publications.py [--check]
   --check: verify index.html is up to date with the JSON (CI mode), no writes.
@@ -39,6 +43,8 @@ BOLD_SELF = re.compile(r"(Agiropoulos, C\.L\.|Agiropoulos, C\.)")
 
 IN_PRESS_MAX_DAYS = 365
 UNDER_REVIEW_MAX_DAYS = 548
+# display order of working-paper statuses; anything else sorts last
+WP_STATUS_RANK = {"revise_resubmit": 0, "under_review": 1}
 
 
 def esc(s: str) -> str:
@@ -54,6 +60,8 @@ def render_entry(num: str, e: dict) -> str:
         badge = ' <span class="pub-badge">(in press)</span>'
     elif status == "under_review":
         badge = ' <span class="pub-badge">(under review)</span>'
+    elif status == "revise_resubmit":
+        badge = f' <span class="pub-badge">(revise &amp; resubmit, <em>{esc(e["journal"])}</em>)</span>'
     links = "".join(
         f' <a href="{html.escape(l["url"])}" target="_blank" rel="noopener">{esc(l["label"])}</a>.'
         for l in e.get("links", [])
@@ -104,18 +112,26 @@ def lint(data: dict, today: date) -> list[str]:
                     errors.append(f"in_press without accepted_date: {ref}")
                 elif (today - date.fromisoformat(e["accepted_date"])).days > IN_PRESS_MAX_DAYS:
                     errors.append(f"in_press for >12 months — verify or update: {ref}")
-            elif status == "under_review":
+            elif status in ("under_review", "revise_resubmit"):
                 if "since" not in e:
-                    errors.append(f"under_review without since: {ref}")
+                    errors.append(f"{status} without since: {ref}")
                 elif (today - date.fromisoformat(e["since"])).days > UNDER_REVIEW_MAX_DAYS:
-                    errors.append(f"under_review for >18 months — verify or reclassify: {ref}")
+                    errors.append(f"{status} for >18 months — verify or reclassify: {ref}")
+                if status == "revise_resubmit" and not e.get("journal"):
+                    errors.append(f"revise_resubmit without journal: {ref}")
     return errors
+
+
+def sort_working_papers(entries: list[dict]) -> list[dict]:
+    # newest `since` first, then a stable sort by status rank (R&R on top)
+    by_date = sorted(entries, key=lambda e: e.get("since", ""), reverse=True)
+    return sorted(by_date, key=lambda e: WP_STATUS_RANK.get(e.get("status"), 9))
 
 
 def build_section(data: dict) -> str:
     parts = [render_category("Peer-Reviewed Journal Articles", data["articles"])]
     if data.get("working_papers"):
-        parts.append(render_category("Working Papers", data["working_papers"]))
+        parts.append(render_category("Working Papers", sort_working_papers(data["working_papers"])))
     if data.get("book_chapters"):
         parts.append(render_category("Book Chapters", data["book_chapters"]))
     if data.get("monographs"):
