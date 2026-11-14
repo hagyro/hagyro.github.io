@@ -9,6 +9,14 @@
   },
   "articles": [
     {
+      "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
+      "year": 2026,
+      "title": "Equity-Market Closures and Cryptocurrency Volatility",
+      "venue": "International Review of Economics and Finance",
+      "status": "in_press",
+      "accepted_date": "2026-11-14"
+    },
+    {
       "authors": "Agiropoulos, C., Drivas, K., Galanos, G. & Agiakloglou, N.",
       "year": 2026,
       "title": "How cannibalization effects shape trademark renewal decisions at the firm level",
@@ -370,11 +378,11 @@
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
-      "title": "Marine Bioinvasion as Coastal Economic Risk: Silver-Cheeked Toadfish Exposure in Mediterranean Tourism Regions",
+      "title": "Marine bioinvasion and the Mediterranean tourism economy: regional overlap of silver-cheeked toadfish records with tourism activity",
       "venue": "Working paper",
       "status": "revise_resubmit",
       "journal": "Current Issues in Tourism",
-      "since": "2026-08-30"
+      "since": "2026-11-13"
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -494,8 +502,9 @@
       "year": 2026,
       "title": "AI names, platform classification and venture funding: Evidence from Europe",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-09-18"
+      "status": "revise_resubmit",
+      "since": "2026-11-12",
+      "journal": "International Review of Financial Analysis"
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -571,15 +580,6 @@
       "venue": "Working paper",
       "status": "under_review",
       "since": "2026-08-14"
-    },
-    {
-      "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
-      "year": 2026,
-      "title": "Equity-Market Closures and Cryptocurrency Volatility",
-      "venue": "Working paper",
-      "status": "revise_resubmit",
-      "since": "2026-10-06",
-      "journal": "International Review of Economics and Finance"
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
