@@ -9,6 +9,14 @@
   },
   "articles": [
     {
+      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
+      "year": 2027,
+      "title": "Recovery Regimes after Crises: Sectoral Reallocation, Structural Selection and Post-Crisis Performance in Europe",
+      "venue": "Review of Economic Analysis",
+      "status": "in_press",
+      "accepted_date": "2026-11-15"
+    },
+    {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
       "year": 2026,
       "title": "Equity-Market Closures and Cryptocurrency Volatility",
@@ -636,14 +644,6 @@
       "venue": "Working paper",
       "status": "under_review",
       "since": "2026-06-24"
-    },
-    {
-      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
-      "year": 2026,
-      "title": "Recovery Regimes after Crises: Sectoral Reallocation, Structural Selection and Post-Crisis Performance in Europe",
-      "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-06-29"
     },
     {
       "authors": "Agiropoulos, C., Drivas, K. & Galanos, G.",
