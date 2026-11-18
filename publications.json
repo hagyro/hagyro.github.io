@@ -25,12 +25,26 @@
       "accepted_date": "2026-11-18"
     },
     {
+      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Digital Knowledge Processes and Value Creation in Knowledge-Intensive Sectors",
+      "venue": "Journal of the Knowledge Economy",
+      "status": "in_press",
+      "accepted_date": "2026-11-11"
+    },
+    {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
       "year": 2026,
       "title": "Equity-Market Closures and Cryptocurrency Volatility",
       "venue": "International Review of Economics and Finance",
-      "status": "in_press",
-      "accepted_date": "2026-11-14"
+      "detail": "112, 106070",
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1016/j.iref.2026.106070"
+        }
+      ]
     },
     {
       "authors": "Agiropoulos, C., Drivas, K., Galanos, G. & Agiakloglou, N.",
@@ -669,15 +683,6 @@
       "venue": "Working paper",
       "status": "under_review",
       "since": "2026-06-10"
-    },
-    {
-      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
-      "year": 2026,
-      "title": "Digital Knowledge Processes and Value Creation in Knowledge-Intensive Sectors",
-      "venue": "Working paper",
-      "status": "revise_resubmit",
-      "since": "2026-08-29",
-      "journal": "Journal of the Knowledge Economy"
     },
     {
       "authors": "Agiakloglou, C. & Agiropoulos, C.",
