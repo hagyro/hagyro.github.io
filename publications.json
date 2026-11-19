@@ -1,5 +1,5 @@
 {
-  "_readme": "Single source of truth for the Publications section AND the hero article counter. Edit THIS file, never the generated HTML. Rebuild: python3 scripts/build_publications.py (also runs in CI on push). status: published | in_press (requires accepted_date) | under_review (requires since = submission date; journal NOT listed publicly) | revise_resubmit (requires journal + since = decision date). Working papers are auto-ordered R&R -> under review -> other, newest first. The build lints stale statuses.",
+  "_readme": "Single source of truth for the Publications section AND the hero article counter. Edit THIS file, never the generated HTML. Rebuild: python3 scripts/build_publications.py (also runs in CI on push). status: published | in_press (requires accepted_date) | under_review (requires since = submission date; journal NOT listed publicly) | revise_resubmit (requires journal + since = decision date). Working papers are auto-ordered R&R -> under review -> other, newest first. The build lints stale statuses. Research themes: `themes` (id/title/blurb) drives the Research section cards; every entry carries `themes: [ids]` (lint: non-empty, known ids), the build counts articles and working papers per theme and tags each pub-item with data-themes for the on-page filter.",
   "metrics": {
     "citations": 121,
     "h_index": 7,
@@ -7,6 +7,48 @@
     "source": "Google Scholar",
     "checked": "2026-10-04"
   },
+  "themes": [
+    {
+      "id": "regulation",
+      "title": "Financial Regulation & Insurance Supervision",
+      "blurb": "How prudential rules measure what they regulate: Solvency II long-term-guarantee and transitional measures, IAS 40 versus Solvency II valuation, catastrophe-loss disclosure, the EU Single Rulebook Q&A process, crypto-asset disclosure under MiCA, and the legal perimeter of event contracts."
+    },
+    {
+      "id": "digital",
+      "title": "Digital & Knowledge Economy, Innovation & IP",
+      "blurb": "Measuring the digital economy in sectoral value added (Journal of Policy Modeling, 2026), knowledge processes and value creation (Journal of the Knowledge Economy, forthcoming), trademark and design renewals as revealed private value, science–technology relatedness, home bias in knowledge flows, and AI naming in venture funding."
+    },
+    {
+      "id": "tourism",
+      "title": "Tourism, Climate & Destination Risk",
+      "blurb": "Marine bioinvasion and the Mediterranean tourism economy (Current Issues in Tourism, 2026), downside risk in a destination's source-market portfolio, validating heatwave treatments for tourism demand, cash infrastructure and visitor flows, inbound tourism during war, and whether tourism regions can staff their future."
+    },
+    {
+      "id": "markets",
+      "title": "Financial Markets & Computational Finance",
+      "blurb": "Equity-market closures and cryptocurrency volatility (International Review of Economics and Finance, 2026), geopolitical risk beyond the VIX, defence-equity repricing, co-jumps in commodity futures as inflation signals, sovereign early repayment, and unsupervised machine learning in financial time series."
+    },
+    {
+      "id": "structural",
+      "title": "Regional, Sectoral & Structural Change",
+      "blurb": "Recovery regimes after crises: sectoral reallocation, structural selection and post-crisis performance in Europe (Review of Economic Analysis, forthcoming), battery-electric penetration and the car-repair aftermarket, skills pathways in just-transition regions, the stability of comparative advantage, and spatial determinants of entrepreneurship in Greek regions."
+    },
+    {
+      "id": "fiscal",
+      "title": "EU Public Finance & Economic Measurement",
+      "blurb": "Spectrum rent in national accounts and EU own resources, the 1898 International Financial Commission pledge, VAT differentials and art-market gateways, electric-vehicle subsidy design, measurement degrees of freedom in composite indices, and earlier work on the shadow economy, competitiveness and the taxation of nations."
+    },
+    {
+      "id": "population",
+      "title": "Population, Health & Labour",
+      "blurb": "Migration and pension adequacy, asylum corridors and gravity, caesarean-birth dynamics in ten low- and middle-income countries, parental co-residence in university cities, long-hours tails and work–family strain, and generational renewal in European farming."
+    },
+    {
+      "id": "methods",
+      "title": "Econometric Methodology",
+      "blurb": "Spurious regression and serial correlation for independent stationary AR(1) processes, the size–power balance in tests of association, estimator dependence in panel and state-dependence settings, and measurement-first identification across the applied work above."
+    }
+  ],
   "articles": [
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -14,7 +56,10 @@
       "title": "Recovery Regimes after Crises: Sectoral Reallocation, Structural Selection and Post-Crisis Performance in Europe",
       "venue": "Review of Economic Analysis",
       "status": "in_press",
-      "accepted_date": "2026-11-15"
+      "accepted_date": "2026-11-15",
+      "themes": [
+        "structural"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -22,7 +67,10 @@
       "title": "Marine Bioinvasion and the Mediterranean Tourism Economy: Regional Overlap of Silver-Cheeked Toadfish Records with Tourism Activity",
       "venue": "Current Issues in Tourism",
       "status": "in_press",
-      "accepted_date": "2026-11-18"
+      "accepted_date": "2026-11-18",
+      "themes": [
+        "tourism"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -30,7 +78,10 @@
       "title": "Digital Knowledge Processes and Value Creation in Knowledge-Intensive Sectors",
       "venue": "Journal of the Knowledge Economy",
       "status": "in_press",
-      "accepted_date": "2026-11-11"
+      "accepted_date": "2026-11-11",
+      "themes": [
+        "digital"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -44,6 +95,9 @@
           "label": "DOI",
           "url": "https://doi.org/10.1016/j.iref.2026.106070"
         }
+      ],
+      "themes": [
+        "markets"
       ]
     },
     {
@@ -58,7 +112,10 @@
           "url": "https://doi.org/10.1007/s40812-026-00427-x"
         }
       ],
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "digital"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -72,7 +129,11 @@
           "url": "https://doi.org/10.3390/economies14080296"
         }
       ],
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "digital",
+        "markets"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -86,7 +147,11 @@
           "url": "https://doi.org/10.1016/j.jpolmod.2026.107070"
         }
       ],
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "digital",
+        "fiscal"
+      ]
     },
     {
       "authors": "Agiropoulos, C., Vlachou, M., Drivas, K. & Michaelides, P.G.",
@@ -100,6 +165,10 @@
           "label": "DOI",
           "url": "https://doi.org/10.1108/jes-10-2025-0822"
         }
+      ],
+      "themes": [
+        "digital",
+        "structural"
       ]
     },
     {
@@ -114,6 +183,10 @@
           "label": "DOI",
           "url": "https://doi.org/10.1016/j.techsoc.2026.103310"
         }
+      ],
+      "themes": [
+        "digital",
+        "structural"
       ]
     },
     {
@@ -132,7 +205,11 @@
           "url": "https://doi.org/10.1504/wremsd.2026.153350"
         }
       ],
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "structural",
+        "population"
+      ]
     },
     {
       "authors": "Letsou, E.Z., Agiropoulos, C.L., Efthimiou, S.G., & Pantelidis, P.I.",
@@ -146,6 +223,9 @@
           "label": "DOI",
           "url": "https://doi.org/10.22495/rgcv15i1p1"
         }
+      ],
+      "themes": [
+        "structural"
       ]
     },
     {
@@ -160,7 +240,10 @@
           "url": "https://doi.org/10.4236/tel.2024.143067"
         }
       ],
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "population"
+      ]
     },
     {
       "authors": "Agiropoulos, C.",
@@ -168,7 +251,10 @@
       "title": "A Quantitative Analysis of the Impact of European Promotion Banks on the Competition of EU Countries Through Linear Conventional and Machine Learning Methods",
       "venue": "SPOUDAI Journal of Economics and Business",
       "detail": "",
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "structural"
+      ]
     },
     {
       "authors": "Agiropoulos, C., Chen, J.M., Galanos, G. & Poufinas, T.",
@@ -182,6 +268,10 @@
           "label": "DOI",
           "url": "https://doi.org/10.3390/engproc2024068053"
         }
+      ],
+      "themes": [
+        "tourism",
+        "structural"
       ]
     },
     {
@@ -196,6 +286,10 @@
           "label": "DOI",
           "url": "https://doi.org/10.3390/engproc2024068044"
         }
+      ],
+      "themes": [
+        "fiscal",
+        "structural"
       ]
     },
     {
@@ -210,6 +304,9 @@
           "label": "DOI",
           "url": "https://doi.org/10.1007/s11294-023-09867-w"
         }
+      ],
+      "themes": [
+        "regulation"
       ]
     },
     {
@@ -224,6 +321,9 @@
           "label": "DOI",
           "url": "https://doi.org/10.4236/tel.2023.132020"
         }
+      ],
+      "themes": [
+        "fiscal"
       ]
     },
     {
@@ -238,6 +338,10 @@
           "label": "DOI",
           "url": "https://doi.org/10.3390/engproc2023039042"
         }
+      ],
+      "themes": [
+        "markets",
+        "methods"
       ]
     },
     {
@@ -252,6 +356,10 @@
           "label": "DOI",
           "url": "https://doi.org/10.1002/ijfe.2297"
         }
+      ],
+      "themes": [
+        "markets",
+        "structural"
       ]
     },
     {
@@ -266,6 +374,9 @@
           "label": "DOI",
           "url": "https://doi.org/10.1080/13504851.2021.1881427"
         }
+      ],
+      "themes": [
+        "methods"
       ]
     },
     {
@@ -280,7 +391,11 @@
           "url": "https://doi.org/10.1007/s11294-021-09820-9"
         }
       ],
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "fiscal",
+        "structural"
+      ]
     },
     {
       "authors": "Agiropoulos, C., Galanos, G. & Poufinas, T.",
@@ -294,7 +409,10 @@
           "url": "https://doi.org/10.1007/s11294-021-09832-5"
         }
       ],
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "structural"
+      ]
     },
     {
       "authors": "Papadimitriou, P., Poufinas, T., Galanos, G. & Agiropoulos, C.",
@@ -308,7 +426,11 @@
           "url": "https://doi.org/10.5430/ijfr.v12n5p130"
         }
       ],
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "fiscal",
+        "markets"
+      ]
     },
     {
       "authors": "Galanos, G., Poufinas, T. & Agiropoulos, C.",
@@ -322,6 +444,10 @@
           "label": "DOI",
           "url": "https://doi.org/10.5430/rwe.v12n4p38"
         }
+      ],
+      "themes": [
+        "markets",
+        "structural"
       ]
     },
     {
@@ -330,7 +456,10 @@
       "title": "Principles of Political Economy and the Taxation of Nations: Econometric and Machine-Learning Evaluation of Tariffs",
       "venue": "Michigan State Law Review",
       "detail": "2020, 1361",
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "fiscal"
+      ]
     },
     {
       "authors": "Makridakis, T., Agiropoulos, C. & Karkalakos, S.",
@@ -344,6 +473,9 @@
           "label": "DOI",
           "url": "https://doi.org/10.9734/jemt/2018/44455"
         }
+      ],
+      "themes": [
+        "structural"
       ]
     },
     {
@@ -358,6 +490,9 @@
           "label": "DOI",
           "url": "https://doi.org/10.1080/13504851.2015.1066486"
         }
+      ],
+      "themes": [
+        "methods"
       ]
     },
     {
@@ -366,7 +501,10 @@
       "title": "The sensitivity of Value-at-Risk estimates using Monte Carlo approach",
       "venue": "SPOUDAI Journal of Economics and Business",
       "detail": "61(1–2), 7–12",
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "markets"
+      ]
     }
   ],
   "working_papers": [
@@ -377,7 +515,10 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "journal": "Bulletin of Economic Research",
-      "since": "2026-10-12"
+      "since": "2026-10-12",
+      "themes": [
+        "markets"
+      ]
     },
     {
       "authors": "Gkouskos, G. & Agiropoulos, C.",
@@ -385,7 +526,10 @@
       "title": "Investment property under two European regimes: IAS 40 measurement and Solvency II valuation in insurance groups",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-07-21"
+      "since": "2026-07-21",
+      "themes": [
+        "regulation"
+      ]
     },
     {
       "authors": "Gkouskos, G. & Agiropoulos, C.",
@@ -394,7 +538,10 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "journal": "Journal of Financial Regulation and Compliance",
-      "since": "2026-10-13"
+      "since": "2026-10-13",
+      "themes": [
+        "regulation"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -403,7 +550,10 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "journal": "Review of Income and Wealth",
-      "since": "2026-09-20"
+      "since": "2026-09-20",
+      "themes": [
+        "fiscal"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -411,7 +561,10 @@
       "title": "Beyond average hours: Employee representation, the long hours tail and work family strain in Europe",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-10-14"
+      "since": "2026-10-14",
+      "themes": [
+        "population"
+      ]
     },
     {
       "authors": "Gkouskos, G. & Agiropoulos, C.",
@@ -420,7 +573,11 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "since": "2026-10-12",
-      "journal": "The Journal of Futures Markets"
+      "journal": "The Journal of Futures Markets",
+      "themes": [
+        "regulation",
+        "markets"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -428,7 +585,10 @@
       "title": "Where young adults are counted: University cities and parental co-residence in European regions",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-10-12"
+      "since": "2026-10-12",
+      "themes": [
+        "population"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -436,7 +596,10 @@
       "title": "Gross Exports, Value Added and the Stability of Comparative Advantage: Evidence from 80 Economies, 1995-2022",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-10-10"
+      "since": "2026-10-10",
+      "themes": [
+        "structural"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -444,7 +607,10 @@
       "title": "Same Country, Different Game: Economic Structure, Institutions, and the Gender Gap in European Club Football Competitiveness",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-10-02"
+      "since": "2026-10-02",
+      "themes": [
+        "structural"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -452,7 +618,10 @@
       "title": "Greece's last devaluation before the euro, 1998: export prices, quantities and margins",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-29"
+      "since": "2026-09-29",
+      "themes": [
+        "structural"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -460,7 +629,10 @@
       "title": "The price of a pledge: valuation and yield of the revenues assigned to the International Financial Commission in Greece, 1898-1912",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-29"
+      "since": "2026-09-29",
+      "themes": [
+        "fiscal"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -468,7 +640,10 @@
       "title": "Episodic own resources and EU budget stability: spectrum proceeds and the design of the transfer",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-24"
+      "since": "2026-09-24",
+      "themes": [
+        "fiscal"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -476,7 +651,10 @@
       "title": "Relational ties, tour operators and inbound tourism during war: Evidence from Israel",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-23"
+      "since": "2026-09-23",
+      "themes": [
+        "tourism"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Tsioutsios, A.",
@@ -484,7 +662,11 @@
       "title": "The Vanishing Wallet: Crypto-Asset Requirements and Platform-Mandated Disclosure in Blockchain Games",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-24"
+      "since": "2026-09-24",
+      "themes": [
+        "regulation",
+        "digital"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -492,7 +674,11 @@
       "title": "Foreign ownership as a trajectory: Minority entry and the path to control in cross-border acquisitions",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-22"
+      "since": "2026-09-22",
+      "themes": [
+        "structural",
+        "markets"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -500,7 +686,10 @@
       "title": "Pass-through of world commodity prices to retail food prices in Europe: evidence from coffee, tea and cocoa",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-21"
+      "since": "2026-09-21",
+      "themes": [
+        "markets"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -508,7 +697,11 @@
       "title": "Pricing the digitalisation co-benefit of generational renewal: A policy model for EU farm technology adoption",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-21"
+      "since": "2026-09-21",
+      "themes": [
+        "digital",
+        "population"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -516,7 +709,10 @@
       "title": "Conflict escalation, resolution and defence-equity repricing, 1990-2025",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-20"
+      "since": "2026-09-20",
+      "themes": [
+        "markets"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -525,7 +721,11 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "since": "2026-11-12",
-      "journal": "International Review of Financial Analysis"
+      "journal": "International Review of Financial Analysis",
+      "themes": [
+        "digital",
+        "markets"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -533,7 +733,10 @@
       "title": "Validating a heatwave treatment: disaster registers, meteorological exposure and tourism demand in Europe",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-16"
+      "since": "2026-09-16",
+      "themes": [
+        "tourism"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -541,7 +744,10 @@
       "title": "Caesarean section, later surgery and later births in ten low- and middle-income countries",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-16"
+      "since": "2026-09-16",
+      "themes": [
+        "population"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -550,7 +756,11 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "since": "2026-09-28",
-      "journal": "Tourism Economics"
+      "journal": "Tourism Economics",
+      "themes": [
+        "tourism",
+        "markets"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -558,7 +768,10 @@
       "title": "Private provision and the inherited burden of caesarean birth in ten low- and middle-income countries",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-08-29"
+      "since": "2026-08-29",
+      "themes": [
+        "population"
+      ]
     },
     {
       "authors": "Gkouskos, G. & Agiropoulos, C.",
@@ -566,7 +779,10 @@
       "title": "Forced harvests: windstorm exposure, salvage logging and the displacement of regular felling in Central Europe",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-08-26"
+      "since": "2026-08-26",
+      "themes": [
+        "structural"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -575,7 +791,10 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "since": "2026-09-29",
-      "journal": "Research in Transportation Economics"
+      "journal": "Research in Transportation Economics",
+      "themes": [
+        "structural"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -584,7 +803,11 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "since": "2026-10-08",
-      "journal": "Journal of Financial Stability"
+      "journal": "Journal of Financial Stability",
+      "themes": [
+        "markets",
+        "fiscal"
+      ]
     },
     {
       "authors": "Gkouskos, G. & Agiropoulos, C.",
@@ -593,7 +816,10 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "since": "2026-11-15",
-      "journal": "Journal of Banking Regulation"
+      "journal": "Journal of Banking Regulation",
+      "themes": [
+        "regulation"
+      ]
     },
     {
       "authors": "Gkouskos, G. & Agiropoulos, C.",
@@ -601,7 +827,10 @@
       "title": "Measuring the Granularity of Catastrophe Loss Disclosure: An Instrument and a Policy Baseline",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-08-14"
+      "since": "2026-08-14",
+      "themes": [
+        "regulation"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -609,7 +838,10 @@
       "title": "Does Gravity Explain Migration Composition? Evidence from European Asylum Corridors",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-08-02"
+      "since": "2026-08-02",
+      "themes": [
+        "population"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -617,7 +849,10 @@
       "title": "Where Art Enters Europe: VAT Differentials and the Geography of Art-Market Gateways",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-07-29"
+      "since": "2026-07-29",
+      "themes": [
+        "fiscal"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -625,7 +860,11 @@
       "title": "Electric-vehicle subsidies, production origin, and ownership: evidence on policy design from Germany, France, and Sweden",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-07-21"
+      "since": "2026-07-21",
+      "themes": [
+        "fiscal",
+        "structural"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -633,7 +872,11 @@
       "title": "Stock and flow in rising caesarean rates: measuring state dependence",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-07-18"
+      "since": "2026-07-18",
+      "themes": [
+        "population",
+        "methods"
+      ]
     },
     {
       "authors": "Agiropoulos, C., Ferrara, L., Karadimitropoulou, A. & Triantafyllou, A.",
@@ -641,7 +884,10 @@
       "title": "Co-Jumps in Agricultural Commodity Futures Markets as Leading Indicators of Inflation",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-07-14"
+      "since": "2026-07-14",
+      "themes": [
+        "markets"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -649,7 +895,11 @@
       "title": "Demographic Exposure, Labour-Migration Buffers and Regional Vulnerability in Europe: Can Tourism Regions Staff the Future?",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-07-13"
+      "since": "2026-07-13",
+      "themes": [
+        "tourism",
+        "population"
+      ]
     },
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
@@ -657,7 +907,11 @@
       "title": "Measurement Degrees of Freedom in Composite Economic Indices: Evidence from a Misinformation Tax Index",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-06-24"
+      "since": "2026-06-24",
+      "themes": [
+        "fiscal",
+        "methods"
+      ]
     },
     {
       "authors": "Agiropoulos, C., Drivas, K. & Galanos, G.",
@@ -666,7 +920,10 @@
       "venue": "Working paper",
       "status": "revise_resubmit",
       "since": "2026-09-17",
-      "journal": "World Patent Information"
+      "journal": "World Patent Information",
+      "themes": [
+        "digital"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -674,7 +931,11 @@
       "title": "Do Entrepreneurship and Innovation Indicators Inform Public Policy? Indicator-Level, Sectoral Evidence from OECD Economies",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-06-10"
+      "since": "2026-06-10",
+      "themes": [
+        "digital",
+        "structural"
+      ]
     },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
@@ -682,7 +943,11 @@
       "title": "The Term Structure of Public Insurance and Private Insurance Demand: Estimator Dependence and Unemployment Protection in OECD Insurance Markets",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-06-10"
+      "since": "2026-06-10",
+      "themes": [
+        "regulation",
+        "methods"
+      ]
     },
     {
       "authors": "Agiakloglou, C. & Agiropoulos, C.",
@@ -696,7 +961,10 @@
           "url": "https://ucm.es/data/cont/media/www/pag-37515/Agiakloglou_Nov17_pp.pdf"
         }
       ],
-      "status": "working_paper"
+      "status": "working_paper",
+      "themes": [
+        "methods"
+      ]
     }
   ],
   "book_chapters": [
@@ -712,6 +980,9 @@
           "label": "DOI",
           "url": "https://doi.org/10.1007/978-3-031-31335-6_5"
         }
+      ],
+      "themes": [
+        "structural"
       ]
     },
     {
@@ -726,7 +997,10 @@
           "url": "https://doi.org/10.1007/978-3-031-31335-6_6"
         }
       ],
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "structural"
+      ]
     },
     {
       "authors": "Agiropoulos, C. et al.",
@@ -741,6 +1015,10 @@
           "label": "Book DOI",
           "url": "https://doi.org/10.1007/978-3-030-74162-4"
         }
+      ],
+      "themes": [
+        "fiscal",
+        "population"
       ]
     }
   ],
@@ -751,7 +1029,11 @@
       "title": "Quantitative Methods in Economic Theory through Innovative Machine Learning Techniques",
       "venue": "University of Piraeus",
       "detail": "",
-      "status": "published"
+      "status": "published",
+      "themes": [
+        "methods",
+        "markets"
+      ]
     }
   ]
 }

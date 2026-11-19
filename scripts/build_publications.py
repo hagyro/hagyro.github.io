@@ -7,6 +7,11 @@ between HERO-ARTICLES:START/END, then lints stale claims:
   - in_press older than 12 months since accepted_date -> BUILD FAILS
   - under_review older than 18 months since `since`    -> BUILD FAILS
   - revise_resubmit without `journal` or `since`       -> BUILD FAILS
+  - entry without `themes`, or an unknown theme id      -> BUILD FAILS
+It also rewrites the Research cards between RESEARCH:START/END from the
+`themes` block (title + blurb) with live counts of articles and working
+papers per theme, and tags every publication with data-themes so the
+on-page filter (static JS in index.html) can narrow the list by theme.
 So an "(in press)" can never silently rot on the site again.
 
 Working papers are ordered revise_resubmit -> under_review -> other, newest
@@ -37,6 +42,8 @@ CIT_START = "<!-- HERO-CITATIONS:START -->"
 CIT_END = "<!-- HERO-CITATIONS:END -->"
 HIDX_START = "<!-- HERO-HINDEX:START -->"
 HIDX_END = "<!-- HERO-HINDEX:END -->"
+RESEARCH_START = "<!-- RESEARCH:START (generated from publications.json themes — do not edit by hand) -->"
+RESEARCH_END = "<!-- RESEARCH:END -->"
 METRICS_MAX_DAYS = 365  # metrics unchecked for >12 months fail the monthly lint
 
 BOLD_SELF = re.compile(r"(Agiropoulos, C\.L\.|Agiropoulos, C\.)")
@@ -69,8 +76,9 @@ def render_entry(num: str, e: dict) -> str:
     # titles that already end in terminal punctuation (e.g. a question) take no extra period
     title = esc(e["title"])
     title_end = "" if title.endswith(("?", "!", ".")) else "."
+    themes_attr = " ".join(e.get("themes", []))
     return (
-        f'      <div class="pub-item">\n'
+        f'      <div class="pub-item" data-themes="{themes_attr}">\n'
         f'        <div class="pub-num">{num}</div>\n'
         f'        <div class="pub-text">{authors} ({e["year"]}). {title}{title_end} '
         f'<em>{esc(e["venue"])}</em>{detail}.{badge}{links}</div>\n'
@@ -103,10 +111,18 @@ def lint(data: dict, today: date) -> list[str]:
         elif (today - date.fromisoformat(m["checked"])).days > METRICS_MAX_DAYS:
             errors.append(f"citation metrics last checked {m['checked']} (>12 months) — "
                           f"re-check Google Scholar and update metrics.checked")
+    theme_ids = {t["id"] for t in data.get("themes", [])}
+    if not theme_ids:
+        errors.append("no `themes` block in publications.json")
     for cat in ("articles", "working_papers", "book_chapters", "monographs"):
         for e in data.get(cat, []):
             status = e.get("status", "published")
             ref = f"{e['title'][:50]}… ({e['venue']})"
+            if not e.get("themes"):
+                errors.append(f"entry without themes: {ref}")
+            for t in e.get("themes", []):
+                if t not in theme_ids:
+                    errors.append(f"unknown theme id '{t}': {ref}")
             if status == "in_press":
                 if "accepted_date" not in e:
                     errors.append(f"in_press without accepted_date: {ref}")
@@ -139,6 +155,32 @@ def build_section(data: dict) -> str:
     return "\n\n".join(parts)
 
 
+def build_research(data: dict) -> str:
+    """One card per theme, with live counts; the card is the filter trigger."""
+    def n(cat: str, tid: str) -> int:
+        return sum(e.get("count", 1) for e in data.get(cat, []) if tid in e.get("themes", []))
+
+    cards = []
+    for t in data["themes"]:
+        na, nw = n("articles", t["id"]), n("working_papers", t["id"])
+        if na + nw == 0:
+            sys.exit(f"ERROR: theme '{t['id']}' has no articles or working papers")
+        parts = []
+        if na:
+            parts.append(f"{na} journal article{'s' if na != 1 else ''}")
+        if nw:
+            parts.append(f"{nw} working paper{'s' if nw != 1 else ''}")
+        cards.append(
+            f'      <div class="exp-card theme-card" role="button" tabindex="0" '
+            f'data-theme="{t["id"]}" data-title="{esc(t["title"])}">\n'
+            f'        <h3>{esc(t["title"])}</h3>\n'
+            f'        <p>{esc(t["blurb"])}</p>\n'
+            f'        <span class="theme-count">{" &middot; ".join(parts)} &rarr;</span>\n'
+            f"      </div>"
+        )
+    return "\n".join(cards)
+
+
 def splice(text: str, start: str, end: str, replacement: str, label: str) -> str:
     i, j = text.find(start), text.find(end)
     if i == -1 or j == -1 or j < i:
@@ -160,6 +202,7 @@ def main() -> None:
     n_articles = str(len(data["articles"]))
     new = splice(html_text, PUB_START, PUB_END, build_section(data), "PUBLICATIONS")
     new = splice(new, HERO_START, HERO_END, n_articles, "HERO-ARTICLES")
+    new = splice(new, RESEARCH_START, RESEARCH_END, build_research(data), "RESEARCH")
     m = data.get("metrics", {})
     if m:
         new = splice(new, CIT_START, CIT_END, str(m["citations"]), "HERO-CITATIONS")
