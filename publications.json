@@ -1,11 +1,11 @@
 {
   "_readme": "Single source of truth for the Publications section AND the hero article counter. Edit THIS file, never the generated HTML. Rebuild: python3 scripts/build_publications.py (also runs in CI on push). status: published | in_press (requires accepted_date) | under_review (requires since = submission date; journal NOT listed publicly) | revise_resubmit (requires journal + since = decision date). Working papers are auto-ordered R&R -> under review -> other, newest first. The build lints stale statuses. Research themes: `themes` (id/title/blurb) drives the Research section cards; every entry carries `themes: [ids]` (lint: non-empty, known ids), the build counts articles and working papers per theme and tags each pub-item with data-themes for the on-page filter.",
   "metrics": {
-    "citations": 121,
+    "citations": 126,
     "h_index": 7,
-    "i10_index": 4,
+    "i10_index": 5,
     "source": "Google Scholar",
-    "checked": "2026-10-04"
+    "checked": "2026-11-22"
   },
   "themes": [
     {
@@ -509,6 +509,52 @@
   ],
   "working_papers": [
     {
+      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Stock market penalties for airline and railroad accidents in the United States, 1990-2025",
+      "venue": "Working paper",
+      "status": "under_review",
+      "since": "2026-11-21",
+      "themes": [
+        "markets"
+      ]
+    },
+    {
+      "authors": "Agiropoulos, C. & Neokosmidis, I. M.",
+      "year": 2026,
+      "title": "Intertemporally Nonseparable Quadratic Preferences, Long-Run Payoff Geometry, and Covariance Pricing: Theory and Cross-Sectional Evidence",
+      "venue": "Working paper",
+      "status": "under_review",
+      "since": "2026-11-05",
+      "themes": [
+        "markets",
+        "methods"
+      ]
+    },
+    {
+      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "The disposition effect on a decentralized exchange: Wallet-level evidence from meme tokens",
+      "venue": "Working paper",
+      "status": "under_review",
+      "since": "2026-11-02",
+      "themes": [
+        "markets"
+      ]
+    },
+    {
+      "authors": "Panagiotopoulos, P., Roukanas, S. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Trade Liberalization and Inequality: A Re-examination of What Cross-Country Panels Identify",
+      "venue": "Working paper",
+      "status": "under_review",
+      "since": "2026-10-27",
+      "themes": [
+        "structural",
+        "methods"
+      ]
+    },
+    {
       "authors": "Gkouskos, G. & Agiropoulos, C.",
       "year": 2026,
       "title": "Geopolitical risk beyond the VIX: out-of-sample evidence from safe-haven returns and volatility",
@@ -558,10 +604,10 @@
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
       "year": 2026,
-      "title": "Beyond average hours: Employee representation, the long hours tail and work family strain in Europe",
+      "title": "Employee representation and the normal working week in Europe: Long hours, work intensity and work family strain",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-10-14",
+      "since": "2026-10-18",
       "themes": [
         "population"
       ]
@@ -582,10 +628,10 @@
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
-      "title": "Where young adults are counted: University cities and parental co-residence in European regions",
+      "title": "Measuring parental co-residence in European regions: Resident shares, cohort retention and university cities",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-10-12",
+      "since": "2026-10-18",
       "themes": [
         "population"
       ]
@@ -593,10 +639,10 @@
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
-      "title": "Gross Exports, Value Added and the Stability of Comparative Advantage: Evidence from 80 Economies, 1995-2022",
+      "title": "Stability and Relatedness of Revealed Comparative Advantage in Value-Added and Gross Terms: 80 Economies, 1995-2022",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-10-10",
+      "since": "2026-10-18",
       "themes": [
         "structural"
       ]
@@ -615,10 +661,10 @@
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
       "year": 2026,
-      "title": "Greece's last devaluation before the euro, 1998: export prices, quantities and margins",
+      "title": "Exchange rate pass-through on the path to monetary union: Greek exports after the 1998 drachma realignment",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-09-29",
+      "since": "2026-10-27",
       "themes": [
         "structural"
       ]
@@ -648,10 +694,9 @@
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
-      "title": "Relational ties, tour operators and inbound tourism during war: Evidence from Israel",
+      "title": "Armed conflict and the composition of tourism demand: Relational ties, tour operators and origin markets in Israel",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-09-23",
+      "status": "working_paper",
       "themes": [
         "tourism"
       ]
@@ -752,7 +797,7 @@
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
-      "title": "Visitor demand and destination cash infrastructure: evidence from euro-area banknote flows",
+      "title": "International visitors and the national cash cycle: country level evidence from the euro area",
       "venue": "Working paper",
       "status": "revise_resubmit",
       "since": "2026-09-28",
@@ -824,10 +869,10 @@
     {
       "authors": "Gkouskos, G. & Agiropoulos, C.",
       "year": 2026,
-      "title": "Measuring the Granularity of Catastrophe Loss Disclosure: An Instrument and a Policy Baseline",
+      "title": "The Granularity of Catastrophe Loss Disclosure and Stated Reporting Rules: Evidence from Global Insurers",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-08-14",
+      "since": "2026-11-03",
       "themes": [
         "regulation"
       ]
@@ -857,10 +902,10 @@
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
       "year": 2026,
-      "title": "Electric-vehicle subsidies, production origin, and ownership: evidence on policy design from Germany, France, and Sweden",
+      "title": "Production origin, brand ownership and the allocation of purchase subsidies for electric cars: evidence from Germany's Umweltbonus",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-07-21",
+      "since": "2026-11-21",
       "themes": [
         "fiscal",
         "structural"
@@ -883,8 +928,9 @@
       "year": 2026,
       "title": "Co-Jumps in Agricultural Commodity Futures Markets as Leading Indicators of Inflation",
       "venue": "Working paper",
-      "status": "under_review",
-      "since": "2026-07-14",
+      "status": "revise_resubmit",
+      "journal": "International Journal of Forecasting",
+      "since": "2026-10-23",
       "themes": [
         "markets"
       ]
@@ -892,10 +938,10 @@
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
-      "title": "Demographic Exposure, Labour-Migration Buffers and Regional Vulnerability in Europe: Can Tourism Regions Staff the Future?",
+      "title": "Demographic decline, migration buffers and the labour base of Europe's tourism regions",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-07-13",
+      "since": "2026-10-25",
       "themes": [
         "tourism",
         "population"
@@ -904,7 +950,7 @@
     {
       "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
       "year": 2026,
-      "title": "Measurement Degrees of Freedom in Composite Economic Indices: Evidence from a Misinformation Tax Index",
+      "title": "Measurement Degrees of Freedom in Composite Economic Indices: Evidence from an Information Disorder Index",
       "venue": "Working paper",
       "status": "under_review",
       "since": "2026-06-24",
@@ -919,7 +965,7 @@
       "title": "The Private Economic Value of Industrial Designs: Evidence from EU Community Design Renewals",
       "venue": "Working paper",
       "status": "revise_resubmit",
-      "since": "2026-09-17",
+      "since": "2026-11-05",
       "journal": "World Patent Information",
       "themes": [
         "digital"
@@ -940,10 +986,10 @@
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
       "year": 2026,
-      "title": "The Term Structure of Public Insurance and Private Insurance Demand: Estimator Dependence and Unemployment Protection in OECD Insurance Markets",
+      "title": "Unemployment benefit duration and the public-private welfare mix: Evidence from life insurance markets in OECD countries",
       "venue": "Working paper",
       "status": "under_review",
-      "since": "2026-06-10",
+      "since": "2026-11-04",
       "themes": [
         "regulation",
         "methods"
