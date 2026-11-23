@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /polls/
+Disallow: /unipi-preview/
 Sitemap: https://hagyro.github.io/sitemap.xml
