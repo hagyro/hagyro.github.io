@@ -16,7 +16,7 @@
     {
       "id": "digital",
       "title": "Digital & Knowledge Economy, Innovation & IP",
-      "blurb": "Measuring the digital economy in sectoral value added (Journal of Policy Modeling, 2026), knowledge processes and value creation (Journal of the Knowledge Economy, forthcoming), trademark and design renewals as revealed private value, science–technology relatedness, home bias in knowledge flows, and AI naming in venture funding."
+      "blurb": "Measuring the digital economy in sectoral value added (Journal of Policy Modeling, 2026), knowledge processes and value creation (Journal of the Knowledge Economy, 2026), trademark and design renewals as revealed private value, science–technology relatedness, home bias in knowledge flows, and AI naming in venture funding."
     },
     {
       "id": "tourism",
@@ -77,8 +77,14 @@
       "year": 2026,
       "title": "Digital Knowledge Processes and Value Creation in Knowledge-Intensive Sectors",
       "venue": "Journal of the Knowledge Economy",
-      "status": "in_press",
-      "accepted_date": "2026-11-11",
+      "detail": "18(1), 27",
+      "status": "published",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1007/s13132-026-03504-7"
+        }
+      ],
       "themes": [
         "digital"
       ]
@@ -508,6 +514,29 @@
     }
   ],
   "working_papers": [
+    {
+      "authors": "Michaelides, P.G., Vrettos, G., Papageorgiou, T., Agiropoulos, C. & Porcher, T.",
+      "year": 2026,
+      "title": "Who Gets to Enter? Strategic Technologies and Entrepreneurial Dynamism in Europe's New Industrial Policy",
+      "venue": "Working paper",
+      "status": "under_review",
+      "since": "2026-11-25",
+      "themes": [
+        "digital",
+        "structural"
+      ]
+    },
+    {
+      "authors": "Gkouskos, G., Galanos, G. & Agiropoulos, C.",
+      "year": 2026,
+      "title": "Prosecuting economic espionage: Stock market evidence on victims, rivals and foreign beneficiaries",
+      "venue": "Working paper",
+      "status": "under_review",
+      "since": "2026-11-22",
+      "themes": [
+        "markets"
+      ]
+    },
     {
       "authors": "Gkouskos, G., Agiropoulos, C. & Galanos, G.",
       "year": 2026,
